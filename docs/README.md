@@ -8,9 +8,19 @@ Open Source Signature Service Integration Service API.
 
 ---
 
-The [Swedish eID Framework](https://docs.swedenconnect.se/technical-framework/) defines a model for Federated Central Signing Services. The **signservice-integration-api** repository contains an API for an Integration Service that is used to create requests sent to the Signature Service, and process responses received from the Signature Service.
+The [Swedish eID Framework](https://docs.swedenconnect.se/technical-framework/) defines a model for Federated Central Signing Services. The **signservice-integration-api** repository defines an API for an Integration Service that is used to create requests sent to the Signature Service, and process responses received from the Signature Service.
+
+The API is implemented as a Java API with interfaces and domain classes. Using these classes we generate JSON which is used to describe the SignService Integration Service REST API.
 
 * [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/)
+* [Configuration and policies](todo.md)
+* [Creating a SignRequest](todo.md)
+* [Processing a SignResponse](todo.md)
+
+### Feedback
+
+Please create an [Issue](https://github.com/idsec-solutions/signservice-integration-api/issues) if you have questions or suggestions.
+
 
 ---
 
