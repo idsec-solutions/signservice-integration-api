@@ -1,4 +1,4 @@
-![Logo](https://github.com/idsec-solutions/idsec-solutions.github.io/blob/master/img/idsec.png)
+![Logo](docs/img/idsec.png)
 
 # signservice-integration-api
 
@@ -9,6 +9,8 @@ Open Source Signature Service Integration Service API.
 ---
 
 The [Swedish eID Framework](https://docs.swedenconnect.se/technical-framework/) defines a model for Federated Central Signing Services. The **signservice-integration-api** repository contains an API for an Integration Service that is used to create requests sent to the Signature Service, and process responses received from the Signature Service.
+
+Read more at the [API documentation](https://idsec-solutions.github.io/signservice-integration-api/) page.
 
 ---
 
