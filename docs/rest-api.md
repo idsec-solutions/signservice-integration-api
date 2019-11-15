@@ -12,25 +12,25 @@ REST API for the Signature Service Integration Service.
 
 1. [**Introduction**](#introduction)
 
-  1.1. [Design Principles](#design-principles)
+    1.1. [Design Principles](#design-principles)
     
 2. [**Configuration**](#configuration)
 
 3. [**Creating a SignRequest**](#creating-a-signrequest)
 
-  3.1. [SignRequest Input](#signrequest-input)
+    3.1. [SignRequest Input](#signrequest-input)
   
-  3.2. [SignRequest Data](#signrequest-data)
+    3.2. [SignRequest Data](#signrequest-data)
   
 4. [**Processing a SignResponse**](#processing-a-signresponse)
 
-  4.1. [Processing Input](#processing-input)
+    4.1. [Processing Input](#processing-input)
   
-  4.2. [Signature Result](#signature-result)
+    4.2. [Signature Result](#signature-result)
   
 5. [**Errors**](#errors)
 
-  5.1. [Error codes](#error-codes)
+    5.1. [Error codes](#error-codes)
   
 ---
 

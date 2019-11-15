@@ -12,25 +12,25 @@ Java Signature Service Integration Service API.
 
 1. [**Introduction**](#introduction)
 
-  1.1. [Design Principles](#design-principles)
+    1.1. [Design Principles](#design-principles)
   
-  1.2. [Javadoc](#javadoc)
+    1.2. [Javadoc](#javadoc)
   
-  1.3. [Distribution](#distribution)
+    1.3. [Distribution](#distribution)
   
 2. [**Configuration**](#configuration)
 
 3. [**Creating a SignRequest**](#creating-a-signrequest)
 
-  3.1. [SignRequestInput](#signrequestinput)
+    3.1. [SignRequestInput](#signrequestinput)
   
-  3.2. [SignRequestData](#signrequestdata)
+    3.2. [SignRequestData](#signrequestdata)
   
 4. [**Processing a SignResponse**](#processing-a-signresponse)
 
-  4.1. [Processing input](#processing-input)
+    4.1. [Processing input](#processing-input)
   
-  4.2. [SignatureResult](#signatureresult)
+    4.2. [SignatureResult](#signatureresult)
   
 ---
 
@@ -126,35 +126,35 @@ SignRequestData signRequest = integrationService.createSignRequest(input);
 
 So, what is passed in?
 
-- signRequesterID: The ID of the requesting service. This is normally the SAML entityID of the service that requests the signature (and to which the user has logged into before signing).
+- `signRequesterID`: The ID of the requesting service. This is normally the SAML entityID of the service that requests the signature (and to which the user has logged into before signing).
 
-- authnRequirements: The authentication requirements that we put on the signer (user) as part of the signature process. See [AuthnRequirements](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/authentication/AuthnRequirements.html).
+- `authnRequirements`: The authentication requirements that we put on the signer (user) as part of the signature process. See [AuthnRequirements](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/authentication/AuthnRequirements.html).
 
-  - authnServiceID: The ID for the authentication service (Identity Provider) who should authenticate the user as part of the signature process. In the common case this is the same IdP that authenticated the user during his or hers login to the requesting service.
+  - `authnServiceID`: The ID for the authentication service (Identity Provider) who should authenticate the user as part of the signature process. In the common case this is the same IdP that authenticated the user during his or hers login to the requesting service.
   
-  - authnContextRef: The authentication context reference identifier (an URI) that identifies the context under which the signer should be authenticated. This is the Level of Assurance (LoA).
+  - `authnContextRef`: The authentication context reference identifier (an URI) that identifies the context under which the signer should be authenticated. This is the Level of Assurance (LoA).
   
-  - requestedSignerAttributes: One or more identity attribute values that the sign requestor requires the authentication service (IdP) to validate and deliver (and the signature service to assert). Typically, a sign requester includes the identity attributes that binds the signature operation to the principal that authenticated at the sign requester service, for example the personalIdentityNumber of the principal.
+  - `requestedSignerAttributes`: One or more identity attribute values that the sign requestor requires the authentication service (IdP) to validate and deliver (and the signature service to assert). Typically, a sign requester includes the identity attributes that binds the signature operation to the principal that authenticated at the sign requester service, for example the personalIdentityNumber of the principal.
   
-- tbsDocuments: One or more "To be signed documents" containing the document contents and associated metadata. See [TbsDocument](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/document/TbsDocument.html).
+- `tbsDocuments`: One or more "To be signed documents" containing the document contents and associated metadata. See [TbsDocument](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/document/TbsDocument.html).
 
-  - id: The unique ID for this document (within the current request). If not supplied, the SignService Integration Service will generate one.
+  - `id`: The unique ID for this document (within the current request). If not supplied, the SignService Integration Service will generate one.
   
-  - content: The Base64-encoded byte string that is the content of the document that is to be signed.
+  - `content`: The Base64-encoded byte string that is the content of the document that is to be signed.
   
-  - mimeType: The MIME type of the document that is to be signed. Currently "application/xml" and "application/pdf" are supported. See [DocumentType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/document/DocumentType.html).
+  - `mimeType`: The MIME type of the document that is to be signed. Currently "application/xml" and "application/pdf" are supported. See [DocumentType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/document/DocumentType.html).
   
-- signMessageParameters: The sign message parameters that is used to build the sign message element that is included in the SignRequest. See [SignMessageParameters](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/SignMessageParameters.html).
+- `signMessageParameters`: The sign message parameters that is used to build the sign message element that is included in the SignRequest. See [SignMessageParameters](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/SignMessageParameters.html).
 
-  - signMessage: The sign message (non encrypted) content according to specified mime type.
+  - `signMessage`: The sign message (non encrypted) content according to specified mime type.
   
-  - mimeType: The sign message MIME type. See [SignMessageMimeType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/SignMessageMimeType.html).
+  - `mimeType`: The sign message MIME type. See [SignMessageMimeType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/SignMessageMimeType.html).
   
-  - mustShow: Specifies if the requester of the signature requires that the sign message is displayed to the user. If the Identity Provider cannot fulfill this requirement it must not proceed.
+  - `mustShow`: Specifies if the requester of the signature requires that the sign message is displayed to the user. If the Identity Provider cannot fulfill this requirement it must not proceed.
   
-  - performEncryption: Tells whether the supplied sign message should be encrypted with `displayEntity` as the recipient.
+  - `performEncryption`: Tells whether the supplied sign message should be encrypted with `displayEntity` as the recipient.
   
-  - displayEntity: The ID (SAML entityID) of the entity (IdP) that should display this message.
+  - `displayEntity`: The ID (SAML entityID) of the entity (IdP) that should display this message.
 
 
 <a name="signrequestdata"></a>
