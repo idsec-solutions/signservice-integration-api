@@ -12,10 +12,14 @@ The [Swedish eID Framework](https://docs.swedenconnect.se/technical-framework/) 
 
 The API is implemented as a Java API with interfaces and domain classes. Using these classes we generate JSON which is used to describe the SignService Integration Service REST API.
 
-* [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/)
-* [Configuration and policies](todo.md)
-* [Creating a SignRequest](todo.md)
-* [Processing a SignResponse](todo.md)
+* [Configuration and policies](configuration.md)
+
+* [Java API](java-api.md)
+
+* [REST API](rest-api.md)
+
+
+See the [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/) for all details.
 
 ### Feedback
 

@@ -37,7 +37,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SignMessageParameters {
 
   /**
-   * The (non-encrypted) sign message (non encrypted) content according to specified mime type.
+   * The sign message (non encrypted) content according to specified mime type.
    * 
    * @param signMessage
    *          the sign message
@@ -59,15 +59,12 @@ public class SignMessageParameters {
   private boolean performEncryption;
 
   /**
-   * The sign message MIME type.
+   * The sign message MIME type. See {@link SignMessageMimeType} for possible values.
    *
-   * @param mimeType
-   *          the MIME type
    * @return the MIME type, or {@code null} which defaults to {@link SignMessageMimeType#TEXT}.
    */
-  @Setter
   @Getter
-  private SignMessageMimeType mimeType;
+  private String mimeType;
 
   /**
    * Specifies if the requester of the signature requires that the sign message is displayed to the user. If the
@@ -82,7 +79,7 @@ public class SignMessageParameters {
   private Boolean mustShow;
 
   /**
-   * The SAML entityID of the entity (IdP) that should display this message.
+   * The ID (SAML entityID) of the entity (IdP) that should display this message.
    * 
    * <p>
    * Note: The {@code DisplayEntity} attribute of the {@code SignMessage} element is required if the sign message is to
@@ -101,10 +98,56 @@ public class SignMessageParameters {
   private String displayEntity;
 
   /**
+   * The sign message MIME type. See {@link SignMessageMimeType} for possible values.
+   *
+   * @param mimeType
+   *          the MIME type
+   */
+  public void setMimeType(final String mimeType) {
+    final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType); 
+    this.mimeType = _mimeType.getMimeType();
+  }
+
+  /**
+   * The sign message MIME type.
+   *
+   * @param mimeType
+   *          the MIME type
+   */
+  public void setMimeType(final SignMessageMimeType mimeType) {
+    this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
+  }
+
+  /**
    * A builder for {@code SignMessageParameters}.
    */
   public static class SignMessageParametersBuilder implements ObjectBuilder<SignMessageParameters> {
     // Lombok
+
+    /**
+     * The sign message MIME type.
+     * 
+     * @param mimeType
+     *          the MIME type
+     * @return the builder
+     */
+    public SignMessageParametersBuilder mimeType(final String mimeType) {
+      final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType); 
+      this.mimeType = _mimeType.getMimeType();
+      return this;
+    }
+    
+    /**
+     * The sign message MIME type.
+     * 
+     * @param mimeType
+     *          the MIME type
+     * @return the builder
+     */
+    public SignMessageParametersBuilder mimeType(final SignMessageMimeType mimeType) {
+      this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
+      return this;
+    }
   }
 
 }

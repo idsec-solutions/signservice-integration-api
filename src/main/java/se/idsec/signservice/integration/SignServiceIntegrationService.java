@@ -84,4 +84,11 @@ public interface SignServiceIntegrationService {
    */
   List<String> getPolicies();
 
+  /**
+   * Returns the version identifier for the current version of the SignService Integration Service.
+   * 
+   * @return version string
+   */
+  String getVersion();
+
 }

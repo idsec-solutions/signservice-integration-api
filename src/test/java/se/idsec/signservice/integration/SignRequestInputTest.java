@@ -126,7 +126,6 @@ public class SignRequestInputTest {
 
     SignRequestInput input2 = mapper.readValue(json, SignRequestInput.class);
     Assert.assertNotNull(input2);
-
   }
 
   @Test
