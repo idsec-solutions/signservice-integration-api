@@ -46,6 +46,7 @@ TODO
 
 > No specific Jackson or GSON annotations
 > Versioning
+> Extensible objects (not so much subclassing)
 
 <a name="javadoc"></a>
 ### 1.2. Javadoc
@@ -62,7 +63,11 @@ TODO
 <a name="configuration"></a>
 ## 2. Configuration
 
-TODO
+An instance of a SignService Integration Service can function under one or several policies. Each policy has a configuration containing default settings for how to create sign requests and how to process sign responses, along with fixed settings such as signature certificates and the ID for the SignService.
+
+An implementation probably has more settings per policy, but the settings that are of interest for the sign requester using the API are described in the [IntegrationServiceDefaultConfiguration](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/se/idsec/signservice/integration/config/IntegrationServiceDefaultConfiguration.html) interface.
+
+For more information about the configuration of a SignService Integration Service see the [Configuration and Policies](configuration.md) page.
 
 <a name="creating-a-signrequest"></a>
 ## 3. Creating a SignRequest
