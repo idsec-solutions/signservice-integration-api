@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.security;
 
+import lombok.Builder;
+import lombok.Data;
+
 /**
  * Representation of encryption algorithms to be used when encrypting a sign message for an Identity Provider.
  * 
@@ -46,21 +49,23 @@ public interface EncryptionParameters {
    * @return the RSA OAEP parameters, or {@code null} if {@link #getDataEncryptionAlgorithm()} does not return a RSA
    *         OEAP algorithm
    */
-  RSAOAEPParameters getRSAOAEPParameters();
+  RSAOAEPParameters getRsaOaepParameters();
 
   /**
    * Representation of parameters for RSA OAEP key transport algorithm(s).
    */
+  @Builder
+  @Data
   public static class RSAOAEPParameters {
 
     /** Digest method algorithm URI. */
-    public String digestMethod;
+    private String digestMethod;
 
     /** Mask generation function (MGF) algorithm URI. */
-    public String maskGenerationFunction;
+    private String maskGenerationFunction;
 
     /** Base64-encoded OAEPParams value. */
-    public String oaepParams;
+    private String oaepParams;
   }
 
 }

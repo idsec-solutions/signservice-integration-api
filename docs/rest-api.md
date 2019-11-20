@@ -19,6 +19,8 @@ REST API for the Signature Service Integration Service.
 3. [**Creating a SignRequest**](#creating-a-signrequest)
 
     3.1. [SignRequest Input](#signrequest-input)
+    
+    3.1.1. [Requesting a Visible PDF Signature](#requesting-a-visible-pdf-signature)
   
     3.2. [SignRequest Data](#signrequest-data)
   
@@ -165,6 +167,67 @@ The example below displays a complete SignRequest Input data structure (where no
 ```
 
 TODO: Describe all settings
+
+<a name="requesting-a-visible-pdf-signature"></a>
+#### 3.1.1. Requesting a Visible PDF Signature
+
+> TODO: Explain the feature of visible PDF signatures
+
+```
+{
+  "signRequesterID" : "https://qa.test.swedenconnect.se/sp",
+  "authnRequirements" : {
+    "authnServiceID" : "https://idp-sweden-connect-valfr-2017-ct.test.frejaeid.com",
+    "authnContextRef" : "http://id.elegnamnden.se/loa/1.0/loa3",
+    "requestedSignerAttributes" : [ {
+      "name" : "urn:oid:1.2.752.29.4.13",
+      "value" : "196911292032"
+    }, {
+      "name" : "urn:oid:2.5.4.42",
+      "value" : "Kalle"
+    }, {
+      "name" : "urn:oid:2.5.4.4",
+      "value" : "Kula"
+    } ]
+  },
+  "tbsDocuments" : [ {
+    "id" : "doc-1",
+    "content" : "QmxhY...hYmxh",
+    "mimeType" : "application/pdf",
+    "visiblePdfSignatureRequirement" : {
+      "templateImageRef" : "companylogo1",
+      "signerInfo" : {
+        "signerAttributes" : [ {
+          "name" : "urn:oid:2.5.4.42"
+        }, {
+          "name" : "urn:oid:2.5.4.4"
+        }, {
+          "name" : "urn:oid:1.2.752.29.4.13"
+        } ],
+        "formatting" : "%0 %1 (%2)"
+      },
+      "scale" : 0,
+      "page" : 1,
+      "fieldValues" : {
+        "reason" : "Approval"
+      },
+      "xposition" : 100,
+      "yposition" : 100
+    }
+  } ],
+  "signMessageParameters" : {
+    "signMessage" : "I approve this contract",
+    "performEncryption" : true,
+    "mimeType" : "text",
+    "mustShow" : true,
+    "displayEntity" : "https://idp-sweden-connect-valfr-2017-ct.test.frejaeid.com"
+  }
+}
+
+```
+
+> TODO: Explain the specific fields
+
 
 <a name="signrequest-data"></a>
 ### 3.2. SignRequest Data

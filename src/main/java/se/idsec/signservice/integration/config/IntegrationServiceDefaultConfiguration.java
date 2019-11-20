@@ -15,7 +15,10 @@
  */
 package se.idsec.signservice.integration.config;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
@@ -23,6 +26,7 @@ import se.idsec.signservice.integration.SignServiceIntegrationService;
 import se.idsec.signservice.integration.certificate.SigningCertificateRequirements;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.SignatureState;
+import se.idsec.signservice.integration.document.pdf.PdfSignatureImageTemplate;
 import se.idsec.signservice.integration.security.EncryptionParameters;
 
 /**
@@ -108,6 +112,15 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    */
   @Nonnull
   SigningCertificateRequirements getDefaultCertificateRequirements();
+
+  /**
+   * A policy may have one, or more, image templates for visible PDF signatures in its configuration. See
+   * {@link PdfSignatureImageTemplate}. This method gets these templates
+   * 
+   * @return a list of image templates for visible PDF signatures, or null if none exists
+   */
+  @Nullable
+  List<PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
 
   /**
    * Tells whether the SignService Integration Service is running in stateless mode or not.

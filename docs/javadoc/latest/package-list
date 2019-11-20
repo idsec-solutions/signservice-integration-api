@@ -5,4 +5,5 @@ se.idsec.signservice.integration.config
 se.idsec.signservice.integration.core
 se.idsec.signservice.integration.core.error
 se.idsec.signservice.integration.document
+se.idsec.signservice.integration.document.pdf
 se.idsec.signservice.integration.security

@@ -24,6 +24,7 @@ import lombok.ToString;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 
 /**
  * Represents a document that is to be signed along with the per-document requirements and parameters.
@@ -89,6 +90,19 @@ public class TbsDocument implements Extensible {
   @Setter
   @Getter
   private EtsiAdesFormatRequirement adesRequirement;
+
+  /**
+   * If the document that is to be signed is a PDF document, the sign requester may require the resulting PDF to have a
+   * "visible PDF signature". The {@code VisiblePdfSignatureRequirement} specifies how this visible indication should be
+   * included.
+   * 
+   * @param visiblePdfSignatureRequirement
+   *          requirement for visible PDF signatures
+   * @return requirement for visible PDF signatures, or null
+   */
+  @Setter
+  @Getter
+  private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
 
   /** Extensions for the object. */
   private Extension extension;

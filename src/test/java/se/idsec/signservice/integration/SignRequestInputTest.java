@@ -38,6 +38,8 @@ import se.idsec.signservice.integration.document.DocumentType;
 import se.idsec.signservice.integration.document.TbsDocument;
 import se.idsec.signservice.integration.document.TbsDocument.AdesType;
 import se.idsec.signservice.integration.document.TbsDocument.EtsiAdesFormatRequirement;
+import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
+import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerInfo;
 
 /**
  * Test cases for {@code SignRequestInput}.
@@ -148,6 +150,70 @@ public class SignRequestInputTest {
         .id("doc-1")
         .content(Base64.getEncoder().encodeToString(documentBytes))
         .mimeType(DocumentType.XML)
+        .build())
+      .signMessageParameters(
+        SignMessageParameters.builder()
+          .signMessage("I approve this contract")
+          .mimeType(SignMessageMimeType.TEXT)
+          .mustShow(true)
+          .performEncryption(true)
+          .displayEntity("https://idp-sweden-connect-valfr-2017-ct.test.frejaeid.com")
+          .build())
+      .build();
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.setSerializationInclusion(Include.NON_NULL);
+    ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
+
+    String json = writer.writeValueAsString(input);
+
+    System.out.println(json);
+
+  }
+
+  @Test
+  public void testPdfJson() throws Exception {
+
+    final String document = "Blablablabla";
+    final byte[] documentBytes = document.getBytes();
+
+    SignRequestInput input = SignRequestInput.builder()
+      .signRequesterID("https://qa.test.swedenconnect.se/sp")
+      .authnRequirements(AuthnRequirements.builder()
+        .authnServiceID("https://idp-sweden-connect-valfr-2017-ct.test.frejaeid.com")
+        .authnContextRef("http://id.elegnamnden.se/loa/1.0/loa3")
+        .requestedSignerAttribute(SignerIdentityAttributeValue.builder()
+          .name("urn:oid:1.2.752.29.4.13")
+          .value("196911292032")
+          .build())
+        .requestedSignerAttribute(SignerIdentityAttributeValue.builder()
+          .name("urn:oid:2.5.4.42")
+          .value("Kalle")
+          .build())
+        .requestedSignerAttribute(SignerIdentityAttributeValue.builder()
+          .name("urn:oid:2.5.4.4")
+          .value("Kula")
+          .build())        
+        .build())
+      .tbsDocument(TbsDocument.builder()
+        .id("doc-1")
+        .content(Base64.getEncoder().encodeToString(documentBytes))
+        .mimeType(DocumentType.PDF)
+        .visiblePdfSignatureRequirement(
+          VisiblePdfSignatureRequirement.builder()
+            .templateImageRef("companylogo1")
+            .signerInfo(SignerInfo.builder()
+              .signerAttribute(SignerIdentityAttributeValue.builder().name("urn:oid:2.5.4.42").build())
+              .signerAttribute(SignerIdentityAttributeValue.builder().name("urn:oid:2.5.4.4").build())
+              .signerAttribute(SignerIdentityAttribute.createBuilder().name("urn:oid:1.2.752.29.4.13").build())
+              .formatting("%0 %1 (%2)")
+              .build())
+            .fieldValue("reason", "Approval")
+            .page(1)
+            .scale(0)
+            .xPosition(100)
+            .yPosition(100)
+            .build())          
         .build())
       .signMessageParameters(
         SignMessageParameters.builder()
