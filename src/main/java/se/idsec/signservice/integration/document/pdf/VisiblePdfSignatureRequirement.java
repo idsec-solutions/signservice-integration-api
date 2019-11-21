@@ -58,8 +58,8 @@ public class VisiblePdfSignatureRequirement implements Extensible {
 
   /**
    * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable identity attribute
-   * value may be specified to be part of the signer name. This value is analogous to, and should hold the same value as, the Name entry in
-   * the PDF signature dictionary if present. If the image template referenced requires a value for signerName, this field is mandatory,
+   * value may be specified to be part of the signer name. This value is analogous to, and should hold the same value as, a present Name
+   * entry in the PDF signature dictionary. If the image template referenced requires a value for signerName, this field is mandatory,
    * otherwise it is optional.
    * 
    * @param signerName
