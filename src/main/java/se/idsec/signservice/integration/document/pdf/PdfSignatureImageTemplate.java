@@ -39,7 +39,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * <li><b>signerName</b> - Displays the signer name information in the visible PDF signature. The caller does not
  * specify the name directly in the request. Instead the user attribute names that will hold these values after user
  * authentication is given. See
- * {@link VisiblePdfSignatureRequirement#setSignerInfo(se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerInfo)}.</li>
+ * {@link VisiblePdfSignatureRequirement#setSignerName(se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerName)}.</li>
  * <li><b>signingTime</b> - Includes a time stamp telling when the document was signed in the PDF. The caller does not
  * provide this information. Instead the SignService Integration Service includes this information if the
  * {@link #isIncludeSigningTime()} is set.</li>
@@ -71,18 +71,18 @@ public class PdfSignatureImageTemplate {
   private String reference;
 
   /**
-   * Base64-encoded SVG file that is the image template.
+   * SVG image that is the image template.
    * 
    * @param image
-   *          the Base64-encoded SVG file
-   * @return the Base64-encoded SVG file
+   *          the SVG image expressed as an XML string
+   * @return the SVG image expressed as an XML string
    */
   @Getter
   @Setter
   private String image;
 
   /**
-   * The width (in pixels) for the PNG that is generated from the template (and inserted into the PDF visible signature
+   * The width (in pixels) for the pixel image that is generated from the template (and inserted into the PDF visible signature
    * flow).
    * 
    * @param width
@@ -94,7 +94,7 @@ public class PdfSignatureImageTemplate {
   private Integer width;
 
   /**
-   * The height (in pixels) for the PNG that is generated from the template (and inserted into the PDF visible signature
+   * The height (in pixels) for the pixel image that is generated from the template (and inserted into the PDF visible signature
    * flow).
    * 
    * @param height
@@ -128,7 +128,7 @@ public class PdfSignatureImageTemplate {
   private boolean includeSigningTime;
 
   /**
-   * A map of the fields that are required by the template. Each field has an associated description.
+   * A map of the field names that are required by the template in the fieldName map in {@link VisiblePdfSignatureRequirement}.
    * 
    * @param fields the field names and associated descriptions
    * @return the field names and associated descriptions

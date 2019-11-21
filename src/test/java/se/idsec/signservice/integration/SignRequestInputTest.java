@@ -39,7 +39,7 @@ import se.idsec.signservice.integration.document.TbsDocument;
 import se.idsec.signservice.integration.document.TbsDocument.AdesType;
 import se.idsec.signservice.integration.document.TbsDocument.EtsiAdesFormatRequirement;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
-import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerInfo;
+import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerName;
 
 /**
  * Test cases for {@code SignRequestInput}.
@@ -202,7 +202,7 @@ public class SignRequestInputTest {
         .visiblePdfSignatureRequirement(
           VisiblePdfSignatureRequirement.builder()
             .templateImageRef("companylogo1")
-            .signerInfo(SignerInfo.builder()
+            .signerName(SignerName.builder()
               .signerAttribute(SignerIdentityAttributeValue.builder().name("urn:oid:2.5.4.42").build())
               .signerAttribute(SignerIdentityAttributeValue.builder().name("urn:oid:2.5.4.4").build())
               .signerAttribute(SignerIdentityAttribute.createBuilder().name("urn:oid:1.2.752.29.4.13").build())

@@ -196,7 +196,7 @@ TODO: Describe all settings
     "mimeType" : "application/pdf",
     "visiblePdfSignatureRequirement" : {
       "templateImageRef" : "companylogo1",
-      "signerInfo" : {
+      "signerName" : {
         "signerAttributes" : [ {
           "name" : "urn:oid:2.5.4.42"
         }, {
