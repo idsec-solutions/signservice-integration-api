@@ -57,16 +57,16 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   private String templateImageRef;
 
   /**
-   * Information about the signer. If the image template referenced requires a value for signerName, this field is
+   * Identity of the signer to be represented in the visible signature. If the image template referenced requires a value for signerName, this field is
    * mandatory, otherwise it is optional.
    * 
-   * @param signerInfo
+   * @param signerName
    *          the signer info
    * @return the signer info
    */
   @Getter
   @Setter
-  private SignerInfo signerInfo;
+  private SignerName signerName;
 
   /**
    * The X coordinate position (in pixels) of the PDF visible signature image in the PDF document.
@@ -115,7 +115,7 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   private Integer page;
 
   /**
-   * Apart from the signer name, a template may use other fields. This map provides the requested fields and values.
+   * Apart from the signer name and signing date, a template may use other fields. This map provides the requested fields and values.
    * 
    * @param fieldValues
    *          a map of fields and their values
@@ -159,7 +159,7 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   @Builder
   @NoArgsConstructor
   @AllArgsConstructor
-  public static class SignerInfo {
+  public static class SignerName {
 
     /**
      * A list of attribute names that refer to some, or all, attributes supplied in
@@ -193,9 +193,9 @@ public class VisiblePdfSignatureRequirement implements Extensible {
     private String formatting;
 
     /**
-     * Builder for {@code SignerInfo} objects.
+     * Builder for {@code SignerName} objects.
      */
-    public static class SignerInfoBuilder implements ObjectBuilder<SignerInfo> {
+    public static class SignerNameBuilder implements ObjectBuilder<SignerName> {
       // Lombok
     }
 
