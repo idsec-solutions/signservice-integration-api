@@ -11,17 +11,17 @@ Open Source Signature Service Integration Service - Configuration and Policies
 ## Table of contents
 
 1. [**Introduction**](#introduction)
-  
+
 2. [**Java API**](#java-api)
 
 3. [**REST API**](#rest-api)
 
     3.1. [Listing Policies](#listing-policies)
-    
+
     3.2. [Get Default Configuration for a Policy](#get-default-configuration-for-a-policy)
-    
+
 4. [**Templates for Visible PDF Signatures**](#templates-for-visible-pdf-signatures)
-  
+
 ---
 
 <a name="introduction"></a>
@@ -144,6 +144,29 @@ A user of the API does not have, and should not, have access to all parts of a s
 ## 4. Templates for Visible PDF Signatures
 
 TODO: Describe how a template is built ...
+
+The integration service API provides a number of parameters that the integraton service can use to select or generate a suitable visible signature image for inclusion within the signed PDF. These parameters are:
+
+- Template reference: Identifying the base image
+- Attribute list: Identifying the ID attributes used to visually present the signer's name or ID.
+- Format string: Identifying how the signer's name or ID should be presented.
+- Parameter Map: A key value map holding other data that should be used to personalize the visible signature image.
+
+In addition to this, each template may also include a representation of the signing time.
+
+It is completely up to the implementation of the integration service, how to use this information to form a visible signature image that is suitable for the PDF library used to generate the PDF signature and visible signature objects in the signed PDF document. PDF is a versatile standard and allows a variety of ways to create visual representation of the electronic signature. What limits the scope if sometimes more depending on the limitations of the PDF library used to create the visible signature appearance.
+
+This guide does not consider special cases such as inclusion of an image representation of a scanned handwritten signature or similar. This is also possible using the present model by creative use of the paramater map where such image representation could be provided as a Base64 encoded binary.
+
+The following steps is a recommended practice that allows complete presonalization of visible signature images with a reasonable level of control when using the standard features in Apache PDF Box:
+
+1) SVG images are used as templates. These templates contains `<text>` elements with search and replacable strings where personalized data should be included. E.g. `<text transform="matrix(1 0 0 1 19.1101 355.83)" class="st2 st4">##SIGNTIME##</text>`, allowing the placeholder string "**##SIGNTIME##**" to be searched and replaced with actual time information.
+2) Validate that the requesting service has provided all necessary information to personalize the selected image template.
+3) Create a personalized SVG.
+4) Transform the SVG image into a suitable format that can be accepted by your PDF library as visible signature image source (such as PNG).
+5) Include the visible signature representation in the PDF document before signin. This is necessary since the signature will sign also the visible signature representation.
+
+
 
 ---
 
