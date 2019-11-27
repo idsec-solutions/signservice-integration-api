@@ -68,6 +68,8 @@ public class PdfSignatureImageTemplate {
    *          unique reference
    * @return the unique reference
    */
+  @Getter
+  @Setter
   private String reference;
 
   /**

@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -36,7 +37,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthnRequirements implements Extensible {
@@ -58,6 +59,7 @@ public class AuthnRequirements implements Extensible {
    * @param authnServiceID
    *          the entityID of the authentication service to use
    * @return the entityID of the authentication service to use
+   * @see IntegrationServiceDefaultConfiguration#getDefaultAuthnServiceID()
    */
   @Setter
   @Getter
@@ -74,6 +76,7 @@ public class AuthnRequirements implements Extensible {
    * @param authnContextRef
    *          the authentication context reference URI
    * @return the authentication context reference URI
+   * @see IntegrationServiceDefaultConfiguration#getDefaultAuthnContextRef()
    */
   @Setter
   @Getter

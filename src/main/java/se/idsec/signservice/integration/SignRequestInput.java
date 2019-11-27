@@ -40,7 +40,7 @@ import se.idsec.signservice.integration.document.TbsDocument;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignRequestInput implements Extensible {
@@ -72,7 +72,7 @@ public class SignRequestInput implements Extensible {
    * @return the policy identifier for this operation, or null (that denotes the default policy)
    */
   @Setter
-  @Getter
+  @Getter  
   private String policy;
 
   /**
@@ -101,7 +101,7 @@ public class SignRequestInput implements Extensible {
    * 
    * @param returnUrl
    *          the URL to which a sign response is to be returned
-   * @return the URL to which a sign response is to be returned, or {@code null} if the default URL should be used
+   * @return the URL to which a sign response is to be returned, or null if the default URL should be used
    */
   @Setter
   @Getter

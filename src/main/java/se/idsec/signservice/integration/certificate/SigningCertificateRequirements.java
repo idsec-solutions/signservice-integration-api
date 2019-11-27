@@ -36,7 +36,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class SigningCertificateRequirements implements Extensible {
@@ -53,7 +53,7 @@ public class SigningCertificateRequirements implements Extensible {
   private CertificateType certificateType;
 
   /**
-   * Defines mappings between the signers authentication attributes and attributes that are to be placed in the issued
+   * Defines mappings between the signer's authentication attributes and attributes that are to be placed in the issued
    * signature certificate.
    * 
    * @param attributeMappings

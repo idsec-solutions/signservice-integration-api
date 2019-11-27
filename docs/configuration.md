@@ -66,8 +66,30 @@ A user of the API does not have, and should not, have access to all parts of a s
   "defaultSignatureAlgorithm" : "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
   "signServiceID" : "http://sign.service.com",
   "defaultDestinationUrl" : "https://sign.service.com/req",
+  "defaultAuthnServiceID" : "https://idp-sweden-connect-valfr-2017-ct.test.frejaeid.com",
+  "defaultAuthnContextRef" : "http://id.elegnamnden.se/loa/1.0/loa3",
+  "defaultVisiblePdfSignatureRequirement" : {
+    "templateImageRef" : "companylogo",
+    "signerName" : {
+      "signerAttributes" : [ {
+        "name" : "urn:oid:2.5.4.42"
+      }, {
+        "name" : "urn:oid:2.5.4.4"
+      }, {
+        "name" : "urn:oid:1.2.752.29.4.13"
+      } ],
+      "formatting" : "%0 %1 (%2)"
+    },
+    "scale" : 0,
+    "page" : 1,
+    "fieldValues" : {
+      "reason" : "Approval"
+    },
+    "xposition" : 100,
+    "yposition" : 100
+  },
   "pdfSignatureImageTemplates" : [ {
-    "image" : "bXVtYm9...qdW1ibw==",
+    "image" : "bXVtYm9qdW1ibw==",
     "width" : 300,
     "height" : 300,
     "includeSignerName" : true,
@@ -113,8 +135,9 @@ A user of the API does not have, and should not, have access to all parts of a s
       }
     } ]
   },
-  "signatureCertificate" : "MIIFHj...xCk2T"
+  "signatureCertificate" : "MIIFHjCCA...WxCk2T"
 }
+
 ```
 
 <a name="templates-for-visible-pdf-signatures"></a>
