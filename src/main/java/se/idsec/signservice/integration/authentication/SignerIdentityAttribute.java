@@ -46,7 +46,7 @@ public class SignerIdentityAttribute extends AbstractIdentityAttribute {
    * @param name
    *          the name of the attribute
    */
-  @Builder(builderMethodName = "createBuilder")
+  @Builder(builderMethodName = "createBuilder", toBuilder = true)
   public SignerIdentityAttribute(final String type, final String name) {
     super(type, name);
   }

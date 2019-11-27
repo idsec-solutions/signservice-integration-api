@@ -33,7 +33,7 @@ import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirem
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class TbsDocument implements Extensible {
@@ -150,6 +150,11 @@ public class TbsDocument implements Extensible {
   public static class TbsDocumentBuilder implements ObjectBuilder<TbsDocument> {
     // Lombok will generate code ...
 
+    public TbsDocumentBuilder mimeType(final String mimeType) {
+      this.mimeType = mimeType;
+      return this;
+    }
+    
     public TbsDocumentBuilder mimeType(final DocumentType mimeType) {
       this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
       return this;

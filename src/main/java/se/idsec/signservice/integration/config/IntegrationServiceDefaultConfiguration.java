@@ -23,10 +23,12 @@ import javax.annotation.Nullable;
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
+import se.idsec.signservice.integration.authentication.AuthnRequirements;
 import se.idsec.signservice.integration.certificate.SigningCertificateRequirements;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.SignatureState;
 import se.idsec.signservice.integration.document.pdf.PdfSignatureImageTemplate;
+import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 import se.idsec.signservice.integration.security.EncryptionParameters;
 
 /**
@@ -36,6 +38,9 @@ import se.idsec.signservice.integration.security.EncryptionParameters;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 public interface IntegrationServiceDefaultConfiguration extends Extensible {
+
+  /** The default policy name. */
+  String DEFAULT_POLICY_NAME = "default";
 
   /**
    * Gets the integration policy name for which this configuration applies.
@@ -102,6 +107,28 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
   String getDefaultDestinationUrl();
 
   /**
+   * In a setup where only one authentication service (IdP) is used to authenticate users, a default value could be
+   * used. If the {@link AuthnRequirements#getAuthnServiceID()} method returns {@code null}, the default value will the
+   * be used.
+   * 
+   * @return the entityID for the default authentication service, or null if no default exists
+   * @see AuthnRequirements#getAuthnServiceID()
+   */
+  @Nullable
+  String getDefaultAuthnServiceID();
+
+  /**
+   * In a setup where all users are authenticated according to the same authentication contect, a default value could be
+   * used. If the {@link AuthnRequirements#getAuthnContextRef()} method returns {@code null}, the default value will be
+   * used.
+   * 
+   * @return the default authentication context reference URI
+   * @see AuthnRequirements#getAuthnContextRef()
+   */
+  @Nullable
+  String getDefaultAuthnContextRef();
+
+  /**
    * Gets the default signing certificate requirements to use for SignRequest messages created under this
    * policy/configuration.
    * <p>
@@ -112,6 +139,15 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    */
   @Nonnull
   SigningCertificateRequirements getDefaultCertificateRequirements();
+
+  /**
+   * A policy may be configured to include a default "visible PDF signature requirement" for all PDF documents that are
+   * signed under this policy.
+   * 
+   * @return the default visible PDF signature requirement to use for PDF signatures, or null
+   */
+  @Nullable
+  VisiblePdfSignatureRequirement getDefaultVisiblePdfSignatureRequirement();
 
   /**
    * A policy may have one, or more, image templates for visible PDF signatures in its configuration. See
