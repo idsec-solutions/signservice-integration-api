@@ -20,6 +20,7 @@ import java.util.List;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.config.PolicyNotFoundException;
 import se.idsec.signservice.integration.core.SignatureState;
+import se.idsec.signservice.integration.core.error.InputValidationException;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;
 
 /**
@@ -36,10 +37,12 @@ public interface SignServiceIntegrationService {
    * @param signRequestInput
    *          the requirements and input for how to create the SignRequest
    * @return a SignRequestData object containing the encoded (and signed) SignRequest along with additional parameters
+   * @throws InputValidationException
+   *           for errors in the supplied input
    * @throws SignServiceIntegrationException
    *           for errors creating the SignRequest
    */
-  SignRequestData createSignRequest(SignRequestInput signRequestInput) throws SignServiceIntegrationException;
+  SignRequestData createSignRequest(SignRequestInput signRequestInput) throws InputValidationException, SignServiceIntegrationException;
 
   /**
    * When the service that has ordered the signing operation receives the sign response message it should invoke this
@@ -60,11 +63,13 @@ public interface SignServiceIntegrationService {
    * @param parameters
    *          optional processing parameter giving directives about the processing
    * @return a SignatureResult object containing the signed documents and metadata about the signature
+   * @throws InputValidationException
+   *           for errors in the supplied input
    * @throws SignServiceIntegrationException
    *           for validation and processing errors
    */
   SignatureResult processSignResponse(String signResponse, String relayState, SignatureState state,
-      SignResponseProcessingParameters parameters) throws SignServiceIntegrationException;
+      SignResponseProcessingParameters parameters) throws InputValidationException, SignServiceIntegrationException;
 
   /**
    * Given the name of a SignService Integration policy, the method returns the default settings used for this policy.
