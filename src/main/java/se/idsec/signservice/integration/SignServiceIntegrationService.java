@@ -17,6 +17,10 @@ package se.idsec.signservice.integration;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import lombok.NonNull;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.config.PolicyNotFoundException;
 import se.idsec.signservice.integration.core.SignatureState;
@@ -42,7 +46,8 @@ public interface SignServiceIntegrationService {
    * @throws SignServiceIntegrationException
    *           for errors creating the SignRequest
    */
-  SignRequestData createSignRequest(SignRequestInput signRequestInput) throws InputValidationException, SignServiceIntegrationException;
+  SignRequestData createSignRequest(@Nonnull final SignRequestInput signRequestInput)
+      throws InputValidationException, SignServiceIntegrationException;
 
   /**
    * When the service that has ordered the signing operation receives the sign response message it should invoke this
@@ -68,8 +73,9 @@ public interface SignServiceIntegrationService {
    * @throws SignServiceIntegrationException
    *           for validation and processing errors
    */
-  SignatureResult processSignResponse(String signResponse, String relayState, SignatureState state,
-      SignResponseProcessingParameters parameters) throws InputValidationException, SignServiceIntegrationException;
+  SignatureResult processSignResponse(@Nonnull final String signResponse, @Nullable final String relayState,
+      @NonNull final SignatureState state, @Nullable final SignResponseProcessingParameters parameters)
+      throws InputValidationException, SignServiceIntegrationException;
 
   /**
    * Given the name of a SignService Integration policy, the method returns the default settings used for this policy.
@@ -80,7 +86,7 @@ public interface SignServiceIntegrationService {
    * @throws PolicyNotFoundException
    *           if the given policy does not exist
    */
-  IntegrationServiceDefaultConfiguration getConfiguration(String policy) throws PolicyNotFoundException;
+  IntegrationServiceDefaultConfiguration getConfiguration(@Nullable final String policy) throws PolicyNotFoundException;
 
   /**
    * Returns a list of names of the policies that are defined for this instance of the SignService Integration Service.

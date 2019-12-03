@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package se.idsec.signservice.integration;
+package se.idsec.signservice.integration.signmessage;
 
 /**
  * Enum representing a MIME type for sign messages.

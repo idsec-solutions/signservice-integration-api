@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package se.idsec.signservice.integration;
+package se.idsec.signservice.integration.signmessage;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +48,7 @@ public class SignMessageParameters {
    */
   @Setter
   @Getter
+  @Nonnull
   private String signMessage;
 
   /**
@@ -61,9 +65,10 @@ public class SignMessageParameters {
   /**
    * The sign message MIME type. See {@link SignMessageMimeType} for possible values.
    *
-   * @return the MIME type, or {@code null} which defaults to {@link SignMessageMimeType#TEXT}.
+   * @return the MIME type, or null which defaults to {@link SignMessageMimeType#TEXT}.
    */
   @Getter
+  @Nullable
   private String mimeType;
 
   /**
@@ -76,6 +81,7 @@ public class SignMessageParameters {
    */
   @Setter
   @Getter
+  @Nullable
   private Boolean mustShow;
 
   /**
@@ -95,6 +101,7 @@ public class SignMessageParameters {
    */
   @Setter
   @Getter
+  @Nullable
   private String displayEntity;
 
   /**
@@ -103,7 +110,7 @@ public class SignMessageParameters {
    * @param mimeType
    *          the MIME type
    */
-  public void setMimeType(final String mimeType) {
+  public void setMimeType(@Nonnull final String mimeType) {
     final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType); 
     this.mimeType = _mimeType.getMimeType();
   }
@@ -114,7 +121,7 @@ public class SignMessageParameters {
    * @param mimeType
    *          the MIME type
    */
-  public void setMimeType(final SignMessageMimeType mimeType) {
+  public void setMimeType(@Nonnull final SignMessageMimeType mimeType) {
     this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
   }
 

@@ -73,6 +73,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    */
   @Setter
   @Getter
+  @Nullable
   private Boolean required;
 
   /**

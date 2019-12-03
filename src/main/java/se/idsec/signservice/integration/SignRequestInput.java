@@ -31,6 +31,7 @@ import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.TbsDocument;
+import se.idsec.signservice.integration.signmessage.SignMessageParameters;
 
 /**
  * Class that represents the input to a {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}
