@@ -15,14 +15,18 @@
  */
 package se.idsec.signservice.integration;
 
+import javax.annotation.Nullable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+import se.idsec.signservice.integration.document.xml.XMLSignatureLocation;
 
 /**
  * Class representing the processing parameters for a call to
@@ -41,7 +45,15 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder
 public class SignResponseProcessingParameters implements Extensible {
 
-  // TODO: Add more fields ...
+  /**
+   * If an XML document is signed, the caller has the possibility to control where in the document the
+   * {@code ds:Signature} element should be inserted. If {@code null}, the signature element will be inserted as the
+   * last child of the document root element.
+   */
+  @Getter
+  @Setter
+  @Nullable
+  private XMLSignatureLocation xmlSignatureLocation;
 
   /**
    * Extensions for the object.

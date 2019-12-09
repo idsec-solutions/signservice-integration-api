@@ -154,7 +154,7 @@ public class TbsDocument implements Extensible {
       this.mimeType = mimeType;
       return this;
     }
-    
+
     public TbsDocumentBuilder mimeType(final DocumentType mimeType) {
       this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
       return this;
@@ -181,7 +181,7 @@ public class TbsDocument implements Extensible {
   @NoArgsConstructor
   @AllArgsConstructor
   @Builder
-  public static class EtsiAdesFormatRequirement {
+  public static class EtsiAdesFormatRequirement implements Extensible {
 
     /**
      * The ETSI AdES format type.
@@ -204,6 +204,38 @@ public class TbsDocument implements Extensible {
     @Setter
     @Getter
     private String signaturePolicy;
+
+    /**
+     * Optional AdES object as an Base64-encoded byte array.
+     * 
+     * @param adesObject
+     *          the AdES object
+     * @return the AdES object or null
+     */
+    @Setter
+    @Getter
+    private String adesObject;
+
+    /**
+     * Extensions for the object.
+     * 
+     * @param extension
+     *          the extensions for this object
+     */
+    @Setter
+    private Extension extension;
+
+    /** {@inheritDoc} */
+    @Override
+    public Extension getExtension() {
+      return this.extension;
+    }
+
+    /**
+     * Builder for {@link EtsiAdesFormatRequirement}.
+     */
+    public static class EtsiAdesFormatRequirementBuilder implements ObjectBuilder<EtsiAdesFormatRequirement> {
+    }
 
   }
 
