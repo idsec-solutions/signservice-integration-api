@@ -21,6 +21,19 @@ The API is implemented as a Java API with interfaces and domain classes. Using t
 
 See the [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/) for all details.
 
+### Maven
+
+The **signservice-integration-api** artifact is published to Maven central and a dependency to the
+library should be included as follows:
+
+```
+<dependency>
+  <groupId>se.idsec.signservice.integration</groupId>
+  <artifactId>signservice-integration-api</artifactId>
+  <version>${signservice-integration.version}</version>
+</dependency>
+```
+
 ### Feedback
 
 Please create an [Issue](https://github.com/idsec-solutions/signservice-integration-api/issues) if you have questions or suggestions.
@@ -28,4 +41,4 @@ Please create an [Issue](https://github.com/idsec-solutions/signservice-integrat
 
 ---
 
-Copyright &copy; 2019, [IDsec Solutions AB](http://www.idsec.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
+Copyright &copy; 2019-2020, [IDsec Solutions AB](http://www.idsec.se). Licensed under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
