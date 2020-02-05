@@ -2,7 +2,7 @@
 
 # Signature Service Integration Service API
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.idsec.signservice.integration/signservice-integration-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.idsec.signservice.integration/signservice-integration-api)
 
 Open Source Signature Service Integration Service API.
 
@@ -19,7 +19,7 @@ The API is implemented as a Java API with interfaces and domain classes. Using t
 * [REST API](rest-api.md)
 
 
-See the [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/) for all details.
+See the [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/) and the [generated project information](https://idsec-solutions.github.io/signservice-integration-api/site/) for details.
 
 ### Maven
 

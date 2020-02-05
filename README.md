@@ -2,7 +2,7 @@
 
 # signservice-integration-api
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.idsec.signservice.integration/signservice-integration-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.idsec.signservice.integration/signservice-integration-api)
 
 Open Source Signature Service Integration Service API.
 
