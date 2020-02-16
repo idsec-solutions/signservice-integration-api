@@ -24,16 +24,16 @@ package se.idsec.signservice.integration.certificate;
 public enum CertificateType {
 
   /** Public Key Certificate that is not a Qualified Certificate. */
-  PKC("pkc"),
+  PKC("PKC"),
 
   /** Qualified Certificate. */
-  QC("qc"),
+  QC("QC"),
 
   /**
    * Qualified Certificate associated with a private key held in a Qualified Signature Creation Device according to
    * eIDAS.
    */
-  QC_SSCD("qc/sscd");
+  QC_SSCD("QC/SSCD");
 
   /**
    * Gets the type.

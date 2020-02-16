@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core;
 
-import java.io.Serializable;
-
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
@@ -29,34 +27,35 @@ import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfigur
  * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}.
  * 
  * <p>
- * If the SignService Integration Service instance/profile is executing in stateless mode (as opposed to stateful mode)
- * (see {@link IntegrationServiceDefaultConfiguration#isStateless()}), the {@link #getEncodedState()} holds the encoded session
- * state.
+ * If the SignService Integration Service instance/profile is executing in stateless mode (see
+ * {@link IntegrationServiceDefaultConfiguration#isStateless()}), the {@link #getState()} holds the session state. In
+ * statefull mode the state is stored internally in the SignService Integration Service and will not be part of the
+ * resulting {@code SignatureState} object that is returned by
+ * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}.
  * </p>
  * 
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-public interface SignatureState extends Serializable {
-  
+public interface SignatureState {
+
   /**
    * Returns the unique identifier for the signature operation.
    * 
    * @return the signature operation identifier
    */
   String getId();
-  
+
   /**
-   * If the SignService Integration Service instance/profile is executing in stateless mode (see
-   * {@link IntegrationServiceDefaultConfiguration#isStateless()}) this method returns the encoded session state.
+   * Holds the session state.
    * 
    * <p>
-   * Note: only the implementation of the SignService Integration Service needs to understand how to interpret this
+   * Note: Only the implementation of the SignService Integration Service needs to understand how to interpret this
    * data.
    * </p>
    * 
-   * @return if running in stateless mode the encoded state is returned, otherwise {@code null}
+   * @return the session state, or null
    */
-  byte[] getEncodedState();
+  Object getState();
 
 }
