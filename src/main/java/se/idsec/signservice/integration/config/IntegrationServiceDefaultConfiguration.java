@@ -188,17 +188,20 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
   EncryptionParameters getDefaultEncryptionParameters();
 
   /**
-   * Gets the signing certificate that the SignService Integration Service uses to sign SignRequest messages.
+   * Gets the signing certificate(s) that the SignService Integration Service uses to sign SignRequest messages.
    * <p>
-   * The format on the returned certificate is the Base64-encoding of the DER-encoding.
+   * The reason a list if returned is to facilitate key rollover of the sign service signature certificate.
    * </p>
    * <p>
-   * <b>Note:</b> This certificate has nothing to do with the signing certificates that are issued by the sign service.
+   * The format on the returned certificates are the Base64-encoding of the DER-encoding.
+   * </p>
+   * <p>
+   * <b>Note:</b> These certificates have nothing to do with the signing certificates that are issued by the sign service.
    * </p>
    * 
-   * @return the signature certificate for the SignService Integration Service
+   * @return a non-empty list holding the signature certificate(s) for the SignService Integration Service
    */
   @Nonnull
-  String getSignatureCertificate();
+  List<String> getSignatureCertificates();
 
 }
