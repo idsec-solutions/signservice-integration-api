@@ -201,4 +201,19 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
   @Nonnull
   String getSignatureCertificate();
 
+  /**
+   * Gets the signature service signing certificate(s) used by the signature service to sign {@code SignResponse}
+   * messages.
+   * <p>
+   * The format on the returned certificate is the Base64-encoding of the DER-encoding.
+   * </p>
+   * <p>
+   * The reason that more than one certificate may be returned is to facilitate signature service key rollover.
+   * </p>
+   * 
+   * @return the signature service signing certificate(s)
+   */
+  @Nonnull
+  List<String> getSignServiceCertificates();
+
 }
