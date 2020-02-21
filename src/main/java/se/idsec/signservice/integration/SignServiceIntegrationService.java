@@ -20,7 +20,6 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import lombok.NonNull;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.config.PolicyNotFoundException;
 import se.idsec.signservice.integration.core.SignatureState;
@@ -68,14 +67,16 @@ public interface SignServiceIntegrationService {
    * @param parameters
    *          optional processing parameter giving directives about the processing
    * @return a SignatureResult object containing the signed documents and metadata about the signature
-   * @throws InputValidationException
-   *           for errors in the supplied input
+   * @throws SignResponseCancelStatusException
+   *           the sign service reported that the user cancelled the operation
+   * @throws SignResponseErrorStatusException
+   *           the sign service reported an error
    * @throws SignServiceIntegrationException
    *           for validation and processing errors
    */
   SignatureResult processSignResponse(@Nonnull final String signResponse, @Nullable final String relayState,
-      @NonNull final SignatureState state, @Nullable final SignResponseProcessingParameters parameters)
-      throws InputValidationException, SignServiceIntegrationException;
+      @Nonnull final SignatureState state, @Nullable final SignResponseProcessingParameters parameters)
+      throws SignResponseCancelStatusException, SignResponseErrorStatusException, SignServiceIntegrationException;
 
   /**
    * Given the name of a SignService Integration policy, the method returns the default settings used for this policy.

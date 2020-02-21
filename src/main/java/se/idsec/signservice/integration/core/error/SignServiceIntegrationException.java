@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import lombok.NonNull;
-
 /**
  * Base class for Sign Service Integration exceptions.
  *
@@ -70,7 +68,7 @@ public abstract class SignServiceIntegrationException extends Exception {
    * @param message
    *          the error message
    */
-  protected SignServiceIntegrationException(@NonNull final ErrorCode.Code code, final String message) {
+  protected SignServiceIntegrationException(final ErrorCode.Code code, final String message) {
     super(message);
     if (this.getCategory() == null) {
       throw new IllegalArgumentException("No category configured for exception");
@@ -90,8 +88,7 @@ public abstract class SignServiceIntegrationException extends Exception {
    * @param cause
    *          the cause of the error
    */
-  protected SignServiceIntegrationException(
-      @NonNull final ErrorCode.Code code, final String message, final Throwable cause) {
+  protected SignServiceIntegrationException(final ErrorCode.Code code, final String message, final Throwable cause) {
     super(message, cause);
     if (this.getCategory() == null) {
       throw new IllegalArgumentException("No category configured for exception");

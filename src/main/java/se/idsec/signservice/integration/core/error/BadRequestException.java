@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import javax.annotation.Nonnull;
-
 /**
  * Class that represents a bad request to the SignService Integration Service.
  *
@@ -39,7 +37,7 @@ public class BadRequestException extends SignServiceIntegrationCategoryException
    * @param message
    *          the error message
    */
-  public BadRequestException(@Nonnull final ErrorCode.Code code, final String message) {
+  public BadRequestException(final ErrorCode.Code code, final String message) {
     super(code, message);
   }
 
@@ -53,7 +51,7 @@ public class BadRequestException extends SignServiceIntegrationCategoryException
    * @param cause
    *          the cause of the error
    */
-  public BadRequestException(@Nonnull final ErrorCode.Code code, final String message, final Throwable cause) {
+  public BadRequestException(final ErrorCode.Code code, final String message, final Throwable cause) {
     super(code, message, cause);
   }
 
