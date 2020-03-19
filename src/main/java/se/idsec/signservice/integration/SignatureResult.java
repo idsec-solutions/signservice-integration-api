@@ -17,6 +17,9 @@ package se.idsec.signservice.integration;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,11 +27,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
-import se.idsec.signservice.integration.authentication.SignerIdentityAttributeValue;
+import se.idsec.signservice.integration.authentication.SignerAssertionInformation;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
-import se.idsec.signservice.integration.core.SignatureState;
 import se.idsec.signservice.integration.document.SignedDocument;
 
 /**
@@ -44,27 +46,28 @@ import se.idsec.signservice.integration.document.SignedDocument;
 public class SignatureResult implements Extensible {
 
   /**
-   * State for a signature operation.
+   * The ID for the signature operation. This ID corresponds to the RequestID of the SignRequest and SignResponse.
    * 
-   * @param state
-   *          the signature state
-   * @return the signature state for this operation
+   * @param id
+   *          the operation ID
+   * @return the operation ID
    */
+  @Nonnull
   @Setter
   @Getter
-  private SignatureState state;
+  private String id;
 
   /**
-   * Identity attributes for the signer.
+   * The correlation ID. This is the ID that is used in all logging events.
    * 
-   * @param signerAttributes
-   *          the identity attributes for the signer
-   * @return the identity attributes for the signer
+   * @param correlationId
+   *          the correlationId to use for this process
+   * @return the correlation ID
    */
+  @Nonnull
   @Setter
   @Getter
-  @Singular
-  private List<SignerIdentityAttributeValue> signerAttributes;
+  private String correlationId;
 
   /**
    * The signed documents.
@@ -73,23 +76,23 @@ public class SignatureResult implements Extensible {
    *          the signed documents
    * @return the signed documents
    */
+  @Nonnull
   @Setter
   @Getter
   @Singular
   private List<SignedDocument> signedDocuments;
 
   /**
-   * Optional correlation ID. If the sign requester supplied a correlation ID in the
-   * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)} call, this value is assigned in the
-   * result for this operation.
+   * Contains information about the signer's "authentication for signature" that was part of the signature operation.
    * 
-   * @param correlationId
-   *          the correlationId to use for this process
-   * @return the correlation ID or null if not has been assigned
+   * @param signerAssertionInformation
+   *          assertion information
+   * @return the assertion information
    */
+  @Nonnull
   @Setter
   @Getter
-  private String correlationId;
+  private SignerAssertionInformation signerAssertionInformation;
 
   /**
    * Extensions for the object.
@@ -101,6 +104,7 @@ public class SignatureResult implements Extensible {
   private Extension extension;
 
   /** {@inheritDoc} */
+  @Nullable
   @Override
   public Extension getExtension() {
     return this.extension;

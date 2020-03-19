@@ -205,7 +205,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * Gets the signature service signing certificate(s) used by the signature service to sign {@code SignResponse}
    * messages.
    * <p>
-   * The format on the returned certificate is the Base64-encoding of the DER-encoding.
+   * The format on the returned certificates is the Base64-encoding of the DER-encoding.
    * </p>
    * <p>
    * The reason that more than one certificate may be returned is to facilitate signature service key rollover.
@@ -215,5 +215,21 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    */
   @Nonnull
   List<String> getSignServiceCertificates();
+
+  /**
+   * Gets the trust anchor certificate(s) of the SignService CA (Certificate Authority). With trust anchor we mean the
+   * trusted root certificate that is the root of the certificate chain that starts with the generated user signature
+   * certificate.
+   * <p>
+   * The format on the returned certificates is the Base64-encoding of the DER-encoding.
+   * </p>
+   * <p>
+   * If an empty list is returned, this means that signature validation "trusts any" root.
+   * </p>
+   * 
+   * @return the SignService CA root certificate(s)
+   */
+  @Nonnull
+  List<String> getTrustAnchors();
 
 }
