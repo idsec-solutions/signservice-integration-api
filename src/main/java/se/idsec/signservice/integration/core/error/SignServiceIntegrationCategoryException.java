@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import javax.annotation.Nonnull;
-
 /**
  * Abstract class for exception that reports errors for a given category. The {@link #getCategory()} method must be
  * overridden.
@@ -37,7 +35,7 @@ public abstract class SignServiceIntegrationCategoryException extends SignServic
    * @param message
    *          the error message
    */
-  public SignServiceIntegrationCategoryException(@Nonnull final ErrorCode.Code code, final String message) {
+  public SignServiceIntegrationCategoryException(final ErrorCode.Code code, final String message) {
     super(code, message);
   }
 
@@ -51,7 +49,7 @@ public abstract class SignServiceIntegrationCategoryException extends SignServic
    * @param cause
    *          the cause of the error
    */
-  public SignServiceIntegrationCategoryException(@Nonnull final ErrorCode.Code code, final String message, final Throwable cause) {
+  public SignServiceIntegrationCategoryException(final ErrorCode.Code code, final String message, final Throwable cause) {
     super(code, message, cause);
   }
 

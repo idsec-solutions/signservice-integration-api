@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import javax.annotation.Nonnull;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -49,7 +47,7 @@ public class ErrorCode {
    * @param errorCode
    *          the error code in string format
    */
-  public ErrorCode(@Nonnull final String errorCode) {
+  public ErrorCode(final String errorCode) {
     this.parse(errorCode);
   }
 
@@ -61,7 +59,7 @@ public class ErrorCode {
    * @param code
    *          the code within the category
    */
-  public ErrorCode(@Nonnull final String category, @Nonnull final String code) {
+  public ErrorCode(final String category, final String code) {
     if (category.contains(".")) {
       throw new IllegalArgumentException("Invalid category - must not contain a '.'");
     }
@@ -86,7 +84,7 @@ public class ErrorCode {
    *          the code within the category
    * @return an ErrorCode
    */
-  public static ErrorCode error(@Nonnull final String category, @Nonnull final String code) {
+  public static ErrorCode error(final String category, final String code) {
     return new ErrorCode(category, code);
   }
 
@@ -95,7 +93,6 @@ public class ErrorCode {
    *
    * @return the category
    */
-  @Nonnull
   public String getCategory() {
     return this.category;
   }
@@ -105,7 +102,6 @@ public class ErrorCode {
    *
    * @return the code
    */
-  @Nonnull
   public String getCode() {
     return this.code;
   }
@@ -115,7 +111,6 @@ public class ErrorCode {
    *
    * @return the error code
    */
-  @Nonnull
   public String getErrorCode() {
     return ErrorCode.ERROR_CODE_PREFIX + this.category + "." + this.code;
   }

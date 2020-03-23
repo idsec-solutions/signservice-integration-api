@@ -89,7 +89,7 @@ public class TbsDocument implements Extensible {
    */
   @Setter
   @Getter
-  private EtsiAdesFormatRequirement adesRequirement;
+  private EtsiAdesRequirement adesRequirement;
 
   /**
    * If the document that is to be signed is a PDF document, the sign requester may require the resulting PDF to have a
@@ -172,7 +172,7 @@ public class TbsDocument implements Extensible {
   }
 
   /**
-   * Representation of an ETSI AdES signature format.
+   * Representation of an ETSI AdES signature requirement.
    *
    * @author Martin Lindström (martin@idsec.se)
    * @author Stefan Santesson (stefan@idsec.se)
@@ -181,10 +181,10 @@ public class TbsDocument implements Extensible {
   @NoArgsConstructor
   @AllArgsConstructor
   @Builder
-  public static class EtsiAdesFormatRequirement implements Extensible {
+  public static class EtsiAdesRequirement implements Extensible {
 
     /**
-     * The ETSI AdES format type.
+     * The ETSI AdES type.
      * 
      * @param adesFormat
      *          the format
@@ -197,6 +197,11 @@ public class TbsDocument implements Extensible {
     /**
      * The signature policy (required for EPES).
      * 
+     * <p>
+     * When signing an XML document, this fields can be left unset if the AdES object is set, and this element contains
+     * a {@code SignaturePolicyIdentifier} element.
+     * </p>
+     * 
      * @param signaturePolicy
      *          the signature policy
      * @return the signature policy
@@ -207,6 +212,11 @@ public class TbsDocument implements Extensible {
 
     /**
      * Optional AdES object as an Base64-encoded byte array.
+     * 
+     * <p>
+     * For XML signatures this object must be a {@code ds:Object} having as its only child a
+     * {@code xades:QualifyingProperties} element.
+     * </p>
      * 
      * @param adesObject
      *          the AdES object
@@ -232,9 +242,9 @@ public class TbsDocument implements Extensible {
     }
 
     /**
-     * Builder for {@link EtsiAdesFormatRequirement}.
+     * Builder for {@link EtsiAdesRequirement}.
      */
-    public static class EtsiAdesFormatRequirementBuilder implements ObjectBuilder<EtsiAdesFormatRequirement> {
+    public static class EtsiAdesRequirementBuilder implements ObjectBuilder<EtsiAdesRequirement> {
     }
 
   }

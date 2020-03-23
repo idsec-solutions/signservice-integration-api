@@ -17,9 +17,6 @@ package se.idsec.signservice.integration;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.config.PolicyNotFoundException;
 import se.idsec.signservice.integration.core.SignatureState;
@@ -45,7 +42,7 @@ public interface SignServiceIntegrationService {
    * @throws SignServiceIntegrationException
    *           for errors creating the SignRequest
    */
-  SignRequestData createSignRequest(@Nonnull final SignRequestInput signRequestInput)
+  SignRequestData createSignRequest(final SignRequestInput signRequestInput)
       throws InputValidationException, SignServiceIntegrationException;
 
   /**
@@ -74,8 +71,8 @@ public interface SignServiceIntegrationService {
    * @throws SignServiceIntegrationException
    *           for validation and processing errors
    */
-  SignatureResult processSignResponse(@Nonnull final String signResponse, @Nullable final String relayState,
-      @Nonnull final SignatureState state, @Nullable final SignResponseProcessingParameters parameters)
+  SignatureResult processSignResponse(final String signResponse, final String relayState,
+      final SignatureState state, final SignResponseProcessingParameters parameters)
       throws SignResponseCancelStatusException, SignResponseErrorStatusException, SignServiceIntegrationException;
 
   /**
@@ -87,7 +84,7 @@ public interface SignServiceIntegrationService {
    * @throws PolicyNotFoundException
    *           if the given policy does not exist
    */
-  IntegrationServiceDefaultConfiguration getConfiguration(@Nullable final String policy) throws PolicyNotFoundException;
+  IntegrationServiceDefaultConfiguration getConfiguration(final String policy) throws PolicyNotFoundException;
 
   /**
    * Returns a list of names of the policies that are defined for this instance of the SignService Integration Service.

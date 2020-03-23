@@ -17,9 +17,6 @@ package se.idsec.signservice.integration.config;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
@@ -47,7 +44,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the policy identifier
    */
-  @Nonnull
   String getPolicy();
 
   /**
@@ -59,7 +55,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the default sign requester ID
    */
-  @Nonnull
   String getDefaultSignRequesterID();
 
   /**
@@ -71,7 +66,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the default URL to which a sign response is to be returned
    */
-  @Nonnull
   String getDefaultReturnUrl();
 
   /**
@@ -83,7 +77,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return signature algorithm identifier
    */
-  @Nonnull
   String getDefaultSignatureAlgorithm();
 
   /**
@@ -92,7 +85,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the ID of the signature service
    */
-  @Nonnull
   String getSignServiceID();
 
   /**
@@ -103,7 +95,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the default destination URL of the signature service to where sign messages should be posted
    */
-  @Nonnull
   String getDefaultDestinationUrl();
 
   /**
@@ -114,7 +105,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * @return the entityID for the default authentication service, or null if no default exists
    * @see AuthnRequirements#getAuthnServiceID()
    */
-  @Nullable
   String getDefaultAuthnServiceID();
 
   /**
@@ -125,7 +115,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * @return the default authentication context reference URI
    * @see AuthnRequirements#getAuthnContextRef()
    */
-  @Nullable
   String getDefaultAuthnContextRef();
 
   /**
@@ -137,7 +126,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the default signing certificate requirements
    */
-  @Nonnull
   SigningCertificateRequirements getDefaultCertificateRequirements();
 
   /**
@@ -146,7 +134,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the default visible PDF signature requirement to use for PDF signatures, or null
    */
-  @Nullable
   VisiblePdfSignatureRequirement getDefaultVisiblePdfSignatureRequirement();
 
   /**
@@ -155,7 +142,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return a list of image templates for visible PDF signatures, or null if none exists
    */
-  @Nullable
   List<PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
 
   /**
@@ -184,7 +170,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the default encryption parameters
    */
-  @Nonnull
   EncryptionParameters getDefaultEncryptionParameters();
 
   /**
@@ -198,7 +183,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the signature certificates for the SignService Integration Service
    */
-  @Nonnull
   String getSignatureCertificate();
 
   /**
@@ -213,7 +197,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the signature service signing certificate(s)
    */
-  @Nonnull
   List<String> getSignServiceCertificates();
 
   /**
@@ -229,7 +212,6 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return the SignService CA root certificate(s)
    */
-  @Nonnull
   List<String> getTrustAnchors();
 
 }

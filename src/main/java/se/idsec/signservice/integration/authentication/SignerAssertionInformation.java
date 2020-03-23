@@ -17,9 +17,6 @@ package se.idsec.signservice.integration.authentication;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,7 +48,6 @@ public class SignerAssertionInformation implements Extensible {
    *          the identity attributes for the signer
    * @return the identity attributes for the signer
    */
-  @Nonnull
   @Setter
   @Getter
   @Singular
@@ -64,7 +60,6 @@ public class SignerAssertionInformation implements Extensible {
    *          the authentication instant
    * @return the authentication instant
    */
-  @Nonnull
   @Setter
   @Getter
   private long authnInstant;
@@ -77,7 +72,6 @@ public class SignerAssertionInformation implements Extensible {
    *          the entityID of the authentication service that authenticated the signer
    * @return the entityID of the authentication service that authenticated the signer
    */
-  @Nonnull
   @Setter
   @Getter
   private String authnServiceID;
@@ -90,7 +84,6 @@ public class SignerAssertionInformation implements Extensible {
    *          the authentication context reference URI
    * @return the authentication context reference URI
    */
-  @Nonnull
   @Setter
   @Getter
   private String authnContextRef;
@@ -101,9 +94,8 @@ public class SignerAssertionInformation implements Extensible {
    * 
    * @param authnType
    *          authentication type
-   * @return the authentication type
+   * @return the authentication type, or null
    */
-  @Nullable
   @Setter
   @Getter
   private String authnType;
@@ -116,7 +108,6 @@ public class SignerAssertionInformation implements Extensible {
    *          the assertion ID from the user authentication
    * @return the assertion ID from the user authentication
    */
-  @Nonnull
   @Setter
   @Getter
   private String assertionReference;
@@ -131,7 +122,6 @@ public class SignerAssertionInformation implements Extensible {
    *          the assertion from the user authentication
    * @return the assertion from the user authentication or null
    */
-  @Nullable
   @Setter
   @Getter
   private String assertion;
@@ -146,7 +136,6 @@ public class SignerAssertionInformation implements Extensible {
   private Extension extension;
 
   /** {@inheritDoc} */
-  @Nullable
   @Override
   public Extension getExtension() {
     return this.extension;

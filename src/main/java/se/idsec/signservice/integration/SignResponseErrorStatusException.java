@@ -15,9 +15,6 @@
  */
 package se.idsec.signservice.integration;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 /**
  * Exception class that represents non-successful DSS operations.
  *
@@ -43,7 +40,7 @@ public class SignResponseErrorStatusException extends Exception {
    * @param minorCode
    *          the DSS minor result code
    */
-  public SignResponseErrorStatusException(@Nonnull final String majorCode, @Nullable final String minorCode) {
+  public SignResponseErrorStatusException(final String majorCode, final String minorCode) {
     this(majorCode, minorCode, "DSS error: " + majorCode);
   }
 
@@ -57,8 +54,7 @@ public class SignResponseErrorStatusException extends Exception {
    * @param message
    *          the DSS result message
    */
-  public SignResponseErrorStatusException(@Nonnull final String majorCode, @Nullable final String minorCode,
-      @Nullable final String message) {
+  public SignResponseErrorStatusException(final String majorCode, final String minorCode, final String message) {
     super(message);
     this.majorCode = majorCode;
     this.minorCode = minorCode;

@@ -15,9 +15,6 @@
  */
 package se.idsec.signservice.integration.certificate;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -49,7 +46,6 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    */
   @Setter
   @Getter
-  @Nullable
   private String defaultValue;
 
   /**
@@ -61,7 +57,6 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    */
   @Setter
   @Getter
-  @Nullable
   private String friendlyName;
 
   /**
@@ -73,7 +68,6 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    */
   @Setter
   @Getter
-  @Nullable
   private Boolean required;
 
   /**
@@ -88,7 +82,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    * @param type
    *          the type
    */
-  public RequestedCertificateAttribute(@Nonnull final RequestedCertificateAttributeType type) {
+  public RequestedCertificateAttribute(final RequestedCertificateAttributeType type) {
     this.type = type.getType();
   }
 
@@ -103,7 +97,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /** {@inheritDoc} */
   @Override
-  public void setType(@Nonnull final String type) {
+  public void setType(final String type) {
     // Make sure it is a valid type ...
     final RequestedCertificateAttributeType _type = RequestedCertificateAttributeType.fromType(type);
     super.setType(_type.getType());
@@ -115,7 +109,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    * @param type
    *          the attribute type
    */
-  public void setType(@Nonnull final RequestedCertificateAttributeType type) {
+  public void setType(final RequestedCertificateAttributeType type) {
     super.setType(type.getType());
   }
 
@@ -147,7 +141,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
      *          the type
      * @return the builder
      */
-    public RequestedCertificateAttributeBuilder type(@Nonnull final RequestedCertificateAttributeType type) {
+    public RequestedCertificateAttributeBuilder type(final RequestedCertificateAttributeType type) {
       this.object.setType(type.getType());
       return this;
     }

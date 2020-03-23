@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core;
 
-import javax.annotation.Nonnull;
-
 import lombok.ToString;
 
 /**
@@ -48,7 +46,7 @@ public abstract class AbstractIdentityAttribute {
    * @param name
    *          the attribute name
    */
-  public AbstractIdentityAttribute(final String type, @Nonnull final String name) {
+  public AbstractIdentityAttribute(final String type, final String name) {
     this.type = type;
     this.name = name;
   }
@@ -87,7 +85,7 @@ public abstract class AbstractIdentityAttribute {
    * @param name
    *          the attribute name
    */
-  public void setName(@Nonnull final String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 

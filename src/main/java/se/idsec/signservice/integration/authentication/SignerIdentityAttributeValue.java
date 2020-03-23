@@ -15,9 +15,6 @@
  */
 package se.idsec.signservice.integration.authentication;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -103,13 +100,8 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
    *          the value type
    */
   @Builder
-  public SignerIdentityAttributeValue(
-      @Nullable final String type,
-      @Nonnull final String name,
-      @Nonnull final String value,
-      @Nullable final String nameFormat,
-      @Nullable final String attributeValueType) {
-
+  public SignerIdentityAttributeValue(final String type, final String name, final String value,
+      final String nameFormat, final String attributeValueType) {
     super(type, name);
     this.value = value;
     this.nameFormat = nameFormat;

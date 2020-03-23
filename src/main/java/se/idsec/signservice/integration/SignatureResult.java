@@ -17,9 +17,6 @@ package se.idsec.signservice.integration;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,7 +49,6 @@ public class SignatureResult implements Extensible {
    *          the operation ID
    * @return the operation ID
    */
-  @Nonnull
   @Setter
   @Getter
   private String id;
@@ -64,7 +60,6 @@ public class SignatureResult implements Extensible {
    *          the correlationId to use for this process
    * @return the correlation ID
    */
-  @Nonnull
   @Setter
   @Getter
   private String correlationId;
@@ -76,7 +71,6 @@ public class SignatureResult implements Extensible {
    *          the signed documents
    * @return the signed documents
    */
-  @Nonnull
   @Setter
   @Getter
   @Singular
@@ -89,7 +83,6 @@ public class SignatureResult implements Extensible {
    *          assertion information
    * @return the assertion information
    */
-  @Nonnull
   @Setter
   @Getter
   private SignerAssertionInformation signerAssertionInformation;
@@ -104,7 +97,6 @@ public class SignatureResult implements Extensible {
   private Extension extension;
 
   /** {@inheritDoc} */
-  @Nullable
   @Override
   public Extension getExtension() {
     return this.extension;

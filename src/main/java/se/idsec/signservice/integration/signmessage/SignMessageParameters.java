@@ -15,9 +15,6 @@
  */
 package se.idsec.signservice.integration.signmessage;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,7 +45,6 @@ public class SignMessageParameters {
    */
   @Setter
   @Getter
-  @Nonnull
   private String signMessage;
 
   /**
@@ -68,7 +64,6 @@ public class SignMessageParameters {
    * @return the MIME type, or null which defaults to {@link SignMessageMimeType#TEXT}.
    */
   @Getter
-  @Nullable
   private String mimeType;
 
   /**
@@ -81,7 +76,6 @@ public class SignMessageParameters {
    */
   @Setter
   @Getter
-  @Nullable
   private Boolean mustShow;
 
   /**
@@ -101,7 +95,6 @@ public class SignMessageParameters {
    */
   @Setter
   @Getter
-  @Nullable
   private String displayEntity;
 
   /**
@@ -110,8 +103,8 @@ public class SignMessageParameters {
    * @param mimeType
    *          the MIME type
    */
-  public void setMimeType(@Nonnull final String mimeType) {
-    final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType); 
+  public void setMimeType(final String mimeType) {
+    final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType);
     this.mimeType = _mimeType.getMimeType();
   }
 
@@ -121,7 +114,7 @@ public class SignMessageParameters {
    * @param mimeType
    *          the MIME type
    */
-  public void setMimeType(@Nonnull final SignMessageMimeType mimeType) {
+  public void setMimeType(final SignMessageMimeType mimeType) {
     this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
   }
 
@@ -139,11 +132,11 @@ public class SignMessageParameters {
      * @return the builder
      */
     public SignMessageParametersBuilder mimeType(final String mimeType) {
-      final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType); 
+      final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType);
       this.mimeType = _mimeType.getMimeType();
       return this;
     }
-    
+
     /**
      * The sign message MIME type.
      * 

@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration;
 
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,7 +50,6 @@ public class SignResponseProcessingParameters implements Extensible {
    */
   @Getter
   @Setter
-  @Nullable
   private XMLSignatureLocation xmlSignatureLocation;
 
   /**

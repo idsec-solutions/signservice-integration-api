@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.document.xml;
 
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -47,7 +45,6 @@ public class XMLSignatureLocation implements Extensible {
    * @return the position (first of last)
    */
   @Getter
-  @Nullable
   private String childPosition;
 
   /**
@@ -60,11 +57,9 @@ public class XMLSignatureLocation implements Extensible {
    */
   @Getter
   @Setter
-  @Nullable
   private String xPath;
 
   /** Extensions for the object. */
-  @Nullable
   private Extension extension;
 
   /**

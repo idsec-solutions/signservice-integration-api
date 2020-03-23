@@ -37,7 +37,7 @@ import se.idsec.signservice.integration.certificate.SigningCertificateRequiremen
 import se.idsec.signservice.integration.document.DocumentType;
 import se.idsec.signservice.integration.document.TbsDocument;
 import se.idsec.signservice.integration.document.TbsDocument.AdesType;
-import se.idsec.signservice.integration.document.TbsDocument.EtsiAdesFormatRequirement;
+import se.idsec.signservice.integration.document.TbsDocument.EtsiAdesRequirement;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerName;
 import se.idsec.signservice.integration.signmessage.SignMessageMimeType;
@@ -107,7 +107,7 @@ public class SignRequestInputTest {
         .id("doc-1")
         .content(Base64.getEncoder().encodeToString(documentBytes))
         .mimeType(DocumentType.XML)
-        .adesRequirement(EtsiAdesFormatRequirement.builder().adesFormat(AdesType.EPES).signaturePolicy("etsi123").build())
+        .adesRequirement(EtsiAdesRequirement.builder().adesFormat(AdesType.EPES).signaturePolicy("etsi123").build())
         .processingRules("rule-xyz")
         .build())
       .signMessageParameters(
