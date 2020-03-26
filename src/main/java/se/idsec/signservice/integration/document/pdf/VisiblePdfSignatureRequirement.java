@@ -18,9 +18,6 @@ package se.idsec.signservice.integration.document.pdf;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -82,7 +79,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
    */
   @Getter
   @Setter
-  @Nonnull
   private Integer xPosition;
 
   /**
@@ -94,7 +90,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
    */
   @Getter
   @Setter
-  @Nonnull
   private Integer yPosition;
 
   /**
@@ -107,7 +102,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
    */
   @Getter
   @Setter
-  @Nullable
   private Integer scale;
 
   /**
@@ -120,7 +114,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
    */
   @Getter
   @Setter
-  @Nullable
   private Integer page;
 
   /**
@@ -133,7 +126,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   @Getter
   @Setter
   @Singular
-  @Nullable
   private Map<String, String> fieldValues;
 
   /** Extensions for the object. */
