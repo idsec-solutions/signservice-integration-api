@@ -73,6 +73,22 @@ public class Extension extends HashMap<String, Object> {
     if (object == null) {
       return null;
     }
+    // If initialized via a properties file everything will be of type String,
+    // for example if we are using Spring Boot and ConfigurationProperties.
+    // Let's be a bit helpful in those cases ...
+    //
+    if (object instanceof String) {
+      final String stringObject = (String) object;
+      if (type == Boolean.class) {
+        object = Boolean.parseBoolean(stringObject);
+      }
+      else if (type == Integer.class) {
+        object = Integer.parseInt(stringObject);
+      }
+      else if (type == Long.class) {
+        object = Long.parseLong(stringObject);
+      }
+    }
     return type.cast(object);
   }
 
