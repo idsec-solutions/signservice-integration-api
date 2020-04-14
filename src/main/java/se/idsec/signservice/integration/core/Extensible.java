@@ -26,7 +26,7 @@ public interface Extensible {
   /**
    * Returns the extension parameters for the instance.
    * 
-   * @return the extension, or {@code null} if no extensions are set 
+   * @return the extension, or null if no extensions are set 
    */
   Extension getExtension();
 
