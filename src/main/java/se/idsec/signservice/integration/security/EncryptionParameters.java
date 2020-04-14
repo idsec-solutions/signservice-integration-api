@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Representation of encryption algorithms to be used when encrypting a sign message for an Identity Provider.
@@ -60,6 +61,7 @@ public interface EncryptionParameters {
   @Data
   @NoArgsConstructor
   @AllArgsConstructor
+  @ToString
   public static class RSAOAEPParameters {
 
     /** Digest method algorithm URI. */

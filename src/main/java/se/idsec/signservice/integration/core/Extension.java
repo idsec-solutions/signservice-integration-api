@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-public class Extension extends HashMap<String, Object> {
+public class Extension extends HashMap<String, String> {
 
   /** For serializing. */
   private static final long serialVersionUID = 8520822824322024498L;
@@ -42,7 +42,7 @@ public class Extension extends HashMap<String, Object> {
    * @param m
    *          the map to initialize the object with
    */
-  public Extension(Map<? extends String, ? extends Object> m) {
+  public Extension(final Map<? extends String, ? extends String> m) {
     super(m);
   }
 
@@ -53,43 +53,6 @@ public class Extension extends HashMap<String, Object> {
    */
   public static ExtensionBuilder builder() {
     return new ExtensionBuilder();
-  }
-
-  /**
-   * Gets the value for extension identified by {@code name}
-   * 
-   * @param name
-   *          the name of the extension
-   * @param type
-   *          the expected class of the extension value
-   * @param <T>
-   *          the the expected class of the extension value
-   * @return the extension value, or {@code null} if it is not available
-   * @throws ClassCastException
-   *           if the value exists but is not assignable to type
-   */
-  public <T> T get(String name, Class<T> type) {
-    Object object = this.get(name);
-    if (object == null) {
-      return null;
-    }
-    // If initialized via a properties file everything will be of type String,
-    // for example if we are using Spring Boot and ConfigurationProperties.
-    // Let's be a bit helpful in those cases ...
-    //
-    if (object instanceof String) {
-      final String stringObject = (String) object;
-      if (type == Boolean.class) {
-        object = Boolean.parseBoolean(stringObject);
-      }
-      else if (type == Integer.class) {
-        object = Integer.parseInt(stringObject);
-      }
-      else if (type == Long.class) {
-        object = Long.parseLong(stringObject);
-      }
-    }
-    return type.cast(object);
   }
 
   /**
@@ -125,7 +88,7 @@ public class Extension extends HashMap<String, Object> {
      *          extension value
      * @return the builder
      */
-    ExtensionBuilder add(String name, Object value) {
+    ExtensionBuilder add(final String name, final String value) {
       this.extension.put(name, value);
       return this;
     }

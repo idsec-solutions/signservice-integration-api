@@ -142,7 +142,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * 
    * @return a list of image templates for visible PDF signatures, or null if none exists
    */
-  List<PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
+  List<? extends PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
 
   /**
    * Tells whether the SignService Integration Service is running in stateless mode or not.
