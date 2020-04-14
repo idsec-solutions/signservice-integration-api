@@ -5,7 +5,7 @@
 
   <groupId>se.idsec.signservice.integration</groupId>
   <artifactId>signservice-integration-api</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <packaging>jar</packaging>
 
   <name>IDsec Solutions :: SignService :: Integration API</name>
@@ -63,48 +63,34 @@
     </repository>
   </distributionManagement>
   
-  <dependencyManagement>
-
-    <dependencies>
-       
-      <dependency>
-        <groupId>se.idsec.signservice.commons</groupId>
-        <artifactId>signservice-bom</artifactId>
-        <version>1.0.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      
-    </dependencies>
-
-  </dependencyManagement>
-
   <dependencies>
-
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
+      <version>1.18.10</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
+      <version>2.10.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.10.0</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
-      <artifactId>junit</artifactId>      
-      <scope>test</scope>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>      
+      <scope>test</scope>      
     </dependency>
 
   </dependencies>
