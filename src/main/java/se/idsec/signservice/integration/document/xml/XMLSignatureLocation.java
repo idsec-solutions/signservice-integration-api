@@ -84,21 +84,18 @@ public class XMLSignatureLocation implements Extensible {
     this.childPosition = childPosition != null ? childPosition.getPosition() : null;
   }
 
-  /**
-   * Assigns an extension object with extension parameters.
-   * 
-   * @param extension
-   *          the extension object to assign
-   */
-  public void setExtension(final Extension extension) {
-    this.extension = extension;
-  }
-
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
     return this.extension;
   }
+
+  /** {@inheritDoc} */
+  @Override
+  public void setExtension(final Extension extension) {
+    this.extension = extension;
+  }
+  
 
   /**
    * Enum for indicating the insertion point within a selected parent node.

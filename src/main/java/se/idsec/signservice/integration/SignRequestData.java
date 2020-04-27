@@ -159,19 +159,19 @@ public class SignRequestData implements Extensible {
   @Getter
   private String destinationUrl;
 
-  /**
-   * Extensions for the object.
-   * 
-   * @param extension
-   *          the extension object to assign
-   */
-  @Setter
+  /** Extensions for the object. */
   private Extension extension;
 
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
     return this.extension;
+  }
+  
+  /** {@inheritDoc} */
+  @Override
+  public void setExtension(final Extension extension) {
+    this.extension = extension;
   }
 
   /**

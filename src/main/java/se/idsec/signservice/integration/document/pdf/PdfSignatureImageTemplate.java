@@ -24,6 +24,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.core.Extensible;
+import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
 /**
@@ -53,7 +55,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PdfSignatureImageTemplate {
+public class PdfSignatureImageTemplate implements Extensible {
 
   /** Constant for the name of the special purpose field "signerName". */
   public static final String SIGNER_NAME_FIELD_NAME = "signerName";
@@ -139,6 +141,21 @@ public class PdfSignatureImageTemplate {
   @Setter
   @Singular
   private Map<String, String> fields;
+  
+  /** Extensions for the object. */
+  private Extension extension;  
+  
+  /** {@inheritDoc} */
+  @Override
+  public Extension getExtension() {
+    return this.extension;
+  }
+  
+  /** {@inheritDoc} */
+  @Override
+  public void setExtension(final Extension extension) {
+    this.extension = extension;
+  }
 
   /**
    * Builder for {@code PdfSignatureImageTemplate} objects.
