@@ -19,7 +19,7 @@ The API is implemented as a Java API with interfaces and domain classes. Using t
 * [REST API](rest-api.md)
 
 
-See the [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/) and the [generated project information](https://idsec-solutions.github.io/signservice-integration-api/site/) for details.
+See the [Java API documentation](https://idsec-solutions.github.io/signservice-integration-api/javadoc/) and the [generated project information](https://idsec-solutions.github.io/signservice-integration-api/site/) for details.
 
 ### Maven
 
