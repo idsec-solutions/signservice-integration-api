@@ -51,14 +51,21 @@ TODO
 <a name="javadoc"></a>
 ### 1.2. Javadoc
 
-The generated Javadoc at <https://idsec-solutions.github.io/signservice-integration-api/javadoc/latest/> contains the complete documentation of the Java API.
+The generated Javadoc at <https://idsec-solutions.github.io/signservice-integration-api/javadoc/> contains the complete documentation of the Java API.
 
 <a name="distribution"></a>
 ### 1.3. Distribution
 
-TODO
+The signservice-integration-api artifact is published to Maven central. Include its dependency by adding
+the following to your POM file:
 
-> Should be published to Maven central
+```
+<dependency>
+  <groupId>se.idsec.signservice.integration</groupId>
+  <artifactId>signservice-integration-api</artifactId>
+  <version>${signservice-api.version}</version>
+</dependency>
+```
 
 <a name="configuration"></a>
 ## 2. Configuration

@@ -5,7 +5,7 @@
 
   <groupId>se.idsec.signservice.integration</groupId>
   <artifactId>signservice-integration-api</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
 
   <name>IDsec Solutions :: SignService :: Integration API</name>
@@ -228,11 +228,6 @@
                 <additionalJOption>-Xdoclint:all</additionalJOption>
                 <additionalJOption>-Xdoclint:-missing</additionalJOption>
               </additionalJOptions>
-              <links>
-                <link>https://fasterxml.github.io/jackson-core/javadoc/2.10/</link>
-                <link>https://fasterxml.github.io/jackson-annotations/javadoc/2.10/</link>
-                <link>https://fasterxml.github.io/jackson-databind/javadoc/2.10/</link>
-              </links>
               <detectJavaApiLink>true</detectJavaApiLink>
             </configuration>
           </plugin>
