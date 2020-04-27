@@ -27,6 +27,7 @@ import lombok.Singular;
 import lombok.ToString;
 import se.idsec.signservice.integration.authentication.AuthnRequirements;
 import se.idsec.signservice.integration.authentication.SignerIdentityAttribute;
+import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -44,6 +45,9 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @AllArgsConstructor
 public class VisiblePdfSignatureRequirement implements Extensible {
 
+  /** Constant for an extension that denotes a "null" visible PDF signature requirement. */
+  public static final String NULL_INDICATOR_EXTENSION = "nullVisiblePdfSignatureRequirement";
+
   /**
    * A unique reference of the template image that should be by the SignService Integration Service when generating a
    * PDF visible signature. See {@link PdfSignatureImageTemplate}.
@@ -57,10 +61,10 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   private String templateImageRef;
 
   /**
-   * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable identity attribute
-   * value may be specified to be part of the signer name. This value is analogous to, and should hold the same value as, a present Name
-   * entry in the PDF signature dictionary. If the image template referenced requires a value for signerName, this field is mandatory,
-   * otherwise it is optional.
+   * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable
+   * identity attribute value may be specified to be part of the signer name. This value is analogous to, and should
+   * hold the same value as, a present Name entry in the PDF signature dictionary. If the image template referenced
+   * requires a value for signerName, this field is mandatory, otherwise it is optional.
    * 
    * @param signerName
    *          the signer name
@@ -117,7 +121,8 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   private Integer page;
 
   /**
-   * Apart from the signer name and signing date, a template may use other fields. This map provides the requested fields and values.
+   * Apart from the signer name and signing date, a template may use other fields. This map provides the requested
+   * fields and values.
    * 
    * @param fieldValues
    *          a map of fields and their values
@@ -130,6 +135,21 @@ public class VisiblePdfSignatureRequirement implements Extensible {
 
   /** Extensions for the object. */
   private Extension extension;
+
+  /**
+   * Creates a "null" visible PDF signature requirement. This may be used in cases where the signature policy that is
+   * being used has a default visible PDF signature requirement (see
+   * {@link IntegrationServiceDefaultConfiguration#getDefaultVisiblePdfSignatureRequirement()}) but we, for some reason,
+   * don't want to apply this.
+   * 
+   * @return a VisiblePdfSignatureRequirement instance with the extension value {@value #NULL_INDICATOR_EXTENSION} set
+   *         to true
+   */
+  public static VisiblePdfSignatureRequirement createNullVisiblePdfSignatureRequirement() {
+    VisiblePdfSignatureRequirement nullRequirement = new VisiblePdfSignatureRequirement();
+    nullRequirement.addExtensionValue(NULL_INDICATOR_EXTENSION, "true");
+    return nullRequirement;
+  }
 
   /** {@inheritDoc} */
   @Override

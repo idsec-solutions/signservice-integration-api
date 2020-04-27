@@ -24,7 +24,6 @@ import lombok.ToString;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
-import se.idsec.signservice.integration.document.pdf.NullVisiblePdfSignatureRequirement;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 
 /**
@@ -101,12 +100,13 @@ public class TbsDocument implements Extensible {
    * Note that a signature policy may have a default visible PDF signature requirement configued, which means that the
    * {@code visiblePdfSignatureRequirement} does not have to be assigned, unless the signature policy default should be
    * overridden. For the special case where a signature policy has a default requirement configured, and the caller does
-   * not want a visible PDF signature to be included at all, an instance of the
-   * {@link NullVisiblePdfSignatureRequirement} should be assigned.
+   * not want a visible PDF signature to be included at all, an {@link VisiblePdfSignatureRequirement} instance with an
+   * extension {@link VisiblePdfSignatureRequirement#NULL_INDICATOR_EXTENSION} set to {@code true) should be assigned
+   * (see {@link VisiblePdfSignatureRequirement#createNullVisiblePdfSignatureRequirement()}).
    * </p>
    * 
-   * @param visiblePdfSignatureRequirement
-   *          requirement for visible PDF signatures
+   * @param visiblePdfSignatureRequirement requirement for visible PDF signatures
+   * 
    * @return requirement for visible PDF signatures, or null
    */
   @Setter
@@ -142,12 +142,12 @@ public class TbsDocument implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
-  }  
+  }
 
   /**
    * Builder for {@code TbsDocument} objects.
