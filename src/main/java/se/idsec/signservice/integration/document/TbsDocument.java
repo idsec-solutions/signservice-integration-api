@@ -101,7 +101,7 @@ public class TbsDocument implements Extensible {
    * {@code visiblePdfSignatureRequirement} does not have to be assigned, unless the signature policy default should be
    * overridden. For the special case where a signature policy has a default requirement configured, and the caller does
    * not want a visible PDF signature to be included at all, an {@link VisiblePdfSignatureRequirement} instance with an
-   * extension {@link VisiblePdfSignatureRequirement#NULL_INDICATOR_EXTENSION} set to {@code true) should be assigned
+   * extension {@link VisiblePdfSignatureRequirement#NULL_INDICATOR_EXTENSION} set to {@code true} should be assigned
    * (see {@link VisiblePdfSignatureRequirement#createNullVisiblePdfSignatureRequirement()}).
    * </p>
    * 
