@@ -99,13 +99,7 @@ public class AuthnRequirements implements Extensible {
   @Singular
   private List<SignerIdentityAttributeValue> requestedSignerAttributes;
   
-  /**
-   * Extensions for the object.
-   * 
-   * @param extension
-   *          the extension object to assign
-   */
-  @Setter
+  /** Extensions for the object. */
   private Extension extension;
   
   /** {@inheritDoc} */
@@ -113,6 +107,12 @@ public class AuthnRequirements implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
+  
+  /** {@inheritDoc} */
+  @Override
+  public void setExtension(final Extension extension) {
+    this.extension = extension;
+  }  
 
   /**
    * Builder for {@code AuthnRequirements} objects.

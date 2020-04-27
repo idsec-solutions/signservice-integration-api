@@ -131,13 +131,9 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   /** Extensions for the object. */
   private Extension extension;
 
-  /**
-   * Assigns an extension object with extension parameters.
-   * 
-   * @param extension
-   *          the extension object to assign
-   */
-  public void setExtension(Extension extension) {
+  /** {@inheritDoc} */
+  @Override
+  public void setExtension(final Extension extension) {
     this.extension = extension;
   }
 

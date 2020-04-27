@@ -52,13 +52,7 @@ public class SignResponseProcessingParameters implements Extensible {
   @Setter
   private XMLSignatureLocation xmlSignatureLocation;
 
-  /**
-   * Extensions for the object.
-   * 
-   * @param extension
-   *          the extension object to assign
-   */
-  @Setter
+  /** Extensions for the object. */
   private Extension extension;
 
   /** {@inheritDoc} */
@@ -66,6 +60,12 @@ public class SignResponseProcessingParameters implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
+  
+  /** {@inheritDoc} */
+  @Override
+  public void setExtension(final Extension extension) {
+    this.extension = extension;
+  }  
 
   /**
    * Builder for {@code SignResponseProcessingParameters} objects.

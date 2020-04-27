@@ -26,8 +26,47 @@ public interface Extensible {
   /**
    * Returns the extension parameters for the instance.
    * 
-   * @return the extension, or null if no extensions are set 
+   * @return the extension, or null if no extensions are set
    */
   Extension getExtension();
+
+  /**
+   * Assigns the extension parameters for the instance.
+   * 
+   * @param extension
+   *          the extension
+   */
+  void setExtension(final Extension extension);
+
+  /**
+   * Gets an extension value.
+   * 
+   * @param name
+   *          the extension name
+   * @return the extension value or null if it does not exist
+   */
+  default String getExtensionValue(final String name) {
+    final Extension extension = this.getExtension();
+    return extension != null ? extension.get(name) : null;
+  }
+
+  /**
+   * Adds an extension.
+   * 
+   * @param name
+   *          extension name
+   * @param value
+   *          extension value
+   */
+  default void addExtensionValue(final String name, final String value) {
+    if (this.getExtension() != null) {
+      this.getExtension().put(name, value);
+    }
+    else {
+      final Extension extension = new Extension();
+      extension.put(name, value);
+      this.setExtension(extension);
+    }
+  }
 
 }
