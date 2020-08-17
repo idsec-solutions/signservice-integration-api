@@ -15,7 +15,7 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
@@ -23,12 +23,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Singular;
 import lombok.ToString;
-import se.idsec.signservice.integration.authentication.AuthnRequirements;
-import se.idsec.signservice.integration.authentication.SignerIdentityAttribute;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
-import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -40,10 +36,9 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VisiblePdfSignatureRequirement implements Extensible {
+public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureRequirementTemplate {
 
   /** Constant for an extension that denotes a "null" visible PDF signature requirement. */
   public static final String NULL_INDICATOR_EXTENSION = "nullVisiblePdfSignatureRequirement";
@@ -59,20 +54,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   @Getter
   @Setter
   private String templateImageRef;
-
-  /**
-   * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable
-   * identity attribute value may be specified to be part of the signer name. This value is analogous to, and should
-   * hold the same value as, a present Name entry in the PDF signature dictionary. If the image template referenced
-   * requires a value for signerName, this field is mandatory, otherwise it is optional.
-   * 
-   * @param signerName
-   *          the signer name
-   * @return the signer name
-   */
-  @Getter
-  @Setter
-  private SignerName signerName;
 
   /**
    * The X coordinate position (in pixels) of the PDF visible signature image in the PDF document.
@@ -121,22 +102,6 @@ public class VisiblePdfSignatureRequirement implements Extensible {
   private Integer page;
 
   /**
-   * Apart from the signer name and signing date, a template may use other fields. This map provides the requested
-   * fields and values.
-   * 
-   * @param fieldValues
-   *          a map of fields and their values
-   * @return a map of fields and their values
-   */
-  @Getter
-  @Setter
-  @Singular
-  private Map<String, String> fieldValues;
-
-  /** Extensions for the object. */
-  private Extension extension;
-
-  /**
    * Creates a "null" visible PDF signature requirement. This may be used in cases where the signature policy that is
    * being used has a default visible PDF signature requirement (see
    * {@link IntegrationServiceDefaultConfiguration#getDefaultVisiblePdfSignatureRequirement()}) but we, for some reason,
@@ -151,16 +116,16 @@ public class VisiblePdfSignatureRequirement implements Extensible {
     return nullRequirement;
   }
 
-  /** {@inheritDoc} */
-  @Override
-  public void setExtension(final Extension extension) {
-    this.extension = extension;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public Extension getExtension() {
-    return this.extension;
+  @Builder
+  public VisiblePdfSignatureRequirement(final SignerName signerName, final Map<String, String> fieldValues, 
+      final Extension extension, final String templateImageRef, final Integer xPosition, final Integer yPosition, 
+      final Integer scale, final Integer page) {
+    super(signerName, fieldValues, extension);
+    this.templateImageRef = templateImageRef;
+    this.xPosition = xPosition;
+    this.yPosition = yPosition;
+    this.scale = scale;
+    this.page = page;
   }
 
   /**
@@ -168,54 +133,16 @@ public class VisiblePdfSignatureRequirement implements Extensible {
    */
   public static class VisiblePdfSignatureRequirementBuilder implements ObjectBuilder<VisiblePdfSignatureRequirement> {
     // Lombok
-  }
-
-  /**
-   * Class representing the input needed to display the signer name in a visible PDF signature.
-   */
-  @ToString
-  @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
-  public static class SignerName {
-
-    /**
-     * A list of attribute names that refer to some, or all, attributes supplied in
-     * {@link AuthnRequirements#setRequestedSignerAttributes(List)} that are the requirements that the signer requires
-     * to be validated as part of the signature operation. The values of the given attributes will be part of the signer
-     * name field as they appear in the list (separated by a blank). It is possible to change how the information is
-     * displayed by assigning a formatting, see {@link #setFormatting(String)}.
-     * 
-     * @param signerAttributes
-     *          a list of attribute names whose values should be used to display the signer name in the visible PDF
-     *          signature
-     * @return a list of attribute names whose values should be used to display the signer name in the visible PDF
-     *         signature
-     */
-    @Getter
-    @Setter
-    @Singular
-    private List<SignerIdentityAttribute> signerAttributes;
-
-    /**
-     * Optional string the may be supplied to change how the signer's information is displayed. Each list item from
-     * {@link #getSignerAttributes()} is referenced by its order (starting from 0) and prefixed by %. For example, the
-     * formatting string {@code "%1 %2 (%3)"} may display something like {@code Jim Smith (ID12345)}.
-     * 
-     * @param formatting
-     *          the formatting string
-     * @return the formatting string
-     */
-    @Getter
-    @Setter
-    private String formatting;
-
-    /**
-     * Builder for {@code SignerName} objects.
-     */
-    public static class SignerNameBuilder implements ObjectBuilder<SignerName> {
-      // Lombok
+    
+    // Lombok Builder doesn't handle Singular annotations when inheriting ...
+    @java.lang.SuppressWarnings("all")
+    public VisiblePdfSignatureRequirementBuilder fieldValue(final String fieldValueKey, final String fieldValueValue) {
+      if (this.fieldValues == null) {
+        this.fieldValues = new HashMap<>();
+      }
+      this.fieldValues.put(fieldValueKey, fieldValueValue);
+      return this;
     }
-
   }
+
 }

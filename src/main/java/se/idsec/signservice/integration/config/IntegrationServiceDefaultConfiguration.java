@@ -17,6 +17,7 @@ package se.idsec.signservice.integration.config;
 
 import java.util.List;
 
+import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
@@ -25,6 +26,7 @@ import se.idsec.signservice.integration.certificate.SigningCertificateRequiremen
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.SignatureState;
 import se.idsec.signservice.integration.document.pdf.PdfSignatureImageTemplate;
+import se.idsec.signservice.integration.document.pdf.PdfSignaturePage;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 import se.idsec.signservice.integration.security.EncryptionParameters;
 
@@ -138,11 +140,21 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * A policy may have one, or more, image templates for visible PDF signatures in its configuration. See
-   * {@link PdfSignatureImageTemplate}. This method gets these templates
+   * {@link PdfSignatureImageTemplate}. This method gets these templates.
    * 
    * @return a list of image templates for visible PDF signatures, or null if none exists
    */
   List<? extends PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
+
+  /**
+   * A policy may have one, or more, configured PDF signature pages. See
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences)}
+   * for a description of PDF signature pages. The first object in the list is regarded as the default page for the
+   * policy.
+   * 
+   * @return a list of PDF signature pages for the policy, or null if no such pages are defined for the policy
+   */
+  List<? extends PdfSignaturePage> getPdfSignaturePages();
 
   /**
    * Tells whether the SignService Integration Service is running in stateless mode or not.
