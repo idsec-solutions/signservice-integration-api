@@ -115,14 +115,11 @@ public abstract class SignServiceIntegrationException extends Exception {
 
   /**
    * Override this method if a subclass is tied to a specific error category.
-   * <p>
-   * Default implementation returns {@code null}.
-   * </p>
    *
    * @return the error category for this exception
    */
   protected ErrorCode.Category getCategory() {
-    return null;
+    return this.errorCode != null ? new ErrorCode.Category(this.errorCode.getCategory()) : null;
   }
 
 }
