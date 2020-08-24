@@ -92,18 +92,6 @@ public class PdfSignaturePage implements Extensible {
   private String resource;
 
   /**
-   * Tells how many PDF signature images that may be displayed in the PDF signature page. The default is {@code 1}.
-   * 
-   * @param maxSignatureImages
-   *          the maximum number of PDF signature images this page can contain
-   * @return the maximum number of PDF signature images this page can contain
-   */
-  @Getter
-  @Setter
-  @Builder.Default
-  private Integer maxSignatureImages = 1;
-
-  /**
    * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
    * attribute should assigned to the desired number of rows. The default is {@code 1}.
    * 
@@ -168,12 +156,21 @@ public class PdfSignaturePage implements Extensible {
   public void setExtension(final Extension extension) {
     this.extension = extension;
   }
+  
+  /**
+   * Tells how many PDF signature images that may be displayed in the PDF signature page. This is calculated as
+   * {@link #getRows()} timws {@link #getColumns()}.
+   * 
+   * @return the maximum number of PDF signature images this page can contain
+   */
+  public int getMaxSignatureImages() {
+    return (this.rows != null ? this.rows : 1) * (this.columns != null ? this.columns : 1);
+  }
 
   /**
    * Builder for {@code PdfSignPagePreferences} objects.
    */
   public static class PdfSignaturePageBuilder implements ObjectBuilder<PdfSignaturePage> {
-    private Integer maxSignatureImages = 1;
     private Integer rows = 1;
     private Integer columns = 1;
 
