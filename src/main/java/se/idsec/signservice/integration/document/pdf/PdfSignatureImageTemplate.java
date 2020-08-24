@@ -40,7 +40,8 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * <ul>
  * <li><b>signerName</b> - Displays the signer name information in the visible PDF signature. The caller does not
  * specify the name directly in the request. Instead the user attribute names that will hold these values after user
- * authentication is given. See {@link VisiblePdfSignatureUserInformation#setSignerName(se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureUserInformation.SignerName)}.</li>
+ * authentication is given. See
+ * {@link VisiblePdfSignatureUserInformation#setSignerName(se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureUserInformation.SignerName)}.</li>
  * <li><b>signingTime</b> - Includes a time stamp telling when the document was signed in the PDF. The caller does not
  * provide this information. Instead the SignService Integration Service includes this information if the
  * {@link #isIncludeSigningTime()} is set.</li>
@@ -75,6 +76,9 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * SVG image that is the image template.
+   * <p>
+   * See also {@link #setImageResource(String)} and {@link #getImageResource()}.
+   * </p>
    * 
    * @param image
    *          the SVG image expressed as an XML string
@@ -85,8 +89,26 @@ public class PdfSignatureImageTemplate implements Extensible {
   private String image;
 
   /**
-   * The width (in pixels) for the pixel image that is generated from the template (and inserted into the PDF visible signature
-   * flow).
+   * A resource string that points at the document that holds the SVG image.
+   * <p>
+   * Note: The Spring Framework style of representing a resource must be supported by implementations. For example:
+   * {@code classpath:xyz.svg} and {@code file:///path/xyz.svg}.
+   * </p>
+   * <p>
+   * See also {@link #setImage(String)} and {@link #getImage()}.
+   * </p>
+   * 
+   * @param imageResource
+   *          resource string that points at the document that holds the SVG image
+   * @return the resource string that points at the document that holds the SVG image
+   */
+  @Getter
+  @Setter
+  private String imageResource;
+
+  /**
+   * The width (in pixels) for the pixel image that is generated from the template (and inserted into the PDF visible
+   * signature flow).
    * 
    * @param width
    *          the width (in pixels)
@@ -97,8 +119,8 @@ public class PdfSignatureImageTemplate implements Extensible {
   private Integer width;
 
   /**
-   * The height (in pixels) for the pixel image that is generated from the template (and inserted into the PDF visible signature
-   * flow).
+   * The height (in pixels) for the pixel image that is generated from the template (and inserted into the PDF visible
+   * signature flow).
    * 
    * @param height
    *          the width (in pixels)
@@ -131,25 +153,27 @@ public class PdfSignatureImageTemplate implements Extensible {
   private boolean includeSigningTime;
 
   /**
-   * A map of the field names that are required by the template in the fieldName map in {@link VisiblePdfSignatureRequirement}.
+   * A map of the field names that are required by the template in the fieldName map in
+   * {@link VisiblePdfSignatureRequirement}.
    * 
-   * @param fields the field names and associated descriptions
+   * @param fields
+   *          the field names and associated descriptions
    * @return the field names and associated descriptions
    */
   @Getter
   @Setter
   @Singular
   private Map<String, String> fields;
-  
+
   /** Extensions for the object. */
-  private Extension extension;  
-  
+  private Extension extension;
+
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
