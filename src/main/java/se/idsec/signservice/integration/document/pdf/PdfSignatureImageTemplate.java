@@ -40,8 +40,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * <ul>
  * <li><b>signerName</b> - Displays the signer name information in the visible PDF signature. The caller does not
  * specify the name directly in the request. Instead the user attribute names that will hold these values after user
- * authentication is given. See
- * {@link VisiblePdfSignatureRequirement#setSignerName(se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement.SignerName)}.</li>
+ * authentication is given. See {@link VisiblePdfSignatureUserInformation#setSignerName(se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureUserInformation.SignerName)}.</li>
  * <li><b>signingTime</b> - Includes a time stamp telling when the document was signed in the PDF. The caller does not
  * provide this information. Instead the SignService Integration Service includes this information if the
  * {@link #isIncludeSigningTime()} is set.</li>

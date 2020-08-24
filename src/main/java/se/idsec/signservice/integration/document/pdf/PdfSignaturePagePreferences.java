@@ -77,27 +77,41 @@ public class PdfSignaturePagePreferences implements Extensible {
   private PdfSignaturePage signaturePage;
 
   /**
-   * A template for how to generate a {@link VisiblePdfSignatureRequirement} object. Using the template values (signer
-   * name and other field values) and combining with information regarding the PDF signature image found in
-   * {@link #getSignaturePageReference()} or {@link #getSignaturePage()} a complete
-   * {@link VisiblePdfSignatureRequirement} object can be created.
+   * The input regarding the user information that is to be used when generating a
+   * {@link VisiblePdfSignatureRequirement} object. Using the object's values (signer name and other field values) and
+   * combining with information regarding the PDF signature image found in {@link #getSignaturePageReference()} or
+   * {@link #getSignaturePage()} a complete {@link VisiblePdfSignatureRequirement} object can be created.
    * 
-   * @param visiblePdfSignatureTemplate
-   *          template for creating a VisiblePdfSignatureRequirement object
-   * @return a template for creating a VisiblePdfSignatureRequirement object
+   * @param visiblePdfSignatureUserInformation
+   *          user information input for creating a VisiblePdfSignatureRequirement object
+   * @return user information input for creating a VisiblePdfSignatureRequirement object
    */
   @Getter
   @Setter
-  private VisiblePdfSignatureRequirementTemplate visiblePdfSignatureTemplate;
+  private VisiblePdfSignatureUserInformation visiblePdfSignatureUserInformation;
 
   /**
-   * The {@code addToAlreadySigned} property tells whether or not we should add the given signature page to a PDF
-   * document that already has been signed (and possibly already has a signature page). The default is {@code false}.
+   * A {@link PdfSignaturePage} has a limit on how many PDF signature images it can hold (see
+   * {@link PdfSignaturePage#getMaxSignatureImages()}). If
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
+   * is invoked with a PDF document that contains a number of signature that equals or exceeds the maximum number of
+   * allowed signature images ({@link PdfSignaturePage#getMaxSignatureImages()}) for the current PDF signature page the
+   * {@code failWhenSignPageFull} property tells whether {@code preparePdfSignaturePage} should fail
+   * ({@link PdfSignaturePageFullException}) or whether it should allow proceeding with the signature operation where no
+   * PDF signature image is inserted (in that case the resulting {@link PreparedPdfDocument} will contain a "null"
+   * {@link VisiblePdfSignatureRequirement} (see
+   * {@link VisiblePdfSignatureRequirement#createNullVisiblePdfSignatureRequirement()}).
+   * 
+   * @param failWhenSignPageFull
+   *          whether processing should fail or not when the PDF signature page does not have room for any more sign
+   *          images (the default is true)
+   * @return whether processing should fail or not when the PDF signature page does not have room for any more sign
+   *         images
    */
   @Getter
   @Setter
   @Builder.Default
-  private boolean addToAlreadySigned = false;
+  private boolean failWhenSignPageFull = true;
 
   /**
    * Tells where in a PDF document the PDF signature page should be inserted. A value of 1 represents the first page and
@@ -131,7 +145,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * Builder for {@code PdfSignaturePagePreferences} objects.
    */
   public static class PdfSignaturePagePreferencesBuilder implements ObjectBuilder<PdfSignaturePagePreferences> {
-    private boolean addToAlreadySigned = false;
+    private boolean failWhenSignPageFull = true;
 
     // Lombok
   }

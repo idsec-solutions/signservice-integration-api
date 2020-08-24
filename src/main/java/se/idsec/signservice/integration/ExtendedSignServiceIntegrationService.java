@@ -18,6 +18,7 @@ package se.idsec.signservice.integration;
 import se.idsec.signservice.integration.core.error.InputValidationException;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;
 import se.idsec.signservice.integration.document.TbsDocument;
+import se.idsec.signservice.integration.document.pdf.PdfSignaturePageFullException;
 import se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences;
 import se.idsec.signservice.integration.document.pdf.PreparedPdfDocument;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
@@ -36,17 +37,17 @@ import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirem
 public interface ExtendedSignServiceIntegrationService extends SignServiceIntegrationService {
 
   /**
-   * A utility method that can be used to prepare a PDF document that is to be signed with a PDF signature image with a
-   * PDF signature page holding the signature image(s).
+   * A utility method that can be used to prepare a PDF document that is to be signed with a PDF signature page holding
+   * the signature image(s).
    * <p>
    * A PDF signature image can be inserted into a signed PDF document to make the signature information "visible". The
-   * image along with the coordinates that tell where in the PDF document the images should be inserted is represented
+   * image along with the coordinates that tell where in the PDF document the image should be inserted is represented
    * using a {@link VisiblePdfSignatureRequirement} object. See {@link TbsDocument#getVisiblePdfSignatureRequirement()}.
    * </p>
    * <p>
-   * However, for the generic case, where we may not always know how the PDF document we are signing looks like it may
-   * be tricky to determine where in the document the PDF signature image should be inserted. For those cases, a
-   * dedicated "PDF signature page"may be added to the PDF document before it is added to a {@link TbsDocument} object
+   * However, for the generic case, where we may not always know how the PDF document that we are signing looks like it
+   * may be tricky to determine where in the document the PDF signature image should be inserted. For those cases, a
+   * dedicated "PDF signature page" may be added to the PDF document before it is added to a {@link TbsDocument} object
    * and sent as input in a signature operation. By using a PDF signature page whose structure and constitution is well
    * known it is easy to include a PDF signature image into any PDF document being signed.
    * </p>
@@ -57,9 +58,8 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * <p>
    * The {@code preparePdfSignaturePage} method should invoked before each call to
    * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)} where PDF documents with PDF signature
-   * pages is to be used. If a PDF document is to be signed more than once and the PDF signature page supports several
-   * signature images, by default no new PDF signature page is added (see
-   * {@link PdfSignaturePagePreferences#isAddToAlreadySigned()}. Instead, the {@code preparePdfSignaturePage} method
+   * pages is to be used. If a PDF document is to be signed is signed more than once and the PDF signature page supports
+   * several signature images, no new PDF signature page is added. Instead, the {@code preparePdfSignaturePage} method
    * calculates where in the already existing PDF signature page the next signature image will be inserted.
    * </p>
    * 
@@ -73,12 +73,15 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    *         VisiblePdfSignatureRequirement telling how a signature image should be added
    * @throws InputValidationException
    *           for input validation errors
+   * @throws PdfSignaturePageFullException
+   *           if the PDF document contains more signatures than there is room for in the PDF signature page (and
+   *           {@link PdfSignaturePagePreferences#isFailWhenSignPageFull()} evaluates to true)
    * @throws SignServiceIntegrationException
-   *           for processing errors
+   *           for other processing errors
    */
   PreparedPdfDocument preparePdfSignaturePage(final String policy,
       final byte[] pdfDocument,
       final PdfSignaturePagePreferences signaturePagePreferences)
-      throws InputValidationException, SignServiceIntegrationException;
+      throws InputValidationException, PdfSignaturePageFullException, SignServiceIntegrationException;
 
 }

@@ -32,7 +32,7 @@ import se.idsec.signservice.integration.document.TbsDocument;
  * The {@code PreparedPdfDocument} is the representation of the object that is returned from
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
  * The {@code preparePdfSignaturePage} method is used to setup a PDF document along with its visible signature
- * requirements ({@link VisiblePdfSignatureRequirement) before
+ * requirements ({@link VisiblePdfSignatureRequirement}) before
  * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} is called.
  *
  * @author Martin Lindström (martin@idsec.se)

@@ -39,7 +39,7 @@ import se.idsec.signservice.integration.document.TbsDocument;
 import se.idsec.signservice.integration.document.TbsDocument.AdesType;
 import se.idsec.signservice.integration.document.TbsDocument.EtsiAdesRequirement;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
-import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirementTemplate.SignerName;
+import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureUserInformation.SignerName;
 import se.idsec.signservice.integration.signmessage.SignMessageMimeType;
 import se.idsec.signservice.integration.signmessage.SignMessageParameters;
 

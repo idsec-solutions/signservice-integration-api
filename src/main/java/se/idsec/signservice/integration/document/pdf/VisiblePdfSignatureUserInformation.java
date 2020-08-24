@@ -32,7 +32,7 @@ import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
 /**
- * Representation of a template for creating a {@link VisiblePdfSignatureRequirement} object. 
+ * Representation of the user information that is injected into a PDF signature image. 
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
@@ -41,7 +41,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder(builderMethodName = "toBuilder")
 @NoArgsConstructor
 @AllArgsConstructor
-public class VisiblePdfSignatureRequirementTemplate implements Extensible {
+public class VisiblePdfSignatureUserInformation implements Extensible {
 
   /**
    * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable
@@ -86,9 +86,9 @@ public class VisiblePdfSignatureRequirementTemplate implements Extensible {
   }
 
   /**
-   * Builder for {@code VisiblePdfSignatureRequirement} objects.
+   * Builder for {@code VisiblePdfSignatureUserInformation} objects.
    */
-  public static class VisiblePdfSignatureRequirementTemplateBuilder implements ObjectBuilder<VisiblePdfSignatureRequirementTemplate> {
+  public static class VisiblePdfSignatureUserInformationBuilder implements ObjectBuilder<VisiblePdfSignatureUserInformation> {
     // Lombok
   }
 

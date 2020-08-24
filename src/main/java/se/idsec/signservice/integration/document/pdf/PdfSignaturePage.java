@@ -61,11 +61,13 @@ public class PdfSignaturePage implements Extensible {
 
   /**
    * The contents of the PDF document that holds the PDF signature page.
+   * <p>
+   * See also {@link #getResource()} and {@link #setResource(String)}.
+   * </p>
    * 
    * @param contents
    *          the byte contents of the PDF document in Base64 encoded format
    * @return the byte contents of the PDF document in Base64 encoded format
-   * @see {@link #getResource()} and {@link #setResource(String)}
    */
   @Setter
   @Getter
@@ -73,11 +75,17 @@ public class PdfSignaturePage implements Extensible {
 
   /**
    * A resource string that points at the PDF document that holds the PDF signature page.
+   * <p>
+   * Note: The Spring Framework style of representing a resource must be supported by implementations. For example:
+   * {@code classpath:xyz.pdf} and {@code file:///path/xyz.pdf}.
+   * </p>
+   * <p>
+   * See also {@link #getContents()} and {@link #setContents(String)}.
+   * </p>
    * 
    * @param resource
    *          the resource that holds the PDF signature page document
    * @return the resource that holds the PDF signature page document
-   * @see {@link #getContents()} and {@link #setContents(String)}
    */
   @Setter
   @Getter
@@ -136,15 +144,15 @@ public class PdfSignaturePage implements Extensible {
   protected String signatureImageReference;
 
   /**
-   * Tells where in the PDF signature page the PDF signature image(s) should be inserted.
+   * Configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted.
    * 
-   * @param signatureImagePlacement
-   *          where in the PDF signature page the PDF signature image(s) should be inserted
-   * @return where in the PDF signature page the PDF signature image(s) should be inserted
+   * @param imagePlacementConfiguration
+   *          configuration for where in the PDF signature page the PDF signature image(s) should be inserted
+   * @return configuration for where in the PDF signature page the PDF signature image(s) should be inserted
    */
   @Getter
   @Setter
-  private PdfSignatureImagePlacement signatureImagePlacement;
+  private PdfSignatureImagePlacementConfiguration imagePlacementConfiguration;
 
   /** Extensions for the object. */
   private Extension extension;
@@ -173,13 +181,13 @@ public class PdfSignaturePage implements Extensible {
   }
 
   /**
-   * Representation of where in a PDF signature page PDF signature images should be inserted.
+   * Representation of the configuration of where in a PDF signature page PDF signature images should be inserted.
    */
   @ToString
   @Builder
   @NoArgsConstructor
   @AllArgsConstructor
-  public static class PdfSignatureImagePlacement implements Extensible {
+  public static class PdfSignatureImagePlacementConfiguration implements Extensible {
 
     /**
      * The X coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
@@ -288,9 +296,9 @@ public class PdfSignaturePage implements Extensible {
     }
 
     /**
-     * Builder for {@code PdfSignatureImagePlacement} objects.
+     * Builder for {@code PdfSignatureImagePlacementConfiguration} objects.
      */
-    public static class PdfSignatureImagePlacementBuilder implements ObjectBuilder<PdfSignatureImagePlacement> {
+    public static class PdfSignatureImagePlacementConfigurationBuilder implements ObjectBuilder<PdfSignatureImagePlacementConfiguration> {
       private Integer page = 1;
       private Integer scale = 0;
 
