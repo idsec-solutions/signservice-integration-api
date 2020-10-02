@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +41,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class PreparePdfSignaturePageInput implements Extensible {
 
   /**

@@ -18,6 +18,9 @@ package se.idsec.signservice.integration.document.pdf;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +44,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder(builderMethodName = "toBuilder")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class VisiblePdfSignatureUserInformation implements Extensible {
 
   /**

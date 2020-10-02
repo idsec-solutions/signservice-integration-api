@@ -18,6 +18,9 @@ package se.idsec.signservice.integration.document.pdf;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +41,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInformation {
 
   /** Constant for an extension that denotes a "null" visible PDF signature requirement. */
@@ -117,8 +121,8 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
   }
 
   @Builder
-  public VisiblePdfSignatureRequirement(final SignerName signerName, final Map<String, String> fieldValues, 
-      final Extension extension, final String templateImageRef, final Integer xPosition, final Integer yPosition, 
+  public VisiblePdfSignatureRequirement(final SignerName signerName, final Map<String, String> fieldValues,
+      final Extension extension, final String templateImageRef, final Integer xPosition, final Integer yPosition,
       final Integer scale, final Integer page) {
     super(signerName, fieldValues, extension);
     this.templateImageRef = templateImageRef;
@@ -129,11 +133,24 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
   }
 
   /**
+   * Constructor that accepts a {@link VisiblePdfSignatureUserInformation} object and initializes the properties from
+   * this object.
+   * 
+   * @param userInformation
+   *          a VisiblePdfSignatureUserInformation object
+   */
+  public VisiblePdfSignatureRequirement(final VisiblePdfSignatureUserInformation userInformation) {
+    this.setSignerName(userInformation.getSignerName());
+    this.setFieldValues(userInformation.getFieldValues());
+    this.setExtension(userInformation.getExtension());
+  }
+
+  /**
    * Builder for {@code VisiblePdfSignatureRequirement} objects.
    */
   public static class VisiblePdfSignatureRequirementBuilder implements ObjectBuilder<VisiblePdfSignatureRequirement> {
     // Lombok
-    
+
     // Lombok Builder doesn't handle Singular annotations when inheriting ...
     @java.lang.SuppressWarnings("all")
     public VisiblePdfSignatureRequirementBuilder fieldValue(final String fieldValueKey, final String fieldValueValue) {

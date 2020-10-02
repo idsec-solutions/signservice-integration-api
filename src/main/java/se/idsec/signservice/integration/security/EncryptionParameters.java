@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.security;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -62,6 +65,7 @@ public interface EncryptionParameters {
   @NoArgsConstructor
   @AllArgsConstructor
   @ToString
+  @JsonInclude(Include.NON_NULL)
   public static class RSAOAEPParameters {
 
     /** Digest method algorithm URI. */

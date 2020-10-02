@@ -15,6 +15,12 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import java.util.Base64;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +29,7 @@ import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
+import se.idsec.signservice.integration.core.FileResource;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
 /**
@@ -46,6 +53,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class PdfSignaturePage implements Extensible {
 
   /**
@@ -60,36 +68,15 @@ public class PdfSignaturePage implements Extensible {
   private String id;
 
   /**
-   * The contents of the PDF document that holds the PDF signature page.
-   * <p>
-   * See also {@link #getResource()} and {@link #setResource(String)}.
-   * </p>
+   * The file resource containing the PDF document that holds the PDF signature page.
    * 
-   * @param contents
-   *          the byte contents of the PDF document in Base64 encoded format
-   * @return the byte contents of the PDF document in Base64 encoded format
+   * @param pdfDocument
+   *          the PDF document file resource
+   * @return the PDF document file resource
    */
   @Setter
   @Getter
-  private String contents;
-
-  /**
-   * A resource string that points at the PDF document that holds the PDF signature page.
-   * <p>
-   * Note: The Spring Framework style of representing a resource must be supported by implementations. For example:
-   * {@code classpath:xyz.pdf} and {@code file:///path/xyz.pdf}.
-   * </p>
-   * <p>
-   * See also {@link #getContents()} and {@link #setContents(String)}.
-   * </p>
-   * 
-   * @param resource
-   *          the resource that holds the PDF signature page document
-   * @return the resource that holds the PDF signature page document
-   */
-  @Setter
-  @Getter
-  private String resource;
+  private FileResource pdfDocument;
 
   /**
    * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
@@ -145,6 +132,25 @@ public class PdfSignaturePage implements Extensible {
   /** Extensions for the object. */
   private Extension extension;
 
+  /**
+   * A utility method that can be used to get the raw bytes of the PDF document holding the PDF signature page.
+   * <p>
+   * See also {@link #getPdfDocument()}.
+   * </p>
+   * 
+   * @return the bytes of the PDF document, or null if no document is available
+   */
+  @JsonIgnore
+  public byte[] getContents() {
+    if (this.pdfDocument != null) {
+      final String encodedContents = this.pdfDocument.getContents();
+      if (encodedContents != null) {
+        return Base64.getDecoder().decode(encodedContents);
+      }
+    }
+    return null;
+  }
+
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
@@ -156,7 +162,7 @@ public class PdfSignaturePage implements Extensible {
   public void setExtension(final Extension extension) {
     this.extension = extension;
   }
-  
+
   /**
    * Tells how many PDF signature images that may be displayed in the PDF signature page. This is calculated as
    * {@link #getRows()} timws {@link #getColumns()}.

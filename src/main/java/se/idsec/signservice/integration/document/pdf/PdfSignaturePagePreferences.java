@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +32,14 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 /**
  * Representation of preferences for adding or modifying a {@link PdfSignaturePage}. See
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
+ * 
+ * <p>
+ * Note: If
+ * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)} is
+ * called several times for the same document, i.e., when the document is signed more than once, the values for
+ * {@code signaturePageReference}/{@code signaturePage} and {@code insertPageAt} must be equal to those values used in
+ * the first invocation.
+ * </p>
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
@@ -37,6 +48,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class PdfSignaturePagePreferences implements Extensible {
 
   /**
@@ -116,6 +128,11 @@ public class PdfSignaturePagePreferences implements Extensible {
   /**
    * Tells where in a PDF document the PDF signature page should be inserted. A value of 1 represents the first page and
    * a value of 0 (or {@code null}) represents the last page. The last page is the default.
+   * <p>
+   * Note: If more than one signature image is added to the sign page and {@code existingSignaturePageNumber} is not
+   * set, the value of {@code insertPageAt} MUST be the same between all calls. Thus, the value refers to the page
+   * number in the original document, before the sign page was added.
+   * </p>
    * 
    * @param insertPageAt
    *          the page number in a PDF document where the PDF signature page should be inserted
@@ -125,6 +142,20 @@ public class PdfSignaturePagePreferences implements Extensible {
   @Setter
   @Builder.Default
   private Integer insertPageAt = 0;
+
+  /**
+   * In the cases where a PDF document already has been signed and a signature page has been inserted, and another
+   * signature image is to be added to this page, the caller may use the {@code existingSignaturePageNumber} property to
+   * inform the Sign Service support service about the document page number of the sign page. This page number
+   * corresponds to the {@link VisiblePdfSignatureRequirement#getPage()} property from the initial call.
+   * <p>
+   * If not set, the Sign Service support service will have to calculate the page number based on the
+   * {@code insertPageAt} property and {@code signaturePageReference}/{@code signaturePage}.
+   * </p>
+   */
+  @Getter
+  @Setter
+  private Integer existingSignaturePageNumber;
 
   /** Extensions for the object. */
   private Extension extension;

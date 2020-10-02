@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.certificate;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,6 +38,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString(callSuper = true)
+@JsonInclude(Include.NON_NULL)
 public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /**

@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -65,6 +68,7 @@ import se.idsec.signservice.integration.core.SignatureState;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class SignRequestData implements Extensible {
 
   /** The default binding. */
@@ -178,6 +182,8 @@ public class SignRequestData implements Extensible {
    * Builder for {@code SignRequestData} objects.
    */
   public static class SignRequestDataBuilder implements ObjectBuilder<SignRequestData> {
+    private String binding = SignRequestData.DEFAULT_BINDING;
+    
     // Lombok generates the code ...
   }
 

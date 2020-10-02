@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +39,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonInclude(Include.NON_NULL)
 public class SignedDocument implements Extensible {
 
   /**
