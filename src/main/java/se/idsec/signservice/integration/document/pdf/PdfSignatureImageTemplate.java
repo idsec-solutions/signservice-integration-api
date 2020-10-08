@@ -94,6 +94,12 @@ public class PdfSignatureImageTemplate implements Extensible {
   private boolean includeSignerName = true;
   
   /**
+   * Flag telling whether the signing time will be included in the visible PDF signature.
+   */
+  @Builder.Default
+  private boolean includeSigningTime = false;
+  
+  /**
    * A map of the field names that are required by the template in the fieldName map in
    * {@link VisiblePdfSignatureRequirement}.
    */
@@ -238,15 +244,23 @@ public class PdfSignatureImageTemplate implements Extensible {
   }
 
   /**
-   * Flag telling whether the signing time will be included in the visible PDF signature.
+   * Gets the flag telling whether the signing time will be included in the visible PDF signature.
+   * 
+   * @return tells whether the signing time will be included
+   */
+  public boolean isIncludeSigningTime() {
+    return this.includeSigningTime;
+  }
+  
+  /**
+   * Sets the flag telling whether the signing time will be included in the visible PDF signature.
    * 
    * @param includeSigningTime
    *          flag telling whether the signing time should be included
-   * @return tells whether the signing time will be included
-   */
-  @Getter
-  @Setter
-  private boolean includeSigningTime;
+   */  
+  public void setIncludeSigningTime(final boolean includeSigningTime) {
+    this.includeSigningTime = includeSigningTime;
+  }
 
   /**
    * Gets the map of the field names that are required by the template in the fieldName map in
@@ -286,6 +300,7 @@ public class PdfSignatureImageTemplate implements Extensible {
    */
   public static class PdfSignatureImageTemplateBuilder implements ObjectBuilder<PdfSignatureImageTemplate> {
     private boolean includeSignerName = true;
+    private boolean includeSigningTime = false;
 
     // Lombok
   }
