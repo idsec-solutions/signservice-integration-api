@@ -45,7 +45,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
