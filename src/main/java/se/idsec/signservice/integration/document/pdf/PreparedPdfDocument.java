@@ -49,6 +49,19 @@ import se.idsec.signservice.integration.document.TbsDocument;
 public class PreparedPdfDocument implements Extensible {
 
   /**
+   * The policy under which the data held in this class may be used. This is always the same as the policy given in the
+   * call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
+   * 
+   * @param policy
+   *          the policy
+   * @return the policy
+   */
+  @Setter
+  @Getter
+  private String policy;
+
+  /**
    * If the PDF document passed to
    * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
    * was updated with a PDF signature page this property holds the updated PDf document (in its Base64 encoded form).
