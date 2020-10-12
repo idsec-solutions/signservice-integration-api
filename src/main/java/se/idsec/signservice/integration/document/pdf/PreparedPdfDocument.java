@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,7 +45,21 @@ import se.idsec.signservice.integration.document.TbsDocument;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class PreparedPdfDocument implements Extensible {
+
+  /**
+   * The policy under which the data held in this class may be used. This is always the same as the policy given in the
+   * call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
+   * 
+   * @param policy
+   *          the policy
+   * @return the policy
+   */
+  @Setter
+  @Getter
+  private String policy;
 
   /**
    * If the PDF document passed to

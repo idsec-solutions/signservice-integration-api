@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.document.xml;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +39,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class XMLSignatureLocation implements Extensible {
 
   /**

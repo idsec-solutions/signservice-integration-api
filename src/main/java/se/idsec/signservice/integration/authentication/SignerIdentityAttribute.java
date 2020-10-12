@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.authentication;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.Builder;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
@@ -27,6 +30,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString(callSuper = true)
+@JsonInclude(Include.NON_NULL)
 public class SignerIdentityAttribute extends AbstractIdentityAttribute {
   
   /** Type indicator for SAML attribute. */
