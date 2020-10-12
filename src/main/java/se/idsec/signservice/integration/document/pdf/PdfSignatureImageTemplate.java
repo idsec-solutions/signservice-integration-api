@@ -90,20 +90,20 @@ public class PdfSignatureImageTemplate implements Extensible {
   /** Flag telling whether the signer name will be included in the visible PDF signature. */
   @Builder.Default
   private boolean includeSignerName = true;
-  
+
   /**
    * Flag telling whether the signing time will be included in the visible PDF signature.
    */
   @Builder.Default
   private boolean includeSigningTime = false;
-  
+
   /**
    * A map of the field names that are required by the template in the fieldName map in
    * {@link VisiblePdfSignatureRequirement}.
    */
   @Singular
   private Map<String, String> fields;
-  
+
   /** Extensions for the object. */
   private Extension extension;
 
@@ -153,7 +153,9 @@ public class PdfSignatureImageTemplate implements Extensible {
   @Deprecated
   public void setImage(final String image) {
     if (image != null) {
-      this.svgImageFile = new _FileResource(Base64.getEncoder().encodeToString(image.getBytes(StandardCharsets.UTF_8)));
+      this.svgImageFile = FileResource.builder()
+        .contents(Base64.getEncoder().encodeToString(image.getBytes(StandardCharsets.UTF_8)))
+        .build();
     }
   }
 
@@ -249,13 +251,13 @@ public class PdfSignatureImageTemplate implements Extensible {
   public boolean isIncludeSigningTime() {
     return this.includeSigningTime;
   }
-  
+
   /**
    * Sets the flag telling whether the signing time will be included in the visible PDF signature.
    * 
    * @param includeSigningTime
    *          flag telling whether the signing time should be included
-   */  
+   */
   public void setIncludeSigningTime(final boolean includeSigningTime) {
     this.includeSigningTime = includeSigningTime;
   }
@@ -301,37 +303,6 @@ public class PdfSignatureImageTemplate implements Extensible {
     private boolean includeSigningTime = false;
 
     // Lombok
-  }
-
-  /**
-   * Helper class that is used in the implementation of the deprecated {@link PdfSignatureImageTemplate#setImage(String)} method.
-   */
-  private static class _FileResource implements FileResource {
-
-    private final String contents;
-
-    public _FileResource(final String contents) {
-      this.contents = contents;
-    }
-
-    @Override
-    public String getContents() {
-      return this.contents;
-    }
-
-    @Override
-    public void setContents(final String contents) {
-      throw new RuntimeException("_FileResource.setContents() must not be called");
-    }
-
-    @Override
-    public String getDescription() {
-      return null;
-    }
-
-    @Override
-    public void setDescription(String description) {
-    }
   }
 
 }
