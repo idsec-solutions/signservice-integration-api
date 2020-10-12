@@ -62,10 +62,15 @@ public class DefaultContentLoader implements ContentLoader {
   @Override
   public byte[] loadContent(final String resource) throws IOException {
     
+    if (resource == null) {
+      throw new IOException("resource is null");
+    }
+    
     InputStream is = null;
     if (this.springContentLoader != null && this.getResourceMethod != null) {
       try {
-        final Object springResource = this.getResourceMethod.invoke(this.springContentLoader, resource);
+        final String _resource = resource.startsWith("/") ? "file://" + resource : resource; 
+        final Object springResource = this.getResourceMethod.invoke(this.springContentLoader, _resource);
         
         // Next. Invoke the getInputStream method of the resulting resource object.
         is = (InputStream) springResource.getClass().getMethod("getInputStream").invoke(springResource);
@@ -74,10 +79,7 @@ public class DefaultContentLoader implements ContentLoader {
         throw new IOException("Could not load " + resource, e);
       }
     }
-    else {
-      if (resource == null) {
-        throw new IOException("resource is null");
-      }
+    else {      
       if (resource.startsWith("classpath:")) {
         String _resource = resource.substring(10);
         if (!_resource.startsWith("/")) {
