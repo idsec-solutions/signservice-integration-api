@@ -20,7 +20,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.core.SignatureState;
@@ -48,6 +50,8 @@ public class ProcessSignResponseInput {
    *          the base64-encoded SignResponse
    * @return the base64-encoded SignResponse
    */
+  @Setter
+  @Getter
   private String signResponse;
 
   /**
@@ -57,6 +61,8 @@ public class ProcessSignResponseInput {
    *          the RelayState parameter
    * @return the RelayState parameter
    */
+  @Setter
+  @Getter
   private String relayState;
 
   /**
@@ -66,6 +72,8 @@ public class ProcessSignResponseInput {
    *          the signature state
    * @return the signature state
    */
+  @Setter
+  @Getter
   private SignatureState state;
 
   /**
@@ -75,6 +83,8 @@ public class ProcessSignResponseInput {
    *          processing parameters
    * @return processing parameters
    */
+  @Setter
+  @Getter
   private SignResponseProcessingParameters parameters;
 
   /**
