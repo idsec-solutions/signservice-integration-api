@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,10 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class VisiblePdfSignatureUserInformation implements Extensible {
+public class VisiblePdfSignatureUserInformation implements Extensible, Serializable {
+
+  /** For serialization. */
+  private static final long serialVersionUID = 8530156355878335379L;
 
   /**
    * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable
@@ -103,7 +107,10 @@ public class VisiblePdfSignatureUserInformation implements Extensible {
   @Builder
   @NoArgsConstructor
   @AllArgsConstructor
-  public static class SignerName {
+  public static class SignerName implements Serializable {
+
+    /** For serialization. */
+    private static final long serialVersionUID = -3259891506238725426L;
 
     /**
      * A list of attribute names that refer to some, or all, attributes supplied in

@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.document;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -40,7 +42,10 @@ import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirem
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class TbsDocument implements Extensible {
+public class TbsDocument implements Extensible, Serializable {
+
+  /** For serialization. */
+  private static final long serialVersionUID = -9172161255840288871L;
 
   /**
    * The unique ID for this document (within the current request). If not supplied, the SignService Integration Service
@@ -190,7 +195,10 @@ public class TbsDocument implements Extensible {
   @NoArgsConstructor
   @AllArgsConstructor
   @Builder
-  public static class EtsiAdesRequirement implements Extensible {
+  public static class EtsiAdesRequirement implements Extensible, Serializable {
+
+    /** For serialization. */
+    private static final long serialVersionUID = 3139149873709105674L;
 
     /**
      * The ETSI AdES type.

@@ -15,6 +15,10 @@
  */
 package se.idsec.signservice.integration.core;
 
+import java.io.Serializable;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
@@ -37,7 +41,8 @@ import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfigur
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-public interface SignatureState {
+@JsonDeserialize(as = RestClientSignatureState.class)
+public interface SignatureState extends Serializable {
 
   /**
    * Returns the unique identifier for the signature operation.
@@ -56,6 +61,6 @@ public interface SignatureState {
    * 
    * @return the session state, or null
    */
-  Object getState();
+  Serializable getState();
 
 }

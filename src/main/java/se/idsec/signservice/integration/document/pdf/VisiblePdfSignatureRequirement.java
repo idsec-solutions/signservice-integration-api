@@ -44,6 +44,9 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInformation {
 
+  /** For serialization. */
+  private static final long serialVersionUID = 5548737749079213336L;
+
   /** Constant for an extension that denotes a "null" visible PDF signature requirement. */
   public static final String NULL_INDICATOR_EXTENSION = "nullVisiblePdfSignatureRequirement";
 
