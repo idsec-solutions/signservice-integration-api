@@ -41,6 +41,9 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
+  /** For serializing. */
+  private static final long serialVersionUID = -4866653598772777511L;
+
   /**
    * The default value to use if no mapping can be found.
    * 

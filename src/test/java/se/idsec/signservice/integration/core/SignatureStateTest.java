@@ -17,6 +17,7 @@ package se.idsec.signservice.integration.core;
 
 import java.io.Serializable;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,14 +60,17 @@ public class SignatureStateTest {
     ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
 
     String json = writer.writeValueAsString(object);
-    System.out.println(json);
     
-    DummyObject object2 = mapper.readValue(json, DummyObject.class);
-    System.out.println(object2.getState().getState());
+    DummyObject object2 = mapper.readValue(json, DummyObject.class);   
+
+    Assert.assertTrue(RestClientSignatureState.class.isInstance(object2.getState()));
+    Assert.assertEquals(object.getState().getId(), object2.getState().getId());
+    System.out.println(object2.getState().getState().getClass().getName());
     
-    String json2 = writer.writeValueAsString(object);
-    System.out.println(json2);
-  }
+    DummyState ds2 = mapper.convertValue(object2.getState().getState(), DummyState.class);
+    Assert.assertNotNull(ds2);
+    Assert.assertEquals(object.getState().getState(), ds2);    
+  }  
   
   @Data
   @Builder

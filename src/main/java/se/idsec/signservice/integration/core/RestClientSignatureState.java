@@ -16,6 +16,7 @@
 package se.idsec.signservice.integration.core;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -37,7 +38,7 @@ public class RestClientSignatureState implements SignatureState {
   private String id;
 
   /** The session state. */
-  private Serializable state;
+  private LinkedHashMap<String, ?> state;
 
   /**
    * Default constructor.
@@ -73,7 +74,7 @@ public class RestClientSignatureState implements SignatureState {
    * @param state
    *          the session state
    */
-  public void setState(final Serializable state) {
+  public void setState(final LinkedHashMap<String, ?> state) {
     this.state = state;
   }
 
