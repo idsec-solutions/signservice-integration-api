@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.signmessage;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -38,7 +40,10 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class SignMessageParameters {
+public class SignMessageParameters implements Serializable {
+
+  /** For serialization. */
+  private static final long serialVersionUID = 4015165603787409930L;
 
   /**
    * The sign message (non encrypted) content according to specified mime type.

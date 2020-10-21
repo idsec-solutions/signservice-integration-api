@@ -33,6 +33,9 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class SignerIdentityAttribute extends AbstractIdentityAttribute {
   
+  /** For serialization.  */
+  private static final long serialVersionUID = -8149318910982832470L;
+  
   /** Type indicator for SAML attribute. */
   public static final String SAML_TYPE = "saml";
 

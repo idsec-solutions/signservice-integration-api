@@ -43,6 +43,9 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
 
+  /** For serializing. */
+  private static final long serialVersionUID = 3356867580368876329L;
+
   /** The default name format to use. */
   public static final String DEFAULT_NAME_FORMAT = "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 
