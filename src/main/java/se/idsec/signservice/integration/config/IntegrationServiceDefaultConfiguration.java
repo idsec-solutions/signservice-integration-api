@@ -111,11 +111,11 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * In a setup where all users are authenticated according to the same authentication contect, a default value could be
-   * used. If the {@link AuthnRequirements#getAuthnContextRef()} method returns {@code null}, the default value will be
-   * used.
+   * used. If the {@link AuthnRequirements#getAuthnContextClassRefs()} method returns {@code null} or is empty, the
+   * default value will be used.
    * 
    * @return the default authentication context reference URI
-   * @see AuthnRequirements#getAuthnContextRef()
+   * @see AuthnRequirements#getAuthnContextClassRefs()
    */
   String getDefaultAuthnContextRef();
 

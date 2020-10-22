@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.authentication;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -70,21 +71,47 @@ public class AuthnRequirements implements Extensible {
   private String authnServiceID;
 
   /**
-   * The authentication context reference identifier (an URI) that identifies the context under which the signer should
-   * be authenticated. This identifier is often referred to as the "level of assurance" (LoA).
+   * An opaque string that can be used to inform the Signing Service about specific requirements regarding the user
+   * authentication at the given Identity Provider.
+   * 
+   * <p>
+   * Note: Before setting this property, ensure that the receiving Signature Service supports version 1.4 of the "DSS
+   * Extension for Federated Central Signing Services" specification.
+   * </p>
+   * 
+   * @param authnProfile
+   *          opaque string representing an authentication profile
+   * @return opaque string representing an authentication profile
+   */
+  @Setter
+  @Getter
+  private String authnProfile;
+
+  /**
+   * The authentication context reference identifier(s) (URI(s)) that identifies the context under which the signer
+   * should be authenticated. This identifier is often referred to as the "level of assurance" (LoA).
    * <p>
    * In the normal case where the user already has been authenticated, the authentication context reference identifier
    * received from the authentication process should be used.
    * </p>
-   *
-   * @param authnContextRef
-   *          the authentication context reference URI
-   * @return the authentication context reference URI
+   * <p>
+   * If several URI:s are supplied it states that the Signature Serbice should assert that the user is authenticated
+   * according to one of the supplied URI:s.
+   * </p>
+   * </p>
+   * Note: If setting more than one URI, ensure that the receiving Signature Service supports version 1.4 of the "DSS
+   * Extension for Federated Central Signing Services" specification.
+   * </p>
+   * 
+   * @param authnContextClassRefs
+   *          the authentication context reference URI(s)
+   * @return the authentication context reference URI(s)
    * @see IntegrationServiceDefaultConfiguration#getDefaultAuthnContextRef()
    */
   @Setter
   @Getter
-  private String authnContextRef;
+  @Singular
+  private List<String> authnContextClassRefs;
 
   /**
    * A list of identity attribute values that the sign requestor requires the authentication service (IdP) to validate
@@ -102,27 +129,50 @@ public class AuthnRequirements implements Extensible {
   @Getter
   @Singular
   private List<SignerIdentityAttributeValue> requestedSignerAttributes;
-  
+
   /** Extensions for the object. */
   private Extension extension;
-  
+
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
-  }  
+  }
+
+  /**
+   * For backwards compatibility. Use {@link #setAuthnContextClassRefs(List)} instead.
+   * 
+   * @param authnContextRef
+   *          the AuthnContextClassRef URI to add
+   */
+  @Deprecated
+  public void setAuthnContextRef(final String authnContextRef) {
+    this.setAuthnContextClassRefs(Arrays.asList(authnContextRef));
+  }
 
   /**
    * Builder for {@code AuthnRequirements} objects.
    */
   public static class AuthnRequirementsBuilder implements ObjectBuilder<AuthnRequirements> {
     // Lombok
+
+    /**
+     * For backwards compatibility. Use {@link #authnContextClassRef(String)} instead.
+     * 
+     * @param authnContextRef
+     *          the AuthnContextClassRef URI
+     * @return the builder
+     */
+    @Deprecated
+    public AuthnRequirementsBuilder authnContextRef(final String authnContextRef) {
+      return this.authnContextClassRef(authnContextRef);
+    }
   }
 
 }
