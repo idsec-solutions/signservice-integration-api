@@ -48,8 +48,7 @@ public class SignerAssertionInformation implements Extensible {
   /**
    * Identity attributes for the signer.
    * 
-   * @param signerAttributes
-   *          the identity attributes for the signer
+   * @param signerAttributes the identity attributes for the signer
    * @return the identity attributes for the signer
    */
   @Setter
@@ -60,8 +59,7 @@ public class SignerAssertionInformation implements Extensible {
   /**
    * The time (in millis since epoch) when the SignService authenticated the signer.
    * 
-   * @param authnInstant
-   *          the authentication instant
+   * @param authnInstant the authentication instant
    * @return the authentication instant
    */
   @Setter
@@ -72,8 +70,7 @@ public class SignerAssertionInformation implements Extensible {
    * The entityID of the authentication service (Identity Provider) that will authenticated the signer as part of the
    * signature process.
    *
-   * @param authnServiceID
-   *          the entityID of the authentication service that authenticated the signer
+   * @param authnServiceID the entityID of the authentication service that authenticated the signer
    * @return the entityID of the authentication service that authenticated the signer
    */
   @Setter
@@ -84,8 +81,7 @@ public class SignerAssertionInformation implements Extensible {
    * The authentication context reference identifier (an URI) that identifies the context under which the signer was
    * authenticated. This identifier is often referred to as the "level of assurance" (LoA).
    *
-   * @param authnContextRef
-   *          the authentication context reference URI
+   * @param authnContextRef the authentication context reference URI
    * @return the authentication context reference URI
    */
   @Setter
@@ -96,8 +92,7 @@ public class SignerAssertionInformation implements Extensible {
    * An optional identifier of the type of authentication that was used for the "authentication for signature"
    * operation, e.g. "saml".
    * 
-   * @param authnType
-   *          authentication type
+   * @param authnType authentication type
    * @return the authentication type, or null
    */
   @Setter
@@ -108,8 +103,7 @@ public class SignerAssertionInformation implements Extensible {
    * Contains the unique ID of the assertion issued for the user's "authentication for signature" operation. See also
    * {@link #getAssertion()}.
    * 
-   * @param assertionReference
-   *          the assertion ID from the user authentication
+   * @param assertionReference the assertion ID from the user authentication
    * @return the assertion ID from the user authentication
    */
   @Setter
@@ -122,8 +116,7 @@ public class SignerAssertionInformation implements Extensible {
    * This is only set if the assertion was passed back in the SignResponse from the SignService.
    * </p>
    * 
-   * @param assertion
-   *          the assertion from the user authentication
+   * @param assertion the assertion from the user authentication
    * @return the assertion from the user authentication or null
    */
   @Setter
@@ -138,12 +131,12 @@ public class SignerAssertionInformation implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
-  }  
+  }
 
   /**
    * Builder for {@code SignerAssertionInformation} objects.

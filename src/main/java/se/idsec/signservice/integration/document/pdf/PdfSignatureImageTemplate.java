@@ -119,8 +119,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the unique reference for this image template.
    * 
-   * @param reference
-   *          the unique reference
+   * @param reference the unique reference
    */
   public void setReference(final String reference) {
     this.reference = reference;
@@ -145,8 +144,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the SVG image.
    * 
-   * @param image
-   *          the SVG image expressed as an XML string
+   * @param image the SVG image expressed as an XML string
    * @deprecated since 1.1.0. Use {@link #setSvgImageFile(FileResource)} instead
    */
   @JsonIgnore
@@ -174,8 +172,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the file resource that holds the SVG image file for this template.
    * 
-   * @param svgImageFile
-   *          the SVG image file for this template
+   * @param svgImageFile the SVG image file for this template
    */
   public void setSvgImageFile(final FileResource svgImageFile) {
     this.svgImageFile = svgImageFile;
@@ -195,8 +192,7 @@ public class PdfSignatureImageTemplate implements Extensible {
    * Assigns the width (in pixels) for the pixel image that is generated from the template (and inserted into the PDF
    * visible signature flow).
    * 
-   * @param width
-   *          the width (in pixels)
+   * @param width the width (in pixels)
    */
   public void setWidth(final Integer width) {
     this.width = width;
@@ -216,8 +212,7 @@ public class PdfSignatureImageTemplate implements Extensible {
    * Assigns the height (in pixels) for the pixel image that is generated from the template (and inserted into the PDF
    * visible signature flow).
    * 
-   * @param height
-   *          the height (in pixels)
+   * @param height the height (in pixels)
    */
   public void setHeight(final Integer height) {
     this.height = height;
@@ -236,8 +231,7 @@ public class PdfSignatureImageTemplate implements Extensible {
    * Assigns the flag telling whether the signer name will be included in the visible PDF signature. The default is
    * {@code true}.
    * 
-   * @param includeSignerName
-   *          flag telling whether the signer name should be included
+   * @param includeSignerName flag telling whether the signer name should be included
    */
   public void setIncludeSignerName(final boolean includeSignerName) {
     this.includeSignerName = includeSignerName;
@@ -255,8 +249,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Sets the flag telling whether the signing time will be included in the visible PDF signature.
    * 
-   * @param includeSigningTime
-   *          flag telling whether the signing time should be included
+   * @param includeSigningTime flag telling whether the signing time should be included
    */
   public void setIncludeSigningTime(final boolean includeSigningTime) {
     this.includeSigningTime = includeSigningTime;
@@ -276,8 +269,7 @@ public class PdfSignatureImageTemplate implements Extensible {
    * Assigns the map of the field names that are required by the template in the fieldName map in
    * {@link VisiblePdfSignatureRequirement}.
    * 
-   * @param fields
-   *          the field names and associated descriptions
+   * @param fields the field names and associated descriptions
    */
   public void setFields(final Map<String, String> fields) {
     this.fields = fields;

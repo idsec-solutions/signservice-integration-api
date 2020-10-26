@@ -84,8 +84,7 @@ public class SignRequestData implements Extensible {
    * call.
    * </p>
    * 
-   * @param state
-   *          the signature state
+   * @param state the signature state
    * @return the signature state for this operation
    */
   @Setter
@@ -100,8 +99,7 @@ public class SignRequestData implements Extensible {
    * {@code EidSignRequest}. See example above.
    * </p>
    * 
-   * @param signRequest
-   *          the sign request (in Base64-encoding)
+   * @param signRequest the sign request (in Base64-encoding)
    * @return the encoded SignRequest message
    */
   @Setter
@@ -124,8 +122,7 @@ public class SignRequestData implements Extensible {
    * 
    * Assigns the relay state variable.
    * 
-   * @param relayState
-   *          the relay state variable
+   * @param relayState the relay state variable
    * @return the relay state value
    */
   @Setter
@@ -143,8 +140,7 @@ public class SignRequestData implements Extensible {
    * Currently, the only supported value is "POST/XML/1.0".
    * </p>
    * 
-   * @param binding
-   *          the binding identifier
+   * @param binding the binding identifier
    * @return the binding identifier
    */
   @Setter
@@ -155,8 +151,7 @@ public class SignRequestData implements Extensible {
   /**
    * The signature service URL to which the SignRequest should be posted.
    * 
-   * @param destinationUrl
-   *          the signature service URL to which the SignRequest should be posted
+   * @param destinationUrl the signature service URL to which the SignRequest should be posted
    * @return signature service destination URL
    */
   @Setter
@@ -171,7 +166,7 @@ public class SignRequestData implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
@@ -183,7 +178,7 @@ public class SignRequestData implements Extensible {
    */
   public static class SignRequestDataBuilder implements ObjectBuilder<SignRequestData> {
     private String binding = SignRequestData.DEFAULT_BINDING;
-    
+
     // Lombok generates the code ...
   }
 

@@ -61,8 +61,7 @@ public class AuthnRequirements implements Extensible {
    * information.
    * </p>
    *
-   * @param authnServiceID
-   *          the entityID of the authentication service to use
+   * @param authnServiceID the entityID of the authentication service to use
    * @return the entityID of the authentication service to use
    * @see IntegrationServiceDefaultConfiguration#getDefaultAuthnServiceID()
    */
@@ -79,8 +78,7 @@ public class AuthnRequirements implements Extensible {
    * Extension for Federated Central Signing Services" specification.
    * </p>
    * 
-   * @param authnProfile
-   *          opaque string representing an authentication profile
+   * @param authnProfile opaque string representing an authentication profile
    * @return opaque string representing an authentication profile
    */
   @Setter
@@ -98,13 +96,12 @@ public class AuthnRequirements implements Extensible {
    * If several URI:s are supplied it states that the Signature Serbice should assert that the user is authenticated
    * according to one of the supplied URI:s.
    * </p>
-   * </p>
+   * <p>
    * Note: If setting more than one URI, ensure that the receiving Signature Service supports version 1.4 of the "DSS
    * Extension for Federated Central Signing Services" specification.
    * </p>
    * 
-   * @param authnContextClassRefs
-   *          the authentication context reference URI(s)
+   * @param authnContextClassRefs the authentication context reference URI(s)
    * @return the authentication context reference URI(s)
    * @see IntegrationServiceDefaultConfiguration#getDefaultAuthnContextRef()
    */
@@ -121,8 +118,7 @@ public class AuthnRequirements implements Extensible {
    * that authenticated at the sign requester service, for example the personalIdentityNumber of the principal.
    * </p>
    *
-   * @param requestedSignerAttributes
-   *          a list of requested attribute values
+   * @param requestedSignerAttributes a list of requested attribute values
    * @return requestedSignerAttributes a list of requested attribute values
    */
   @Setter
@@ -148,8 +144,7 @@ public class AuthnRequirements implements Extensible {
   /**
    * For backwards compatibility. Use {@link #setAuthnContextClassRefs(List)} instead.
    * 
-   * @param authnContextRef
-   *          the AuthnContextClassRef URI to add
+   * @param authnContextRef the AuthnContextClassRef URI to add
    */
   @Deprecated
   public void setAuthnContextRef(final String authnContextRef) {
@@ -165,8 +160,7 @@ public class AuthnRequirements implements Extensible {
     /**
      * For backwards compatibility. Use {@link #authnContextClassRef(String)} instead.
      * 
-     * @param authnContextRef
-     *          the AuthnContextClassRef URI
+     * @param authnContextRef the AuthnContextClassRef URI
      * @return the builder
      */
     @Deprecated

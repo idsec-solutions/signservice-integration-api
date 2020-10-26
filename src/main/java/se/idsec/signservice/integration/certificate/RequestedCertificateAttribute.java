@@ -47,8 +47,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
   /**
    * The default value to use if no mapping can be found.
    * 
-   * @param defaultValue
-   *          the value to use if no mapping can be found
+   * @param defaultValue the value to use if no mapping can be found
    * @return the value to use if no mapping can be found, or null if no default value has been assigned
    */
   @Setter
@@ -58,8 +57,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
   /**
    * Friendly name of attribute (optional).
    * 
-   * @param friendlyName
-   *          the "friendly name" of the attribute for display purposes
+   * @param friendlyName the "friendly name" of the attribute for display purposes
    * @return the "friendly name" of the attribute for display purposes or code if not present
    */
   @Setter
@@ -69,8 +67,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
   /**
    * Indicates if this attribute must be provided.
    * 
-   * @param required
-   *          whether the attribute is required
+   * @param required whether the attribute is required
    * @return tells whether the attribute is required
    */
   @Setter
@@ -86,8 +83,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
   /**
    * Constructor creating the object with the given type.
    *
-   * @param type
-   *          the type
+   * @param type the type
    */
   public RequestedCertificateAttribute(final RequestedCertificateAttributeType type) {
     this.type = type.getType();
@@ -113,8 +109,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
   /**
    * Assigns the attribute type.
    * 
-   * @param type
-   *          the attribute type
+   * @param type the attribute type
    */
   public void setType(final RequestedCertificateAttributeType type) {
     super.setType(type.getType());
@@ -144,8 +139,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
     /**
      * Adds the attribute type.
      * 
-     * @param type
-     *          the type
+     * @param type the type
      * @return the builder
      */
     public RequestedCertificateAttributeBuilder type(final RequestedCertificateAttributeType type) {
@@ -156,8 +150,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
     /**
      * Adds the attribute name.
      * 
-     * @param name
-     *          the attribute name
+     * @param name the attribute name
      * @return the builder
      */
     public RequestedCertificateAttributeBuilder name(final String name) {
@@ -168,8 +161,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
     /**
      * Adds the attribute default value
      * 
-     * @param defaultValue
-     *          the default value
+     * @param defaultValue the default value
      * @return the builder
      */
     public RequestedCertificateAttributeBuilder defaultValue(final String defaultValue) {
@@ -180,8 +172,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
     /**
      * Adds the attribute friendly name
      * 
-     * @param friendlyName
-     *          the friendly name
+     * @param friendlyName the friendly name
      * @return the builder
      */
     public RequestedCertificateAttributeBuilder friendlyName(final String friendlyName) {
@@ -192,8 +183,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
     /**
      * Tells whether the attribute is a required attribute
      * 
-     * @param required
-     *          flag
+     * @param required flag
      * @return the builder
      */
     public RequestedCertificateAttributeBuilder required(final Boolean required) {

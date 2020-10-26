@@ -54,8 +54,7 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
    * A unique reference of the template image that should be by the SignService Integration Service when generating a
    * PDF visible signature. See {@link PdfSignatureImageTemplate}.
    * 
-   * @param templateImageRef
-   *          the unique reference of the image template
+   * @param templateImageRef the unique reference of the image template
    * @return the unique reference of the image template
    */
   @Getter
@@ -65,8 +64,7 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
   /**
    * The X coordinate position (in pixels) of the PDF visible signature image in the PDF document.
    * 
-   * @param xPosition
-   *          the X coordinate position (in pixels)
+   * @param xPosition the X coordinate position (in pixels)
    * @return the X coordinate position (in pixels)
    */
   @Getter
@@ -76,8 +74,7 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
   /**
    * The Y coordinate position (in pixels) of the PDF visible signature image in the PDF document.
    * 
-   * @param yPosition
-   *          the Y coordinate position (in pixels)
+   * @param yPosition the Y coordinate position (in pixels)
    * @return the Y coordinate position (in pixels)
    */
   @Getter
@@ -88,8 +85,7 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
    * The scale of the final visible signature image expressed as zoom percentage. The value -100 represents a 0 sized
    * image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is assumed.
    * 
-   * @param scale
-   *          the scale of the final visible signature image
+   * @param scale the scale of the final visible signature image
    * @return the scale of the final visible signature image
    */
   @Getter
@@ -100,8 +96,7 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
    * The number of the page where the visible signature should appear. A value of 1 represents the first page and a
    * value of 0 (or {@code null}) represents the last page.
    * 
-   * @param page
-   *          the page where the visible signature should appear
+   * @param page the page where the visible signature should appear
    * @return the page where the visible signature should appear
    */
   @Getter
@@ -139,8 +134,7 @@ public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInfor
    * Constructor that accepts a {@link VisiblePdfSignatureUserInformation} object and initializes the properties from
    * this object.
    * 
-   * @param userInformation
-   *          a VisiblePdfSignatureUserInformation object
+   * @param userInformation a VisiblePdfSignatureUserInformation object
    */
   public VisiblePdfSignatureRequirement(final VisiblePdfSignatureUserInformation userInformation) {
     this.setSignerName(userInformation.getSignerName());

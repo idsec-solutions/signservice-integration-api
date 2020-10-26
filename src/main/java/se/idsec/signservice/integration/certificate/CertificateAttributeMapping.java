@@ -49,8 +49,7 @@ public class CertificateAttributeMapping {
    * certificate attribute. If more than one attribute is given, the order is important as the sign service tries the
    * given source attributes in order.
    * 
-   * @param sources
-   *          a list of source attributes
+   * @param sources a list of source attributes
    * @return a list of source attributes
    */
   @Singular
@@ -62,8 +61,7 @@ public class CertificateAttributeMapping {
    * The requested destination attribute gives information about which type of certificate attribute to create, and
    * possibly its default value.
    * 
-   * @param destination
-   *          the destination attribute
+   * @param destination the destination attribute
    * @return the destination attribute
    */
   @Setter

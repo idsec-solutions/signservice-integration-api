@@ -46,8 +46,7 @@ public class ProcessSignResponseInput {
   /**
    * The Base64-encoded SignResponse message (from the EidSignResponse POST parameter).
    * 
-   * @param signResponse
-   *          the base64-encoded SignResponse
+   * @param signResponse the base64-encoded SignResponse
    * @return the base64-encoded SignResponse
    */
   @Setter
@@ -57,8 +56,7 @@ public class ProcessSignResponseInput {
   /**
    * The relayState (from the RelayState POST parameter).
    * 
-   * @param relayState
-   *          the RelayState parameter
+   * @param relayState the RelayState parameter
    * @return the RelayState parameter
    */
   @Setter
@@ -68,8 +66,7 @@ public class ProcessSignResponseInput {
   /**
    * The signature state.
    * 
-   * @param state
-   *          the signature state
+   * @param state the signature state
    * @return the signature state
    */
   @Setter
@@ -79,8 +76,7 @@ public class ProcessSignResponseInput {
   /**
    * Optional processing parameters giving directives about the processing.
    * 
-   * @param parameters
-   *          processing parameters
+   * @param parameters processing parameters
    * @return processing parameters
    */
   @Setter

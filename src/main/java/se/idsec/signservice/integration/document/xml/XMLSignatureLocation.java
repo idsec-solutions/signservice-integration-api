@@ -55,8 +55,7 @@ public class XMLSignatureLocation implements Extensible {
    * The XPath expression for selecting the parent node (or {@code null} which means the the parent node is the document
    * root element).
    * 
-   * @param xPath
-   *          the XPath expression for locating the parent node of the Signature element
+   * @param xPath the XPath expression for locating the parent node of the Signature element
    * @return the XPath expression for locating the parent node of the Signature element
    */
   @Getter
@@ -70,8 +69,7 @@ public class XMLSignatureLocation implements Extensible {
    * Sets the position in the selected parent node where the signature element should be installed (first or last). The
    * default is "last".
    * 
-   * @param childPosition
-   *          the position
+   * @param childPosition the position
    */
   public void setChildPosition(final String childPosition) {
     this.childPosition = childPosition != null ? ChildPosition.fromPosition(childPosition).getPosition() : null;
@@ -81,8 +79,7 @@ public class XMLSignatureLocation implements Extensible {
    * Sets the position in the selected parent node where the signature element should be installed (first or last). The
    * default is "last".
    * 
-   * @param childPosition
-   *          the position
+   * @param childPosition the position
    */
   public void setChildPosition(final ChildPosition childPosition) {
     this.childPosition = childPosition != null ? childPosition.getPosition() : null;
@@ -99,7 +96,6 @@ public class XMLSignatureLocation implements Extensible {
   public void setExtension(final Extension extension) {
     this.extension = extension;
   }
-  
 
   /**
    * Enum for indicating the insertion point within a selected parent node.
@@ -122,11 +118,9 @@ public class XMLSignatureLocation implements Extensible {
     /**
      * Given a position in its string representation the method returns the corresponding enum constant.
      * 
-     * @param position
-     *          the position in its string representation
+     * @param position the position in its string representation
      * @return the enum constant value
-     * @throws IllegalArgumentException
-     *           if no matching enum constant is found
+     * @throws IllegalArgumentException if no matching enum constant is found
      */
     public static ChildPosition fromPosition(final String position) throws IllegalArgumentException {
       for (ChildPosition p : ChildPosition.values()) {
@@ -140,8 +134,7 @@ public class XMLSignatureLocation implements Extensible {
     /**
      * Constructor.
      * 
-     * @param position
-     *          the position
+     * @param position the position
      */
     private ChildPosition(final String position) {
       this.position = position;

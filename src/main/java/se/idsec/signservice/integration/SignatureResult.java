@@ -49,8 +49,7 @@ public class SignatureResult implements Extensible {
   /**
    * The ID for the signature operation. This ID corresponds to the RequestID of the SignRequest and SignResponse.
    * 
-   * @param id
-   *          the operation ID
+   * @param id the operation ID
    * @return the operation ID
    */
   @Setter
@@ -60,8 +59,7 @@ public class SignatureResult implements Extensible {
   /**
    * The correlation ID. This is the ID that is used in all logging events.
    * 
-   * @param correlationId
-   *          the correlationId to use for this process
+   * @param correlationId the correlationId to use for this process
    * @return the correlation ID
    */
   @Setter
@@ -71,8 +69,7 @@ public class SignatureResult implements Extensible {
   /**
    * The signed documents.
    * 
-   * @param signedDocuments
-   *          the signed documents
+   * @param signedDocuments the signed documents
    * @return the signed documents
    */
   @Setter
@@ -83,8 +80,7 @@ public class SignatureResult implements Extensible {
   /**
    * Contains information about the signer's "authentication for signature" that was part of the signature operation.
    * 
-   * @param signerAssertionInformation
-   *          assertion information
+   * @param signerAssertionInformation assertion information
    * @return the assertion information
    */
   @Setter
@@ -99,13 +95,13 @@ public class SignatureResult implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
   }
-  
+
   /**
    * Builder for {@code SignatureResult} objects.
    */

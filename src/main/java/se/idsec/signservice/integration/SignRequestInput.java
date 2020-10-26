@@ -60,8 +60,7 @@ public class SignRequestInput implements Extensible {
    * Service.
    * </p>
    * 
-   * @param correlationId
-   *          the correlationId to use for this process
+   * @param correlationId the correlationId to use for this process
    * @return the correlation ID or null if not has been assigned
    */
   @Setter
@@ -72,12 +71,11 @@ public class SignRequestInput implements Extensible {
    * A SignService Integration Service may be running under different policies, where a policy tells which
    * {@link IntegrationServiceDefaultConfiguration} that is active.
    * 
-   * @param policy
-   *          the policy identifier to use for the operation
+   * @param policy the policy identifier to use for the operation
    * @return the policy identifier for this operation, or null (that denotes the default policy)
    */
   @Setter
-  @Getter  
+  @Getter
   private String policy;
 
   /**
@@ -87,8 +85,7 @@ public class SignRequestInput implements Extensible {
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultSignRequesterID()}).
    * </p>
    * 
-   * @param signRequesterID
-   *          the sign requester ID
+   * @param signRequesterID the sign requester ID
    * @return the sign requester ID, or null if the default ID should be used
    */
   @Setter
@@ -104,8 +101,7 @@ public class SignRequestInput implements Extensible {
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultReturnUrl()}).
    * </p>
    * 
-   * @param returnUrl
-   *          the URL to which a sign response is to be returned
+   * @param returnUrl the URL to which a sign response is to be returned
    * @return the URL to which a sign response is to be returned, or null if the default URL should be used
    */
   @Setter
@@ -120,8 +116,7 @@ public class SignRequestInput implements Extensible {
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultDestinationUrl()}).
    * </p>
    *
-   * @param destinationUrl
-   *          the signature service URL to where SignRequest messages should be posted
+   * @param destinationUrl the signature service URL to where SignRequest messages should be posted
    * @return the signature service URL to where SignRequest messages should be posted
    */
   @Setter
@@ -136,8 +131,7 @@ public class SignRequestInput implements Extensible {
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultSignatureAlgorithm()}).
    * </p>
    * 
-   * @param signatureAlgorithm
-   *          signature algorithm identifier
+   * @param signatureAlgorithm signature algorithm identifier
    * @return signature algorithm identifier
    */
   @Setter
@@ -147,8 +141,7 @@ public class SignRequestInput implements Extensible {
   /**
    * The requirements that the sign requester has on the principal that is to perform the signature operation.
    * 
-   * @param authnRequirements
-   *          authentication requirements
+   * @param authnRequirements authentication requirements
    * @return the authentication requirements
    */
   @Setter
@@ -163,8 +156,7 @@ public class SignRequestInput implements Extensible {
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultCertificateRequirements()}).
    * </p>
    *
-   * @param certificateRequirements
-   *          the requirements for the signing certificate
+   * @param certificateRequirements the requirements for the signing certificate
    * @return requirements for the signing certificate
    */
   @Setter
@@ -175,10 +167,9 @@ public class SignRequestInput implements Extensible {
    * The document(s) to be signed along with a per document signing requirements and parameters. At least one document
    * must be supplied.
    * 
-   * @param tbsDocuments
-   *          a list of To-be-signed documents
+   * @param tbsDocuments a list of To-be-signed documents
    * @return a list of To-be-signed documents
-   */  
+   */
   @Setter
   @Getter
   @Singular
@@ -187,8 +178,7 @@ public class SignRequestInput implements Extensible {
   /**
    * The sign message parameters that is used to build the sign message element that is included in the SignRequest.
    * 
-   * @param signMessageParameters
-   *          the sign message parameters
+   * @param signMessageParameters the sign message parameters
    * @return the sign message parameters
    */
   @Setter
@@ -203,12 +193,12 @@ public class SignRequestInput implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
-  }  
+  }
 
   /**
    * Builder for {@code SignRequestInput}.
