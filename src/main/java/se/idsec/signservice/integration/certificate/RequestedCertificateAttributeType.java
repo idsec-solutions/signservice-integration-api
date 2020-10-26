@@ -44,11 +44,9 @@ public enum RequestedCertificateAttributeType {
   /**
    * Maps the given type to an enum constant.
    *
-   * @param type
-   *          the certificate attribute type
+   * @param type the certificate attribute type
    * @return the enum constant
-   * @throws IllegalArgumentException
-   *           if no constant is matched
+   * @throws IllegalArgumentException if no constant is matched
    */
   public static RequestedCertificateAttributeType fromType(final String type) throws IllegalArgumentException {
     for (final RequestedCertificateAttributeType t : RequestedCertificateAttributeType.values()) {
@@ -65,8 +63,7 @@ public enum RequestedCertificateAttributeType {
   /**
    * Constructor.
    *
-   * @param type
-   *          the type
+   * @param type the type
    */
   RequestedCertificateAttributeType(final String type) {
     this.type = type;

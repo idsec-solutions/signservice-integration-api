@@ -53,8 +53,7 @@ public class PreparedPdfDocument implements Extensible {
    * call to
    * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
    * 
-   * @param policy
-   *          the policy
+   * @param policy the policy
    * @return the policy
    */
   @Setter
@@ -69,8 +68,7 @@ public class PreparedPdfDocument implements Extensible {
    * If the property is {@code null} it means that the PDF document was not modified by {@code preparePdfSignaturePage}.
    * </p>
    * 
-   * @param updatedPdfDocument
-   *          updated PDF document (in Base64 encoded form)
+   * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
    * @return the updated PDF document (in Base64 encoded form) or null if the initial PDF document was not updated
    */
   @Setter
@@ -82,9 +80,8 @@ public class PreparedPdfDocument implements Extensible {
    * {@link TbsDocument} holding the PDF document that is passed to
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)}.
    * 
-   * @param visiblePdfSignatureRequirement
-   *          a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about to
-   *          be signed with a signature image
+   * @param visiblePdfSignatureRequirement a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the
+   *          PDF document that is about to be signed with a signature image
    * @return a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about to
    *         be signed with a signature image
    */

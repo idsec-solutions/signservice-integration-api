@@ -45,8 +45,7 @@ public class SignedDocument implements Extensible {
   /**
    * The unique ID for this document (within the current operation).
    * 
-   * @param id
-   *          unique ID for this document
+   * @param id unique ID for this document
    * @return unique ID for this document
    */
   @Setter
@@ -56,8 +55,7 @@ public class SignedDocument implements Extensible {
   /**
    * The signed document as a Base64-encoded byte string.
    * 
-   * @param signedContent
-   *          the signed document content (Base64-encoded)
+   * @param signedContent the signed document content (Base64-encoded)
    * @return the signed document content (Base64-encoded)
    */
   @Setter
@@ -67,8 +65,7 @@ public class SignedDocument implements Extensible {
   /**
    * The MIME type of the signed document. See {@link DocumentType} for the supported types.
    * 
-   * @param mimeType
-   *          the MIME type for the signed document
+   * @param mimeType the MIME type for the signed document
    * @return the MIME type for the signed document
    */
   @Setter

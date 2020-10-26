@@ -55,8 +55,7 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
   /**
    * The attribute value (in its string representation).
    *
-   * @param value
-   *          the attribute value (in its string representation)
+   * @param value the attribute value (in its string representation)
    * @return the attribute value (in its string representation)
    */
   @Setter
@@ -66,8 +65,7 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
   /**
    * The name format for the attribute. When the attribute type is SAML the default is {@value #DEFAULT_NAME_FORMAT}.
    *
-   * @param nameFormat
-   *          the (SAML) name format
+   * @param nameFormat the (SAML) name format
    * @return the name format for the attribute
    */
   @Setter
@@ -78,8 +76,7 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
    * The type for the attribute value. When SAML attributes are represented, this holds the XSI type without the
    * namespace prefix. The default in those cases is {@value #DEFAULT_ATTRIBUTE_VALUE_TYPE}.
    *
-   * @param attributeValueType
-   *          the attribute value type
+   * @param attributeValueType the attribute value type
    * @return the attribute value type
    */
   @Setter
@@ -95,16 +92,11 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
   /**
    * Constructor.
    *
-   * @param type
-   *          the type of attribute (if null, SAML is assumed)
-   * @param name
-   *          the name of the attribute
-   * @param value
-   *          the value of the attribute
-   * @param nameFormat
-   *          the name format
-   * @param attributeValueType
-   *          the value type
+   * @param type the type of attribute (if null, SAML is assumed)
+   * @param name the name of the attribute
+   * @param value the value of the attribute
+   * @param nameFormat the name format
+   * @param attributeValueType the value type
    */
   @Builder
   public SignerIdentityAttributeValue(final String type, final String name, final String value,

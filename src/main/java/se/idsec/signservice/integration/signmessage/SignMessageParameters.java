@@ -48,8 +48,7 @@ public class SignMessageParameters implements Serializable {
   /**
    * The sign message (non encrypted) content according to specified mime type.
    * 
-   * @param signMessage
-   *          the sign message
+   * @param signMessage the sign message
    * @return the sign message
    */
   @Setter
@@ -59,8 +58,7 @@ public class SignMessageParameters implements Serializable {
   /**
    * Tells whether the supplied sign message should be encrypted with {@link #getDisplayEntity()} as the recipient.
    * 
-   * @param performEncryption
-   *          Tells whether the supplied sign message should be encrypted
+   * @param performEncryption Tells whether the supplied sign message should be encrypted
    * @return tells whether encryption should be performed
    */
   @Getter
@@ -79,8 +77,7 @@ public class SignMessageParameters implements Serializable {
    * Specifies if the requester of the signature requires that the sign message is displayed to the user. If the
    * Identity Provider cannot fulfill this requirement it must not proceed.
    * 
-   * @param mustShow
-   *          the MustShow attribute
+   * @param mustShow the MustShow attribute
    * @return the MustShow flag, or null
    */
   @Setter
@@ -98,8 +95,7 @@ public class SignMessageParameters implements Serializable {
    * {@link AuthnRequirements#getAuthnServiceID()} value.
    * </p>
    * 
-   * @param displayEntity
-   *          the SAML entityID for the display entity
+   * @param displayEntity the SAML entityID for the display entity
    * @return the entityID of the IdP that should display the message
    */
   @Setter
@@ -109,8 +105,7 @@ public class SignMessageParameters implements Serializable {
   /**
    * The sign message MIME type. See {@link SignMessageMimeType} for possible values.
    *
-   * @param mimeType
-   *          the MIME type
+   * @param mimeType the MIME type
    */
   public void setMimeType(final String mimeType) {
     final SignMessageMimeType _mimeType = SignMessageMimeType.fromMimeType(mimeType);
@@ -120,8 +115,7 @@ public class SignMessageParameters implements Serializable {
   /**
    * The sign message MIME type.
    *
-   * @param mimeType
-   *          the MIME type
+   * @param mimeType the MIME type
    */
   public void setMimeType(final SignMessageMimeType mimeType) {
     this.mimeType = mimeType != null ? mimeType.getMimeType() : null;
@@ -136,8 +130,7 @@ public class SignMessageParameters implements Serializable {
     /**
      * The sign message MIME type.
      * 
-     * @param mimeType
-     *          the MIME type
+     * @param mimeType the MIME type
      * @return the builder
      */
     public SignMessageParametersBuilder mimeType(final String mimeType) {
@@ -149,8 +142,7 @@ public class SignMessageParameters implements Serializable {
     /**
      * The sign message MIME type.
      * 
-     * @param mimeType
-     *          the MIME type
+     * @param mimeType the MIME type
      * @return the builder
      */
     public SignMessageParametersBuilder mimeType(final SignMessageMimeType mimeType) {

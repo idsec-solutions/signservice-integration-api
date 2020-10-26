@@ -47,8 +47,7 @@ public class PreparePdfSignaturePageInput implements Extensible {
   /**
    * The contents of the PDF document that is to be prepared in Base64 encoded format.
    * 
-   * @param pdfDocument
-   *          the PDF document (in Base64 encoded format)
+   * @param pdfDocument the PDF document (in Base64 encoded format)
    * @return the PDF document (in Base64 encoded format)
    */
   @Getter
@@ -58,8 +57,8 @@ public class PreparePdfSignaturePageInput implements Extensible {
   /**
    * The preferences of how to prepare the PDF document for a PDF signature page and signature image.
    * 
-   * @param signaturePagePreferences
-   *          preferences of how to prepare the PDF document for a PDF signature page and signature image
+   * @param signaturePagePreferences preferences of how to prepare the PDF document for a PDF signature page and
+   *          signature image
    * @return preferences of how to prepare the PDF document for a PDF signature page and signature image
    */
   @Getter

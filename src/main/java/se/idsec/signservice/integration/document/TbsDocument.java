@@ -51,8 +51,7 @@ public class TbsDocument implements Extensible, Serializable {
    * The unique ID for this document (within the current request). If not supplied, the SignService Integration Service
    * will generate one.
    * 
-   * @param id
-   *          unique ID for this document
+   * @param id unique ID for this document
    * @return unique ID for this document, or null if none has been set
    */
   @Setter
@@ -62,8 +61,7 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * The Base64-encoded byte string that is the content of the document that is to be signed.
    * 
-   * @param content
-   *          the document content (Base64-encoded)
+   * @param content the document content (Base64-encoded)
    * @return the document content (Base64-encoded)
    */
   @Setter
@@ -81,8 +79,7 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * Optional processing rules used by the sign service to process sign data.
    * 
-   * @param processingRules
-   *          the processing rules
+   * @param processingRules the processing rules
    * @return the processing rules identifier, or null if none has been set
    */
   @Setter
@@ -92,8 +89,7 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * Specifies of the resulting signature should use an ETSI AdES format.
    * 
-   * @param adesRequirement
-   *          the AdES requirement
+   * @param adesRequirement the AdES requirement
    * @return the AdES requirement or null if no AdES requirement exists
    */
   @Setter
@@ -128,8 +124,7 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * The MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
    * 
-   * @param mimeType
-   *          the document MIME type
+   * @param mimeType the document MIME type
    * @see #setMimeType(DocumentType)
    */
   public void setMimeType(final String mimeType) {
@@ -139,8 +134,7 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * The document type of the document that is to be signed.
    * 
-   * @param documentType
-   *          the document type
+   * @param documentType the document type
    */
   public void setMimeType(final DocumentType documentType) {
     this.mimeType = documentType != null ? documentType.getMimeType() : null;
@@ -200,31 +194,10 @@ public class TbsDocument implements Extensible, Serializable {
     /** For serialization. */
     private static final long serialVersionUID = 3139149873709105674L;
 
-    /**
-     * The ETSI AdES type.
-     * 
-     * @param adesFormat
-     *          the format
-     * @return the format
-     */
-    @Setter
-    @Getter
+    /** The ETSI AdES type. */
     private AdesType adesFormat;
 
-    /**
-     * The signature policy (required for EPES).
-     * 
-     * <p>
-     * When signing an XML document, this fields can be left unset if the AdES object is set, and this element contains
-     * a {@code SignaturePolicyIdentifier} element.
-     * </p>
-     * 
-     * @param signaturePolicy
-     *          the signature policy
-     * @return the signature policy
-     */
-    @Setter
-    @Getter
+    /** The signature policy (required for EPES). */
     private String signaturePolicy;
 
     /**
@@ -234,28 +207,99 @@ public class TbsDocument implements Extensible, Serializable {
      * For XML signatures this object must be a {@code ds:Object} having as its only child a
      * {@code xades:QualifyingProperties} element.
      * </p>
-     * 
-     * @param adesObject
-     *          the AdES object
-     * @return the AdES object or null
      */
-    @Setter
-    @Getter
     private String adesObject;
 
-    /**
-     * Extensions for the object.
-     * 
-     * @param extension
-     *          the extensions for this object
-     */
-    @Setter
+    /** Extensions for the object. */
     private Extension extension;
+
+    /**
+     * Gets the ETSI AdES type.
+     * 
+     * @return the format
+     */
+    public AdesType getAdesFormat() {
+      return this.adesFormat;
+    }
+
+    /**
+     * Assigns the ETSI AdES type.
+     * 
+     * @param adesFormat the format
+     */
+    public void setAdesFormat(final AdesType adesFormat) {
+      this.adesFormat = adesFormat;
+    }
+
+    /**
+     * Gets the signature policy (required for EPES).
+     * 
+     * <p>
+     * When signing an XML document, this fields can be left unset if the AdES object is set, and this element contains
+     * a {@code SignaturePolicyIdentifier} element.
+     * </p>
+     * 
+     * @return the signature policy
+     */
+    public String getSignaturePolicy() {
+      return this.signaturePolicy;
+    }
+
+    /**
+     * Assigns the signature policy (required for EPES).
+     * 
+     * <p>
+     * When signing an XML document, this fields can be left unset if the AdES object is set, and this element contains
+     * a {@code SignaturePolicyIdentifier} element.
+     * </p>
+     * 
+     * @param signaturePolicy the signature policy
+     */
+    public void setSignaturePolicy(final String signaturePolicy) {
+      this.signaturePolicy = signaturePolicy;
+    }
+
+    /**
+     * Gets the AdES object as an Base64-encoded byte array.
+     * 
+     * <p>
+     * For XML signatures this object must be a {@code ds:Object} having as its only child a
+     * {@code xades:QualifyingProperties} element.
+     * </p>
+     * 
+     * @return the AdES object or null
+     */
+    public String getAdesObject() {
+      return this.adesObject;
+    }
+
+    /**
+     * Assigns the AdES object as an Base64-encoded byte array.
+     * 
+     * <p>
+     * For XML signatures this object must be a {@code ds:Object} having as its only child a
+     * {@code xades:QualifyingProperties} element.
+     * </p>
+     * 
+     * @param adesObject the AdES object
+     */
+    public void setAdesObject(final String adesObject) {
+      this.adesObject = adesObject;
+    }
 
     /** {@inheritDoc} */
     @Override
     public Extension getExtension() {
       return this.extension;
+    }
+
+    /**
+     * Assigns the extensions for the object.
+     * 
+     * @param extension the extensions for this object
+     */
+    public void setExtension(final Extension extension) {
+      this.extension = extension;
     }
 
     /**

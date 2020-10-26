@@ -51,6 +51,9 @@ public class SignResponseProcessingParameters implements Extensible {
    * If an XML document is signed, the caller has the possibility to control where in the document the
    * {@code ds:Signature} element should be inserted. If {@code null}, the signature element will be inserted as the
    * last child of the document root element.
+   * 
+   * @param xmlSignatureLocation XML signature insertion directive
+   * @return XML signature insertion directive
    */
   @Getter
   @Setter
@@ -64,12 +67,12 @@ public class SignResponseProcessingParameters implements Extensible {
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
-  }  
+  }
 
   /**
    * Builder for {@code SignResponseProcessingParameters} objects.

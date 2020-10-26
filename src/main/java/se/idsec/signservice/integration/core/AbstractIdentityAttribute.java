@@ -46,10 +46,8 @@ public abstract class AbstractIdentityAttribute implements Serializable {
   /**
    * Constructor setting the type and name.
    *
-   * @param type
-   *          the type of attribute
-   * @param name
-   *          the attribute name
+   * @param type the type of attribute
+   * @param name the attribute name
    */
   public AbstractIdentityAttribute(final String type, final String name) {
     this.type = type;
@@ -68,8 +66,7 @@ public abstract class AbstractIdentityAttribute implements Serializable {
   /**
    * Assigns the identity attribute type.
    *
-   * @param type
-   *          the attribute type
+   * @param type the attribute type
    */
   public void setType(final String type) {
     this.type = type;
@@ -87,8 +84,7 @@ public abstract class AbstractIdentityAttribute implements Serializable {
   /**
    * Sets the attribute name.
    *
-   * @param name
-   *          the attribute name
+   * @param name the attribute name
    */
   public void setName(final String name) {
     this.name = name;

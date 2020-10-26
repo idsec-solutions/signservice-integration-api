@@ -33,11 +33,9 @@ public interface ContentLoader {
    * {@code classpath:xyz.svg} and {@code file:/path/xyz.svg}.
    * </p>
    * 
-   * @param resource
-   *          the resource to load
+   * @param resource the resource to load
    * @return the contents as a byte array
-   * @throws IOException
-   *           if the contents can not be loaded
+   * @throws IOException if the contents can not be loaded
    */
   byte[] loadContent(final String resource) throws IOException;
 

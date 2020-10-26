@@ -48,8 +48,7 @@ public class SigningCertificateRequirements implements Extensible {
   /**
    * The requested certificate type.
    * 
-   * @param certificateType
-   *          requested certificate type
+   * @param certificateType requested certificate type
    * @return the requested certificate type
    */
   @Setter
@@ -60,24 +59,24 @@ public class SigningCertificateRequirements implements Extensible {
    * Defines mappings between the signer's authentication attributes and attributes that are to be placed in the issued
    * signature certificate.
    * 
-   * @param attributeMappings
-   *          a list of mapping directives of how to map from user/signer attributes to signature certificate attributes
+   * @param attributeMappings a list of mapping directives of how to map from user/signer attributes to signature
+   *          certificate attributes
    * @return a list of mapping directives of how to map from user/signer attributes to signature certificate attributes
    */
   @Singular
   @Setter
   @Getter
   private List<CertificateAttributeMapping> attributeMappings;
-  
+
   /** Extensions for the object. */
   private Extension extension;
-  
+
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
     return this.extension;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void setExtension(final Extension extension) {

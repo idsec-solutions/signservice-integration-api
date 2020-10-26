@@ -22,8 +22,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * The {@code SignServiceIntegrationErrorBody} is a representation of a SignService Integration error message when the
@@ -33,7 +34,6 @@ import lombok.NoArgsConstructor;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @JsonInclude(Include.NON_NULL)
-@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,80 +42,87 @@ public class SignServiceIntegrationErrorBody {
   /**
    * The HTTP status code.
    * 
-   * @param status
-   *          the HTTP status code
+   * @param status the HTTP status code
    * @return the HTTP status code
    */
+  @Getter
+  @Setter
   private int status;
 
   /**
    * The timestamp as milliseconds since epoch.
    * 
-   * @param timestamp
-   *          the timestamp for the error
+   * @param timestamp the timestamp for the error
    * @return the timestamp for the error
    */
+  @Getter
+  @Setter
   private long timestamp;
 
   /**
    * The error code.
    * 
-   * @param errorCode
-   *          the error code
+   * @param errorCode the error code
    * @return the error code
    */
+  @Getter
+  @Setter
   private String errorCode;
 
   /**
    * Validation error details. Only set if the error was due to an input validation failure.
    * 
-   * @param validationError
-   *          the validation error information
+   * @param validationError the validation error information
    * @return the validation error information
    */
+  @Getter
+  @Setter
   private ValidationError validationError;
 
   /**
    * DSS error details.
    * 
-   * @param dssError
-   *          DSS error details
+   * @param dssError DSS error details
    * @return DSS error details
    */
+  @Getter
+  @Setter
   private DssError dssError;
 
   /**
    * The error message.
    * 
-   * @param message
-   *          the error message
+   * @param message the error message
    * @return the error message
    */
+  @Getter
+  @Setter
   private String message;
 
   /**
    * The requested path.
    * 
-   * @param the
-   *          requested path
+   * @param path the requested path
    * @return the requested path
    */
+  @Getter
+  @Setter
   private String path;
 
   /**
    * The name of the exception class that was thrown for this error.
    * 
-   * @param exceptionClass
-   *          exception class
+   * @param exceptionClass exception class
    * @return exception class
    */
+  @Getter
+  @Setter
   private String exceptionClass;
 
   /**
    * Representation of validation errors. See {@link InputValidationException}.
    */
   @JsonInclude(Include.NON_NULL)
-  @Data
   @Builder
   @NoArgsConstructor
   @AllArgsConstructor
@@ -124,19 +131,21 @@ public class SignServiceIntegrationErrorBody {
     /**
      * The name of the object that validation failed for.
      * 
-     * @param object
-     *          object name
+     * @param object object name
      * @return the object name
      */
+    @Getter
+    @Setter
     private String object;
 
     /**
      * Underlying errors (field names and error messages).
      * 
-     * @param details
-     *          map of underlying errors
+     * @param details map of underlying errors
      * @return map of underlying errors
      */
+    @Getter
+    @Setter
     private Map<String, String> details;
   }
 
@@ -144,7 +153,6 @@ public class SignServiceIntegrationErrorBody {
    * For DSS errors.
    */
   @JsonInclude(Include.NON_NULL)
-  @Data
   @Builder
   @NoArgsConstructor
   @AllArgsConstructor
@@ -153,19 +161,21 @@ public class SignServiceIntegrationErrorBody {
     /**
      * The DSS major result code.
      * 
-     * @param majorCode
-     *          the DSS major result code
+     * @param majorCode the DSS major result code
      * @return the DSS major result code
      */
+    @Getter
+    @Setter
     private String majorCode;
 
     /**
      * The DSS minor result code.
      * 
-     * @param minorCode
-     *          the DSS minor result code
+     * @param minorCode the DSS minor result code
      * @return the DSS minor result code
      */
+    @Getter
+    @Setter
     private String minorCode;
   }
 

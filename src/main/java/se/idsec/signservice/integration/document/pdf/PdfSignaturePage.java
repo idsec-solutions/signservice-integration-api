@@ -59,8 +59,7 @@ public class PdfSignaturePage implements Extensible {
   /**
    * The unique ID for this PDF signature page.
    * 
-   * @param id
-   *          unique ID
+   * @param id unique ID
    * @return the ID
    */
   @Getter
@@ -70,8 +69,7 @@ public class PdfSignaturePage implements Extensible {
   /**
    * The file resource containing the PDF document that holds the PDF signature page.
    * 
-   * @param pdfDocument
-   *          the PDF document file resource
+   * @param pdfDocument the PDF document file resource
    * @return the PDF document file resource
    */
   @Setter
@@ -82,8 +80,7 @@ public class PdfSignaturePage implements Extensible {
    * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
    * attribute should assigned to the desired number of rows. The default is {@code 1}.
    * 
-   * @param rows
-   *          the number of rows of PDF sign images this sign page supports
+   * @param rows the number of rows of PDF sign images this sign page supports
    * @return the number of rows of PDF sign images this sign page supports
    */
   @Getter
@@ -95,8 +92,7 @@ public class PdfSignaturePage implements Extensible {
    * If it should be possible to add PDF sign images in several columns to this sign page document the {@code columns}
    * attribute should assigned to the desired number of columns. The default is {@code 1}.
    * 
-   * @param columns
-   *          the number of columns of PDF sign images this sign page supports
+   * @param columns the number of columns of PDF sign images this sign page supports
    * @return the number of columns of PDF sign images this sign page supports
    */
   @Getter
@@ -108,8 +104,7 @@ public class PdfSignaturePage implements Extensible {
    * A unique reference of the signature template image that is inserted into this PDF signature page. See
    * {@link PdfSignatureImageTemplate}.
    * 
-   * @param signatureImageReference
-   *          the unique reference of the signature image template
+   * @param signatureImageReference the unique reference of the signature image template
    * @return the unique reference of the signature image template
    * @see PdfSignatureImageTemplate
    * @see VisiblePdfSignatureRequirement#getTemplateImageRef()
@@ -121,8 +116,8 @@ public class PdfSignaturePage implements Extensible {
   /**
    * Configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted.
    * 
-   * @param imagePlacementConfiguration
-   *          configuration for where in the PDF signature page the PDF signature image(s) should be inserted
+   * @param imagePlacementConfiguration configuration for where in the PDF signature page the PDF signature image(s)
+   *          should be inserted
    * @return configuration for where in the PDF signature page the PDF signature image(s) should be inserted
    */
   @Getter
@@ -196,8 +191,7 @@ public class PdfSignaturePage implements Extensible {
      * The X coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
      * PDF signature page.
      * 
-     * @param xPosition
-     *          the initial X coordinate position (in pixels)
+     * @param xPosition the initial X coordinate position (in pixels)
      * @return the initial X coordinate position (in pixels)
      */
     @Getter
@@ -208,8 +202,7 @@ public class PdfSignaturePage implements Extensible {
      * The Y coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
      * PDF signature page.
      * 
-     * @param yPosition
-     *          the initial Y coordinate position (in pixels)
+     * @param yPosition the initial Y coordinate position (in pixels)
      * @return the initial Y coordinate position (in pixels)
      */
     @Getter
@@ -220,8 +213,7 @@ public class PdfSignaturePage implements Extensible {
      * The scale of the final visible signature image expressed as zoom percentage. The value -100 represents a 0 sized
      * image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is assumed.
      * 
-     * @param scale
-     *          the scale of the final visible signature image
+     * @param scale the scale of the final visible signature image
      * @return the scale of the final visible signature image
      */
     @Getter
@@ -237,8 +229,7 @@ public class PdfSignaturePage implements Extensible {
      * Note: If the PDF signature page only supports one column this property is ignored.
      * </p>
      * 
-     * @param xIncrement
-     *          the number of pixels that should be added to the previously used xPosition when inserting a PDF
+     * @param xIncrement the number of pixels that should be added to the previously used xPosition when inserting a PDF
      *          signature image in a new column
      * @return the number of pixels that should be added to the previously used xPosition when inserting a PDF signature
      *         image in a new column
@@ -255,8 +246,7 @@ public class PdfSignaturePage implements Extensible {
      * Note: If the PDF signature page only supports one row this property is ignored.
      * </p>
      * 
-     * @param yIncrement
-     *          the number of pixels that should be added to the previously used yPosition when inserting a PDF
+     * @param yIncrement the number of pixels that should be added to the previously used yPosition when inserting a PDF
      *          signature image in a new row
      * @return the number of pixels that should be added to the previously used yPosition when inserting a PDF signature
      *         image in a new row
@@ -274,8 +264,7 @@ public class PdfSignaturePage implements Extensible {
      * document.
      * </p>
      * 
-     * @param page
-     *          the page number in the document where sign image(s) should be inserted
+     * @param page the page number in the document where sign image(s) should be inserted
      * @return the page number in the document where sign image(s) should be inserted
      */
     @Getter

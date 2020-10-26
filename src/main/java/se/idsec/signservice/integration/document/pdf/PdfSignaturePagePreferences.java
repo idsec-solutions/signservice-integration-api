@@ -62,8 +62,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * used, and if no signature page has been configured for the policy an error is reported.
    * </p>
    * 
-   * @param signaturePageReference
-   *          the reference of the PDF signature page to be inserted
+   * @param signaturePageReference the reference of the PDF signature page to be inserted
    * @return a reference of the PDF signature page to be inserted
    */
   @Getter
@@ -80,8 +79,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * used, and if no signature page has been configured for the policy an error is reported.
    * </p>
    * 
-   * @param signaturePage
-   *          the PDF signature page to add
+   * @param signaturePage the PDF signature page to add
    * @return the PDF signature page to add
    */
   @Getter
@@ -94,8 +92,8 @@ public class PdfSignaturePagePreferences implements Extensible {
    * combining with information regarding the PDF signature image found in {@link #getSignaturePageReference()} or
    * {@link #getSignaturePage()} a complete {@link VisiblePdfSignatureRequirement} object can be created.
    * 
-   * @param visiblePdfSignatureUserInformation
-   *          user information input for creating a VisiblePdfSignatureRequirement object
+   * @param visiblePdfSignatureUserInformation user information input for creating a VisiblePdfSignatureRequirement
+   *          object
    * @return user information input for creating a VisiblePdfSignatureRequirement object
    */
   @Getter
@@ -114,9 +112,8 @@ public class PdfSignaturePagePreferences implements Extensible {
    * {@link VisiblePdfSignatureRequirement} (see
    * {@link VisiblePdfSignatureRequirement#createNullVisiblePdfSignatureRequirement()}).
    * 
-   * @param failWhenSignPageFull
-   *          whether processing should fail or not when the PDF signature page does not have room for any more sign
-   *          images (the default is true)
+   * @param failWhenSignPageFull whether processing should fail or not when the PDF signature page does not have room
+   *          for any more sign images (the default is true)
    * @return whether processing should fail or not when the PDF signature page does not have room for any more sign
    *         images
    */
@@ -134,8 +131,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * number in the original document, before the sign page was added.
    * </p>
    * 
-   * @param insertPageAt
-   *          the page number in a PDF document where the PDF signature page should be inserted
+   * @param insertPageAt the page number in a PDF document where the PDF signature page should be inserted
    * @return the page number in a PDF document where the PDF signature page should be inserted
    */
   @Getter

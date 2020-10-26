@@ -48,11 +48,10 @@ public class ContentLoaderSingleton implements ContentLoader {
   }
 
   /**
-   * If the global {@link ContentLoader} should be something else than {@link SpringContentLoader} this method should be
-   * used to assign this.
+   * If the global {@link ContentLoader} should be something else than {@link DefaultContentLoader} this method should
+   * be used to assign this.
    * 
-   * @param loader
-   *          the content loader to set
+   * @param loader the content loader to set
    */
   public void setContentLoader(final ContentLoader loader) {
     if (this.contentLoader != null) {
