@@ -67,13 +67,39 @@ public class PreparedPdfDocument implements Extensible {
    * <p>
    * If the property is {@code null} it means that the PDF document was not modified by {@code preparePdfSignaturePage}.
    * </p>
+   * <p>
+   * <b>Note:</b> This property is only assigned if {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is
+   * {@code false}. If document references should be used the reference for the updated document is obtained by calling
+   * {@link #getUpdatedPdfDocumentReference()}.
+   * </p>
    * 
    * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
-   * @return the updated PDF document (in Base64 encoded form) or null if the initial PDF document was not updated
+   * @return the updated PDF document (in Base64 encoded form) or null if the initial PDF document was not updated or if
+   *         document references are used
    */
   @Setter
   @Getter
   private String updatedPdfDocument;
+
+  /**
+   * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
+   * returned as a reference instead of via a {@link #getUpdatedPdfDocument()} call. The reason for using document
+   * references is that a potentially heavy document only has to be uploaded once. Later when including the document in
+   * a call to
+   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
+   * reference is set in {@link TbsDocument#setContentReference(String)}.
+   * 
+   * <p>
+   * Note: If document references are used a reference is set in all cases (even if no update of the document was
+   * necessary).
+   * </p>
+   * 
+   * @param updatedPdfDocumentReference reference to the updated document
+   * @return reference to the updated document or null
+   */
+  @Setter
+  @Getter
+  private String updatedPdfDocumentReference;
 
   /**
    * The resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
