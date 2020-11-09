@@ -69,6 +69,25 @@ public class TbsDocument implements Extensible, Serializable {
   private String content;
 
   /**
+   * A content reference may be used instead of supplying the actual content ({@link #setContent(String)}). This is
+   * typically something that is useful when handling large documents. However, this feature is only useable if:
+   * <ul>
+   * <li>The SignService Integration Service profile is in "stateful mode", and,</li>
+   * <li>the document has previously been cached by the SignService Integration Service.</li>
+   * </ul>
+   * <p>
+   * Typically, this is used if the SignService Integration Service is running as a standalone service. When using the
+   * API as an integrated Java library in the service it makes less sense.
+   * </p>
+   * 
+   * @param contentReference a reference to the content
+   * @return a reference to the content or null
+   */
+  @Setter
+  @Getter
+  private String contentReference;
+
+  /**
    * The MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
    * 
    * @return the MIME type

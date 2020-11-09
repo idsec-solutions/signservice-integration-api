@@ -25,9 +25,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
+import se.idsec.signservice.integration.SignServiceIntegrationService;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+import se.idsec.signservice.integration.document.TbsDocument;
 
 /**
  * Representation of preferences for adding or modifying a {@link PdfSignaturePage}. See
@@ -152,6 +154,29 @@ public class PdfSignaturePagePreferences implements Extensible {
   @Getter
   @Setter
   private Integer existingSignaturePageNumber;
+
+  /**
+   * A setting that tells that a document reference ({@link PreparedPdfDocument#getUpdatedPdfDocumentReference()})
+   * should be returned instead of the updated document itself. Later when the document is passed in a call to
+   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
+   * {@link TbsDocument#setContentReference(String)} is used instead of adding the entire document. This way a
+   * potentially large document only has to be "uploaded" once.
+   * 
+   * <p>
+   * A document reference is only returned in the cases when the current SignService Integration policy profile is
+   * running in "stateful" mode. It is an error to request a document reference if the policy is stateless.
+   * </p>
+   * <p>
+   * The default behaviour is that {@code returnDocumentReference} is {@code true} if the current policy is stateful and
+   * {@code false} if it is stateless.
+   * </p>
+   * 
+   * @param returnDocumentReference whether document references should be returned
+   * @return whether document references instead of a completely updated document should be returned
+   */
+  @Getter
+  @Setter
+  private Boolean returnDocumentReference;
 
   /** Extensions for the object. */
   private Extension extension;

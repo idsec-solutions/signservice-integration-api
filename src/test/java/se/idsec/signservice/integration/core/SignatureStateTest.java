@@ -53,6 +53,7 @@ public class SignatureStateTest {
       public Serializable getState() {
         return DummyState.builder().stringField("dummy").intField(42).build();
       }
+
     };
     DummyObject object = DummyObject.builder().object("Hello").state(state).build();
     
@@ -61,11 +62,10 @@ public class SignatureStateTest {
 
     String json = writer.writeValueAsString(object);
     
-    DummyObject object2 = mapper.readValue(json, DummyObject.class);   
+    DummyObject object2 = mapper.readValue(json, DummyObject.class);
 
     Assert.assertTrue(RestClientSignatureState.class.isInstance(object2.getState()));
     Assert.assertEquals(object.getState().getId(), object2.getState().getId());
-    System.out.println(object2.getState().getState().getClass().getName());
     
     DummyState ds2 = mapper.convertValue(object2.getState().getState(), DummyState.class);
     Assert.assertNotNull(ds2);
