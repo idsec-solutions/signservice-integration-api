@@ -156,11 +156,11 @@ So, what is passed in?
   
   - `mimeType`: The MIME type of the document that is to be signed. Currently "application/xml" and "application/pdf" are supported. See [DocumentType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/se/idsec/signservice/integration/document/DocumentType.html).
   
-- `signMessageParameters`: The sign message parameters that is used to build the sign message element that is included in the SignRequest. See [SignMessageParameters](https://idsec-solutions.github.io/signservice-integration-api/javadoc/se/idsec/signservice/integration/SignMessageParameters.html).
+- `signMessageParameters`: The sign message parameters that is used to build the sign message element that is included in the SignRequest. See [SignMessageParameters](https://idsec-solutions.github.io/signservice-integration-api/javadoc/se/idsec/signservice/integration/signmessage/SignMessageParameters.html).
 
   - `signMessage`: The sign message (non encrypted) content according to specified mime type.
   
-  - `mimeType`: The sign message MIME type. See [SignMessageMimeType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/se/idsec/signservice/integration/SignMessageMimeType.html).
+  - `mimeType`: The sign message MIME type. See [SignMessageMimeType](https://idsec-solutions.github.io/signservice-integration-api/javadoc/se/idsec/signservice/integration/signmessage/SignMessageMimeType.html).
   
   - `mustShow`: Specifies if the requester of the signature requires that the sign message is displayed to the user. If the Identity Provider cannot fulfill this requirement it must not proceed.
   
