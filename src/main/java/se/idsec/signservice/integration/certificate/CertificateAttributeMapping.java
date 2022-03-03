@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ public class CertificateAttributeMapping {
    * A list of signer source attributes from where the sign service gets information in order to create the requested
    * certificate attribute. If more than one attribute is given, the order is important as the sign service tries the
    * given source attributes in order.
-   * 
+   *
    * @param sources a list of source attributes
    * @return a list of source attributes
    */
@@ -60,7 +60,7 @@ public class CertificateAttributeMapping {
   /**
    * The requested destination attribute gives information about which type of certificate attribute to create, and
    * possibly its default value.
-   * 
+   *
    * @param destination the destination attribute
    * @return the destination attribute
    */

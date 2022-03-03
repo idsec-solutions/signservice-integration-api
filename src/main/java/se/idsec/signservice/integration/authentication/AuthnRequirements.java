@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ public class AuthnRequirements implements Extensible {
   /**
    * The entityID of the authentication service (Identity Provider) that will authenticate the signer as part of the
    * signature process.
-   * 
+   *
    * <p>
    * In almost all cases a user is first authenticated before performing a signature, and the entityID is then the ID of
    * the Identity Provider that authenticated the user during login to the service requesting the signature.
@@ -72,12 +72,12 @@ public class AuthnRequirements implements Extensible {
   /**
    * An opaque string that can be used to inform the Signing Service about specific requirements regarding the user
    * authentication at the given Identity Provider.
-   * 
+   *
    * <p>
    * Note: Before setting this property, ensure that the receiving Signature Service supports version 1.4 of the "DSS
    * Extension for Federated Central Signing Services" specification.
    * </p>
-   * 
+   *
    * @param authnProfile opaque string representing an authentication profile
    * @return opaque string representing an authentication profile
    */
@@ -100,7 +100,7 @@ public class AuthnRequirements implements Extensible {
    * Note: If setting more than one URI, ensure that the receiving Signature Service supports version 1.4 of the "DSS
    * Extension for Federated Central Signing Services" specification.
    * </p>
-   * 
+   *
    * @param authnContextClassRefs the authentication context reference URI(s)
    * @return the authentication context reference URI(s)
    * @see IntegrationServiceDefaultConfiguration#getDefaultAuthnContextRef()
@@ -143,7 +143,7 @@ public class AuthnRequirements implements Extensible {
 
   /**
    * For backwards compatibility. Use {@link #setAuthnContextClassRefs(List)} instead.
-   * 
+   *
    * @param authnContextRef the AuthnContextClassRef URI to add
    */
   @Deprecated
@@ -159,7 +159,7 @@ public class AuthnRequirements implements Extensible {
 
     /**
      * For backwards compatibility. Use {@link #authnContextClassRef(String)} instead.
-     * 
+     *
      * @param authnContextRef the AuthnContextClassRef URI
      * @return the builder
      */

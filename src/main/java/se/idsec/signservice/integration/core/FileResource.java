@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonInclude(Include.NON_NULL)
 public class FileResource {
-  
+
   /** The base64 encoded contents of the file resource. */
   private String contents;
 
@@ -57,7 +57,7 @@ public class FileResource {
   /** The resource string for the file/resource. */
   @JsonIgnore
   private String resource;
-  
+
   /**
    * If the {@code DefaultFileResource} object is initialized by a resource string the object can function in two modes;
    * it either loads the contents directly when the object is created using {@link #afterPropertiesSet()}
@@ -68,11 +68,11 @@ public class FileResource {
    */
   @Builder.Default
   @JsonIgnore
-  private boolean eagerlyLoadContents = false;  
+  private boolean eagerlyLoadContents = false;
 
   /**
    * Gets the contents of the file resource as a base64 encoded string.
-   * 
+   *
    * @return the file resource content as a base64 encoded string or null if no content is available
    */
   public String getContents() {
@@ -89,7 +89,7 @@ public class FileResource {
 
   /**
    * Assigns the file resource contents as a base64 encoded string.
-   * 
+   *
    * @param contents
    *          the base64 encoded contents of the file resource
    */
@@ -98,10 +98,10 @@ public class FileResource {
     Base64.getDecoder().decode(contents);
     this.contents = contents;
   }
-  
+
   /**
    * Assigns the raw file resource contents.
-   * 
+   *
    * @param contents
    *          the raw file resource contents
    */
@@ -111,7 +111,7 @@ public class FileResource {
 
   /**
    * Gets the description of the file resource.
-   * 
+   *
    * @return the description of the file resource or null if none is available
    */
   public String getDescription() {
@@ -120,18 +120,18 @@ public class FileResource {
 
   /**
    * Assigns the description of the file resource.
-   * 
+   *
    * @param description
    *          the description of the file resource
    */
   public void setDescription(final String description) {
     this.description = description;
   }
-  
+
   /**
    * If the {@code FileResource} object was initialized with a {@code resource} string this method returns this
    * string.
-   * 
+   *
    * @return the file resource string or null if none is set
    */
   public String getResource() {
@@ -140,19 +140,19 @@ public class FileResource {
 
   /**
    * Assigns a resource string.
-   * 
+   *
    * <p>
    * Note: The Spring Framework style of representing a resource should be used. For example: {@code classpath:xyz.svg}
    * and {@code file:/path/xyz.svg}.
    * </p>
-   * 
+   *
    * @param resource
    *          the resource string
    */
   public void setResource(final String resource) {
     this.resource = resource;
   }
-  
+
   /**
    * If the {@code FileResource} object is initialized by a resource string the object can function in two modes;
    * it either loads the contents directly when the object is created using {@link #afterPropertiesSet()}
@@ -160,23 +160,23 @@ public class FileResource {
    * ({@code eagerlyLoadContents = false}). The latter is the default and should be used if large documents that are
    * assigned to several configuration objects are handled. This will prevent a heavy memory usage at the cost of speed
    * in fetching the document contents.
-   * 
+   *
    * @param eagerlyLoadContents
    *          whether to load contents eagerly or not
    */
   public void setEagerlyLoadContents(final boolean eagerlyLoadContents) {
     this.eagerlyLoadContents = eagerlyLoadContents;
   }
-  
+
   /**
    * Checks that the file resource is correctly initialized, and if {@code eagerlyLoadContents} is {@code true} it
    * also loads the contents (if necessary).
-   * 
+   *
    * <p>
    * Note: If executing in a Spring Framework environment this method is automatically invoked after all properties have
    * been assigned. Otherwise it should be explicitly invoked.
    * </p>
-   * 
+   *
    * @throws Exception
    *           for init errors
    */
@@ -193,11 +193,11 @@ public class FileResource {
       this.contents = loadContentsFromResource(this.resource);
       this.resource = null;
     }
-  }  
-  
+  }
+
   /**
    * Helper method that loads contents from a resource.
-   * 
+   *
    * @param resource
    *          the resource string
    * @return the Base64 encoded contents
@@ -215,7 +215,7 @@ public class FileResource {
     }
     return null;
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public String toString() {
@@ -235,14 +235,15 @@ public class FileResource {
     }
     builder.append(",eagerlyLoadContents=").append(eagerlyLoadContents);
     return builder.toString();
-  }  
-  
+  }
+
   /**
    * Builder class for {@link FileResource}.
    */
   public static class FileResourceBuilder implements ObjectBuilder<FileResource> {
+    @SuppressWarnings("unused")
     private boolean eagerlyLoadContents = false;
-    
+
     // Lombok
   }
 

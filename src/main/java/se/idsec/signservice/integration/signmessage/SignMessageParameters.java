@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class SignMessageParameters implements Serializable {
 
   /**
    * The sign message (non encrypted) content according to specified mime type.
-   * 
+   *
    * @param signMessage the sign message
    * @return the sign message
    */
@@ -57,7 +57,7 @@ public class SignMessageParameters implements Serializable {
 
   /**
    * Tells whether the supplied sign message should be encrypted with {@link #getDisplayEntity()} as the recipient.
-   * 
+   *
    * @param performEncryption Tells whether the supplied sign message should be encrypted
    * @return tells whether encryption should be performed
    */
@@ -76,7 +76,7 @@ public class SignMessageParameters implements Serializable {
   /**
    * Specifies if the requester of the signature requires that the sign message is displayed to the user. If the
    * Identity Provider cannot fulfill this requirement it must not proceed.
-   * 
+   *
    * @param mustShow the MustShow attribute
    * @return the MustShow flag, or null
    */
@@ -86,7 +86,7 @@ public class SignMessageParameters implements Serializable {
 
   /**
    * The ID (SAML entityID) of the entity (IdP) that should display this message.
-   * 
+   *
    * <p>
    * Note: The {@code DisplayEntity} attribute of the {@code SignMessage} element is required if the sign message is to
    * be encrypted. In almost all cases, except for some odd Proxy-IdP cases, this is the same value as the ID that is
@@ -94,7 +94,7 @@ public class SignMessageParameters implements Serializable {
    * {@code null}, and the message should be encrypted, the SignService Integration Service will use the
    * {@link AuthnRequirements#getAuthnServiceID()} value.
    * </p>
-   * 
+   *
    * @param displayEntity the SAML entityID for the display entity
    * @return the entityID of the IdP that should display the message
    */
@@ -129,7 +129,7 @@ public class SignMessageParameters implements Serializable {
 
     /**
      * The sign message MIME type.
-     * 
+     *
      * @param mimeType the MIME type
      * @return the builder
      */
@@ -141,7 +141,7 @@ public class SignMessageParameters implements Serializable {
 
     /**
      * The sign message MIME type.
-     * 
+     *
      * @param mimeType the MIME type
      * @return the builder
      */

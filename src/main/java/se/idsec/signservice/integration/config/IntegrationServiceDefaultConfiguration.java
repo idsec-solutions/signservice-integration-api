@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import se.idsec.signservice.integration.security.EncryptionParameters;
 
 /**
  * Interface that represents the default settings of a SignService Integration Service policy/instance.
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -43,7 +43,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * Gets the integration policy name for which this configuration applies.
-   * 
+   *
    * @return the policy identifier
    */
   String getPolicy();
@@ -54,7 +54,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * This value is used if {@link SignRequestInput#getSignRequesterID()} returns {@code null}.
    * </p>
-   * 
+   *
    * @return the default sign requester ID
    */
   String getDefaultSignRequesterID();
@@ -65,7 +65,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * This value is used if {@link SignRequestInput#getReturnUrl()} returns {@code null}.
    * </p>
-   * 
+   *
    * @return the default URL to which a sign response is to be returned
    */
   String getDefaultReturnUrl();
@@ -76,7 +76,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * This value is used if {@link SignRequestInput#getSignatureAlgorithm()} returns {@code null}.
    * </p>
-   * 
+   *
    * @return signature algorithm identifier
    */
   String getDefaultSignatureAlgorithm();
@@ -84,7 +84,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
   /**
    * Gets the entityID of the signature service. If SAML is used as the authentication protocol, this is the SAML
    * entityID of the SAML Service Provider that is running in the signature service.
-   * 
+   *
    * @return the ID of the signature service
    */
   String getSignServiceID();
@@ -94,7 +94,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * This value is used if {@link SignRequestInput#getDestinationUrl()} returns {@code null}.
    * </p>
-   * 
+   *
    * @return the default destination URL of the signature service to where sign messages should be posted
    */
   String getDefaultDestinationUrl();
@@ -103,7 +103,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * In a setup where only one authentication service (IdP) is used to authenticate users, a default value could be
    * used. If the {@link AuthnRequirements#getAuthnServiceID()} method returns {@code null}, the default value will the
    * be used.
-   * 
+   *
    * @return the entityID for the default authentication service, or null if no default exists
    * @see AuthnRequirements#getAuthnServiceID()
    */
@@ -113,7 +113,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * In a setup where all users are authenticated according to the same authentication contect, a default value could be
    * used. If the {@link AuthnRequirements#getAuthnContextClassRefs()} method returns {@code null} or is empty, the
    * default value will be used.
-   * 
+   *
    * @return the default authentication context reference URI
    * @see AuthnRequirements#getAuthnContextClassRefs()
    */
@@ -125,7 +125,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * This value is used if {@link SignRequestInput#getCertificateRequirements()} returns {@code null}.
    * </p>
-   * 
+   *
    * @return the default signing certificate requirements
    */
   SigningCertificateRequirements getDefaultCertificateRequirements();
@@ -133,7 +133,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
   /**
    * A policy may be configured to include a default "visible PDF signature requirement" for all PDF documents that are
    * signed under this policy.
-   * 
+   *
    * @return the default visible PDF signature requirement to use for PDF signatures, or null
    */
   VisiblePdfSignatureRequirement getDefaultVisiblePdfSignatureRequirement();
@@ -141,7 +141,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
   /**
    * A policy may have one, or more, image templates for visible PDF signatures in its configuration. See
    * {@link PdfSignatureImageTemplate}. This method gets these templates.
-   * 
+   *
    * @return a list of image templates for visible PDF signatures, or null if none exists
    */
   List<? extends PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
@@ -151,7 +151,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences)}
    * for a description of PDF signature pages. The first object in the list is regarded as the default page for the
    * policy.
-   * 
+   *
    * @return a list of PDF signature pages for the policy, or null if no such pages are defined for the policy
    */
   List<? extends PdfSignaturePage> getPdfSignaturePages();
@@ -169,7 +169,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * and the only thing the caller needs to keep track of its the ID of the signature operation (see
    * {@link SignatureState#getId()}.
    * </p>
-   * 
+   *
    * @return if the SignService Integration Service is running in stateless mode true is returned, otherwise false
    * @see SignatureState
    */
@@ -179,7 +179,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * Gets the default encryption parameters (algorithms) that is used by the SignService Integration Service when
    * encrypting a SignMessage. The sign requester can not override these values, but the recipient may declare other
    * algorithms to use (in the SAML case, this is done in IdP metadata).
-   * 
+   *
    * @return the default encryption parameters
    */
   EncryptionParameters getDefaultEncryptionParameters();
@@ -192,7 +192,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * <b>Note:</b> This certificate has nothing to do with the signing certificates that are issued by the sign service.
    * </p>
-   * 
+   *
    * @return the signature certificates for the SignService Integration Service
    */
   String getSignatureCertificate();
@@ -206,7 +206,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * The reason that more than one certificate may be returned is to facilitate signature service key rollover.
    * </p>
-   * 
+   *
    * @return the signature service signing certificate(s)
    */
   List<String> getSignServiceCertificates();
@@ -221,7 +221,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * <p>
    * If an empty list is returned, this means that signature validation "trusts any" root.
    * </p>
-   * 
+   *
    * @return the SignService CA root certificate(s)
    */
   List<String> getTrustAnchors();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.IOException;
 
 /**
  * Interface for loading the content from a file resource.
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -27,12 +27,12 @@ public interface ContentLoader {
 
   /**
    * Loads the contents of the given resource.
-   * 
+   *
    * <p>
    * Note: The Spring Framework style of representing a resource must be supported by implementations. For example:
    * {@code classpath:xyz.svg} and {@code file:/path/xyz.svg}.
    * </p>
-   * 
+   *
    * @param resource the resource to load
    * @return the contents as a byte array
    * @throws IOException if the contents can not be loaded

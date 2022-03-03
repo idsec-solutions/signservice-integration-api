@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public class DefaultContentLoader implements ContentLoader {
    * {@code org.springframework.core.io.DefaultResourceLoader} class.
    */
   private Object springContentLoader = null;
-  
+
   /** The getResource method of DefaultResourceLoader. */
   private Method getResourceMethod = null;
 
@@ -51,7 +51,7 @@ public class DefaultContentLoader implements ContentLoader {
       //
       Class<?> clazz = Class.forName("org.springframework.core.io.DefaultResourceLoader");
       Constructor<?> ctor = clazz.getConstructor();
-      this.springContentLoader = ctor.newInstance();      
+      this.springContentLoader = ctor.newInstance();
       this.getResourceMethod = this.springContentLoader.getClass().getMethod("getResource", String.class);
     }
     catch (Exception e) {
@@ -61,17 +61,17 @@ public class DefaultContentLoader implements ContentLoader {
   /** {@inheritDoc} */
   @Override
   public byte[] loadContent(final String resource) throws IOException {
-    
+
     if (resource == null) {
       throw new IOException("resource is null");
     }
-    
+
     InputStream is = null;
     if (this.springContentLoader != null && this.getResourceMethod != null) {
       try {
-        final String _resource = resource.startsWith("/") ? "file://" + resource : resource; 
+        final String _resource = resource.startsWith("/") ? "file://" + resource : resource;
         final Object springResource = this.getResourceMethod.invoke(this.springContentLoader, _resource);
-        
+
         // Next. Invoke the getInputStream method of the resulting resource object.
         is = (InputStream) springResource.getClass().getMethod("getInputStream").invoke(springResource);
       }
@@ -79,7 +79,7 @@ public class DefaultContentLoader implements ContentLoader {
         throw new IOException("Could not load " + resource, e);
       }
     }
-    else {      
+    else {
       if (resource.startsWith("classpath:")) {
         String _resource = resource.substring(10);
         if (!_resource.startsWith("/")) {
@@ -97,7 +97,7 @@ public class DefaultContentLoader implements ContentLoader {
         is = new FileInputStream(new File(resource));
       }
     }
-    
+
     final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
     int nRead;
     byte[] data = new byte[4096];

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirem
 
 /**
  * An extension to the interface describing the API for the SignService Integration Service.
- * 
+ *
  * <p>
  * This extension is optional to implement, but its purpose is to supply the user of the API with utility methods that
  * are useful during signature processing.
@@ -62,7 +62,7 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * several signature images, no new PDF signature page is added. Instead, the {@code preparePdfSignaturePage} method
    * calculates where in the already existing PDF signature page the next signature image will be inserted.
    * </p>
-   * 
+   *
    * @param policy
    *          the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
    * @param pdfDocument

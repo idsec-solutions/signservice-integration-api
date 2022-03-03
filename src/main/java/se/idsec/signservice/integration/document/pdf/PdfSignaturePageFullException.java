@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import se.idsec.signservice.integration.core.error.SignServiceIntegrationExcepti
  * @author Stefan Santesson (stefan@idsec.se)
  */
 public class PdfSignaturePageFullException extends SignServiceIntegrationException {
-  
+
   /** The error code for this exception. */
   public static final ErrorCode errorCode = ErrorCode.error("document", "too-many-signimages");
 
@@ -44,7 +44,7 @@ public class PdfSignaturePageFullException extends SignServiceIntegrationExcepti
   public PdfSignaturePageFullException(final String message) {
     super(errorCode, message);
   }
-  
+
   /**
    * Constructor.
    *
@@ -52,7 +52,7 @@ public class PdfSignaturePageFullException extends SignServiceIntegrationExcepti
    *          the error message
    * @param cause
    *          the cause of the error
-   */  
+   */
   public PdfSignaturePageFullException(final String message, final Throwable cause) {
     super(errorCode, message, cause);
   }

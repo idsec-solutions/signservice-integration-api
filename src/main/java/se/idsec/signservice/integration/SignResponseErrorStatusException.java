@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class SignResponseErrorStatusException extends Exception {
 
   /**
    * Constructor.
-   * 
+   *
    * @param majorCode
    *          the DSS major result code
    * @param minorCode
@@ -62,7 +62,7 @@ public class SignResponseErrorStatusException extends Exception {
 
   /**
    * Gets the DSS major status code.
-   * 
+   *
    * @return the DSS major status code
    */
   public String getMajorCode() {
@@ -71,7 +71,7 @@ public class SignResponseErrorStatusException extends Exception {
 
   /**
    * Gets the DSS minor status code.
-   * 
+   *
    * @return the DSS minor status code
    */
   public String getMinorCode() {

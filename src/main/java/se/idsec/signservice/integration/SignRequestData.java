@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,14 +32,14 @@ import se.idsec.signservice.integration.core.SignatureState;
 /**
  * Domain class representing the result of a {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}
  * call. This class holds the information needed to send a {@code dss:SignRequest} to a signature service.
- * 
+ *
  * <p>
  * Chapter 3 of <a href=
  * "https://docs.swedenconnect.se/technical-framework/latest/ELN-0607_-_Implementation_Profile_for_using_DSS_in_Central_Signing_Services.html#http-post-binding">Implementation
  * Profile for using OASIS DSS in Central Signing Services</a> describes how a sign request is transfered to the
  * signature service. Below is an example of an XHTML form:
  * </p>
- * 
+ *
  * <pre>
  * {@code
  * <?xml version='1.0' encoding='UTF-8'?>
@@ -60,7 +60,7 @@ import se.idsec.signservice.integration.core.SignatureState;
  *   </form>
  * </body>}
  * </pre>
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -76,14 +76,14 @@ public class SignRequestData implements Extensible {
 
   /**
    * State for a signature operation.
-   * 
+   *
    * <p>
    * This state must be maintained by the signature requester and when a sign response has been received from the
    * signature service be supplied in the
    * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}
    * call.
    * </p>
-   * 
+   *
    * @param state the signature state
    * @return the signature state for this operation
    */
@@ -93,12 +93,12 @@ public class SignRequestData implements Extensible {
 
   /**
    * The Base64-encoded SignRequest message that is to be posted to the signature service.
-   * 
+   *
    * <p>
    * This value should be posted to the signature service in a form where the parameter has the name
    * {@code EidSignRequest}. See example above.
    * </p>
-   * 
+   *
    * @param signRequest the sign request (in Base64-encoding)
    * @return the encoded SignRequest message
    */
@@ -109,7 +109,7 @@ public class SignRequestData implements Extensible {
   /**
    * The relay state. This is the same value as the {@code RequestID} attribute of the SignRequest <b>and</b>
    * {@link SignatureState#getId()}.
-   * 
+   *
    * <p>
    * This value should be posted to the signature service in a form where the parameter has the name {@code RelayState}.
    * See example above.
@@ -119,9 +119,9 @@ public class SignRequestData implements Extensible {
    * used in SAML authentication requests, <b>but</b> in SAML the value is opaque and does not bind to any value in the
    * request as is the case for signature service communication. An unlucky re-use of the term RelayState.
    * </p>
-   * 
+   *
    * Assigns the relay state variable.
-   * 
+   *
    * @param relayState the relay state variable
    * @return the relay state value
    */
@@ -131,7 +131,7 @@ public class SignRequestData implements Extensible {
 
   /**
    * The identifier for the binding of the message that is to be sent.
-   * 
+   *
    * <p>
    * This value should be posted to the signature service in a form where the parameter has the name {@code Binding}.
    * See example above.
@@ -139,7 +139,7 @@ public class SignRequestData implements Extensible {
    * <p>
    * Currently, the only supported value is "POST/XML/1.0".
    * </p>
-   * 
+   *
    * @param binding the binding identifier
    * @return the binding identifier
    */
@@ -150,7 +150,7 @@ public class SignRequestData implements Extensible {
 
   /**
    * The signature service URL to which the SignRequest should be posted.
-   * 
+   *
    * @param destinationUrl the signature service URL to which the SignRequest should be posted
    * @return signature service destination URL
    */
@@ -177,6 +177,7 @@ public class SignRequestData implements Extensible {
    * Builder for {@code SignRequestData} objects.
    */
   public static class SignRequestDataBuilder implements ObjectBuilder<SignRequestData> {
+    @SuppressWarnings("unused")
     private String binding = SignRequestData.DEFAULT_BINDING;
 
     // Lombok generates the code ...

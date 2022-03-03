@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -108,7 +108,7 @@ public abstract class SignServiceIntegrationException extends Exception {
   /**
    * If the SignService Integration Service is used from a REST API, the HTTP status may be useful when reporting
    * errors.
-   * 
+   *
    * @return the HTTP status code that should be used when sending an error response for this exception
    */
   public abstract int getHttpStatus();

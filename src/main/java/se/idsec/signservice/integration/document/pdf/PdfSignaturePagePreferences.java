@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import se.idsec.signservice.integration.document.TbsDocument;
 /**
  * Representation of preferences for adding or modifying a {@link PdfSignaturePage}. See
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
- * 
+ *
  * <p>
  * Note: If
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)} is
@@ -57,13 +57,13 @@ public class PdfSignaturePagePreferences implements Extensible {
    * Reference to a PDF signature page to be inserted (see {@link PdfSignaturePage#getId()}). This signature page must
    * be configured within the current policy. As an alternative to giving the reference an entire
    * {@link PdfSignaturePage} (see {@link #setSignaturePage(PdfSignaturePage)}).
-   * 
+   *
    * <p>
    * It is an error to specify both {@code signaturePageReference} and {@code signaturePage}. If neither
    * {@code signaturePageReference} or {@code signaturePage} is given, the default signature page for the policy will be
    * used, and if no signature page has been configured for the policy an error is reported.
    * </p>
-   * 
+   *
    * @param signaturePageReference the reference of the PDF signature page to be inserted
    * @return a reference of the PDF signature page to be inserted
    */
@@ -74,13 +74,13 @@ public class PdfSignaturePagePreferences implements Extensible {
   /**
    * As an alternative to specifying a {@code signPageReference} (see {@link #setSignaturePageReference(String)}) the
    * actual sign page can be provided in the preferences.
-   * 
+   *
    * <p>
    * It is an error to specify both {@code signaturePageReference} and {@code signaturePage}. If neither
    * {@code signaturePageReference} or {@code signaturePage} is given, the default signature page for the policy will be
    * used, and if no signature page has been configured for the policy an error is reported.
    * </p>
-   * 
+   *
    * @param signaturePage the PDF signature page to add
    * @return the PDF signature page to add
    */
@@ -93,7 +93,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * {@link VisiblePdfSignatureRequirement} object. Using the object's values (signer name and other field values) and
    * combining with information regarding the PDF signature image found in {@link #getSignaturePageReference()} or
    * {@link #getSignaturePage()} a complete {@link VisiblePdfSignatureRequirement} object can be created.
-   * 
+   *
    * @param visiblePdfSignatureUserInformation user information input for creating a VisiblePdfSignatureRequirement
    *          object
    * @return user information input for creating a VisiblePdfSignatureRequirement object
@@ -113,7 +113,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * PDF signature image is inserted (in that case the resulting {@link PreparedPdfDocument} will contain a "null"
    * {@link VisiblePdfSignatureRequirement} (see
    * {@link VisiblePdfSignatureRequirement#createNullVisiblePdfSignatureRequirement()}).
-   * 
+   *
    * @param failWhenSignPageFull whether processing should fail or not when the PDF signature page does not have room
    *          for any more sign images (the default is true)
    * @return whether processing should fail or not when the PDF signature page does not have room for any more sign
@@ -132,7 +132,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * set, the value of {@code insertPageAt} MUST be the same between all calls. Thus, the value refers to the page
    * number in the original document, before the sign page was added.
    * </p>
-   * 
+   *
    * @param insertPageAt the page number in a PDF document where the PDF signature page should be inserted
    * @return the page number in a PDF document where the PDF signature page should be inserted
    */
@@ -161,7 +161,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
    * {@link TbsDocument#setContentReference(String)} is used instead of adding the entire document. This way a
    * potentially large document only has to be "uploaded" once.
-   * 
+   *
    * <p>
    * A document reference is only returned in the cases when the current SignService Integration policy profile is
    * running in "stateful" mode. It is an error to request a document reference if the policy is stateless.
@@ -170,7 +170,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * The default behaviour is that {@code returnDocumentReference} is {@code true} if the current policy is stateful and
    * {@code false} if it is stateless.
    * </p>
-   * 
+   *
    * @param returnDocumentReference whether document references should be returned
    * @return whether document references instead of a completely updated document should be returned
    */
@@ -197,6 +197,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * Builder for {@code PdfSignaturePagePreferences} objects.
    */
   public static class PdfSignaturePagePreferencesBuilder implements ObjectBuilder<PdfSignaturePagePreferences> {
+    @SuppressWarnings("unused")
     private boolean failWhenSignPageFull = true;
 
     // Lombok

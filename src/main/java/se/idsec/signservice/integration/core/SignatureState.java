@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfigur
  * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)} method and should be supplied as a
  * parameter to
  * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}.
- * 
+ *
  * <p>
  * If the SignService Integration Service instance/profile is executing in stateless mode (see
  * {@link IntegrationServiceDefaultConfiguration#isStateless()}), the {@link #getState()} holds the session state. In
@@ -37,7 +37,7 @@ import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfigur
  * resulting {@code SignatureState} object that is returned by
  * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}.
  * </p>
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -46,19 +46,19 @@ public interface SignatureState extends Serializable {
 
   /**
    * Returns the unique identifier for the signature operation.
-   * 
+   *
    * @return the signature operation identifier
    */
   String getId();
 
   /**
    * Holds the session state.
-   * 
+   *
    * <p>
    * Note: Only the implementation of the SignService Integration Service needs to understand how to interpret this
    * data.
    * </p>
-   * 
+   *
    * @return the session state, or null
    */
   Serializable getState();

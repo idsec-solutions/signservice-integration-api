@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,12 +46,12 @@ public interface SignServiceIntegrationService {
    * When the service that has ordered the signing operation receives the sign response message it should invoke this
    * method to process this response. The processing will validate the signature of each signed document and return the
    * signed document(s) along with metadata about the signature process.
-   * 
+   *
    * <p>
    * Note: The {@code relayState} must be equal to supplied state ({@link SignatureState#getId()}). This parameter is
    * redundant, but included for pedagogical reasons since the RelayState POST parameter is received.
    * </p>
-   * 
+   *
    * @param signResponse the Base64-encoded SignResponse message (from the EidSignResponse POST parameter)
    * @param relayState the relayState (from the RelayState POST parameter)
    * @param state the signature state
@@ -83,7 +83,7 @@ public interface SignServiceIntegrationService {
 
   /**
    * Returns the version identifier for the current version of the SignService Integration Service.
-   * 
+   *
    * @return version string
    */
   String getVersion();

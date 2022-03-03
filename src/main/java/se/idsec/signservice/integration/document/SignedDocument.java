@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public class SignedDocument implements Extensible {
 
   /**
    * The unique ID for this document (within the current operation).
-   * 
+   *
    * @param id unique ID for this document
    * @return unique ID for this document
    */
@@ -54,7 +54,7 @@ public class SignedDocument implements Extensible {
 
   /**
    * The signed document as a Base64-encoded byte string.
-   * 
+   *
    * @param signedContent the signed document content (Base64-encoded)
    * @return the signed document content (Base64-encoded)
    */
@@ -64,7 +64,7 @@ public class SignedDocument implements Extensible {
 
   /**
    * The MIME type of the signed document. See {@link DocumentType} for the supported types.
-   * 
+   *
    * @param mimeType the MIME type for the signed document
    * @return the MIME type for the signed document
    */

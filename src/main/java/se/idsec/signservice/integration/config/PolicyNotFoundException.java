@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ public class PolicyNotFoundException extends BadRequestException {
 
   /**
    * Constructor.
-   * 
+   *
    * @param message
    *          the error message
    */
@@ -44,7 +44,7 @@ public class PolicyNotFoundException extends BadRequestException {
 
   /**
    * Constructor.
-   * 
+   *
    * @param message
    *          the error message
    * @param cause

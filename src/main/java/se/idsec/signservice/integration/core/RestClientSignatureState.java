@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ public class RestClientSignatureState implements SignatureState {
 
   /**
    * Assigns the unique identifier for the signature operation.
-   * 
+   *
    * @param id
    *          signature operation ID
    */
@@ -70,7 +70,7 @@ public class RestClientSignatureState implements SignatureState {
 
   /**
    * Assigns the session state.
-   * 
+   *
    * @param state
    *          the session state
    */
