@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,14 +119,14 @@ public class FileResourceTest {
       .resource("classpath:testfile.txt")
       .description("Test")
       .build();
-    
+
     json = writer.writeValueAsString(fr);
 
     fr2 = mapper.readValue(json, FileResource.class);
     Assert.assertNotNull(fr2);
     Assert.assertEquals(fr.getContents(), fr2.getContents());
     Assert.assertEquals(fr.getDescription(), fr2.getDescription());
-    
+
     // The resource is never sent in JSON
     Assert.assertNotNull(fr.getResource());
     Assert.assertNull(fr2.getResource());

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public class XMLSignatureLocation implements Extensible {
   /**
    * Indicator for first or last child of a selected parent node. The default is "last". See {@link ChildPosition} for
    * possible values.
-   * 
+   *
    * @return the position (first of last)
    */
   @Getter
@@ -54,7 +54,7 @@ public class XMLSignatureLocation implements Extensible {
   /**
    * The XPath expression for selecting the parent node (or {@code null} which means the the parent node is the document
    * root element).
-   * 
+   *
    * @param xPath the XPath expression for locating the parent node of the Signature element
    * @return the XPath expression for locating the parent node of the Signature element
    */
@@ -68,7 +68,7 @@ public class XMLSignatureLocation implements Extensible {
   /**
    * Sets the position in the selected parent node where the signature element should be installed (first or last). The
    * default is "last".
-   * 
+   *
    * @param childPosition the position
    */
   public void setChildPosition(final String childPosition) {
@@ -78,7 +78,7 @@ public class XMLSignatureLocation implements Extensible {
   /**
    * Sets the position in the selected parent node where the signature element should be installed (first or last). The
    * default is "last".
-   * 
+   *
    * @param childPosition the position
    */
   public void setChildPosition(final ChildPosition childPosition) {
@@ -108,7 +108,7 @@ public class XMLSignatureLocation implements Extensible {
 
     /**
      * Gets the position in its string representation.
-     * 
+     *
      * @return the position
      */
     public String getPosition() {
@@ -117,7 +117,7 @@ public class XMLSignatureLocation implements Extensible {
 
     /**
      * Given a position in its string representation the method returns the corresponding enum constant.
-     * 
+     *
      * @param position the position in its string representation
      * @return the enum constant value
      * @throws IllegalArgumentException if no matching enum constant is found
@@ -133,7 +133,7 @@ public class XMLSignatureLocation implements Extensible {
 
     /**
      * Constructor.
-     * 
+     *
      * @param position the position
      */
     private ChildPosition(final String position) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -196,7 +196,7 @@ public class SignRequestInputTest {
         .requestedSignerAttribute(SignerIdentityAttributeValue.builder()
           .name("urn:oid:2.5.4.4")
           .value("Kula")
-          .build())        
+          .build())
         .build())
       .tbsDocument(TbsDocument.builder()
         .id("doc-1")
@@ -216,7 +216,7 @@ public class SignRequestInputTest {
             .scale(0)
             .xPosition(100)
             .yPosition(100)
-            .build())          
+            .build())
         .build())
       .signMessageParameters(
         SignMessageParameters.builder()

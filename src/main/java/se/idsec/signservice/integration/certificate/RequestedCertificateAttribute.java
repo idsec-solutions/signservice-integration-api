@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /**
    * The default value to use if no mapping can be found.
-   * 
+   *
    * @param defaultValue the value to use if no mapping can be found
    * @return the value to use if no mapping can be found, or null if no default value has been assigned
    */
@@ -56,7 +56,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /**
    * Friendly name of attribute (optional).
-   * 
+   *
    * @param friendlyName the "friendly name" of the attribute for display purposes
    * @return the "friendly name" of the attribute for display purposes or code if not present
    */
@@ -66,7 +66,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /**
    * Indicates if this attribute must be provided.
-   * 
+   *
    * @param required whether the attribute is required
    * @return tells whether the attribute is required
    */
@@ -108,7 +108,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /**
    * Assigns the attribute type.
-   * 
+   *
    * @param type the attribute type
    */
   public void setType(final RequestedCertificateAttributeType type) {
@@ -138,7 +138,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
     /**
      * Adds the attribute type.
-     * 
+     *
      * @param type the type
      * @return the builder
      */
@@ -149,7 +149,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
     /**
      * Adds the attribute name.
-     * 
+     *
      * @param name the attribute name
      * @return the builder
      */
@@ -160,7 +160,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
     /**
      * Adds the attribute default value
-     * 
+     *
      * @param defaultValue the default value
      * @return the builder
      */
@@ -171,7 +171,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
     /**
      * Adds the attribute friendly name
-     * 
+     *
      * @param friendlyName the friendly name
      * @return the builder
      */
@@ -182,7 +182,7 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
     /**
      * Tells whether the attribute is a required attribute
-     * 
+     *
      * @param required flag
      * @return the builder
      */

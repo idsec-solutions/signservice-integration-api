@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,11 +32,11 @@ import se.idsec.signservice.integration.document.xml.XMLSignatureLocation;
 /**
  * Class representing the processing parameters for a call to
  * {@link SignServiceIntegrationService#processSignResponse(String, String, se.idsec.signservice.integration.core.SignatureState, SignResponseProcessingParameters)}.
- * 
+ *
  * <p>
  * Note: More settings will be added ...
  * </p>
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -51,7 +51,7 @@ public class SignResponseProcessingParameters implements Extensible {
    * If an XML document is signed, the caller has the possibility to control where in the document the
    * {@code ds:Signature} element should be inserted. If {@code null}, the signature element will be inserted as the
    * last child of the document root element.
-   * 
+   *
    * @param xmlSignatureLocation XML signature insertion directive
    * @return XML signature insertion directive
    */

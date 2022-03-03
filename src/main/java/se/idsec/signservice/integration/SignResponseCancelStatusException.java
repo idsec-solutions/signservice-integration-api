@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class SignResponseCancelStatusException extends SignResponseErrorStatusEx
    * Constructor.
    */
   public SignResponseCancelStatusException() {
-    super("urn:oasis:names:tc:dss:1.0:resultmajor:ResponderError", 
+    super("urn:oasis:names:tc:dss:1.0:resultmajor:ResponderError",
       "http://id.elegnamnden.se/sig-status/1.0/user-cancel",
       "User cancelled signature operation");
   }

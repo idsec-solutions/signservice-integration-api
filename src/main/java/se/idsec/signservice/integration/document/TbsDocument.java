@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * The unique ID for this document (within the current request). If not supplied, the SignService Integration Service
    * will generate one.
-   * 
+   *
    * @param id unique ID for this document
    * @return unique ID for this document, or null if none has been set
    */
@@ -60,7 +60,7 @@ public class TbsDocument implements Extensible, Serializable {
 
   /**
    * The Base64-encoded byte string that is the content of the document that is to be signed.
-   * 
+   *
    * @param content the document content (Base64-encoded)
    * @return the document content (Base64-encoded)
    */
@@ -79,7 +79,7 @@ public class TbsDocument implements Extensible, Serializable {
    * Typically, this is used if the SignService Integration Service is running as a standalone service. When using the
    * API as an integrated Java library in the service it makes less sense.
    * </p>
-   * 
+   *
    * @param contentReference a reference to the content
    * @return a reference to the content or null
    */
@@ -89,7 +89,7 @@ public class TbsDocument implements Extensible, Serializable {
 
   /**
    * The MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
-   * 
+   *
    * @return the MIME type
    */
   @Getter
@@ -97,7 +97,7 @@ public class TbsDocument implements Extensible, Serializable {
 
   /**
    * Optional processing rules used by the sign service to process sign data.
-   * 
+   *
    * @param processingRules the processing rules
    * @return the processing rules identifier, or null if none has been set
    */
@@ -107,7 +107,7 @@ public class TbsDocument implements Extensible, Serializable {
 
   /**
    * Specifies of the resulting signature should use an ETSI AdES format.
-   * 
+   *
    * @param adesRequirement the AdES requirement
    * @return the AdES requirement or null if no AdES requirement exists
    */
@@ -119,7 +119,7 @@ public class TbsDocument implements Extensible, Serializable {
    * If the document that is to be signed is a PDF document, the sign requester may require the resulting PDF to have a
    * "visible PDF signature". The {@code VisiblePdfSignatureRequirement} specifies how this visible indication should be
    * included.
-   * 
+   *
    * <p>
    * Note that a signature policy may have a default visible PDF signature requirement configued, which means that the
    * {@code visiblePdfSignatureRequirement} does not have to be assigned, unless the signature policy default should be
@@ -128,9 +128,9 @@ public class TbsDocument implements Extensible, Serializable {
    * extension {@link VisiblePdfSignatureRequirement#NULL_INDICATOR_EXTENSION} set to {@code true} should be assigned
    * (see {@link VisiblePdfSignatureRequirement#createNullVisiblePdfSignatureRequirement()}).
    * </p>
-   * 
+   *
    * @param visiblePdfSignatureRequirement requirement for visible PDF signatures
-   * 
+   *
    * @return requirement for visible PDF signatures, or null
    */
   @Setter
@@ -142,7 +142,7 @@ public class TbsDocument implements Extensible, Serializable {
 
   /**
    * The MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
-   * 
+   *
    * @param mimeType the document MIME type
    * @see #setMimeType(DocumentType)
    */
@@ -152,7 +152,7 @@ public class TbsDocument implements Extensible, Serializable {
 
   /**
    * The document type of the document that is to be signed.
-   * 
+   *
    * @param documentType the document type
    */
   public void setMimeType(final DocumentType documentType) {
@@ -221,7 +221,7 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Optional AdES object as an Base64-encoded byte array.
-     * 
+     *
      * <p>
      * For XML signatures this object must be a {@code ds:Object} having as its only child a
      * {@code xades:QualifyingProperties} element.
@@ -234,7 +234,7 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Gets the ETSI AdES type.
-     * 
+     *
      * @return the format
      */
     public AdesType getAdesFormat() {
@@ -243,7 +243,7 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Assigns the ETSI AdES type.
-     * 
+     *
      * @param adesFormat the format
      */
     public void setAdesFormat(final AdesType adesFormat) {
@@ -252,12 +252,12 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Gets the signature policy (required for EPES).
-     * 
+     *
      * <p>
      * When signing an XML document, this fields can be left unset if the AdES object is set, and this element contains
      * a {@code SignaturePolicyIdentifier} element.
      * </p>
-     * 
+     *
      * @return the signature policy
      */
     public String getSignaturePolicy() {
@@ -266,12 +266,12 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Assigns the signature policy (required for EPES).
-     * 
+     *
      * <p>
      * When signing an XML document, this fields can be left unset if the AdES object is set, and this element contains
      * a {@code SignaturePolicyIdentifier} element.
      * </p>
-     * 
+     *
      * @param signaturePolicy the signature policy
      */
     public void setSignaturePolicy(final String signaturePolicy) {
@@ -280,12 +280,12 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Gets the AdES object as an Base64-encoded byte array.
-     * 
+     *
      * <p>
      * For XML signatures this object must be a {@code ds:Object} having as its only child a
      * {@code xades:QualifyingProperties} element.
      * </p>
-     * 
+     *
      * @return the AdES object or null
      */
     public String getAdesObject() {
@@ -294,12 +294,12 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Assigns the AdES object as an Base64-encoded byte array.
-     * 
+     *
      * <p>
      * For XML signatures this object must be a {@code ds:Object} having as its only child a
      * {@code xades:QualifyingProperties} element.
      * </p>
-     * 
+     *
      * @param adesObject the AdES object
      */
     public void setAdesObject(final String adesObject) {
@@ -314,9 +314,10 @@ public class TbsDocument implements Extensible, Serializable {
 
     /**
      * Assigns the extensions for the object.
-     * 
+     *
      * @param extension the extensions for this object
      */
+    @Override
     public void setExtension(final Extension extension) {
       this.extension = extension;
     }

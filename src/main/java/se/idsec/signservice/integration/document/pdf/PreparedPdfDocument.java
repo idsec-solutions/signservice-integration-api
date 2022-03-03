@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ public class PreparedPdfDocument implements Extensible {
    * The policy under which the data held in this class may be used. This is always the same as the policy given in the
    * call to
    * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
-   * 
+   *
    * @param policy the policy
    * @return the policy
    */
@@ -72,7 +72,7 @@ public class PreparedPdfDocument implements Extensible {
    * {@code false}. If document references should be used the reference for the updated document is obtained by calling
    * {@link #getUpdatedPdfDocumentReference()}.
    * </p>
-   * 
+   *
    * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
    * @return the updated PDF document (in Base64 encoded form) or null if the initial PDF document was not updated or if
    *         document references are used
@@ -88,12 +88,12 @@ public class PreparedPdfDocument implements Extensible {
    * a call to
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
    * reference is set in {@link TbsDocument#setContentReference(String)}.
-   * 
+   *
    * <p>
    * Note: If document references are used a reference is set in all cases (even if no update of the document was
    * necessary).
    * </p>
-   * 
+   *
    * @param updatedPdfDocumentReference reference to the updated document
    * @return reference to the updated document or null
    */
@@ -105,7 +105,7 @@ public class PreparedPdfDocument implements Extensible {
    * The resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
    * {@link TbsDocument} holding the PDF document that is passed to
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)}.
-   * 
+   *
    * @param visiblePdfSignatureRequirement a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the
    *          PDF document that is about to be signed with a signature image
    * @return a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about to

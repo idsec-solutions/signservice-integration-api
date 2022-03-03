@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public class Extension extends HashMap<String, String> {
 
   /**
    * Copy constructor.
-   * 
+   *
    * @param m
    *          the map to initialize the object with
    */
@@ -48,7 +48,7 @@ public class Extension extends HashMap<String, String> {
 
   /**
    * Returns a builder for extension builder.
-   * 
+   *
    * @return a builder
    */
   public static ExtensionBuilder builder() {
@@ -81,7 +81,7 @@ public class Extension extends HashMap<String, String> {
 
     /**
      * Adds a name-value pair.
-     * 
+     *
      * @param name
      *          extension name
      * @param value

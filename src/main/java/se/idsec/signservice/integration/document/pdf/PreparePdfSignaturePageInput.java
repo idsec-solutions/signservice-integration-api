@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class PreparePdfSignaturePageInput implements Extensible {
 
   /**
    * The contents of the PDF document that is to be prepared in Base64 encoded format.
-   * 
+   *
    * @param pdfDocument the PDF document (in Base64 encoded format)
    * @return the PDF document (in Base64 encoded format)
    */
@@ -56,7 +56,7 @@ public class PreparePdfSignaturePageInput implements Extensible {
 
   /**
    * The preferences of how to prepare the PDF document for a PDF signature page and signature image.
-   * 
+   *
    * @param signaturePagePreferences preferences of how to prepare the PDF document for a PDF signature page and
    *          signature image
    * @return preferences of how to prepare the PDF document for a PDF signature page and signature image

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package se.idsec.signservice.integration.core.error;
 
 /**
  * Exception class to report that the caller does not have access on a given resource.
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -31,7 +31,7 @@ public class NoAccessException extends SignServiceIntegrationException {
 
   /**
    * Constructor assigning the error message.
-   * 
+   *
    * @param message the error message
    */
   public NoAccessException(final String message) {
@@ -40,7 +40,7 @@ public class NoAccessException extends SignServiceIntegrationException {
 
   /**
    * Constructor assigning the error message and the cause of the error.
-   * 
+   *
    * @param message the error message
    * @param cause the cause of the error
    */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class SigningCertificateRequirements implements Extensible {
 
   /**
    * The requested certificate type.
-   * 
+   *
    * @param certificateType requested certificate type
    * @return the requested certificate type
    */
@@ -58,7 +58,7 @@ public class SigningCertificateRequirements implements Extensible {
   /**
    * Defines mappings between the signer's authentication attributes and attributes that are to be placed in the issued
    * signature certificate.
-   * 
+   *
    * @param attributeMappings a list of mapping directives of how to map from user/signer attributes to signature
    *          certificate attributes
    * @return a list of mapping directives of how to map from user/signer attributes to signature certificate attributes

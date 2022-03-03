@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * A singleton to be used internally for loading resources. By default the {@link DefaultContentLoader} is used. This
  * can be overridden by installing a customized content loader using {@link #setContentLoader(ContentLoader)}.
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -34,7 +34,7 @@ public class ContentLoaderSingleton implements ContentLoader {
 
   /**
    * Gets the singleton instance of the global content loader.
-   * 
+   *
    * @return a ContentLoader
    */
   public static ContentLoader getInstance() {
@@ -50,7 +50,7 @@ public class ContentLoaderSingleton implements ContentLoader {
   /**
    * If the global {@link ContentLoader} should be something else than {@link DefaultContentLoader} this method should
    * be used to assign this.
-   * 
+   *
    * @param loader the content loader to set
    */
   public void setContentLoader(final ContentLoader loader) {
@@ -65,7 +65,7 @@ public class ContentLoaderSingleton implements ContentLoader {
   /**
    * Gets the {@link ContentLoader} to use. If a specific content loader has not been assigned (using
    * {@link #setContentLoader(ContentLoader)}) an {@link DefaultContentLoader} instance will be used.
-   * 
+   *
    * @return the content loader to use
    */
   private ContentLoader getContentLoader() {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,16 +39,16 @@ public class SignatureStateTest {
 
   @Test
   public void testJson() throws Exception {
-    
+
     SignatureState state = new SignatureState() {
-      
+
       private static final long serialVersionUID = 1L;
 
       @Override
       public String getId() {
         return "123456";
       }
-      
+
       @Override
       public Serializable getState() {
         return DummyState.builder().stringField("dummy").intField(42).build();
@@ -56,22 +56,22 @@ public class SignatureStateTest {
 
     };
     DummyObject object = DummyObject.builder().object("Hello").state(state).build();
-    
+
     ObjectMapper mapper = new ObjectMapper();
     ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
 
     String json = writer.writeValueAsString(object);
-    
+
     DummyObject object2 = mapper.readValue(json, DummyObject.class);
 
     Assert.assertTrue(RestClientSignatureState.class.isInstance(object2.getState()));
     Assert.assertEquals(object.getState().getId(), object2.getState().getId());
-    
+
     DummyState ds2 = mapper.convertValue(object2.getState().getState(), DummyState.class);
     Assert.assertNotNull(ds2);
-    Assert.assertEquals(object.getState().getState(), ds2);    
-  }  
-  
+    Assert.assertEquals(object.getState().getState(), ds2);
+  }
+
   @Data
   @Builder
   @NoArgsConstructor
@@ -81,7 +81,7 @@ public class SignatureStateTest {
     private String object;
     private SignatureState state;
   }
-  
+
   @Data
   @Builder
   @NoArgsConstructor

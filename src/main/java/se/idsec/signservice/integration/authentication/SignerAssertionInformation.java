@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class SignerAssertionInformation implements Extensible {
 
   /**
    * Identity attributes for the signer.
-   * 
+   *
    * @param signerAttributes the identity attributes for the signer
    * @return the identity attributes for the signer
    */
@@ -58,7 +58,7 @@ public class SignerAssertionInformation implements Extensible {
 
   /**
    * The time (in millis since epoch) when the SignService authenticated the signer.
-   * 
+   *
    * @param authnInstant the authentication instant
    * @return the authentication instant
    */
@@ -91,7 +91,7 @@ public class SignerAssertionInformation implements Extensible {
   /**
    * An optional identifier of the type of authentication that was used for the "authentication for signature"
    * operation, e.g. "saml".
-   * 
+   *
    * @param authnType authentication type
    * @return the authentication type, or null
    */
@@ -102,7 +102,7 @@ public class SignerAssertionInformation implements Extensible {
   /**
    * Contains the unique ID of the assertion issued for the user's "authentication for signature" operation. See also
    * {@link #getAssertion()}.
-   * 
+   *
    * @param assertionReference the assertion ID from the user authentication
    * @return the assertion ID from the user authentication
    */
@@ -115,7 +115,7 @@ public class SignerAssertionInformation implements Extensible {
    * <p>
    * This is only set if the assertion was passed back in the SignResponse from the SignService.
    * </p>
-   * 
+   *
    * @param assertion the assertion from the user authentication
    * @return the assertion from the user authentication or null
    */

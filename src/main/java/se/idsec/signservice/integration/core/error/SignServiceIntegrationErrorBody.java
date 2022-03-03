@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * The HTTP status code.
-   * 
+   *
    * @param status the HTTP status code
    * @return the HTTP status code
    */
@@ -51,7 +51,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * The timestamp as milliseconds since epoch.
-   * 
+   *
    * @param timestamp the timestamp for the error
    * @return the timestamp for the error
    */
@@ -61,7 +61,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * The error code.
-   * 
+   *
    * @param errorCode the error code
    * @return the error code
    */
@@ -71,7 +71,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * Validation error details. Only set if the error was due to an input validation failure.
-   * 
+   *
    * @param validationError the validation error information
    * @return the validation error information
    */
@@ -81,7 +81,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * DSS error details.
-   * 
+   *
    * @param dssError DSS error details
    * @return DSS error details
    */
@@ -91,7 +91,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * The error message.
-   * 
+   *
    * @param message the error message
    * @return the error message
    */
@@ -101,7 +101,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * The requested path.
-   * 
+   *
    * @param path the requested path
    * @return the requested path
    */
@@ -111,7 +111,7 @@ public class SignServiceIntegrationErrorBody {
 
   /**
    * The name of the exception class that was thrown for this error.
-   * 
+   *
    * @param exceptionClass exception class
    * @return exception class
    */
@@ -130,7 +130,7 @@ public class SignServiceIntegrationErrorBody {
 
     /**
      * The name of the object that validation failed for.
-     * 
+     *
      * @param object object name
      * @return the object name
      */
@@ -140,7 +140,7 @@ public class SignServiceIntegrationErrorBody {
 
     /**
      * Underlying errors (field names and error messages).
-     * 
+     *
      * @param details map of underlying errors
      * @return map of underlying errors
      */
@@ -160,7 +160,7 @@ public class SignServiceIntegrationErrorBody {
 
     /**
      * The DSS major result code.
-     * 
+     *
      * @param majorCode the DSS major result code
      * @return the DSS major result code
      */
@@ -170,7 +170,7 @@ public class SignServiceIntegrationErrorBody {
 
     /**
      * The DSS minor result code.
-     * 
+     *
      * @param minorCode the DSS minor result code
      * @return the DSS minor result code
      */

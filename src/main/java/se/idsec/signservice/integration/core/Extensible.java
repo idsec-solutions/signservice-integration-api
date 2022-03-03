@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,14 @@ public interface Extensible {
 
   /**
    * Returns the extension parameters for the instance.
-   * 
+   *
    * @return the extension, or null if no extensions are set
    */
   Extension getExtension();
 
   /**
    * Assigns the extension parameters for the instance.
-   * 
+   *
    * @param extension
    *          the extension
    */
@@ -40,7 +40,7 @@ public interface Extensible {
 
   /**
    * Gets an extension value.
-   * 
+   *
    * @param name
    *          the extension name
    * @return the extension value or null if it does not exist
@@ -52,7 +52,7 @@ public interface Extensible {
 
   /**
    * Adds an extension.
-   * 
+   *
    * @param name
    *          extension name
    * @param value

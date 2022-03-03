@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
    * suitable identity attribute value may be specified to be part of the signer name. This value is analogous to, and
    * should hold the same value as, a present Name entry in the PDF signature dictionary. If the image template
    * referenced requires a value for signerName, this field is mandatory, otherwise it is optional.
-   * 
+   *
    * @return the signer name
    */
   public SignerName getSignerName() {
@@ -84,7 +84,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
    * any suitable identity attribute value may be specified to be part of the signer name. This value is analogous to,
    * and should hold the same value as, a present Name entry in the PDF signature dictionary. If the image template
    * referenced requires a value for signerName, this field is mandatory, otherwise it is optional.
-   * 
+   *
    * @param signerName the signer name
    */
   public void setSignerName(final SignerName signerName) {
@@ -94,7 +94,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
   /**
    * Apart from the signer name and signing date, a template may use other fields. This map provides the requested
    * fields and values.
-   * 
+   *
    * @return a map of fields and their values
    */
   public Map<String, String> getFieldValues() {
@@ -104,7 +104,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
   /**
    * Apart from the signer name and signing date, a template may use other fields. This map provides the requested
    * fields and values.
-   * 
+   *
    * @param fieldValues a map of fields and their values
    */
   public void setFieldValues(final Map<String, String> fieldValues) {
@@ -165,7 +165,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * to be validated as part of the signature operation. The values of the given attributes will be part of the signer
      * name field as they appear in the list (separated by a blank). It is possible to change how the information is
      * displayed by assigning a formatting, see {@link #setFormatting(String)}.
-     * 
+     *
      * @return a list of attribute names whose values should be used to display the signer name in the visible PDF
      *         signature
      */
@@ -179,7 +179,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * to be validated as part of the signature operation. The values of the given attributes will be part of the signer
      * name field as they appear in the list (separated by a blank). It is possible to change how the information is
      * displayed by assigning a formatting, see {@link #setFormatting(String)}.
-     * 
+     *
      * @param signerAttributes a list of attribute names whose values should be used to display the signer name in the
      *          visible PDF signature
      */
@@ -191,7 +191,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * Gets the string the may be supplied to change how the signer's information is displayed. Each list item from
      * {@link #getSignerAttributes()} is referenced by its order (starting from 0) and prefixed by %. For example, the
      * formatting string {@code "%1 %2 (%3)"} may display something like {@code Jim Smith (ID12345)}.
-     * 
+     *
      * @return the formatting string or null
      */
     public String getFormatting() {
@@ -202,7 +202,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * Assigns the string the may be supplied to change how the signer's information is displayed. Each list item from
      * {@link #getSignerAttributes()} is referenced by its order (starting from 0) and prefixed by %. For example, the
      * formatting string {@code "%1 %2 (%3)"} may display something like {@code Jim Smith (ID12345)}.
-     * 
+     *
      * @param formatting the formatting string
      */
     public void setFormatting(final String formatting) {

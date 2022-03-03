@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,7 +109,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Gets the unique reference for this image template.
-   * 
+   *
    * @return the unique reference
    */
   public String getReference() {
@@ -118,7 +118,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Assigns the unique reference for this image template.
-   * 
+   *
    * @param reference the unique reference
    */
   public void setReference(final String reference) {
@@ -127,7 +127,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Gets the SVG image expressed as an XML string.
-   * 
+   *
    * @return the SVG image expressed as an XML string
    */
   @JsonIgnore
@@ -143,7 +143,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Assigns the SVG image.
-   * 
+   *
    * @param image the SVG image expressed as an XML string
    * @deprecated since 1.1.0. Use {@link #setSvgImageFile(FileResource)} instead
    */
@@ -162,7 +162,7 @@ public class PdfSignatureImageTemplate implements Extensible {
    * <p>
    * See also {@link #getImage()} that returns the contents as an XML string directly
    * </p>
-   * 
+   *
    * @return the SVG image file for this template
    */
   public FileResource getSvgImageFile() {
@@ -171,7 +171,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Assigns the file resource that holds the SVG image file for this template.
-   * 
+   *
    * @param svgImageFile the SVG image file for this template
    */
   public void setSvgImageFile(final FileResource svgImageFile) {
@@ -181,7 +181,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Gets the width (in pixels) for the pixel image that is generated from the template (and inserted into the PDF
    * visible signature flow).
-   * 
+   *
    * @return the width (in pixels)
    */
   public Integer getWidth() {
@@ -191,7 +191,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the width (in pixels) for the pixel image that is generated from the template (and inserted into the PDF
    * visible signature flow).
-   * 
+   *
    * @param width the width (in pixels)
    */
   public void setWidth(final Integer width) {
@@ -201,7 +201,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Gets the height (in pixels) for the pixel image that is generated from the template (and inserted into the PDF
    * visible signature flow).
-   * 
+   *
    * @return the height (in pixels)
    */
   public Integer getHeight() {
@@ -211,7 +211,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the height (in pixels) for the pixel image that is generated from the template (and inserted into the PDF
    * visible signature flow).
-   * 
+   *
    * @param height the height (in pixels)
    */
   public void setHeight(final Integer height) {
@@ -220,7 +220,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Gets the flag telling whether the signer name will be included in the visible PDF signature.
-   * 
+   *
    * @return tells whether the signer name is included
    */
   public boolean isIncludeSignerName() {
@@ -230,7 +230,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the flag telling whether the signer name will be included in the visible PDF signature. The default is
    * {@code true}.
-   * 
+   *
    * @param includeSignerName flag telling whether the signer name should be included
    */
   public void setIncludeSignerName(final boolean includeSignerName) {
@@ -239,7 +239,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Gets the flag telling whether the signing time will be included in the visible PDF signature.
-   * 
+   *
    * @return tells whether the signing time will be included
    */
   public boolean isIncludeSigningTime() {
@@ -248,7 +248,7 @@ public class PdfSignatureImageTemplate implements Extensible {
 
   /**
    * Sets the flag telling whether the signing time will be included in the visible PDF signature.
-   * 
+   *
    * @param includeSigningTime flag telling whether the signing time should be included
    */
   public void setIncludeSigningTime(final boolean includeSigningTime) {
@@ -258,7 +258,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Gets the map of the field names that are required by the template in the fieldName map in
    * {@link VisiblePdfSignatureRequirement}.
-   * 
+   *
    * @return the field names and associated descriptions
    */
   public Map<String, String> getFields() {
@@ -268,7 +268,7 @@ public class PdfSignatureImageTemplate implements Extensible {
   /**
    * Assigns the map of the field names that are required by the template in the fieldName map in
    * {@link VisiblePdfSignatureRequirement}.
-   * 
+   *
    * @param fields the field names and associated descriptions
    */
   public void setFields(final Map<String, String> fields) {
@@ -291,7 +291,9 @@ public class PdfSignatureImageTemplate implements Extensible {
    * Builder for {@code PdfSignatureImageTemplate} objects.
    */
   public static class PdfSignatureImageTemplateBuilder implements ObjectBuilder<PdfSignatureImageTemplate> {
+    @SuppressWarnings("unused")
     private boolean includeSignerName = true;
+    @SuppressWarnings("unused")
     private boolean includeSigningTime = false;
 
     // Lombok

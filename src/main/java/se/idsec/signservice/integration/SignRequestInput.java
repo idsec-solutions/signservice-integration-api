@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import se.idsec.signservice.integration.signmessage.SignMessageParameters;
 /**
  * Class that represents the input to a {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}
  * operation.
- * 
+ *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
@@ -59,7 +59,7 @@ public class SignRequestInput implements Extensible {
    * Note: The correlation ID is never sent to the sign service. It is only used within the SignService Integration
    * Service.
    * </p>
-   * 
+   *
    * @param correlationId the correlationId to use for this process
    * @return the correlation ID or null if not has been assigned
    */
@@ -70,7 +70,7 @@ public class SignRequestInput implements Extensible {
   /**
    * A SignService Integration Service may be running under different policies, where a policy tells which
    * {@link IntegrationServiceDefaultConfiguration} that is active.
-   * 
+   *
    * @param policy the policy identifier to use for the operation
    * @return the policy identifier for this operation, or null (that denotes the default policy)
    */
@@ -84,7 +84,7 @@ public class SignRequestInput implements Extensible {
    * If not provided the SignatureService Integration Service will use the default sign requester ID
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultSignRequesterID()}).
    * </p>
-   * 
+   *
    * @param signRequesterID the sign requester ID
    * @return the sign requester ID, or null if the default ID should be used
    */
@@ -95,12 +95,12 @@ public class SignRequestInput implements Extensible {
   /**
    * The URL to which the user agent along with the sign response message should be directed after a signature
    * operation.
-   * 
+   *
    * <p>
    * If not provided the SignatureService Integration Service will use the default return URL
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultReturnUrl()}).
    * </p>
-   * 
+   *
    * @param returnUrl the URL to which a sign response is to be returned
    * @return the URL to which a sign response is to be returned, or null if the default URL should be used
    */
@@ -110,7 +110,7 @@ public class SignRequestInput implements Extensible {
 
   /**
    * The signature service URL to where SignRequest messages should be posted.
-   * 
+   *
    * <p>
    * If not provided the SignatureService Integration Service will use the default return URL
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultDestinationUrl()}).
@@ -125,12 +125,12 @@ public class SignRequestInput implements Extensible {
 
   /**
    * The algorithm identifier for the signature algorithm that should be used to sign the specified documents.
-   * 
+   *
    * <p>
    * If not provided the SignatureService Integration Service will use the default signature algorithm
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultSignatureAlgorithm()}).
    * </p>
-   * 
+   *
    * @param signatureAlgorithm signature algorithm identifier
    * @return signature algorithm identifier
    */
@@ -140,7 +140,7 @@ public class SignRequestInput implements Extensible {
 
   /**
    * The requirements that the sign requester has on the principal that is to perform the signature operation.
-   * 
+   *
    * @param authnRequirements authentication requirements
    * @return the authentication requirements
    */
@@ -150,7 +150,7 @@ public class SignRequestInput implements Extensible {
 
   /**
    * The requirements for the signature certificate that will be issued by the sign service.
-   * 
+   *
    * <p>
    * If not provided the SignatureService Integration Service will use the default requirements
    * ({@link IntegrationServiceDefaultConfiguration#getDefaultCertificateRequirements()}).
@@ -166,7 +166,7 @@ public class SignRequestInput implements Extensible {
   /**
    * The document(s) to be signed along with a per document signing requirements and parameters. At least one document
    * must be supplied.
-   * 
+   *
    * @param tbsDocuments a list of To-be-signed documents
    * @return a list of To-be-signed documents
    */
@@ -177,7 +177,7 @@ public class SignRequestInput implements Extensible {
 
   /**
    * The sign message parameters that is used to build the sign message element that is included in the SignRequest.
-   * 
+   *
    * @param signMessageParameters the sign message parameters
    * @return the sign message parameters
    */

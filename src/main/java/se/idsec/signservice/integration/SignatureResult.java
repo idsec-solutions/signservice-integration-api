@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ public class SignatureResult implements Extensible {
 
   /**
    * The ID for the signature operation. This ID corresponds to the RequestID of the SignRequest and SignResponse.
-   * 
+   *
    * @param id the operation ID
    * @return the operation ID
    */
@@ -58,7 +58,7 @@ public class SignatureResult implements Extensible {
 
   /**
    * The correlation ID. This is the ID that is used in all logging events.
-   * 
+   *
    * @param correlationId the correlationId to use for this process
    * @return the correlation ID
    */
@@ -68,7 +68,7 @@ public class SignatureResult implements Extensible {
 
   /**
    * The signed documents.
-   * 
+   *
    * @param signedDocuments the signed documents
    * @return the signed documents
    */
@@ -79,7 +79,7 @@ public class SignatureResult implements Extensible {
 
   /**
    * Contains information about the signer's "authentication for signature" that was part of the signature operation.
-   * 
+   *
    * @param signerAssertionInformation assertion information
    * @return the assertion information
    */
