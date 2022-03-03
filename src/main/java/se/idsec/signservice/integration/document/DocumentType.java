@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 IDsec Solutions AB
+ * Copyright 2019-2022 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,14 @@ public enum DocumentType {
   XML("application/xml"),
 
   /** PDF document. */
-  PDF("application/pdf");
+  PDF("application/pdf"),
+
+  /** JSON document. */
+  JSON("application/json");
 
   /**
    * Returns the MIME type for the document type.
-   * 
+   *
    * @return the MIME type
    */
   public String getMimeType() {
@@ -40,7 +43,7 @@ public enum DocumentType {
 
   /**
    * Given a MIME type the method returns the corresponding enum constant.
-   * 
+   *
    * @param mimeType
    *          the MIME type
    * @return the enum constant value
@@ -61,7 +64,7 @@ public enum DocumentType {
 
   /**
    * Constructor.
-   * 
+   *
    * @param mimeType
    *          the mime type.
    */
