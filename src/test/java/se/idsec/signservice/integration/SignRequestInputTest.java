@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.UUID;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -129,7 +129,7 @@ public class SignRequestInputTest {
     System.out.println(json);
 
     SignRequestInput input2 = mapper.readValue(json, SignRequestInput.class);
-    Assert.assertNotNull(input2);
+    Assertions.assertNotNull(input2);
   }
 
   @Test
