@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package se.idsec.signservice.integration.core;
 
 import java.io.Serializable;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -64,12 +64,12 @@ public class SignatureStateTest {
 
     DummyObject object2 = mapper.readValue(json, DummyObject.class);
 
-    Assert.assertTrue(RestClientSignatureState.class.isInstance(object2.getState()));
-    Assert.assertEquals(object.getState().getId(), object2.getState().getId());
+    Assertions.assertTrue(RestClientSignatureState.class.isInstance(object2.getState()));
+    Assertions.assertEquals(object.getState().getId(), object2.getState().getId());
 
     DummyState ds2 = mapper.convertValue(object2.getState().getState(), DummyState.class);
-    Assert.assertNotNull(ds2);
-    Assert.assertEquals(object.getState().getState(), ds2);
+    Assertions.assertNotNull(ds2);
+    Assertions.assertEquals(object.getState().getState(), ds2);
   }
 
   @Data

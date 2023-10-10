@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,21 +63,15 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * calculates where in the already existing PDF signature page the next signature image will be inserted.
    * </p>
    *
-   * @param policy
-   *          the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
-   * @param pdfDocument
-   *          the contents of the PDF document that is to be prepared
-   * @param signaturePagePreferences
-   *          the PDF signature page preferences
+   * @param policy the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
+   * @param pdfDocument the contents of the PDF document that is to be prepared
+   * @param signaturePagePreferences the PDF signature page preferences
    * @return a PreparedPdfDocument object containing the modified PDF document (if a sign page was added) and the
-   *         VisiblePdfSignatureRequirement telling how a signature image should be added
-   * @throws InputValidationException
-   *           for input validation errors
-   * @throws PdfSignaturePageFullException
-   *           if the PDF document contains more signatures than there is room for in the PDF signature page (and
-   *           {@link PdfSignaturePagePreferences#isFailWhenSignPageFull()} evaluates to true)
-   * @throws SignServiceIntegrationException
-   *           for other processing errors
+   *           VisiblePdfSignatureRequirement telling how a signature image should be added
+   * @throws InputValidationException for input validation errors
+   * @throws PdfSignaturePageFullException if the PDF document contains more signatures than there is room for in the
+   *           PDF signature page (and {@link PdfSignaturePagePreferences#isFailWhenSignPageFull()} evaluates to true)
+   * @throws SignServiceIntegrationException for other processing errors
    */
   PreparedPdfDocument preparePdfSignaturePage(final String policy,
       final byte[] pdfDocument,

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for DefaultContentLoader. Spring is not on the classpath so we test our simple implementation.
@@ -34,49 +34,40 @@ public class DefaultContentLoaderTest {
 
   @Test
   public void testLoadFromClasspath() throws Exception {
-    DefaultContentLoader loader = new DefaultContentLoader();
+    final DefaultContentLoader loader = new DefaultContentLoader();
     byte[] contents = loader.loadContent("classpath:testfile.txt");
-    Assert.assertArrayEquals(expectedContents, contents);
+    Assertions.assertArrayEquals(expectedContents, contents);
 
     contents = loader.loadContent("classpath:/testfile.txt");
-    Assert.assertArrayEquals(expectedContents, contents);
+    Assertions.assertArrayEquals(expectedContents, contents);
   }
 
   @Test
   public void testLoadFromFile() throws Exception {
-    DefaultContentLoader loader = new DefaultContentLoader();
-    byte[] contents = loader.loadContent(String.format("file://%s/src/test/resources/testfile.txt",
-      Paths.get("").toAbsolutePath().toString()));
-    Assert.assertArrayEquals(expectedContents, contents);
+    final DefaultContentLoader loader = new DefaultContentLoader();
+    final byte[] contents = loader.loadContent(String.format("file://%s/src/test/resources/testfile.txt",
+        Paths.get("").toAbsolutePath().toString()));
+    Assertions.assertArrayEquals(expectedContents, contents);
 
     loader.loadContent(String.format("%s/src/test/resources/testfile.txt",
-      Paths.get("").toAbsolutePath().toString()));
-    Assert.assertArrayEquals(expectedContents, contents);
+        Paths.get("").toAbsolutePath().toString()));
+    Assertions.assertArrayEquals(expectedContents, contents);
   }
 
   @Test
   public void testNoFile() throws Exception {
-    DefaultContentLoader loader = new DefaultContentLoader();
+    final DefaultContentLoader loader = new DefaultContentLoader();
 
-    try {
+    Assertions.assertThrows(IOException.class, () -> {
       loader.loadContent("classpath:no-such-file.txt");
-      Assert.fail("Expected IOException");
-    }
-    catch (IOException e) {
-    }
+    });
 
-    try {
+    Assertions.assertThrows(IOException.class, () -> {
       loader.loadContent("file://no-such-file.txt");
-      Assert.fail("Expected IOException");
-    }
-    catch (IOException e) {
-    }
+    });
 
-    try {
+    Assertions.assertThrows(IOException.class, () -> {
       loader.loadContent("/home/user/no-such-file.txt");
-      Assert.fail("Expected IOException");
-    }
-    catch (IOException e) {
-    }
+    });
   }
 }
