@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.security;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -23,6 +25,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 
 /**
  * Representation of encryption algorithms to be used when encrypting a sign message for an Identity Provider.
@@ -30,7 +33,7 @@ import lombok.ToString;
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-public interface EncryptionParameters {
+public interface EncryptionParameters extends Serializable {
 
   /**
    * Returns the data encryption algorithm that should be used when encrypting the sign message for a given Identity
@@ -53,7 +56,7 @@ public interface EncryptionParameters {
    * {@code http://www.w3.org/2009/xmlenc11#rsa-oaep}, this method returns the RSA OAEP parameters to use.
    *
    * @return the RSA OAEP parameters, or {@code null} if {@link #getDataEncryptionAlgorithm()} does not return a RSA
-   *         OEAP algorithm
+   *           OEAP algorithm
    */
   RSAOAEPParameters getRsaOaepParameters();
 
@@ -66,7 +69,9 @@ public interface EncryptionParameters {
   @AllArgsConstructor
   @ToString
   @JsonInclude(Include.NON_NULL)
-  public static class RSAOAEPParameters {
+  public static class RSAOAEPParameters implements Serializable {
+
+    private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
     /** Digest method algorithm URI. */
     private String digestMethod;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,10 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -40,36 +37,84 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  */
 @ToString
 @Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class SigningCertificateRequirements implements Extensible {
 
-  /**
-   * The requested certificate type.
-   *
-   * @param certificateType requested certificate type
-   * @return the requested certificate type
-   */
-  @Setter
-  @Getter
+  /** For serializing. */
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
+  /** The requested certificate type. */
   private CertificateType certificateType;
 
   /**
    * Defines mappings between the signer's authentication attributes and attributes that are to be placed in the issued
    * signature certificate.
-   *
-   * @param attributeMappings a list of mapping directives of how to map from user/signer attributes to signature
-   *          certificate attributes
-   * @return a list of mapping directives of how to map from user/signer attributes to signature certificate attributes
    */
   @Singular
-  @Setter
-  @Getter
   private List<CertificateAttributeMapping> attributeMappings;
 
   /** Extensions for the object. */
   private Extension extension;
+
+  /**
+   * Default constructor.
+   */
+  public SigningCertificateRequirements() {
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param certificateType the requested certificate type
+   * @param attributeMappings mappings between the signer's authentication attributes and attributes that are to be
+   *          placed in the issued signature certificate
+   * @param extension extensions for the object
+   */
+  public SigningCertificateRequirements(final CertificateType certificateType,
+      final List<CertificateAttributeMapping> attributeMappings, final Extension extension) {
+    this.certificateType = certificateType;
+    this.attributeMappings = attributeMappings;
+    this.extension = extension;
+  }
+
+  /**
+   * Gets the requested certificate type.
+   *
+   * @return the requested certificate type
+   */
+  public CertificateType getCertificateType() {
+    return this.certificateType;
+  }
+
+  /**
+   * Assigns the requested certificate type.
+   *
+   * @param certificateType requested certificate type
+   */
+  public void setCertificateType(final CertificateType certificateType) {
+    this.certificateType = certificateType;
+  }
+
+  /**
+   * Gets the mappings between the signer's authentication attributes and attributes that are to be placed in the issued
+   * signature certificate.
+   *
+   * @return a list of mapping directives of how to map from user/signer attributes to signature certificate attributes
+   */
+  public List<CertificateAttributeMapping> getAttributeMappings() {
+    return this.attributeMappings;
+  }
+
+  /**
+   * Assigns the mappings between the signer's authentication attributes and attributes that are to be placed in the
+   * issued signature certificate.
+   *
+   * @param attributeMappings a list of mapping directives of how to map from user/signer attributes to signature
+   *          certificate attributes
+   */
+  public void setAttributeMappings(final List<CertificateAttributeMapping> attributeMappings) {
+    this.attributeMappings = attributeMappings;
+  }
 
   /** {@inheritDoc} */
   @Override

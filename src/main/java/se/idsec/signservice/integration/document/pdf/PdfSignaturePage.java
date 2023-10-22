@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.FileResource;
@@ -56,11 +57,10 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class PdfSignaturePage implements Extensible {
 
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
   /**
    * The unique ID for this PDF signature page.
-   *
-   * @param id unique ID
-   * @return the ID
    */
   @Getter
   @Setter
@@ -68,9 +68,6 @@ public class PdfSignaturePage implements Extensible {
 
   /**
    * The file resource containing the PDF document that holds the PDF signature page.
-   *
-   * @param pdfDocument the PDF document file resource
-   * @return the PDF document file resource
    */
   @Setter
   @Getter
@@ -79,9 +76,6 @@ public class PdfSignaturePage implements Extensible {
   /**
    * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
    * attribute should assigned to the desired number of rows. The default is {@code 1}.
-   *
-   * @param rows the number of rows of PDF sign images this sign page supports
-   * @return the number of rows of PDF sign images this sign page supports
    */
   @Getter
   @Setter
@@ -91,9 +85,6 @@ public class PdfSignaturePage implements Extensible {
   /**
    * If it should be possible to add PDF sign images in several columns to this sign page document the {@code columns}
    * attribute should assigned to the desired number of columns. The default is {@code 1}.
-   *
-   * @param columns the number of columns of PDF sign images this sign page supports
-   * @return the number of columns of PDF sign images this sign page supports
    */
   @Getter
   @Setter
@@ -104,8 +95,6 @@ public class PdfSignaturePage implements Extensible {
    * A unique reference of the signature template image that is inserted into this PDF signature page. See
    * {@link PdfSignatureImageTemplate}.
    *
-   * @param signatureImageReference the unique reference of the signature image template
-   * @return the unique reference of the signature image template
    * @see PdfSignatureImageTemplate
    * @see VisiblePdfSignatureRequirement#getTemplateImageRef()
    */
@@ -115,10 +104,6 @@ public class PdfSignaturePage implements Extensible {
 
   /**
    * Configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted.
-   *
-   * @param imagePlacementConfiguration configuration for where in the PDF signature page the PDF signature image(s)
-   *          should be inserted
-   * @return configuration for where in the PDF signature page the PDF signature image(s) should be inserted
    */
   @Getter
   @Setter
@@ -189,12 +174,11 @@ public class PdfSignaturePage implements Extensible {
   @AllArgsConstructor
   public static class PdfSignatureImagePlacementConfiguration implements Extensible {
 
+    private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
     /**
      * The X coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
      * PDF signature page.
-     *
-     * @param xPosition the initial X coordinate position (in pixels)
-     * @return the initial X coordinate position (in pixels)
      */
     @Getter
     @Setter
@@ -203,9 +187,6 @@ public class PdfSignaturePage implements Extensible {
     /**
      * The Y coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
      * PDF signature page.
-     *
-     * @param yPosition the initial Y coordinate position (in pixels)
-     * @return the initial Y coordinate position (in pixels)
      */
     @Getter
     @Setter
@@ -214,9 +195,6 @@ public class PdfSignaturePage implements Extensible {
     /**
      * The scale of the final visible signature image expressed as zoom percentage. The value -100 represents a 0 sized
      * image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is assumed.
-     *
-     * @param scale the scale of the final visible signature image
-     * @return the scale of the final visible signature image
      */
     @Getter
     @Setter
@@ -230,11 +208,6 @@ public class PdfSignaturePage implements Extensible {
      * <p>
      * Note: If the PDF signature page only supports one column this property is ignored.
      * </p>
-     *
-     * @param xIncrement the number of pixels that should be added to the previously used xPosition when inserting a PDF
-     *          signature image in a new column
-     * @return the number of pixels that should be added to the previously used xPosition when inserting a PDF signature
-     *         image in a new column
      */
     @Getter
     @Setter
@@ -247,11 +220,6 @@ public class PdfSignaturePage implements Extensible {
      * <p>
      * Note: If the PDF signature page only supports one row this property is ignored.
      * </p>
-     *
-     * @param yIncrement the number of pixels that should be added to the previously used yPosition when inserting a PDF
-     *          signature image in a new row
-     * @return the number of pixels that should be added to the previously used yPosition when inserting a PDF signature
-     *         image in a new row
      */
     @Getter
     @Setter
@@ -265,9 +233,6 @@ public class PdfSignaturePage implements Extensible {
      * Note: It is only possible to have PDF signature images inserted into <b>one</b> page of the PDF signature page
      * document.
      * </p>
-     *
-     * @param page the page number in the document where sign image(s) should be inserted
-     * @return the page number in the document where sign image(s) should be inserted
      */
     @Getter
     @Setter
@@ -292,7 +257,8 @@ public class PdfSignaturePage implements Extensible {
     /**
      * Builder for {@code PdfSignatureImagePlacementConfiguration} objects.
      */
-    public static class PdfSignatureImagePlacementConfigurationBuilder implements ObjectBuilder<PdfSignatureImagePlacementConfiguration> {
+    public static class PdfSignatureImagePlacementConfigurationBuilder
+        implements ObjectBuilder<PdfSignatureImagePlacementConfiguration> {
       @SuppressWarnings("unused")
       private Integer page = 1;
       @SuppressWarnings("unused")

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -39,92 +37,192 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  * @author Stefan Santesson (stefan@idsec.se)
  */
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @JsonInclude(Include.NON_NULL)
 public class SignerAssertionInformation implements Extensible {
 
-  /**
-   * Identity attributes for the signer.
-   *
-   * @param signerAttributes the identity attributes for the signer
-   * @return the identity attributes for the signer
-   */
-  @Setter
-  @Getter
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
+  /** Identity attributes for the signer. */
   @Singular
   private List<SignerIdentityAttributeValue> signerAttributes;
 
-  /**
-   * The time (in millis since epoch) when the SignService authenticated the signer.
-   *
-   * @param authnInstant the authentication instant
-   * @return the authentication instant
-   */
-  @Setter
-  @Getter
+  /** The time (in millis since epoch) when the SignService authenticated the signer. */
   private long authnInstant;
 
   /**
    * The entityID of the authentication service (Identity Provider) that will authenticated the signer as part of the
    * signature process.
-   *
-   * @param authnServiceID the entityID of the authentication service that authenticated the signer
-   * @return the entityID of the authentication service that authenticated the signer
    */
-  @Setter
-  @Getter
   private String authnServiceID;
 
   /**
    * The authentication context reference identifier (an URI) that identifies the context under which the signer was
-   * authenticated. This identifier is often referred to as the "level of assurance" (LoA).
-   *
-   * @param authnContextRef the authentication context reference URI
-   * @return the authentication context reference URI
+   * authenticated.
    */
-  @Setter
-  @Getter
   private String authnContextRef;
 
   /**
    * An optional identifier of the type of authentication that was used for the "authentication for signature"
    * operation, e.g. "saml".
-   *
-   * @param authnType authentication type
-   * @return the authentication type, or null
    */
-  @Setter
-  @Getter
   private String authnType;
 
   /**
-   * Contains the unique ID of the assertion issued for the user's "authentication for signature" operation. See also
-   * {@link #getAssertion()}.
-   *
-   * @param assertionReference the assertion ID from the user authentication
-   * @return the assertion ID from the user authentication
+   * Contains the unique ID of the assertion issued for the user's "authentication for signature" operation.
    */
-  @Setter
-  @Getter
   private String assertionReference;
 
   /**
    * The assertion issued for the user's "authentication for signature" operation (in Base64 encoded format).
-   * <p>
-   * This is only set if the assertion was passed back in the SignResponse from the SignService.
-   * </p>
-   *
-   * @param assertion the assertion from the user authentication
-   * @return the assertion from the user authentication or null
    */
-  @Setter
-  @Getter
   private String assertion;
 
   /** Extensions for the object. */
   private Extension extension;
+
+  /**
+   * Constructor.
+   */
+  public SignerAssertionInformation() {
+  }
+
+  /**
+   * Gets the identity attributes for the signer.
+   *
+   * @return the identity attributes for the signer
+   */
+  public List<SignerIdentityAttributeValue> getSignerAttributes() {
+    return this.signerAttributes;
+  }
+
+  /**
+   * Assigns the identity attributes for the signer.
+   *
+   * @param signerAttributes the identity attributes for the signer
+   */
+  public void setSignerAttributes(final List<SignerIdentityAttributeValue> signerAttributes) {
+    this.signerAttributes = signerAttributes;
+  }
+
+  /**
+   * Gets the time (in millis since epoch) when the SignService authenticated the signer.
+   *
+   * @return the authentication instant
+   */
+  public long getAuthnInstant() {
+    return this.authnInstant;
+  }
+
+  /**
+   * Assigns the time (in millis since epoch) when the SignService authenticated the signer.
+   *
+   * @param authnInstant the authentication instant
+   */
+  public void setAuthnInstant(final long authnInstant) {
+    this.authnInstant = authnInstant;
+  }
+
+  /**
+   * Gets the entityID of the authentication service (Identity Provider) that will authenticated the signer as part of
+   * the signature process.
+   *
+   * @return the entityID of the authentication service that authenticated the signer
+   */
+  public String getAuthnServiceID() {
+    return this.authnServiceID;
+  }
+
+  /**
+   * Assigns the entityID of the authentication service (Identity Provider) that will authenticated the signer as part
+   * of the signature process.
+   *
+   * @param authnServiceID the entityID of the authentication service that authenticated the signer
+   */
+  public void setAuthnServiceID(final String authnServiceID) {
+    this.authnServiceID = authnServiceID;
+  }
+
+  /**
+   * Gets the authentication context reference identifier (an URI) that identifies the context under which the signer
+   * was authenticated. This identifier is often referred to as the "level of assurance" (LoA).
+   *
+   * @return the authentication context reference URI
+   */
+  public String getAuthnContextRef() {
+    return this.authnContextRef;
+  }
+
+  /**
+   * Assigns the authentication context reference identifier (an URI) that identifies the context under which the signer
+   * was authenticated. This identifier is often referred to as the "level of assurance" (LoA).
+   *
+   * @param authnContextRef the authentication context reference URI
+   */
+  public void setAuthnContextRef(final String authnContextRef) {
+    this.authnContextRef = authnContextRef;
+  }
+
+  /**
+   * Gets the identifier for the type of authentication that was used for the "authentication for signature" operation,
+   * e.g. "saml".
+   *
+   * @return the authentication type, or {@code null} if not set
+   */
+  public String getAuthnType() {
+    return this.authnType;
+  }
+
+  /**
+   * Assigns the identifier for the type of authentication that was used for the "authentication for signature"
+   * operation, e.g. "saml".
+   *
+   * @param authnType authentication type
+   */
+  public void setAuthnType(final String authnType) {
+    this.authnType = authnType;
+  }
+
+  /**
+   * Gets the unique ID of the assertion issued for the user's "authentication for signature" operation. See also
+   * {@link #getAssertion()}.
+   *
+   * @return the assertion ID from the user authentication
+   */
+  public String getAssertionReference() {
+    return this.assertionReference;
+  }
+
+  /**
+   * Assigns the unique ID of the assertion issued for the user's "authentication for signature" operation.
+   *
+   * @param assertionReference the assertion ID from the user authentication
+   */
+  public void setAssertionReference(final String assertionReference) {
+    this.assertionReference = assertionReference;
+  }
+
+  /**
+   * Gets the assertion issued for the user's "authentication for signature" operation (in Base64 encoded format).
+   * <p>
+   * This is only available if the assertion was passed back in the SignResponse from the SignService.
+   * </p>
+   *
+   * @return the assertion from the user authentication or {@code null}
+   */
+  public String getAssertion() {
+    return this.assertion;
+  }
+
+  /**
+   * Assigns the assertion issued for the user's "authentication for signature" operation (in Base64 encoded format).
+   *
+   * @param assertion the assertion from the user authentication
+   */
+  public void setAssertion(final String assertion) {
+    this.assertion = assertion;
+  }
 
   /** {@inheritDoc} */
   @Override

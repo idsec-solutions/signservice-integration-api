@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package se.idsec.signservice.integration.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import se.idsec.signservice.integration.ApiVersion;
+
 /**
  * Represents an extension to a domain object. An extension is a set of name-value pairs.
  *
@@ -27,7 +29,7 @@ import java.util.Map;
 public class Extension extends HashMap<String, String> {
 
   /** For serializing. */
-  private static final long serialVersionUID = 8520822824322024498L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Default constructor.
@@ -39,8 +41,7 @@ public class Extension extends HashMap<String, String> {
   /**
    * Copy constructor.
    *
-   * @param m
-   *          the map to initialize the object with
+   * @param m the map to initialize the object with
    */
   public Extension(final Map<? extends String, ? extends String> m) {
     super(m);
@@ -82,10 +83,8 @@ public class Extension extends HashMap<String, String> {
     /**
      * Adds a name-value pair.
      *
-     * @param name
-     *          extension name
-     * @param value
-     *          extension value
+     * @param name extension name
+     * @param value extension value
      * @return the builder
      */
     ExtensionBuilder add(final String name, final String value) {

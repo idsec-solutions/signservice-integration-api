@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@ public enum CertificateType {
   /**
    * Given a type string the corresponding enum constant is returned.
    *
-   * @param type
-   *          the type
+   * @param type the type
    * @return a CertificateType
    * @throws IllegalArgumentException if no matching enum constant is found
    */
@@ -58,7 +57,7 @@ public enum CertificateType {
         return t;
       }
     }
-    throw new IllegalArgumentException(String.format("%s is not a valid certificate type", type));
+    throw new IllegalArgumentException("%s is not a valid certificate type".formatted(type));
   }
 
   /** Textual representation of the type. */
@@ -67,8 +66,7 @@ public enum CertificateType {
   /**
    * Constructor.
    *
-   * @param type
-   *          the type
+   * @param type the type
    */
   CertificateType(final String type) {
     this.type = type;

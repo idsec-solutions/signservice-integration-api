@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
 import se.idsec.signservice.integration.core.Extensible;
@@ -47,6 +48,8 @@ import se.idsec.signservice.integration.document.TbsDocument;
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class PreparedPdfDocument implements Extensible {
+
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * The policy under which the data held in this class may be used. This is always the same as the policy given in the
@@ -75,7 +78,7 @@ public class PreparedPdfDocument implements Extensible {
    *
    * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
    * @return the updated PDF document (in Base64 encoded form) or null if the initial PDF document was not updated or if
-   *         document references are used
+   *           document references are used
    */
   @Setter
   @Getter
@@ -109,7 +112,7 @@ public class PreparedPdfDocument implements Extensible {
    * @param visiblePdfSignatureRequirement a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the
    *          PDF document that is about to be signed with a signature image
    * @return a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about to
-   *         be signed with a signature image
+   *           be signed with a signature image
    */
   @Setter
   @Getter

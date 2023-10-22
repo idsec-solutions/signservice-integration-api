@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,23 +16,28 @@
 package se.idsec.signservice.integration;
 
 /**
- * Dedicated exception class to represent a user cancel.
+ * Internal class used for serialization across library classes and for representing the version of the API.
  *
- * @author Martin Lindström (martin@idsec.se)
- * @author Stefan Santesson (stefan@idsec.se)
+ * @author Martin Lindström
  */
-public class SignResponseCancelStatusException extends SignResponseErrorStatusException {
+public final class ApiVersion {
 
-  /** For serializing. */
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final int MAJOR = 2;
+  private static final int MINOR = 0;
+  private static final int PATCH = 0;
 
   /**
-   * Constructor.
+   * Global serialization value for classes.
    */
-  public SignResponseCancelStatusException() {
-    super("urn:oasis:names:tc:dss:1.0:resultmajor:ResponderError",
-      "http://id.elegnamnden.se/sig-status/1.0/user-cancel",
-      "User cancelled signature operation");
+  public static final long SERIAL_VERSION_UID = getVersion().hashCode();
+
+  /**
+   * Gets the version string.
+   *
+   * @return the version string
+   */
+  public static String getVersion() {
+    return MAJOR + "." + MINOR + "." + PATCH;
   }
 
 }

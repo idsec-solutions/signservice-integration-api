@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,8 @@ package se.idsec.signservice.integration.certificate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -42,36 +41,15 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /** For serializing. */
-  private static final long serialVersionUID = -4866653598772777511L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
-  /**
-   * The default value to use if no mapping can be found.
-   *
-   * @param defaultValue the value to use if no mapping can be found
-   * @return the value to use if no mapping can be found, or null if no default value has been assigned
-   */
-  @Setter
-  @Getter
+  /** The default value to use if no mapping can be found. */
   private String defaultValue;
 
-  /**
-   * Friendly name of attribute (optional).
-   *
-   * @param friendlyName the "friendly name" of the attribute for display purposes
-   * @return the "friendly name" of the attribute for display purposes or code if not present
-   */
-  @Setter
-  @Getter
+  /** Friendly name of attribute (optional). */
   private String friendlyName;
 
-  /**
-   * Indicates if this attribute must be provided.
-   *
-   * @param required whether the attribute is required
-   * @return tells whether the attribute is required
-   */
-  @Setter
-  @Getter
+  /** Indicates if this attribute must be provided. */
   private Boolean required;
 
   /**
@@ -113,6 +91,60 @@ public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
    */
   public void setType(final RequestedCertificateAttributeType type) {
     super.setType(type.getType());
+  }
+
+  /**
+   * Gets the default value to use if no mapping can be found.
+   *
+   * @return the value to use if no mapping can be found, or {@code null} if no default value has been assigned
+   */
+  public String getDefaultValue() {
+    return this.defaultValue;
+  }
+
+  /**
+   * Assigns te default value to use if no mapping can be found.
+   *
+   * @param defaultValue the value to use if no mapping can be found
+   */
+  public void setDefaultValue(final String defaultValue) {
+    this.defaultValue = defaultValue;
+  }
+
+  /**
+   * Gets the friendly name of attribute.
+   *
+   * @return the "friendly name" of the attribute for display purposes or {@code null} if not present
+   */
+  public String getFriendlyName() {
+    return this.friendlyName;
+  }
+
+  /**
+   * Assigns the friendly name of attribute.
+   *
+   * @param friendlyName the "friendly name" of the attribute for display purposes
+   */
+  public void setFriendlyName(final String friendlyName) {
+    this.friendlyName = friendlyName;
+  }
+
+  /**
+   * Gets whether this attribute must be provided.
+   *
+   * @return tells whether the attribute is required
+   */
+  public Boolean getRequired() {
+    return this.required;
+  }
+
+  /**
+   * Assigns whether this attribute must be provided.
+   *
+   * @param required whether the attribute is required
+   */
+  public void setRequired(final Boolean required) {
+    this.required = required;
   }
 
   /**

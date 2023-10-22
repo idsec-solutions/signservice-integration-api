@@ -16,6 +16,7 @@
 package se.idsec.signservice.integration.core;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
@@ -24,14 +25,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
+import se.idsec.signservice.integration.ApiVersion;
 
 /**
- * A {@code FileResource} class is a generic class for handling file resources used in configuration of a
- * SignService Integration Service. Depending on how the service is configured a {@code FileResource} can be set
- * up in two different ways:
+ * A {@code FileResource} class is a generic class for handling file resources used in configuration of a SignService
+ * Integration Service. Depending on how the service is configured a {@code FileResource} can be set up in two different
+ * ways:
  * <ul>
  * <li>By giving the contents of the file resource (using {@link #setContents(String)}).</li>
  * <li>By giving a file resource string pointing at the file resource (see {@link #setResource(String)}). This is
@@ -41,11 +41,12 @@ import lombok.NoArgsConstructor;
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @JsonInclude(Include.NON_NULL)
-public class FileResource {
+public class FileResource implements Serializable {
+
+  /** For serializing. */
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The base64 encoded contents of the file resource. */
   private String contents;
@@ -70,6 +71,28 @@ public class FileResource {
   private boolean eagerlyLoadContents = false;
 
   /**
+   * Default constructor.
+   */
+  public FileResource() {
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param contents the base64 encoded contents of the file resource
+   * @param description optional descriptive string for the file resource
+   * @param resource the resource string for the file/resource
+   * @param eagerlyLoadContents whether to load contents directly (see {@link #setEagerlyLoadContents(boolean)})
+   */
+  public FileResource(
+      final String contents, final String description, final String resource, final boolean eagerlyLoadContents) {
+    this.contents = contents;
+    this.description = description;
+    this.resource = resource;
+    this.eagerlyLoadContents = eagerlyLoadContents;
+  }
+
+  /**
    * Gets the contents of the file resource as a base64 encoded string.
    *
    * @return the file resource content as a base64 encoded string or null if no content is available
@@ -89,8 +112,7 @@ public class FileResource {
   /**
    * Assigns the file resource contents as a base64 encoded string.
    *
-   * @param contents
-   *          the base64 encoded contents of the file resource
+   * @param contents the base64 encoded contents of the file resource
    */
   public void setContents(final String contents) {
     // Assert that the contents is a valid Base64 encoding (will throw if not) ...
@@ -101,8 +123,7 @@ public class FileResource {
   /**
    * Assigns the raw file resource contents.
    *
-   * @param contents
-   *          the raw file resource contents
+   * @param contents the raw file resource contents
    */
   public void setContents(final byte[] contents) {
     this.setContents(new String(Base64.getEncoder().encode(contents), StandardCharsets.UTF_8));
@@ -120,16 +141,14 @@ public class FileResource {
   /**
    * Assigns the description of the file resource.
    *
-   * @param description
-   *          the description of the file resource
+   * @param description the description of the file resource
    */
   public void setDescription(final String description) {
     this.description = description;
   }
 
   /**
-   * If the {@code FileResource} object was initialized with a {@code resource} string this method returns this
-   * string.
+   * If the {@code FileResource} object was initialized with a {@code resource} string this method returns this string.
    *
    * @return the file resource string or null if none is set
    */
@@ -145,39 +164,36 @@ public class FileResource {
    * and {@code file:/path/xyz.svg}.
    * </p>
    *
-   * @param resource
-   *          the resource string
+   * @param resource the resource string
    */
   public void setResource(final String resource) {
     this.resource = resource;
   }
 
   /**
-   * If the {@code FileResource} object is initialized by a resource string the object can function in two modes;
-   * it either loads the contents directly when the object is created using {@link #afterPropertiesSet()}
+   * If the {@code FileResource} object is initialized by a resource string the object can function in two modes; it
+   * either loads the contents directly when the object is created using {@link #afterPropertiesSet()}
    * ({@code eagerlyLoadContents = true}), or it loads the contents every time it is asked for
    * ({@code eagerlyLoadContents = false}). The latter is the default and should be used if large documents that are
    * assigned to several configuration objects are handled. This will prevent a heavy memory usage at the cost of speed
    * in fetching the document contents.
    *
-   * @param eagerlyLoadContents
-   *          whether to load contents eagerly or not
+   * @param eagerlyLoadContents whether to load contents eagerly or not
    */
   public void setEagerlyLoadContents(final boolean eagerlyLoadContents) {
     this.eagerlyLoadContents = eagerlyLoadContents;
   }
 
   /**
-   * Checks that the file resource is correctly initialized, and if {@code eagerlyLoadContents} is {@code true} it
-   * also loads the contents (if necessary).
+   * Checks that the file resource is correctly initialized, and if {@code eagerlyLoadContents} is {@code true} it also
+   * loads the contents (if necessary).
    *
    * <p>
    * Note: If executing in a Spring Framework environment this method is automatically invoked after all properties have
    * been assigned. Otherwise it should be explicitly invoked.
    * </p>
    *
-   * @throws Exception
-   *           for init errors
+   * @throws Exception for init errors
    */
   @PostConstruct
   public void afterPropertiesSet() throws Exception {
@@ -197,8 +213,7 @@ public class FileResource {
   /**
    * Helper method that loads contents from a resource.
    *
-   * @param resource
-   *          the resource string
+   * @param resource the resource string
    * @return the Base64 encoded contents
    */
   private static String loadContentsFromResource(final String resource) {
@@ -207,7 +222,7 @@ public class FileResource {
         final byte[] contents = ContentLoaderSingleton.getInstance().loadContent(resource);
         return Base64.getEncoder().encodeToString(contents);
       }
-      catch (IOException e) {
+      catch (final IOException e) {
         final String msg = String.format("Failed to load contents from '%s' - %s", resource, e.getMessage());
         throw new RuntimeException(msg, e);
       }
@@ -218,7 +233,7 @@ public class FileResource {
   /** {@inheritDoc} */
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
     builder.append("contents=");
     if (this.contents != null) {
       builder.append("{size=").append(this.contents.length()).append("}");
@@ -232,7 +247,7 @@ public class FileResource {
     if (this.resource != null) {
       builder.append(",resource=\"").append(this.resource).append("\"");
     }
-    builder.append(",eagerlyLoadContents=").append(eagerlyLoadContents);
+    builder.append(",eagerlyLoadContents=").append(this.eagerlyLoadContents);
     return builder.toString();
   }
 
@@ -241,7 +256,7 @@ public class FileResource {
    */
   public static class FileResourceBuilder implements ObjectBuilder<FileResource> {
     @SuppressWarnings("unused")
-    private boolean eagerlyLoadContents = false;
+    private final boolean eagerlyLoadContents = false;
 
     // Lombok
   }

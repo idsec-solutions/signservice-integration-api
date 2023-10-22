@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,18 +15,16 @@
  */
 package se.idsec.signservice.integration.certificate;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.authentication.SignerIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -39,34 +37,82 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  */
 @ToString
 @Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class CertificateAttributeMapping {
+public class CertificateAttributeMapping implements Serializable {
+
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * A list of signer source attributes from where the sign service gets information in order to create the requested
-   * certificate attribute. If more than one attribute is given, the order is important as the sign service tries the
-   * given source attributes in order.
-   *
-   * @param sources a list of source attributes
-   * @return a list of source attributes
+   * certificate attribute.
    */
   @Singular
-  @Setter
-  @Getter
   private List<SignerIdentityAttribute> sources;
 
   /**
    * The requested destination attribute gives information about which type of certificate attribute to create, and
    * possibly its default value.
+   */
+  private RequestedCertificateAttribute destination;
+
+  /**
+   * Default constructor.
+   */
+  public CertificateAttributeMapping() {
+  }
+
+  /**
+   * Constructor.
    *
-   * @param destination the destination attribute
+   * @param sources signer source attributes
+   * @param destination requested destination attribute
+   */
+  public CertificateAttributeMapping(
+      final List<SignerIdentityAttribute> sources, final RequestedCertificateAttribute destination) {
+    this.sources = sources;
+    this.destination = destination;
+  }
+
+  /**
+   * Gets the list of signer source attributes from where the sign service gets information in order to create the
+   * requested certificate attribute.
+   *
+   * @return a list of source attributes
+   */
+  public List<SignerIdentityAttribute> getSources() {
+    return this.sources;
+  }
+
+  /**
+   * Assigns the list of signer source attributes from where the sign service gets information in order to create the
+   * requested certificate attribute. If more than one attribute is given, the order is important as the sign service
+   * tries the given source attributes in order.
+   *
+   * @param sources a list of source attributes
+   */
+  public void setSources(final List<SignerIdentityAttribute> sources) {
+    this.sources = sources;
+  }
+
+  /**
+   * Gets the requested destination attribute gives information about which type of certificate attribute to create, and
+   * possibly its default value.
+   *
    * @return the destination attribute
    */
-  @Setter
-  @Getter
-  private RequestedCertificateAttribute destination;
+  public RequestedCertificateAttribute getDestination() {
+    return this.destination;
+  }
+
+  /**
+   * Assigns the requested destination attribute gives information about which type of certificate attribute to create,
+   * and possibly its default value.
+   *
+   * @param destination the destination attribute
+   */
+  public void setDestination(final RequestedCertificateAttribute destination) {
+    this.destination = destination;
+  }
 
   /**
    * Builder for {@code CertificateAttributeMapping} objects.

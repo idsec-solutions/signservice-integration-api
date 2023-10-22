@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.authentication.AuthnRequirements;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -43,7 +44,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SignMessageParameters implements Serializable {
 
   /** For serialization. */
-  private static final long serialVersionUID = 4015165603787409930L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * The sign message (non encrypted) content according to specified mime type.

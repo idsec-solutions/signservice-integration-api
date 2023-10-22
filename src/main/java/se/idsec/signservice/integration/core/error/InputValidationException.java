@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package se.idsec.signservice.integration.core.error;
 
 import java.util.Map;
 
+import se.idsec.signservice.integration.ApiVersion;
+
 /**
  * Exception class for input validation errors.
  *
@@ -29,7 +31,7 @@ public class InputValidationException extends BadRequestException {
   protected static final ErrorCode.Code ERROR_CODE = new ErrorCode.Code("validation");
 
   /** For serializing. */
-  private static final long serialVersionUID = 8522087041681784561L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The name of the object that was validated. */
   private final String objectName;
@@ -40,8 +42,7 @@ public class InputValidationException extends BadRequestException {
   /**
    * Constructor taking the name of the object being validated.
    *
-   * @param objectName
-   *          the field name of the object being validated
+   * @param objectName the field name of the object being validated
    */
   public InputValidationException(final String objectName) {
     this(objectName, null, null, null);
@@ -50,10 +51,8 @@ public class InputValidationException extends BadRequestException {
   /**
    * Constructor taking the name of the object being validated and an error message.
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param msg
-   *          the error message
+   * @param objectName the field name of the object being validated
+   * @param msg the error message
    */
   public InputValidationException(final String objectName, final String msg) {
     this(objectName, msg, null, null);
@@ -63,10 +62,8 @@ public class InputValidationException extends BadRequestException {
    * Constructor taking the name of the object being validated and underlying errors details (field names and error
    * messages).
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param details
-   *          underlying error information (field names and error messages)
+   * @param objectName the field name of the object being validated
+   * @param details underlying error information (field names and error messages)
    */
   public InputValidationException(final String objectName, final Map<String, String> details) {
     this(objectName, null, details, null);
@@ -76,12 +73,9 @@ public class InputValidationException extends BadRequestException {
    * Constructor taking the name of the object being validated, an error message and underlying errors details (field
    * names and error messages).
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param msg
-   *          the error message
-   * @param details
-   *          underlying error information (field names and error messages)
+   * @param objectName the field name of the object being validated
+   * @param msg the error message
+   * @param details underlying error information (field names and error messages)
    */
   public InputValidationException(final String objectName, final String msg, final Map<String, String> details) {
     this(objectName, msg, details, null);
@@ -90,10 +84,8 @@ public class InputValidationException extends BadRequestException {
   /**
    * Constructor taking the name of the object being validated.
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param cause
-   *          the cause of the error
+   * @param objectName the field name of the object being validated
+   * @param cause the cause of the error
    */
   public InputValidationException(final String objectName, final Throwable cause) {
     this(objectName, null, null, cause);
@@ -102,12 +94,9 @@ public class InputValidationException extends BadRequestException {
   /**
    * Constructor taking the name of the object being validated and an error message.
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param msg
-   *          the error message
-   * @param cause
-   *          the cause of the error
+   * @param objectName the field name of the object being validated
+   * @param msg the error message
+   * @param cause the cause of the error
    */
   public InputValidationException(final String objectName, final String msg, final Throwable cause) {
     this(objectName, msg, null, cause);
@@ -117,12 +106,9 @@ public class InputValidationException extends BadRequestException {
    * Constructor taking the name of the object being validated and underlying errors details (field names and error
    * messages).
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param details
-   *          underlying error information (field names and error messages)
-   * @param cause
-   *          the cause of the error
+   * @param objectName the field name of the object being validated
+   * @param details underlying error information (field names and error messages)
+   * @param cause the cause of the error
    */
   public InputValidationException(final String objectName, final Map<String, String> details, final Throwable cause) {
     this(objectName, null, details, cause);
@@ -132,16 +118,13 @@ public class InputValidationException extends BadRequestException {
    * Constructor taking the name of the object being validated, an error message and underlying errors details (field
    * names and error messages).
    *
-   * @param objectName
-   *          the field name of the object being validated
-   * @param msg
-   *          the error message
-   * @param details
-   *          underlying error information (field names and error messages)
-   * @param cause
-   *          the cause of the error
+   * @param objectName the field name of the object being validated
+   * @param msg the error message
+   * @param details underlying error information (field names and error messages)
+   * @param cause the cause of the error
    */
-  public InputValidationException(final String objectName, final String msg, final Map<String, String> details, final Throwable cause) {
+  public InputValidationException(final String objectName, final String msg, final Map<String, String> details,
+      final Throwable cause) {
     super(ERROR_CODE, buildErrorMessage(objectName, msg, details), cause);
     this.objectName = objectName;
     this.details = details;
@@ -169,15 +152,13 @@ public class InputValidationException extends BadRequestException {
   /**
    * Builds an error message.
    *
-   * @param objectName
-   *          the name of the object being validated
-   * @param msg
-   *          optional message
-   * @param details
-   *          error details for underlying errors
+   * @param objectName the name of the object being validated
+   * @param msg optional message
+   * @param details error details for underlying errors
    * @return a formatted error message
    */
-  private static String buildErrorMessage(final String objectName, final String msg, final Map<String, String> details) {
+  private static String buildErrorMessage(final String objectName, final String msg,
+      final Map<String, String> details) {
     final StringBuffer sb = new StringBuffer(objectName);
     sb.append(": ");
     sb.append(msg != null ? msg : "Validation error");

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import se.idsec.signservice.integration.ApiVersion;
+
 /**
  * Class that represents a bad request to the SignService Integration Service.
  *
@@ -27,15 +29,13 @@ public class BadRequestException extends SignServiceIntegrationCategoryException
   public static final ErrorCode.Category BAD_REQUEST_ERROR_CATEGORY = new ErrorCode.Category("bad-request");
 
   /** For serializing. */
-  private static final long serialVersionUID = 1881207138456648441L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Constructor.
    *
-   * @param code
-   *          the error code (within the {@link #BAD_REQUEST_ERROR_CATEGORY} category)
-   * @param message
-   *          the error message
+   * @param code the error code (within the {@link #BAD_REQUEST_ERROR_CATEGORY} category)
+   * @param message the error message
    */
   public BadRequestException(final ErrorCode.Code code, final String message) {
     super(code, message);
@@ -44,12 +44,9 @@ public class BadRequestException extends SignServiceIntegrationCategoryException
   /**
    * Constructor.
    *
-   * @param code
-   *          the error code (within the {@link #BAD_REQUEST_ERROR_CATEGORY} category)
-   * @param message
-   *          the error message
-   * @param cause
-   *          the cause of the error
+   * @param code the error code (within the {@link #BAD_REQUEST_ERROR_CATEGORY} category)
+   * @param message the error message
+   * @param cause the cause of the error
    */
   public BadRequestException(final ErrorCode.Code code, final String message, final Throwable cause) {
     super(code, message, cause);

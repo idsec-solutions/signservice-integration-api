@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,11 +85,9 @@ public enum SubjectAlternativeNameType {
   /**
    * If the supplied name matches {@link #getTypeName()} or {@link #name()} the corresponding enum constant is returned.
    *
-   * @param typeName
-   *          the type name
+   * @param typeName the type name
    * @return the enum constant
-   * @throws IllegalArgumentException
-   *           if no matching constant is found
+   * @throws IllegalArgumentException if no matching constant is found
    */
   public static SubjectAlternativeNameType fromTypeName(final String typeName) throws IllegalArgumentException {
     for (final SubjectAlternativeNameType t : SubjectAlternativeNameType.values()) {
@@ -97,17 +95,16 @@ public enum SubjectAlternativeNameType {
         return t;
       }
     }
-    throw new IllegalArgumentException(String.format("%s is not a valid typeName for SubjectAlternativeNameType", typeName));
+    throw new IllegalArgumentException(
+        String.format("%s is not a valid typeName for SubjectAlternativeNameType", typeName));
   }
 
   /**
    * Finds the enum constant based on its index number.
    *
-   * @param index
-   *          the index
+   * @param index the index
    * @return the enum constant
-   * @throws IllegalArgumentException
-   *           if no matching constant is found
+   * @throws IllegalArgumentException if no matching constant is found
    */
   public static SubjectAlternativeNameType fromIndex(final int index) throws IllegalArgumentException {
     for (final SubjectAlternativeNameType t : SubjectAlternativeNameType.values()) {
@@ -115,7 +112,8 @@ public enum SubjectAlternativeNameType {
         return t;
       }
     }
-    throw new IllegalArgumentException(String.format("Index %d does not match a valid name of SubjectAlternativeNameType", index));
+    throw new IllegalArgumentException(
+        String.format("Index %d does not match a valid name of SubjectAlternativeNameType", index));
   }
 
   /** The name. */

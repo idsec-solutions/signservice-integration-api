@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.config;
 
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.error.BadRequestException;
 import se.idsec.signservice.integration.core.error.ErrorCode;
 
@@ -30,27 +31,24 @@ public class PolicyNotFoundException extends BadRequestException {
   public static final ErrorCode.Code POLICY_NOT_FOUND_CODE = new ErrorCode.Code("missing-policy");
 
   /** For serializing. */
-  private static final long serialVersionUID = -6006665493928493550L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Constructor.
    *
-   * @param message
-   *          the error message
+   * @param message the error message
    */
-  public PolicyNotFoundException(String message) {
+  public PolicyNotFoundException(final String message) {
     super(POLICY_NOT_FOUND_CODE, message);
   }
 
   /**
    * Constructor.
    *
-   * @param message
-   *          the error message
-   * @param cause
-   *          the cause of the error
+   * @param message the error message
+   * @param cause the cause of the error
    */
-  public PolicyNotFoundException(String message, Throwable cause) {
+  public PolicyNotFoundException(final String message, final Throwable cause) {
     super(POLICY_NOT_FOUND_CODE, message, cause);
   }
 

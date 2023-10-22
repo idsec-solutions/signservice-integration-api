@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,11 +44,9 @@ public enum SignMessageMimeType {
   /**
    * Given a MIME type's textual representation, the method returns its enum value.
    *
-   * @param mimeType
-   *          the MIME type
+   * @param mimeType the MIME type
    * @return the SignMessageMimeType
-   * @throws IllegalArgumentException
-   *           if no matching enum constant is found
+   * @throws IllegalArgumentException if no matching enum constant is found
    */
   public static SignMessageMimeType fromMimeType(final String mimeType) throws IllegalArgumentException {
     for (final SignMessageMimeType t : SignMessageMimeType.values()) {
@@ -65,8 +63,7 @@ public enum SignMessageMimeType {
   /**
    * Constructor.
    *
-   * @param mimeType
-   *          the MIME type
+   * @param mimeType the MIME type
    */
   private SignMessageMimeType(final String mimeType) {
     this.mimeType = mimeType;

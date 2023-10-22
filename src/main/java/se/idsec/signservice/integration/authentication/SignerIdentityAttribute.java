@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Builder;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -34,7 +35,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SignerIdentityAttribute extends AbstractIdentityAttribute {
 
   /** For serialization. */
-  private static final long serialVersionUID = -8149318910982832470L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Type indicator for SAML attribute. */
   public static final String SAML_TYPE = "saml";
