@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,35 +15,35 @@
  */
 package se.idsec.signservice.integration.core;
 
+import java.io.Serializable;
+
 /**
  * Interface that may be inherited for domain objects that should be extensible with name-value pair parameters.
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-public interface Extensible {
+public interface Extensible extends Serializable {
 
   /**
    * Returns the extension parameters for the instance.
    *
-   * @return the extension, or null if no extensions are set
+   * @return the extension, or {@code null} if no extensions are set
    */
   Extension getExtension();
 
   /**
    * Assigns the extension parameters for the instance.
    *
-   * @param extension
-   *          the extension
+   * @param extension the extension
    */
   void setExtension(final Extension extension);
 
   /**
    * Gets an extension value.
    *
-   * @param name
-   *          the extension name
-   * @return the extension value or null if it does not exist
+   * @param name the extension name
+   * @return the extension value or {@code null} if it does not exist
    */
   default String getExtensionValue(final String name) {
     final Extension extension = this.getExtension();
@@ -53,10 +53,8 @@ public interface Extensible {
   /**
    * Adds an extension.
    *
-   * @param name
-   *          extension name
-   * @param value
-   *          extension value
+   * @param name extension name
+   * @param value extension value
    */
   default void addExtensionValue(final String name, final String value) {
     if (this.getExtension() != null) {

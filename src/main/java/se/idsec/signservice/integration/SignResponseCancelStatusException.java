@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ package se.idsec.signservice.integration;
 public class SignResponseCancelStatusException extends SignResponseErrorStatusException {
 
   /** For serializing. */
-  private static final long serialVersionUID = 4079776433989742973L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Constructor.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ package se.idsec.signservice.integration;
 public class SignResponseErrorStatusException extends Exception {
 
   /** For serializing. */
-  private static final long serialVersionUID = -3527829309300515119L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The DSS major result code. */
   private final String majorCode;
@@ -35,10 +35,8 @@ public class SignResponseErrorStatusException extends Exception {
   /**
    * Constructor.
    *
-   * @param majorCode
-   *          the DSS major result code
-   * @param minorCode
-   *          the DSS minor result code
+   * @param majorCode the DSS major result code
+   * @param minorCode the DSS minor result code
    */
   public SignResponseErrorStatusException(final String majorCode, final String minorCode) {
     this(majorCode, minorCode, "DSS error: " + majorCode);
@@ -47,12 +45,9 @@ public class SignResponseErrorStatusException extends Exception {
   /**
    * Constructor.
    *
-   * @param majorCode
-   *          the DSS major result code
-   * @param minorCode
-   *          the DSS minor result code
-   * @param message
-   *          the DSS result message
+   * @param majorCode the DSS major result code
+   * @param minorCode the DSS minor result code
+   * @param message the DSS result message
    */
   public SignResponseErrorStatusException(final String majorCode, final String minorCode, final String message) {
     super(message);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,7 +86,9 @@ public interface SignServiceIntegrationService {
    *
    * @return version string
    */
-  String getVersion();
+  default String getVersion() {
+    return ApiVersion.getVersion();
+  }
 
   /**
    * In the cases when the SignService Integration Service is running as a stand-alone service in stateful mode there is

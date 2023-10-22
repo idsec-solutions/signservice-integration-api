@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,9 @@ package se.idsec.signservice.integration.document.xml;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -37,33 +34,50 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  */
 @ToString
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class XMLSignatureLocation implements Extensible {
 
-  /**
-   * Indicator for first or last child of a selected parent node. The default is "last". See {@link ChildPosition} for
-   * possible values.
-   *
-   * @return the position (first of last)
-   */
-  @Getter
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
+  /** Indicator for first or last child of a selected parent node. */
   private String childPosition;
 
   /**
    * The XPath expression for selecting the parent node (or {@code null} which means the the parent node is the document
    * root element).
-   *
-   * @param xPath the XPath expression for locating the parent node of the Signature element
-   * @return the XPath expression for locating the parent node of the Signature element
    */
-  @Getter
-  @Setter
   private String xPath;
 
   /** Extensions for the object. */
   private Extension extension;
+
+  /**
+   * Default constructor.
+   */
+  public XMLSignatureLocation() {
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param childPosition indicator for first or last child of a selected parent node
+   * @param xPath the XPath expression for selecting the parent node
+   * @param extension extensions for the object
+   */
+  public XMLSignatureLocation(final String childPosition, final String xPath, final Extension extension) {
+    this.childPosition = childPosition;
+    this.xPath = xPath;
+    this.extension = extension;
+  }
+
+  /**
+   * Gets the indicator for first or last child of a selected parent node.
+   *
+   * @return the position (first of last)
+   */
+  public String getChildPosition() {
+    return this.childPosition;
+  }
 
   /**
    * Sets the position in the selected parent node where the signature element should be installed (first or last). The
@@ -85,6 +99,26 @@ public class XMLSignatureLocation implements Extensible {
     this.childPosition = childPosition != null ? childPosition.getPosition() : null;
   }
 
+  /**
+   * Gets the XPath expression for selecting the parent node (or {@code null} which means the the parent node is the
+   * document root element).
+   *
+   * @return the XPath expression for locating the parent node of the Signature element
+   */
+  public String getxPath() {
+    return this.xPath;
+  }
+
+  /**
+   * Assigns the XPath expression for selecting the parent node (or {@code null} which means the the parent node is the
+   * document root element).
+   *
+   * @param xPath the XPath expression for locating the parent node of the Signature element
+   */
+  public void setxPath(final String xPath) {
+    this.xPath = xPath;
+  }
+
   /** {@inheritDoc} */
   @Override
   public Extension getExtension() {
@@ -101,8 +135,10 @@ public class XMLSignatureLocation implements Extensible {
    * Enum for indicating the insertion point within a selected parent node.
    */
   public enum ChildPosition {
+
     /** Insert the signature as the first child of the selected parent node. */
     FIRST("first"),
+
     /** Insert the signature as the last child of the selected parent node. */
     LAST("last");
 
@@ -128,7 +164,7 @@ public class XMLSignatureLocation implements Extensible {
           return p;
         }
       }
-      throw new IllegalArgumentException(String.format("%s is not a supported ChildPosition", position));
+      throw new IllegalArgumentException("%s is not a supported ChildPosition".formatted(position));
     }
 
     /**

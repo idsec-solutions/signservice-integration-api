@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.FileResource;
@@ -62,6 +63,8 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class PdfSignatureImageTemplate implements Extensible {
+
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Constant for the name of the special purpose field "signerName". */
   public static final String SIGNER_NAME_FIELD_NAME = "signerName";
@@ -152,8 +155,8 @@ public class PdfSignatureImageTemplate implements Extensible {
   public void setImage(final String image) {
     if (image != null) {
       this.svgImageFile = FileResource.builder()
-        .contents(Base64.getEncoder().encodeToString(image.getBytes(StandardCharsets.UTF_8)))
-        .build();
+          .contents(Base64.getEncoder().encodeToString(image.getBytes(StandardCharsets.UTF_8)))
+          .build();
     }
   }
 

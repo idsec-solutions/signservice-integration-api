@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import se.idsec.signservice.integration.ApiVersion;
+
 /**
  * Base class for Sign Service Integration exceptions.
  *
@@ -24,7 +26,7 @@ package se.idsec.signservice.integration.core.error;
 public abstract class SignServiceIntegrationException extends Exception {
 
   /** For serializing. */
-  private static final long serialVersionUID = 8097401935848375253L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The error code for this exception. */
   private final ErrorCode errorCode;
@@ -32,10 +34,8 @@ public abstract class SignServiceIntegrationException extends Exception {
   /**
    * Constructor.
    *
-   * @param errorCode
-   *          the error code
-   * @param message
-   *          the error message
+   * @param errorCode the error code
+   * @param message the error message
    */
   public SignServiceIntegrationException(final ErrorCode errorCode, final String message) {
     super(message);
@@ -45,12 +45,9 @@ public abstract class SignServiceIntegrationException extends Exception {
   /**
    * Constructor.
    *
-   * @param errorCode
-   *          the error code
-   * @param message
-   *          the error message
-   * @param cause
-   *          the cause of the error
+   * @param errorCode the error code
+   * @param message the error message
+   * @param cause the cause of the error
    */
   public SignServiceIntegrationException(final ErrorCode errorCode, final String message, final Throwable cause) {
     super(message, cause);
@@ -63,10 +60,8 @@ public abstract class SignServiceIntegrationException extends Exception {
    * May only be used if the subclass overrides {@link #getCategory()}.
    *
    *
-   * @param code
-   *          the error code (within the given category)
-   * @param message
-   *          the error message
+   * @param code the error code (within the given category)
+   * @param message the error message
    */
   protected SignServiceIntegrationException(final ErrorCode.Code code, final String message) {
     super(message);
@@ -81,12 +76,9 @@ public abstract class SignServiceIntegrationException extends Exception {
    *
    * May only be used if the subclass overrides {@link #getCategory()}.
    *
-   * @param code
-   *          the error code (within the given category)
-   * @param message
-   *          the error message
-   * @param cause
-   *          the cause of the error
+   * @param code the error code (within the given category)
+   * @param message the error message
+   * @param cause the cause of the error
    */
   protected SignServiceIntegrationException(final ErrorCode.Code code, final String message, final Throwable cause) {
     super(message, cause);

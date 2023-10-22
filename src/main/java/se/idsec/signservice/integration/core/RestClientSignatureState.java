@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import java.util.LinkedHashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import se.idsec.signservice.integration.ApiVersion;
+
 /**
  * When the Sign Service Integration service is running as a REST service the clients need to have a concrete class so
  * that JSON deserialization will work. This class provides this.
@@ -32,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class RestClientSignatureState implements SignatureState {
 
   /** For serializing. */
-  private static final long serialVersionUID = -4334449173812626703L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The signature operation ID. */
   private String id;

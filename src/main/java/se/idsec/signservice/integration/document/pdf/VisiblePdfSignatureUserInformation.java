@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.authentication.AuthnRequirements;
 import se.idsec.signservice.integration.authentication.SignerIdentityAttribute;
 import se.idsec.signservice.integration.core.Extensible;
@@ -47,7 +48,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class VisiblePdfSignatureUserInformation implements Extensible, Serializable {
 
   /** For serialization. */
-  private static final long serialVersionUID = 8530156355878335379L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable
@@ -126,7 +127,8 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
   /**
    * Builder for {@code VisiblePdfSignatureUserInformation} objects.
    */
-  public static class VisiblePdfSignatureUserInformationBuilder implements ObjectBuilder<VisiblePdfSignatureUserInformation> {
+  public static class VisiblePdfSignatureUserInformationBuilder
+      implements ObjectBuilder<VisiblePdfSignatureUserInformation> {
     // Lombok
   }
 
@@ -167,7 +169,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * displayed by assigning a formatting, see {@link #setFormatting(String)}.
      *
      * @return a list of attribute names whose values should be used to display the signer name in the visible PDF
-     *         signature
+     *           signature
      */
     public List<SignerIdentityAttribute> getSignerAttributes() {
       return this.signerAttributes;

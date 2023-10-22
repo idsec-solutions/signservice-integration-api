@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,11 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import se.idsec.signservice.integration.ApiVersion;
 
 /**
  * When using the SignService Integration Service via a REST API we report errors using error codes (and of course
@@ -30,7 +33,9 @@ import lombok.Getter;
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
-public class ErrorCode {
+public class ErrorCode implements Serializable {
+
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Prefix for all errors. */
   public static final String ERROR_CODE_PREFIX = "error.";
@@ -44,8 +49,7 @@ public class ErrorCode {
   /**
    * Constructor taking a complete error code string on the format "error.category.code".
    *
-   * @param errorCode
-   *          the error code in string format
+   * @param errorCode the error code in string format
    */
   public ErrorCode(final String errorCode) {
     this.parse(errorCode);
@@ -54,10 +58,8 @@ public class ErrorCode {
   /**
    * Constructor taking the category and the code.
    *
-   * @param category
-   *          the error category
-   * @param code
-   *          the code within the category
+   * @param category the error category
+   * @param code the code within the category
    */
   public ErrorCode(final String category, final String code) {
     if (category.contains(".")) {
@@ -78,10 +80,8 @@ public class ErrorCode {
   /**
    * Utility method for creating an {@code ErrorCode}.
    *
-   * @param category
-   *          the category
-   * @param code
-   *          the code within the category
+   * @param category the category
+   * @param code the code within the category
    * @return an ErrorCode
    */
   public static ErrorCode error(final String category, final String code) {
@@ -124,10 +124,8 @@ public class ErrorCode {
   /**
    * Parses a string holding an error code into this object.
    *
-   * @param errorCode
-   *          the error code to parse
-   * @throws IllegalArgumentException
-   *           if the supplied string has an invalid error code format
+   * @param errorCode the error code to parse
+   * @throws IllegalArgumentException if the supplied string has an invalid error code format
    */
   private void parse(final String errorCode) throws IllegalArgumentException {
     if (!errorCode.startsWith(ErrorCode.ERROR_CODE_PREFIX)) {

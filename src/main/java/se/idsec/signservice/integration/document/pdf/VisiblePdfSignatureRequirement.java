@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -45,7 +46,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInformation {
 
   /** For serialization. */
-  private static final long serialVersionUID = 5548737749079213336L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Constant for an extension that denotes a "null" visible PDF signature requirement. */
   public static final String NULL_INDICATOR_EXTENSION = "nullVisiblePdfSignatureRequirement";

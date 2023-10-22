@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
+import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
 /**
@@ -44,7 +43,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
 
   /** For serializing. */
-  private static final long serialVersionUID = 3356867580368876329L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The default name format to use. */
   public static final String DEFAULT_NAME_FORMAT = "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
@@ -52,35 +51,16 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
   /** The default attribute value type to use. We assume SAML's xs:string. */
   public static final String DEFAULT_ATTRIBUTE_VALUE_TYPE = "string";
 
-  /**
-   * The attribute value (in its string representation).
-   *
-   * @param value the attribute value (in its string representation)
-   * @return the attribute value (in its string representation)
-   */
-  @Setter
-  @Getter
+  /** The attribute value (in its string representation). */
   private String value;
 
-  /**
-   * The name format for the attribute. When the attribute type is SAML the default is {@value #DEFAULT_NAME_FORMAT}.
-   *
-   * @param nameFormat the (SAML) name format
-   * @return the name format for the attribute
-   */
-  @Setter
-  @Getter
+  /** The name format for the attribute. */
   private String nameFormat;
 
   /**
    * The type for the attribute value. When SAML attributes are represented, this holds the XSI type without the
-   * namespace prefix. The default in those cases is {@value #DEFAULT_ATTRIBUTE_VALUE_TYPE}.
-   *
-   * @param attributeValueType the attribute value type
-   * @return the attribute value type
+   * namespace prefix.
    */
-  @Setter
-  @Getter
   private String attributeValueType;
 
   /**
@@ -92,7 +72,7 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
   /**
    * Constructor.
    *
-   * @param type the type of attribute (if null, SAML is assumed)
+   * @param type the type of attribute (if {@code null}, SAML is assumed)
    * @param name the name of the attribute
    * @param value the value of the attribute
    * @param nameFormat the name format
@@ -104,6 +84,64 @@ public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
     super(type, name);
     this.value = value;
     this.nameFormat = nameFormat;
+    this.attributeValueType = attributeValueType;
+  }
+
+  /**
+   * Gets the attribute value (in its string representation).
+   *
+   * @return the attribute value (in its string representation)
+   */
+  public String getValue() {
+    return this.value;
+  }
+
+  /**
+   * Assigns the attribute value (in its string representation).
+   *
+   * @param value the attribute value (in its string representation)
+   */
+  public void setValue(final String value) {
+    this.value = value;
+  }
+
+  /**
+   * Gets the name format for the attribute. When the attribute type is SAML the default is
+   * {@value #DEFAULT_NAME_FORMAT}.
+   *
+   * @return the name format for the attribute
+   */
+  public String getNameFormat() {
+    return this.nameFormat;
+  }
+
+  /**
+   * Assigns the name format for the attribute. When the attribute type is SAML the default is
+   * {@value #DEFAULT_NAME_FORMAT}.
+   *
+   * @param nameFormat the (SAML) name format
+   */
+  public void setNameFormat(final String nameFormat) {
+    this.nameFormat = nameFormat;
+  }
+
+  /**
+   * Gets the type for the attribute value. When SAML attributes are represented, this holds the XSI type without the
+   * namespace prefix. The default in those cases is {@value #DEFAULT_ATTRIBUTE_VALUE_TYPE}.
+   *
+   * @return the attribute value type
+   */
+  public String getAttributeValueType() {
+    return this.attributeValueType;
+  }
+
+  /**
+   * Assigns the type for the attribute value. When SAML attributes are represented, this holds the XSI type without the
+   * namespace prefix. The default in those cases is {@value #DEFAULT_ATTRIBUTE_VALUE_TYPE}.
+   *
+   * @param attributeValueType the attribute value type
+   */
+  public void setAttributeValueType(final String attributeValueType) {
     this.attributeValueType = attributeValueType;
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,7 @@ package se.idsec.signservice.integration;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
@@ -35,7 +31,7 @@ import se.idsec.signservice.integration.core.SignatureState;
  *
  * <p>
  * Chapter 3 of <a href=
- * "https://docs.swedenconnect.se/technical-framework/latest/ELN-0607_-_Implementation_Profile_for_using_DSS_in_Central_Signing_Services.html#http-post-binding">Implementation
+ * "https://docs.swedenconnect.se/technical-framework/latest/07_-_Implementation_Profile_for_using_DSS_in_Central_Signing_Services.html#http-post-binding">Implementation
  * Profile for using OASIS DSS in Central Signing Services</a> describes how a sign request is transfered to the
  * signature service. Below is an example of an XHTML form:
  * </p>
@@ -66,16 +62,77 @@ import se.idsec.signservice.integration.core.SignatureState;
  */
 @ToString
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class SignRequestData implements Extensible {
+
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The default binding. */
   public static final String DEFAULT_BINDING = "POST/XML/1.0";
 
+  /** State for a signature operation. */
+  private SignatureState state;
+
+  /** The Base64-encoded SignRequest message that is to be posted to the signature service. */
+  private String signRequest;
+
+  /** The relay state. */
+  private String relayState;
+
+  /** The identifier for the binding of the message that is to be sent. */
+  @Builder.Default
+  private String binding = DEFAULT_BINDING;
+
+  /** The signature service URL to which the SignRequest should be posted. */
+  private String destinationUrl;
+
+  /** Extensions for the object. */
+  private Extension extension;
+
   /**
-   * State for a signature operation.
+   * Default constructor.
+   */
+  public SignRequestData() {
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param state state for a signature operation
+   * @param signRequest the Base64-encoded SignRequest message that is to be posted to the signature service
+   * @param relayState the relay state
+   * @param binding the identifier for the binding of the message that is to be sent
+   * @param destinationUrl the signature service URL to which the SignRequest should be posted
+   * @param extension extensions for the object
+   */
+  public SignRequestData(final SignatureState state, final String signRequest, final String relayState,
+      final String binding, final String destinationUrl, final Extension extension) {
+    this.state = state;
+    this.signRequest = signRequest;
+    this.relayState = relayState;
+    this.binding = binding;
+    this.destinationUrl = destinationUrl;
+    this.extension = extension;
+  }
+
+  /**
+   * Gets the state for a signature operation.
+   *
+   * <p>
+   * This state must be maintained by the signature requester and when a sign response has been received from the
+   * signature service be supplied in the
+   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}
+   * call.
+   * </p>
+   *
+   * @return the signature state for this operation
+   */
+  public SignatureState getState() {
+    return this.state;
+  }
+
+  /**
+   * Assigns the state for a signature operation.
    *
    * <p>
    * This state must be maintained by the signature requester and when a sign response has been received from the
@@ -85,14 +142,27 @@ public class SignRequestData implements Extensible {
    * </p>
    *
    * @param state the signature state
-   * @return the signature state for this operation
    */
-  @Setter
-  @Getter
-  private SignatureState state;
+  public void setState(final SignatureState state) {
+    this.state = state;
+  }
 
   /**
-   * The Base64-encoded SignRequest message that is to be posted to the signature service.
+   * Gets the Base64-encoded SignRequest message that is to be posted to the signature service.
+   *
+   * <p>
+   * This value should be posted to the signature service in a form where the parameter has the name
+   * {@code EidSignRequest}. See example above.
+   * </p>
+   *
+   * @return the encoded SignRequest message
+   */
+  public String getSignRequest() {
+    return this.signRequest;
+  }
+
+  /**
+   * Assigns the Base64-encoded SignRequest message that is to be posted to the signature service.
    *
    * <p>
    * This value should be posted to the signature service in a form where the parameter has the name
@@ -100,14 +170,13 @@ public class SignRequestData implements Extensible {
    * </p>
    *
    * @param signRequest the sign request (in Base64-encoding)
-   * @return the encoded SignRequest message
    */
-  @Setter
-  @Getter
-  private String signRequest;
+  public void setSignRequest(final String signRequest) {
+    this.signRequest = signRequest;
+  }
 
   /**
-   * The relay state. This is the same value as the {@code RequestID} attribute of the SignRequest <b>and</b>
+   * Gets the relay state. This is the same value as the {@code RequestID} attribute of the SignRequest <b>and</b>
    * {@link SignatureState#getId()}.
    *
    * <p>
@@ -120,17 +189,27 @@ public class SignRequestData implements Extensible {
    * request as is the case for signature service communication. An unlucky re-use of the term RelayState.
    * </p>
    *
-   * Assigns the relay state variable.
-   *
-   * @param relayState the relay state variable
    * @return the relay state value
    */
-  @Setter
-  @Getter
-  private String relayState;
+  public String getRelayState() {
+    return this.relayState;
+  }
 
   /**
-   * The identifier for the binding of the message that is to be sent.
+   * Assigns the relay state.
+   *
+   * <p>
+   * See {@link #getRelayState()} for clarifications about the relay state.
+   * </p>
+   *
+   * @param relayState the relay state variable
+   */
+  public void setRelayState(final String relayState) {
+    this.relayState = relayState;
+  }
+
+  /**
+   * Gets the identifier for the binding of the message that is to be sent.
    *
    * <p>
    * This value should be posted to the signature service in a form where the parameter has the name {@code Binding}.
@@ -140,26 +219,41 @@ public class SignRequestData implements Extensible {
    * Currently, the only supported value is "POST/XML/1.0".
    * </p>
    *
-   * @param binding the binding identifier
    * @return the binding identifier
    */
-  @Setter
-  @Getter
-  @Builder.Default
-  private String binding = DEFAULT_BINDING;
+  public String getBinding() {
+    return this.binding;
+  }
 
   /**
-   * The signature service URL to which the SignRequest should be posted.
+   * Assigns the identifier for the binding of the message that is to be sent.
+   * <p>
+   * The default value is "POST/XML/1.0".
+   * </p>
    *
-   * @param destinationUrl the signature service URL to which the SignRequest should be posted
+   * @param binding the binding identifier
+   */
+  public void setBinding(final String binding) {
+    this.binding = binding;
+  }
+
+  /**
+   * Gets the signature service URL to which the SignRequest should be posted.
+   *
    * @return signature service destination URL
    */
-  @Setter
-  @Getter
-  private String destinationUrl;
+  public String getDestinationUrl() {
+    return this.destinationUrl;
+  }
 
-  /** Extensions for the object. */
-  private Extension extension;
+  /**
+   * Assigns the signature service URL to which the SignRequest should be posted.
+   *
+   * @param destinationUrl the signature service URL to which the SignRequest should be posted
+   */
+  public void setDestinationUrl(final String destinationUrl) {
+    this.destinationUrl = destinationUrl;
+  }
 
   /** {@inheritDoc} */
   @Override
@@ -178,7 +272,7 @@ public class SignRequestData implements Extensible {
    */
   public static class SignRequestDataBuilder implements ObjectBuilder<SignRequestData> {
     @SuppressWarnings("unused")
-    private String binding = SignRequestData.DEFAULT_BINDING;
+    private final String binding = SignRequestData.DEFAULT_BINDING;
 
     // Lombok generates the code ...
   }

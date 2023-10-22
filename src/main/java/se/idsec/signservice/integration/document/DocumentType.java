@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,14 +44,12 @@ public enum DocumentType {
   /**
    * Given a MIME type the method returns the corresponding enum constant.
    *
-   * @param mimeType
-   *          the MIME type
+   * @param mimeType the MIME type
    * @return the enum constant value
-   * @throws IllegalArgumentException
-   *           if no matching enum constant is found
+   * @throws IllegalArgumentException if no matching enum constant is found
    */
-  public static DocumentType fromMimeType(String mimeType) throws IllegalArgumentException {
-    for (DocumentType t : DocumentType.values()) {
+  public static DocumentType fromMimeType(final String mimeType) throws IllegalArgumentException {
+    for (final DocumentType t : DocumentType.values()) {
       if (t.getMimeType().equals(mimeType) || t.name().equalsIgnoreCase(mimeType)) {
         return t;
       }
@@ -65,10 +63,9 @@ public enum DocumentType {
   /**
    * Constructor.
    *
-   * @param mimeType
-   *          the mime type.
+   * @param mimeType the mime type.
    */
-  DocumentType(String mimeType) {
+  DocumentType(final String mimeType) {
     this.mimeType = mimeType;
   }
 

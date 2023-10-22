@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2022 IDsec Solutions AB
+ * Copyright 2019-2023 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import se.idsec.signservice.integration.ApiVersion;
+
 /**
  * Abstract class for exception that reports errors for a given category. The {@link #getCategory()} method must be
  * overridden.
@@ -25,15 +27,13 @@ package se.idsec.signservice.integration.core.error;
 public abstract class SignServiceIntegrationCategoryException extends SignServiceIntegrationException {
 
   /** For serializing. */
-  private static final long serialVersionUID = 1989010883063838668L;
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Constructor.
    *
-   * @param code
-   *          the error code (within the given category)
-   * @param message
-   *          the error message
+   * @param code the error code (within the given category)
+   * @param message the error message
    */
   public SignServiceIntegrationCategoryException(final ErrorCode.Code code, final String message) {
     super(code, message);
@@ -42,14 +42,12 @@ public abstract class SignServiceIntegrationCategoryException extends SignServic
   /**
    * Constructor.
    *
-   * @param code
-   *          the error code (within the given category)
-   * @param message
-   *          the error message
-   * @param cause
-   *          the cause of the error
+   * @param code the error code (within the given category)
+   * @param message the error message
+   * @param cause the cause of the error
    */
-  public SignServiceIntegrationCategoryException(final ErrorCode.Code code, final String message, final Throwable cause) {
+  public SignServiceIntegrationCategoryException(
+      final ErrorCode.Code code, final String message, final Throwable cause) {
     super(code, message, cause);
   }
 
