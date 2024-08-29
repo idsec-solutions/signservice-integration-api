@@ -32,6 +32,8 @@ import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.TbsDocument;
 
+import java.util.List;
+
 /**
  * The {@code PreparedPdfDocument} is the representation of the object that is returned from
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
@@ -117,6 +119,20 @@ public class PreparedPdfDocument implements Extensible {
   @Setter
   @Getter
   private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
+
+  /**
+   * List of fixed issues in the PDF document contained in updatedPdfDocument or referenced by updatedPdfDocumentReference.
+   * <p>
+   * This information informs about fixed issues that have changed the document to determine if these changes are OK
+   * or whether the signing process should be rejected.
+   *
+   * @param fixedIssues list of issues that were fixed in the prepared PDF document
+   * @return a list of issues that were fixed in the prepared PDF document
+   *
+   */
+  @Setter
+  @Getter
+  private List<PdfDocumentIssue> fixedIssues;
 
   /** Extensions for the object. */
   private Extension extension;
