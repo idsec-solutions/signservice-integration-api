@@ -15,6 +15,9 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Enumeration of PDF document issues.
  *
@@ -27,12 +30,50 @@ public enum PdfDocumentIssue {
    * The document is unsigned but has an AcroForm that may contain user input form fields. This AcroForm must be
    * rendered and the AcroForm must be deleted before signing.
    */
-  ACROFORM_IN_UNSIGNED_PDF,
+  ACROFORM_IN_UNSIGNED_PDF("acroform-in-unsigned-pdf"),
 
   /**
    * The document has an encryption dictionary. No changes to the document can be saved before removing all security
    * policies, which means deleting the encryption dictionary.
    */
-  ENCRYPTION_DICTIONARY
+  ENCRYPTION_DICTIONARY("encryption-dictionary"),
+  ;
+
+  private final String value;
+
+  PdfDocumentIssue(final String value) {
+    this.value = value;
+  }
+
+  /**
+   * Gets the string value.
+   *
+   * @return the string value
+   */
+  @JsonValue
+  public String getValue() {
+    return this.value;
+  }
+
+  /**
+   * Creates a {@link PdfDocumentIssue} from its string value.
+   *
+   * @param value the string value
+   * @return a {@link PdfDocumentIssue}
+   */
+  @JsonCreator
+  public static PdfDocumentIssue fromValue(final String value) {
+    for (final PdfDocumentIssue issue : PdfDocumentIssue.values()) {
+      if (issue.getValue().equals(value)) {
+        return issue;
+      }
+    }
+    throw new IllegalArgumentException("Unknown value: " + value);
+  }
+
+  @Override
+  public String toString() {
+    return this.value;
+  }
 
 }

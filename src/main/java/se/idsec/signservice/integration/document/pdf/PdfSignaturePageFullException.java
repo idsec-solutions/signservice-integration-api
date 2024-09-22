@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.core.error.ErrorCode;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;
 
+import java.io.Serial;
+
 /**
  * An exception that is reported by
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)} if
@@ -30,11 +32,12 @@ import se.idsec.signservice.integration.core.error.SignServiceIntegrationExcepti
  */
 public class PdfSignaturePageFullException extends SignServiceIntegrationException {
 
+  /** For serializing. */
+  @Serial
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
   /** The error code for this exception. */
   public static final ErrorCode errorCode = ErrorCode.error("document", "too-many-signimages");
-
-  /** For serializing. */
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Constructor.

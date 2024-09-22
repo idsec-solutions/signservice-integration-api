@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package se.idsec.signservice.integration.core;
 import java.io.IOException;
 
 /**
- * A singleton to be used internally for loading resources. By default the {@link DefaultContentLoader} is used. This
+ * A singleton to be used internally for loading resources. By default, the {@link DefaultContentLoader} is used. This
  * can be overridden by installing a customized content loader using {@link #setContentLoader(ContentLoader)}.
  *
  * @author Martin Lindström (martin@idsec.se)

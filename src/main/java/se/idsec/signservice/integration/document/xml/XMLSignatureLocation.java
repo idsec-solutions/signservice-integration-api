@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,14 @@ package se.idsec.signservice.integration.document.xml;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Builder;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
 
 /**
  * Tells where in an XML document the signature should be inserted. The default is to add it as the last child of the
@@ -37,13 +38,14 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class XMLSignatureLocation implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Indicator for first or last child of a selected parent node. */
   private String childPosition;
 
   /**
-   * The XPath expression for selecting the parent node (or {@code null} which means the the parent node is the document
+   * The XPath expression for selecting the parent node (or {@code null} which means the parent node is the document
    * root element).
    */
   private String xPath;
@@ -100,7 +102,7 @@ public class XMLSignatureLocation implements Extensible {
   }
 
   /**
-   * Gets the XPath expression for selecting the parent node (or {@code null} which means the the parent node is the
+   * Gets the XPath expression for selecting the parent node (or {@code null} which means the parent node is the
    * document root element).
    *
    * @return the XPath expression for locating the parent node of the Signature element
@@ -110,7 +112,7 @@ public class XMLSignatureLocation implements Extensible {
   }
 
   /**
-   * Assigns the XPath expression for selecting the parent node (or {@code null} which means the the parent node is the
+   * Assigns the XPath expression for selecting the parent node (or {@code null} which means the parent node is the
    * document root element).
    *
    * @param xPath the XPath expression for locating the parent node of the Signature element
@@ -159,7 +161,7 @@ public class XMLSignatureLocation implements Extensible {
      * @throws IllegalArgumentException if no matching enum constant is found
      */
     public static ChildPosition fromPosition(final String position) throws IllegalArgumentException {
-      for (ChildPosition p : ChildPosition.values()) {
+      for (final ChildPosition p : ChildPosition.values()) {
         if (p.getPosition().equalsIgnoreCase(position)) {
           return p;
         }
@@ -172,13 +174,13 @@ public class XMLSignatureLocation implements Extensible {
      *
      * @param position the position
      */
-    private ChildPosition(final String position) {
+    ChildPosition(final String position) {
       this.position = position;
     }
 
     /** String representation of the position. */
-    private String position;
-  };
+    private final String position;
+  }
 
   /**
    * Builder for {@link XMLSignatureLocation} objects.

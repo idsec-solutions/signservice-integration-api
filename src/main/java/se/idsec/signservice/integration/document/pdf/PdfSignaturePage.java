@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,23 +15,21 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
-import java.util.Base64;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.FileResource;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
+import java.util.Base64;
 
 /**
  * Representation of a "PDF signature page".
@@ -57,60 +55,156 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class PdfSignaturePage implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
-  /**
-   * The unique ID for this PDF signature page.
-   */
-  @Getter
-  @Setter
+  /** The unique ID for this PDF signature page. */
   private String id;
 
-  /**
-   * The file resource containing the PDF document that holds the PDF signature page.
-   */
-  @Setter
-  @Getter
+  /** The file resource containing the PDF document that holds the PDF signature page. */
   private FileResource pdfDocument;
 
   /**
    * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
-   * attribute should assigned to the desired number of rows. The default is {@code 1}.
+   * attribute should be assigned to the desired number of rows. The default is {@code 1}.
    */
-  @Getter
-  @Setter
   @Builder.Default
   private Integer rows = 1;
 
   /**
    * If it should be possible to add PDF sign images in several columns to this sign page document the {@code columns}
-   * attribute should assigned to the desired number of columns. The default is {@code 1}.
+   * attribute should be assigned to the desired number of columns. The default is {@code 1}.
    */
-  @Getter
-  @Setter
   @Builder.Default
   private Integer columns = 1;
 
-  /**
-   * A unique reference of the signature template image that is inserted into this PDF signature page. See
-   * {@link PdfSignatureImageTemplate}.
-   *
-   * @see PdfSignatureImageTemplate
-   * @see VisiblePdfSignatureRequirement#getTemplateImageRef()
-   */
-  @Getter
-  @Setter
+  /** A unique reference of the signature template image that is inserted into this PDF signature page. */
   protected String signatureImageReference;
 
-  /**
-   * Configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted.
-   */
-  @Getter
-  @Setter
+  /** Configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted. */
   private PdfSignatureImagePlacementConfiguration imagePlacementConfiguration;
 
   /** Extensions for the object. */
   private Extension extension;
+
+  /**
+   * Gets the unique ID for this PDF signature page.
+   *
+   * @return the unique ID for this PDF signature page
+   */
+  public String getId() {
+    return this.id;
+  }
+
+  /**
+   * Assigns the unique ID for this PDF signature page
+   *
+   * @param id the unique ID for this PDF signature page
+   */
+  public void setId(final String id) {
+    this.id = id;
+  }
+
+  /**
+   * Gets the file resource containing the PDF document that holds the PDF signature page.
+   *
+   * @return the file resource containing the PDF document that holds the PDF signature page
+   */
+  public FileResource getPdfDocument() {
+    return this.pdfDocument;
+  }
+
+  /**
+   * Assigns the file resource containing the PDF document that holds the PDF signature page.
+   *
+   * @param pdfDocument the file resource containing the PDF document that holds the PDF signature page
+   */
+  public void setPdfDocument(final FileResource pdfDocument) {
+    this.pdfDocument = pdfDocument;
+  }
+
+  /**
+   * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
+   * attribute should be assigned to the desired number of rows. The default is {@code 1}.
+   *
+   * @return the number of rows
+   */
+  public Integer getRows() {
+    return this.rows;
+  }
+
+  /**
+   * If it should be possible to add PDF sign images in several rows to this sign page document the {@code rows}
+   * attribute should be assigned to the desired number of rows.
+   *
+   * @param rows the number of rows
+   */
+  public void setRows(final Integer rows) {
+    this.rows = rows;
+  }
+
+  /**
+   * If it should be possible to add PDF sign images in several columns to this sign page document the {@code columns}
+   * attribute should be assigned to the desired number of columns. The default is {@code 1}.
+   *
+   * @return the number of columns
+   */
+  public Integer getColumns() {
+    return this.columns;
+  }
+
+  /**
+   * If it should be possible to add PDF sign images in several columns to this sign page document the {@code columns}
+   * attribute should be assigned to the desired number of columns.
+   *
+   * @param columns the number of columns
+   */
+  public void setColumns(final Integer columns) {
+    this.columns = columns;
+  }
+
+  /**
+   * Gets the unique reference of the signature template image that is inserted into this PDF signature page.
+   *
+   * @return the unique reference of the signature template image
+   * @see PdfSignatureImageTemplate
+   * @see VisiblePdfSignatureRequirement#getTemplateImageRef()
+   */
+  public String getSignatureImageReference() {
+    return this.signatureImageReference;
+  }
+
+  /**
+   * Assigns the unique reference of the signature template image that is inserted into this PDF signature page.
+   *
+   * @param signatureImageReference the unique reference of the signature template image
+   * @see PdfSignatureImageTemplate
+   * @see VisiblePdfSignatureRequirement#getTemplateImageRef()
+   */
+  public void setSignatureImageReference(final String signatureImageReference) {
+    this.signatureImageReference = signatureImageReference;
+  }
+
+  /**
+   * Gets the configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted.
+   *
+   * @return the configuration that tells where in the PDF signature page the PDF signature image(s) should be inserted
+   */
+  public PdfSignatureImagePlacementConfiguration getImagePlacementConfiguration() {
+    return this.imagePlacementConfiguration;
+  }
+
+  /**
+   * Assigns the configuration that tells where in the PDF signature page the PDF signature image(s) should be
+   * inserted.
+   *
+   * @param imagePlacementConfiguration the configuration that tells where in the PDF signature page the PDF
+   *     signature image(s) should be inserted.
+   */
+  public void setImagePlacementConfiguration(
+      final PdfSignatureImagePlacementConfiguration imagePlacementConfiguration) {
+    this.imagePlacementConfiguration = imagePlacementConfiguration;
+  }
 
   /**
    * A utility method that can be used to get the raw bytes of the PDF document holding the PDF signature page.
@@ -174,30 +268,26 @@ public class PdfSignaturePage implements Extensible {
   @AllArgsConstructor
   public static class PdfSignatureImagePlacementConfiguration implements Extensible {
 
+    @Serial
     private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
     /**
      * The X coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
      * PDF signature page.
      */
-    @Getter
-    @Setter
     private Integer xPosition;
 
     /**
      * The Y coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the
      * PDF signature page.
      */
-    @Getter
-    @Setter
     private Integer yPosition;
 
     /**
      * The scale of the final visible signature image expressed as zoom percentage. The value -100 represents a 0 sized
-     * image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is assumed.
+     * image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is
+     * assumed.
      */
-    @Getter
-    @Setter
     @Builder.Default
     private Integer scale = 0;
 
@@ -209,8 +299,6 @@ public class PdfSignaturePage implements Extensible {
      * Note: If the PDF signature page only supports one column this property is ignored.
      * </p>
      */
-    @Getter
-    @Setter
     private Integer xIncrement;
 
     /**
@@ -221,8 +309,6 @@ public class PdfSignaturePage implements Extensible {
      * Note: If the PDF signature page only supports one row this property is ignored.
      * </p>
      */
-    @Getter
-    @Setter
     private Integer yIncrement;
 
     /**
@@ -234,13 +320,170 @@ public class PdfSignaturePage implements Extensible {
      * document.
      * </p>
      */
-    @Getter
-    @Setter
     @Builder.Default
     private Integer page = 1;
 
     /** Extensions for the object. */
     private Extension extension;
+
+    /**
+     * Gets the X coordinate position (in pixels) of where the first PDF visible signature image should be inserted on
+     * the PDF signature page.
+     *
+     * @return the X coordinate position
+     */
+    public Integer getXPosition() {
+      return this.xPosition;
+    }
+
+    // Misspelled
+    @JsonIgnore
+    public Integer getXPositison() {
+      return this.getXPosition();
+    }
+
+    /**
+     * Assigns the X coordinate position (in pixels) of where the first PDF visible signature image should be inserted
+     * on the PDF signature page.
+     *
+     * @param xPosition the X coordinate position
+     */
+    public void setXPosition(final Integer xPosition) {
+      this.xPosition = xPosition;
+    }
+
+    // Misspelled
+    public void setXPositison(final Integer xPosition) {
+      this.setXPosition(xPosition);
+    }
+
+    /**
+     * Gets the Y coordinate position (in pixels) of where the first PDF visible signature image should be inserted on
+     * the PDF signature page.
+     *
+     * @return the Y coordinate position
+     */
+    public Integer getYPosition() {
+      return this.yPosition;
+    }
+
+    /**
+     * Assigns the Y coordinate position (in pixels) of where the first PDF visible signature image should be inserted
+     * on the PDF signature page.
+     *
+     * @param yPosition the Y coordinate position
+     */
+    public void setYPosition(final Integer yPosition) {
+      this.yPosition = yPosition;
+    }
+
+    /**
+     * Gets the scale of the final visible signature image expressed as zoom percentage. The value -100 represents a 0
+     * sized image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is
+     * assumed.
+     *
+     * @return the scale of the final visible signature image
+     */
+    public Integer getScale() {
+      return this.scale;
+    }
+
+    /**
+     * Assigns the scale of the final visible signature image expressed as zoom percentage. The value -100 represents a
+     * 0 sized image, the value 0 represents unaltered size, the value 100 double size and so on. If {@code null}, 0 is
+     * assumed.
+     *
+     * @param scale the scale of the final visible signature image
+     */
+    public void setScale(final Integer scale) {
+      this.scale = scale;
+    }
+
+    /**
+     * Gets the signature page document page number. If the PDF signature page document (see
+     * {@link PdfSignaturePage#getContents()}) contains more than one page it is possible to use the {@code page}
+     * attribute to tell where the PDF signature image(s) should be inserted. A value of 1 represents the first page and
+     * a value of 0 represents the last page. The default is {@code 1}.
+     * <p>
+     * Note: If the PDF signature page only supports one row this property is ignored.
+     * </p>
+     *
+     * @return the page number
+     */
+    public Integer getXIncrement() {
+      return this.xIncrement;
+    }
+
+    /**
+     * Sets the signature page document page number. If the PDF signature page document (see
+     * {@link PdfSignaturePage#getContents()}) contains more than one page it is possible to use the {@code page}
+     * attribute to tell where the PDF signature image(s) should be inserted. A value of 1 represents the first page and
+     * a value of 0 represents the last page. The default is {@code 1}.
+     * <p>
+     * Note: If the PDF signature page only supports one row this property is ignored.
+     * </p>
+     *
+     * @param xIncrement the page number
+     */
+    public void setXIncrement(final Integer xIncrement) {
+      this.xIncrement = xIncrement;
+    }
+
+    /**
+     * Gets the additional increment of Y coordinate position (in pixels) that should be added to the previously used
+     * {@code yPosition} when inserting a PDF signature image in a new row.
+     * <p>
+     * Note: If the PDF signature page only supports one row this property is ignored.
+     * </p>
+     *
+     * @return Y coordinate position increment
+     */
+    public Integer getYIncrement() {
+      return this.yIncrement;
+    }
+
+    /**
+     * Sets the additional increment of Y coordinate position (in pixels) that should be added to the previously used
+     * {@code yPosition} when inserting a PDF signature image in a new row.
+     *
+     * @param yIncrement Y coordinate position increment Note: If the PDF signature page only supports one row this
+     *     property is ignored.
+     */
+    public void setYIncrement(final Integer yIncrement) {
+      this.yIncrement = yIncrement;
+    }
+
+    /**
+     * Gets the signature page document page number. If the PDF signature page document (see
+     * {@link PdfSignaturePage#getContents()}) contains more than one page it is possible to use the {@code page}
+     * attribute to tell where the PDF signature image(s) should be inserted. A value of 1 represents the first page and
+     * a value of 0 represents the last page. The default is {@code 1}.
+     * <p>
+     * Note: It is only possible to have PDF signature images inserted into <b>one</b> page of the PDF signature page
+     * document.
+     * </p>
+     *
+     * @return the page number
+     */
+    public Integer getPage() {
+      return this.page;
+    }
+
+    /**
+     * Sets the signature page document page number. If the PDF signature page document (see
+     * {@link PdfSignaturePage#getContents()}) contains more than one page it is possible to use the {@code page}
+     * attribute to tell where the PDF signature image(s) should be inserted. A value of 1 represents the first page and
+     * a value of 0 represents the last page. The default is {@code 1}.
+     * <p>
+     * Note: It is only possible to have PDF signature images inserted into <b>one</b> page of the PDF signature page
+     * document.
+     * </p>
+     *
+     * @param page the page number
+     */
+    public void setPage(final Integer page) {
+      this.page = page;
+    }
 
     /** {@inheritDoc} */
     @Override

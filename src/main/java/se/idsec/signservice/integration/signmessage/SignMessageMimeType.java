@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,14 +58,14 @@ public enum SignMessageMimeType {
   }
 
   /** Mime type value */
-  private String mimeType;
+  private final String mimeType;
 
   /**
    * Constructor.
    *
    * @param mimeType the MIME type
    */
-  private SignMessageMimeType(final String mimeType) {
+  SignMessageMimeType(final String mimeType) {
     this.mimeType = mimeType;
   }
 

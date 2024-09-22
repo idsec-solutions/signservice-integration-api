@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package se.idsec.signservice.integration.core.error;
 
 import se.idsec.signservice.integration.ApiVersion;
 
+import java.io.Serial;
+
 /**
  * Base class for Sign Service Integration exceptions.
  *
@@ -26,6 +28,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public abstract class SignServiceIntegrationException extends Exception {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The error code for this exception. */
@@ -56,9 +59,9 @@ public abstract class SignServiceIntegrationException extends Exception {
 
   /**
    * Constructor.
-   *
+   * <p>
    * May only be used if the subclass overrides {@link #getCategory()}.
-   *
+   * </p>
    *
    * @param code the error code (within the given category)
    * @param message the error message
@@ -73,8 +76,9 @@ public abstract class SignServiceIntegrationException extends Exception {
 
   /**
    * Constructor.
-   *
+   * <p>
    * May only be used if the subclass overrides {@link #getCategory()}.
+   * </p>
    *
    * @param code the error code (within the given category)
    * @param message the error message

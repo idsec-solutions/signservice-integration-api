@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ public interface SignServiceIntegrationService {
   /**
    * In the cases when the SignService Integration Service is running as a stand-alone service in stateful mode there is
    * a need to register the actor ownership of session states and other cached objects. In these cases the stand-alone
-   * service adds an extension, {@value #OWNER_ID_EXTENSION_KEY}, holding the identity of the relying party that is
+   * service adds an extension, {@code #OWNER_ID_EXTENSION_KEY}, holding the identity of the relying party that is
    * making the call.
    */
   String OWNER_ID_EXTENSION_KEY = "_operation_owner_id";

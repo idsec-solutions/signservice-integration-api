@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,8 @@
  */
 package se.idsec.signservice.integration.authentication;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Singular;
@@ -28,6 +25,9 @@ import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
+import java.util.List;
 
 /**
  * A representation of the assertion info for the signer's "authentication for signature" that was performed during a
@@ -42,6 +42,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class SignerAssertionInformation implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Identity attributes for the signer. */
@@ -52,13 +53,13 @@ public class SignerAssertionInformation implements Extensible {
   private long authnInstant;
 
   /**
-   * The entityID of the authentication service (Identity Provider) that will authenticated the signer as part of the
+   * The entityID of the authentication service (Identity Provider) that will authenticate the signer as part of the
    * signature process.
    */
   private String authnServiceID;
 
   /**
-   * The authentication context reference identifier (an URI) that identifies the context under which the signer was
+   * The authentication context reference identifier (a URI) that identifies the context under which the signer was
    * authenticated.
    */
   private String authnContextRef;
@@ -125,7 +126,7 @@ public class SignerAssertionInformation implements Extensible {
   }
 
   /**
-   * Gets the entityID of the authentication service (Identity Provider) that will authenticated the signer as part of
+   * Gets the entityID of the authentication service (Identity Provider) that will authenticate the signer as part of
    * the signature process.
    *
    * @return the entityID of the authentication service that authenticated the signer
@@ -135,8 +136,8 @@ public class SignerAssertionInformation implements Extensible {
   }
 
   /**
-   * Assigns the entityID of the authentication service (Identity Provider) that will authenticated the signer as part
-   * of the signature process.
+   * Assigns the entityID of the authentication service (Identity Provider) that will authenticate the signer as part of
+   * the signature process.
    *
    * @param authnServiceID the entityID of the authentication service that authenticated the signer
    */
@@ -145,8 +146,8 @@ public class SignerAssertionInformation implements Extensible {
   }
 
   /**
-   * Gets the authentication context reference identifier (an URI) that identifies the context under which the signer
-   * was authenticated. This identifier is often referred to as the "level of assurance" (LoA).
+   * Gets the authentication context reference identifier (a URI) that identifies the context under which the signer was
+   * authenticated. This identifier is often referred to as the "level of assurance" (LoA).
    *
    * @return the authentication context reference URI
    */
@@ -155,7 +156,7 @@ public class SignerAssertionInformation implements Extensible {
   }
 
   /**
-   * Assigns the authentication context reference identifier (an URI) that identifies the context under which the signer
+   * Assigns the authentication context reference identifier (a URI) that identifies the context under which the signer
    * was authenticated. This identifier is often referred to as the "level of assurance" (LoA).
    *
    * @param authnContextRef the authentication context reference URI

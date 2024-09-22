@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,20 @@
  */
 package se.idsec.signservice.integration.document;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * Represents a document that is to be signed along with the per-document requirements and parameters.
@@ -46,32 +44,85 @@ import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirem
 public class TbsDocument implements Extensible, Serializable {
 
   /** For serialization. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
-  /**
-   * The unique ID for this document (within the current request). If not supplied, the SignService Integration Service
-   * will generate one.
-   *
-   * @param id unique ID for this document
-   * @return unique ID for this document, or null if none has been set
-   */
-  @Setter
-  @Getter
+  /** The unique ID for this document (within the current request). */
   private String id;
 
-  /**
-   * The Base64-encoded byte string that is the content of the document that is to be signed.
-   *
-   * @param content the document content (Base64-encoded)
-   * @return the document content (Base64-encoded)
-   */
-  @Setter
-  @Getter
+  /** The Base64-encoded byte string that is the content of the document that is to be signed. */
   private String content;
 
+  /** A content reference may be used instead of supplying the actual content. */
+  private String contentReference;
+
+  /** The MIME type of the document that is to be signed. */
+  private String mimeType;
+
+  /** Optional processing rules used by the sign service to process sign data. */
+  private String processingRules;
+
+  /** Specifies of the resulting signature should use an ETSI AdES format. */
+  private EtsiAdesRequirement adesRequirement;
+
   /**
-   * A content reference may be used instead of supplying the actual content ({@link #setContent(String)}). This is
-   * typically something that is useful when handling large documents. However, this feature is only useable if:
+   * If the document that is to be signed is a PDF document, the sign requester may require the resulting PDF to have a
+   * "visible PDF signature".
+   */
+  private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
+
+  /** Extensions for the object. */
+  private Extension extension;
+
+  /**
+   * Gets the unique ID for this document (within the current request).
+   *
+   * @return unique ID for this document, or {@code null} if none has been set
+   */
+  public String getId() {
+    return this.id;
+  }
+
+  /**
+   * Assigns unique ID for this document (within the current request). If not supplied, the SignService Integration
+   * Service will generate one.
+   *
+   * @param id unique ID for this document
+   */
+  public void setId(final String id) {
+    this.id = id;
+  }
+
+  /**
+   * Gets the Base64-encoded byte string that is the content of the document that is to be signed.
+   *
+   * @return the document content (Base64-encoded)
+   */
+  public String getContent() {
+    return this.content;
+  }
+
+  /**
+   * Assigns the Base64-encoded byte string that is the content of the document that is to be signed.
+   *
+   * @param content the document content (Base64-encoded)
+   */
+  public void setContent(final String content) {
+    this.content = content;
+  }
+
+  /**
+   * Gets the content reference may be used instead of supplying the actual content ({@link #setContent(String)}).
+   *
+   * @return a reference to the content or {@code null}
+   */
+  public String getContentReference() {
+    return this.contentReference;
+  }
+
+  /**
+   * Assigns a content reference may be used instead of supplying the actual content ({@link #setContent(String)}). This
+   * is typically something that is useful when handling large documents. However, this feature is only useable if:
    * <ul>
    * <li>The SignService Integration Service profile is in "stateful mode", and,</li>
    * <li>the document has previously been cached by the SignService Integration Service.</li>
@@ -82,39 +133,85 @@ public class TbsDocument implements Extensible, Serializable {
    * </p>
    *
    * @param contentReference a reference to the content
-   * @return a reference to the content or null
    */
-  @Setter
-  @Getter
-  private String contentReference;
+  public void setContentReference(final String contentReference) {
+    this.contentReference = contentReference;
+  }
 
   /**
-   * The MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
+   * Gets the MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
    *
    * @return the MIME type
    */
-  @Getter
-  private String mimeType;
+  public String getMimeType() {
+    return this.mimeType;
+  }
 
   /**
-   * Optional processing rules used by the sign service to process sign data.
+   * Assigns the MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
+   *
+   * @param mimeType the document MIME type
+   * @see #setMimeType(DocumentType)
+   */
+  public void setMimeType(final String mimeType) {
+    this.mimeType = mimeType;
+  }
+
+  /**
+   * Assigns The document type of the document that is to be signed.
+   *
+   * @param documentType the document type
+   */
+  public void setMimeType(final DocumentType documentType) {
+    this.mimeType = documentType != null ? documentType.getMimeType() : null;
+  }
+
+  /**
+   * Gets the Optional processing rules used by the sign service to process sign data.
+   *
+   * @return the processing rules identifier, or {@code null} if none has been set
+   */
+  public String getProcessingRules() {
+    return this.processingRules;
+  }
+
+  /**
+   * Assigns processing rules used by the sign service to process sign data.
    *
    * @param processingRules the processing rules
-   * @return the processing rules identifier, or null if none has been set
    */
-  @Setter
-  @Getter
-  private String processingRules;
+  public void setProcessingRules(final String processingRules) {
+    this.processingRules = processingRules;
+  }
 
   /**
-   * Specifies of the resulting signature should use an ETSI AdES format.
+   * Tells whether the resulting signature should use an ETSI AdES format.
+   *
+   * @return the AdES requirement or {@code null} if no AdES requirement exists
+   */
+  public EtsiAdesRequirement getAdesRequirement() {
+    return this.adesRequirement;
+  }
+
+  /**
+   * Specifies whether the resulting signature should use an ETSI AdES format.
    *
    * @param adesRequirement the AdES requirement
-   * @return the AdES requirement or null if no AdES requirement exists
    */
-  @Setter
-  @Getter
-  private EtsiAdesRequirement adesRequirement;
+  public void setAdesRequirement(final EtsiAdesRequirement adesRequirement) {
+    this.adesRequirement = adesRequirement;
+  }
+
+  /**
+   * If the document that is to be signed is a PDF document, the sign requester may require the resulting PDF to have a
+   * "visible PDF signature". The {@code VisiblePdfSignatureRequirement} specifies how this visible indication should be
+   * included.
+   *
+   * @return requirement for visible PDF signatures, or {@code null}
+   */
+  public VisiblePdfSignatureRequirement getVisiblePdfSignatureRequirement() {
+    return this.visiblePdfSignatureRequirement;
+  }
 
   /**
    * If the document that is to be signed is a PDF document, the sign requester may require the resulting PDF to have a
@@ -131,33 +228,10 @@ public class TbsDocument implements Extensible, Serializable {
    * </p>
    *
    * @param visiblePdfSignatureRequirement requirement for visible PDF signatures
-   *
-   * @return requirement for visible PDF signatures, or null
    */
-  @Setter
-  @Getter
-  private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
-
-  /** Extensions for the object. */
-  private Extension extension;
-
-  /**
-   * The MIME type of the document that is to be signed. See {@link DocumentType} for the supported types.
-   *
-   * @param mimeType the document MIME type
-   * @see #setMimeType(DocumentType)
-   */
-  public void setMimeType(final String mimeType) {
-    this.mimeType = mimeType;
-  }
-
-  /**
-   * The document type of the document that is to be signed.
-   *
-   * @param documentType the document type
-   */
-  public void setMimeType(final DocumentType documentType) {
-    this.mimeType = documentType != null ? documentType.getMimeType() : null;
+  public void setVisiblePdfSignatureRequirement(
+      final VisiblePdfSignatureRequirement visiblePdfSignatureRequirement) {
+    this.visiblePdfSignatureRequirement = visiblePdfSignatureRequirement;
   }
 
   /** {@inheritDoc} */
@@ -192,11 +266,11 @@ public class TbsDocument implements Extensible, Serializable {
   /**
    * Enum reprenting an ETSI AdES format.
    */
-  public static enum AdesType {
+  public enum AdesType {
     /** ETSI Basic Electronic Signature format */
     BES,
     /** ETSI Extended Policy Electronic Signature format */
-    EPES;
+    EPES
   }
 
   /**
@@ -212,6 +286,7 @@ public class TbsDocument implements Extensible, Serializable {
   public static class EtsiAdesRequirement implements Extensible, Serializable {
 
     /** For serialization. */
+    @Serial
     private static final long serialVersionUID = 3139149873709105674L;
 
     /** The ETSI AdES type. */
@@ -221,7 +296,7 @@ public class TbsDocument implements Extensible, Serializable {
     private String signaturePolicy;
 
     /**
-     * Optional AdES object as an Base64-encoded byte array.
+     * Optional AdES object as a Base64-encoded byte array.
      *
      * <p>
      * For XML signatures this object must be a {@code ds:Object} having as its only child a
@@ -280,7 +355,7 @@ public class TbsDocument implements Extensible, Serializable {
     }
 
     /**
-     * Gets the AdES object as an Base64-encoded byte array.
+     * Gets the AdES object as a Base64-encoded byte array.
      *
      * <p>
      * For XML signatures this object must be a {@code ds:Object} having as its only child a
@@ -294,7 +369,7 @@ public class TbsDocument implements Extensible, Serializable {
     }
 
     /**
-     * Assigns the AdES object as an Base64-encoded byte array.
+     * Assigns the AdES object as a Base64-encoded byte array.
      *
      * <p>
      * For XML signatures this object must be a {@code ds:Object} having as its only child a

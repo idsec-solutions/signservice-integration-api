@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.security;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -69,8 +70,9 @@ public interface EncryptionParameters extends Serializable {
   @AllArgsConstructor
   @ToString
   @JsonInclude(Include.NON_NULL)
-  public static class RSAOAEPParameters implements Serializable {
+  class RSAOAEPParameters implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
     /** Digest method algorithm URI. */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,13 @@ package se.idsec.signservice.integration.authentication;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Builder;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
 
 /**
  * Representation of a signer identity attribute.
@@ -35,6 +36,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SignerIdentityAttribute extends AbstractIdentityAttribute {
 
   /** For serialization. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Type indicator for SAML attribute. */

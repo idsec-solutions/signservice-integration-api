@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration;
 
+import java.io.Serial;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -46,6 +47,7 @@ import se.idsec.signservice.integration.signmessage.SignMessageParameters;
 @JsonInclude(Include.NON_NULL)
 public class SignRequestInput implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The correlation ID to use for this process. */
@@ -79,7 +81,7 @@ public class SignRequestInput implements Extensible {
   /** The requirements for the signature certificate that will be issued by the sign service. */
   private SigningCertificateRequirements certificateRequirements;
 
-  /** The document(s) to be signed along with a per document signing requirements and parameters. */
+  /** The document(s) to be signed along with a per-document signing requirements and parameters. */
   @Singular
   private List<TbsDocument> tbsDocuments;
 
@@ -286,7 +288,7 @@ public class SignRequestInput implements Extensible {
   }
 
   /**
-   * Gets the document(s) to be signed along with a per document signing requirements and parameters.
+   * Gets the document(s) to be signed along with a per-document signing requirements and parameters.
    *
    * @return a list of To-be-signed documents
    */
@@ -295,7 +297,7 @@ public class SignRequestInput implements Extensible {
   }
 
   /**
-   * Assigns the document(s) to be signed along with a per document signing requirements and parameters. At least one
+   * Assigns the document(s) to be signed along with a per-document signing requirements and parameters. At least one
    * document must be supplied.
    *
    * @param tbsDocuments a list of To-be-signed documents

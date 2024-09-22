@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ package se.idsec.signservice.integration.document;
 public enum SignatureDestinationType {
 
   /**
-   * XPath expression for the parent node under which the signature should be inserted.
+   * The XPath expression for the parent node under which the signature should be inserted.
    */
   XML_PARENT_XPATH,
 
@@ -37,6 +37,6 @@ public enum SignatureDestinationType {
   XML_SCHEMA,
 
   /** An XML Schema name space URI for the signed XML document */
-  XML_SCHEMA_NS;
+  XML_SCHEMA_NS
 
 }

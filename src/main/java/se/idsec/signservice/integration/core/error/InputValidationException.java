@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import java.io.Serial;
 import java.util.Map;
 
 import se.idsec.signservice.integration.ApiVersion;
@@ -27,11 +28,12 @@ import se.idsec.signservice.integration.ApiVersion;
  */
 public class InputValidationException extends BadRequestException {
 
-  /** The error code for this type of errors. */
-  protected static final ErrorCode.Code ERROR_CODE = new ErrorCode.Code("validation");
-
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
+  /** The error code for this type of error. */
+  protected static final ErrorCode.Code ERROR_CODE = new ErrorCode.Code("validation");
 
   /** The name of the object that was validated. */
   private final String objectName;
@@ -159,7 +161,7 @@ public class InputValidationException extends BadRequestException {
    */
   private static String buildErrorMessage(final String objectName, final String msg,
       final Map<String, String> details) {
-    final StringBuffer sb = new StringBuffer(objectName);
+    final StringBuilder sb = new StringBuilder(objectName);
     sb.append(": ");
     sb.append(msg != null ? msg : "Validation error");
     if (details != null && !details.isEmpty()) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
+import java.io.Serial;
+
 /**
  * Representation of the value of a signer attribute.
  *
@@ -43,6 +45,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The default name format to use. */

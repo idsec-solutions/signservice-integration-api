@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.core.SignatureState;
+
+import java.io.Serial;
 
 /**
  * Domain class representing the result of a {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}
@@ -65,6 +67,7 @@ import se.idsec.signservice.integration.core.SignatureState;
 @JsonInclude(Include.NON_NULL)
 public class SignRequestData implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The default binding. */

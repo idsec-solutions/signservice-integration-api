@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration;
 
+import java.io.Serial;
+
 /**
  * Exception class that represents non-successful DSS operations.
  *
@@ -24,6 +26,7 @@ package se.idsec.signservice.integration;
 public class SignResponseErrorStatusException extends Exception {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The DSS major result code. */

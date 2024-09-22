@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.core;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.ToString;
@@ -30,6 +31,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public abstract class AbstractIdentityAttribute implements Serializable {
 
   /** For serialization. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The type of attribute. */

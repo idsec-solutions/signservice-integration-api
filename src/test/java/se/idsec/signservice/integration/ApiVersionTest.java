@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@
  */
 package se.idsec.signservice.integration;
 
-import java.util.Properties;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
 
 /**
  * Test cases for ApiVersion.
@@ -35,7 +35,7 @@ public class ApiVersionTest {
 
     this.version = properties.getProperty("api.version");
     if (this.version.endsWith("-SNAPSHOT")) {
-      this.version = this.version.substring(0, version.length() - 9);
+      this.version = this.version.substring(0, this.version.length() - 9);
     }
   }
 
@@ -45,9 +45,9 @@ public class ApiVersionTest {
   }
 
   @Test
-  public void testVersion() throws Exception {
+  public void testVersion() {
     Assertions.assertEquals(this.version, ApiVersion.getVersion(),
-        "Expected LibraryVersion.getVersion() to return " + version);
+        "Expected LibraryVersion.getVersion() to return " + this.version);
   }
 
 }

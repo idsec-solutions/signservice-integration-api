@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.config;
 
-import java.util.List;
-
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
@@ -29,6 +27,8 @@ import se.idsec.signservice.integration.document.pdf.PdfSignatureImageTemplate;
 import se.idsec.signservice.integration.document.pdf.PdfSignaturePage;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 import se.idsec.signservice.integration.security.EncryptionParameters;
+
+import java.util.List;
 
 /**
  * Interface that represents the default settings of a SignService Integration Service policy/instance.
@@ -101,7 +101,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * In a setup where only one authentication service (IdP) is used to authenticate users, a default value could be
-   * used. If the {@link AuthnRequirements#getAuthnServiceID()} method returns {@code null}, the default value will the
+   * used. If the {@link AuthnRequirements#getAuthnServiceID()} method returns {@code null}, the default value will
    * be used.
    *
    * @return the entityID for the default authentication service, or null if no default exists
@@ -148,9 +148,9 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * A policy may have one, or more, configured PDF signature pages. See
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences)}
-   * for a description of PDF signature pages. The first object in the list is regarded as the default page for the
-   * policy.
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[],
+   * se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences)} for a description of PDF signature
+   * pages. The first object in the list is regarded as the default page for the policy.
    *
    * @return a list of PDF signature pages for the policy, or null if no such pages are defined for the policy
    */
@@ -162,12 +162,12 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * A SignService Integration Service may execute in a stateless mode, meaning that it does not keep a session state
    * and leaves it up to the caller to maintain the state between calls to
    * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)} and
-   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)},
-   * or it may execute in a stateful mode, meaning that it keeps the necessary data between calls to
-   * {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)} and
-   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}
-   * and the only thing the caller needs to keep track of its the ID of the signature operation (see
-   * {@link SignatureState#getId()}.
+   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState,
+   * SignResponseProcessingParameters)}, or it may execute in a stateful mode, meaning that it keeps the necessary data
+   * between calls to {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)} and
+   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState,
+   * SignResponseProcessingParameters)} and the only thing the caller needs to keep track of its the ID of the signature
+   * operation (see {@link SignatureState#getId()}.
    * </p>
    *
    * @return if the SignService Integration Service is running in stateless mode true is returned, otherwise false

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2023 IDsec Solutions AB
+ * Copyright 2019-2024 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ import se.idsec.signservice.integration.ApiVersion;
 @Builder
 public class SignServiceIntegrationErrorBody implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The HTTP status code. */
@@ -243,6 +245,7 @@ public class SignServiceIntegrationErrorBody implements Serializable {
   @Builder
   public static class ValidationError implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
     /** The name of the object that validation failed for. */
@@ -313,6 +316,7 @@ public class SignServiceIntegrationErrorBody implements Serializable {
   @Builder
   public static class DssError implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
     /** The DSS major result code. */
