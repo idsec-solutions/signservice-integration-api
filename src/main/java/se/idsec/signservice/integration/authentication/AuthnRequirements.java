@@ -248,7 +248,7 @@ public class AuthnRequirements implements Extensible {
     // Lombok
 
     /**
-     * For backwards compatibility. Use {@link #authnContextClassRef(String)} instead.
+     * For backwards compatibility.
      *
      * @param authnContextRef the AuthnContextClassRef URI
      * @return the builder
