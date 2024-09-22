@@ -16,6 +16,7 @@
 package se.idsec.signservice.integration.core;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -46,6 +47,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public class FileResource implements Serializable {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The base64 encoded contents of the file resource. */

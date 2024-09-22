@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.core;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.junit.jupiter.api.Assertions;
@@ -40,8 +41,9 @@ public class SignatureStateTest {
   @Test
   public void testJson() throws Exception {
 
-    SignatureState state = new SignatureState() {
+    final SignatureState state = new SignatureState() {
 
+      @Serial
       private static final long serialVersionUID = 1L;
 
       @Override
@@ -55,19 +57,19 @@ public class SignatureStateTest {
       }
 
     };
-    DummyObject object = DummyObject.builder().object("Hello").state(state).build();
+    final DummyObject object = DummyObject.builder().object("Hello").state(state).build();
 
-    ObjectMapper mapper = new ObjectMapper();
-    ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
+    final ObjectMapper mapper = new ObjectMapper();
+    final ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
 
-    String json = writer.writeValueAsString(object);
+    final String json = writer.writeValueAsString(object);
 
-    DummyObject object2 = mapper.readValue(json, DummyObject.class);
+    final DummyObject object2 = mapper.readValue(json, DummyObject.class);
 
-    Assertions.assertTrue(RestClientSignatureState.class.isInstance(object2.getState()));
+    Assertions.assertTrue(object2.getState() instanceof RestClientSignatureState);
     Assertions.assertEquals(object.getState().getId(), object2.getState().getId());
 
-    DummyState ds2 = mapper.convertValue(object2.getState().getState(), DummyState.class);
+    final DummyState ds2 = mapper.convertValue(object2.getState().getState(), DummyState.class);
     Assertions.assertNotNull(ds2);
     Assertions.assertEquals(object.getState().getState(), ds2);
   }
@@ -88,6 +90,7 @@ public class SignatureStateTest {
   @AllArgsConstructor
   @ToString
   public static class DummyState implements Serializable {
+    @Serial
     private static final long serialVersionUID = 4163340005958632268L;
     private String stringField;
     private int intField;

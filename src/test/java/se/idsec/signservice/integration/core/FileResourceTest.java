@@ -15,15 +15,14 @@
  */
 package se.idsec.signservice.integration.core;
 
-import java.lang.reflect.Field;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 /**
  * Test cases for FileResource.
@@ -33,13 +32,13 @@ import com.fasterxml.jackson.databind.ObjectWriter;
  */
 public class FileResourceTest {
 
-  private static String stringContents = "For testing DefaultContentLoader";
+  private static final String stringContents = "For testing DefaultContentLoader";
 
-  private static String expectedContents = Base64.getEncoder().encodeToString(
+  private static final String expectedContents = Base64.getEncoder().encodeToString(
       stringContents.getBytes(StandardCharsets.UTF_8));
 
   @Test
-  public void testSetContents() throws Exception {
+  public void testSetContents() {
     final FileResource fr = new FileResource();
     fr.setContents(stringContents.getBytes(StandardCharsets.UTF_8));
     Assertions.assertEquals(expectedContents, fr.getContents());
@@ -61,7 +60,7 @@ public class FileResourceTest {
     contentsField.setAccessible(true);
     Assertions.assertNull(contentsField.get(fr));
 
-    // Assert the the contents is delivered upon request
+    // Assert the contents is delivered upon request
     Assertions.assertEquals(expectedContents, fr.getContents());
 
     // Again, assert that it is not saved

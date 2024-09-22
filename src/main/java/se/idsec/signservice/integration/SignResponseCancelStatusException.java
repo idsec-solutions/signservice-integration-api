@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration;
 
+import java.io.Serial;
+
 /**
  * Dedicated exception class to represent a user cancel.
  *
@@ -24,6 +26,7 @@ package se.idsec.signservice.integration;
 public class SignResponseCancelStatusException extends SignResponseErrorStatusException {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
@@ -31,8 +34,8 @@ public class SignResponseCancelStatusException extends SignResponseErrorStatusEx
    */
   public SignResponseCancelStatusException() {
     super("urn:oasis:names:tc:dss:1.0:resultmajor:ResponderError",
-      "http://id.elegnamnden.se/sig-status/1.0/user-cancel",
-      "User cancelled signature operation");
+        "http://id.elegnamnden.se/sig-status/1.0/user-cancel",
+        "User cancelled signature operation");
   }
 
 }

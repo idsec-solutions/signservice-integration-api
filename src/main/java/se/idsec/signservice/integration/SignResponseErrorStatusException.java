@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration;
 
+import java.io.Serial;
+
 /**
  * Exception class that represents non-successful DSS operations.
  *
@@ -24,6 +26,7 @@ package se.idsec.signservice.integration;
 public class SignResponseErrorStatusException extends Exception {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The DSS major result code. */

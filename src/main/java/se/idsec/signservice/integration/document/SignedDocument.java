@@ -17,17 +17,16 @@ package se.idsec.signservice.integration.document;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
 
 /**
  * Represents a signed document.
@@ -43,44 +42,78 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class SignedDocument implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
-  /**
-   * The unique ID for this document (within the current operation).
-   *
-   * @param id unique ID for this document
-   * @return unique ID for this document
-   */
-  @Setter
-  @Getter
+  /** The unique ID for this document (within the current operation). */
   private String id;
 
-  /**
-   * The signed document as a Base64-encoded byte string.
-   *
-   * @param signedContent the signed document content (Base64-encoded)
-   * @return the signed document content (Base64-encoded)
-   */
-  @Setter
-  @Getter
+  /** The signed document as a Base64-encoded byte string. */
   private String signedContent;
 
-  /**
-   * The MIME type of the signed document. See {@link DocumentType} for the supported types.
-   *
-   * @param mimeType the MIME type for the signed document
-   * @return the MIME type for the signed document
-   */
-  @Setter
-  @Getter
+  /** The MIME type of the signed document. See {@link DocumentType} for the supported types. */
   private String mimeType;
 
   /** Extensions for the object. */
   private Extension extension;
 
+  /**
+   * Gets the unique ID for this document (within the current operation).
+   *
+   * @return unique ID for this document
+   */
+  public String getId() {
+    return this.id;
+  }
+
+  /**
+   * Assigns the unique ID for this document (within the current operation).
+   *
+   * @param id unique ID for this document
+   */
+  public void setId(final String id) {
+    this.id = id;
+  }
+
+  /**
+   * Gets the signed document as a Base64-encoded byte string.
+   *
+   * @return the signed document content (Base64-encoded)
+   */
+  public String getSignedContent() {
+    return this.signedContent;
+  }
+
+  /**
+   * Assigns the signed document as a Base64-encoded byte string.
+   *
+   * @param signedContent the signed document content (Base64-encoded)
+   */
+  public void setSignedContent(final String signedContent) {
+    this.signedContent = signedContent;
+  }
+
+  /**
+   * Gets the MIME type of the signed document. See {@link DocumentType} for the supported types.
+   *
+   * @return the MIME type for the signed document
+   */
+  public String getMimeType() {
+    return this.mimeType;
+  }
+
+  /**
+   * Assigns the MIME type of the signed document. See {@link DocumentType} for the supported types.
+   *
+   * @param mimeType the MIME type for the signed document
+   */
+  public void setMimeType(final String mimeType) {
+    this.mimeType = mimeType;
+  }
+
   /** {@inheritDoc} */
   @Override
-  public void setExtension(Extension extension) {
+  public void setExtension(final Extension extension) {
     this.extension = extension;
   }
 

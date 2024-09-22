@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.security;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -69,8 +70,9 @@ public interface EncryptionParameters extends Serializable {
   @AllArgsConstructor
   @ToString
   @JsonInclude(Include.NON_NULL)
-  public static class RSAOAEPParameters implements Serializable {
+  class RSAOAEPParameters implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
     /** Digest method algorithm URI. */

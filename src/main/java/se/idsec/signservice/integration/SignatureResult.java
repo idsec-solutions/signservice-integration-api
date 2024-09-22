@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration;
 
+import java.io.Serial;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -40,6 +41,7 @@ import se.idsec.signservice.integration.document.SignedDocument;
 @JsonInclude(Include.NON_NULL)
 public class SignatureResult implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The ID for the signature operation. This ID corresponds to the RequestID of the SignRequest and SignResponse. */

@@ -25,6 +25,8 @@ import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.xml.XMLSignatureLocation;
 
+import java.io.Serial;
+
 /**
  * Class representing the processing parameters for a call to
  * {@link SignServiceIntegrationService#processSignResponse(String, String, se.idsec.signservice.integration.core.SignatureState, SignResponseProcessingParameters)}.
@@ -38,6 +40,7 @@ import se.idsec.signservice.integration.document.xml.XMLSignatureLocation;
 @JsonInclude(Include.NON_NULL)
 public class SignResponseProcessingParameters implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**

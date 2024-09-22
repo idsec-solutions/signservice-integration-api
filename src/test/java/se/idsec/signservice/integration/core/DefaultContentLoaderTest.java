@@ -15,22 +15,22 @@
  */
 package se.idsec.signservice.integration.core;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 /**
- * Test cases for DefaultContentLoader. Spring is not on the classpath so we test our simple implementation.
+ * Test cases for DefaultContentLoader. Spring is not on the classpath, so we test our simple implementation.
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
 public class DefaultContentLoaderTest {
 
-  private static byte[] expectedContents = "For testing DefaultContentLoader".getBytes(StandardCharsets.UTF_8);
+  private static final byte[] expectedContents = "For testing DefaultContentLoader".getBytes(StandardCharsets.UTF_8);
 
   @Test
   public void testLoadFromClasspath() throws Exception {
@@ -46,28 +46,19 @@ public class DefaultContentLoaderTest {
   public void testLoadFromFile() throws Exception {
     final DefaultContentLoader loader = new DefaultContentLoader();
     final byte[] contents = loader.loadContent(String.format("file://%s/src/test/resources/testfile.txt",
-        Paths.get("").toAbsolutePath().toString()));
+        Paths.get("").toAbsolutePath()));
     Assertions.assertArrayEquals(expectedContents, contents);
 
     loader.loadContent(String.format("%s/src/test/resources/testfile.txt",
-        Paths.get("").toAbsolutePath().toString()));
+        Paths.get("").toAbsolutePath()));
     Assertions.assertArrayEquals(expectedContents, contents);
   }
 
   @Test
-  public void testNoFile() throws Exception {
+  public void testNoFile() {
     final DefaultContentLoader loader = new DefaultContentLoader();
-
-    Assertions.assertThrows(IOException.class, () -> {
-      loader.loadContent("classpath:no-such-file.txt");
-    });
-
-    Assertions.assertThrows(IOException.class, () -> {
-      loader.loadContent("file://no-such-file.txt");
-    });
-
-    Assertions.assertThrows(IOException.class, () -> {
-      loader.loadContent("/home/user/no-such-file.txt");
-    });
+    Assertions.assertThrows(IOException.class, () -> loader.loadContent("classpath:no-such-file.txt"));
+    Assertions.assertThrows(IOException.class, () -> loader.loadContent("file://no-such-file.txt"));
+    Assertions.assertThrows(IOException.class, () -> loader.loadContent("/home/user/no-such-file.txt"));
   }
 }

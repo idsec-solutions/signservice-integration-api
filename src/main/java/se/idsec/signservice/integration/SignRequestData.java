@@ -25,6 +25,8 @@ import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.core.SignatureState;
 
+import java.io.Serial;
+
 /**
  * Domain class representing the result of a {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}
  * call. This class holds the information needed to send a {@code dss:SignRequest} to a signature service.
@@ -65,6 +67,7 @@ import se.idsec.signservice.integration.core.SignatureState;
 @JsonInclude(Include.NON_NULL)
 public class SignRequestData implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The default binding. */

@@ -17,6 +17,8 @@ package se.idsec.signservice.integration.core.error;
 
 import se.idsec.signservice.integration.ApiVersion;
 
+import java.io.Serial;
+
 /**
  * Exception class to report that the caller does not have access on a given resource.
  *
@@ -25,11 +27,12 @@ import se.idsec.signservice.integration.ApiVersion;
  */
 public class NoAccessException extends SignServiceIntegrationException {
 
-  /** The error code for this type of errors. */
-  public static final ErrorCode ERROR_CODE = new ErrorCode("security", "no-access");
-
   /** For serialization. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
+  /** The error code for this type of error. */
+  public static final ErrorCode ERROR_CODE = new ErrorCode("security", "no-access");
 
   /**
    * Constructor assigning the error message.

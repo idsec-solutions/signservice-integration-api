@@ -15,11 +15,12 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import se.idsec.signservice.integration.ApiVersion;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * When using the SignService Integration Service via a REST API we report errors using error codes (and of course
@@ -35,6 +36,7 @@ import se.idsec.signservice.integration.ApiVersion;
  */
 public class ErrorCode implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Prefix for all errors. */
@@ -71,8 +73,9 @@ public class ErrorCode implements Serializable {
 
   /**
    * Default constructor.
-   *
+   * <p>
    * Protected since it shouldn't be used by others than JSON deserializers.
+   * </p>
    */
   protected ErrorCode() {
   }

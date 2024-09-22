@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.certificate;
 
+import java.io.Serial;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,6 +42,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class SigningCertificateRequirements implements Extensible {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The requested certificate type. */

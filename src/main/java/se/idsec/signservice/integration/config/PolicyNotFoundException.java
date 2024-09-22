@@ -19,6 +19,8 @@ import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.error.BadRequestException;
 import se.idsec.signservice.integration.core.error.ErrorCode;
 
+import java.io.Serial;
+
 /**
  * Exception class for references to a non-existing policy.
  *
@@ -27,11 +29,11 @@ import se.idsec.signservice.integration.core.error.ErrorCode;
  */
 public class PolicyNotFoundException extends BadRequestException {
 
+  @Serial
+  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+
   /** The error code for the error. */
   public static final ErrorCode.Code POLICY_NOT_FOUND_CODE = new ErrorCode.Code("missing-policy");
-
-  /** For serializing. */
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
    * Constructor.

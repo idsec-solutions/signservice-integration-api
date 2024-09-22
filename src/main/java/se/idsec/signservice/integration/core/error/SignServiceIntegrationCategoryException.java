@@ -17,6 +17,8 @@ package se.idsec.signservice.integration.core.error;
 
 import se.idsec.signservice.integration.ApiVersion;
 
+import java.io.Serial;
+
 /**
  * Abstract class for exception that reports errors for a given category. The {@link #getCategory()} method must be
  * overridden.
@@ -27,6 +29,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public abstract class SignServiceIntegrationCategoryException extends SignServiceIntegrationException {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**

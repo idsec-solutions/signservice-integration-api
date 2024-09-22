@@ -58,7 +58,7 @@ public enum RequestedCertificateAttributeType {
   }
 
   /** The type. */
-  private String type;
+  private final String type;
 
   /**
    * Constructor.

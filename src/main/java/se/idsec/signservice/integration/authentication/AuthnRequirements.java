@@ -15,12 +15,8 @@
  */
 package se.idsec.signservice.integration.authentication;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Builder;
 import lombok.Singular;
 import lombok.ToString;
@@ -29,6 +25,10 @@ import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfigur
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A sign requester specifies a set of authentication requirements regarding the signer when sending a SignRequest
@@ -42,6 +42,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class AuthnRequirements implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
@@ -64,7 +65,7 @@ public class AuthnRequirements implements Extensible {
   private List<String> authnContextClassRefs;
 
   /**
-   * A list of identity attribute values that the sign requestor requires the authentication service (IdP) to validate
+   * A list of identity attribute values that the sign requester requires the authentication service (IdP) to validate
    * and deliver (and the signature service to assert).
    */
   @Singular
@@ -85,8 +86,8 @@ public class AuthnRequirements implements Extensible {
    * @param authnServiceID entityID of the authentication service (Identity Provider)
    * @param authnProfile optional authentication profile
    * @param authnContextClassRefs authentication context reference identifier(s)
-   * @param requestedSignerAttributes list of identity attribute values that the sign requestor requires the
-   *          authentication service (IdP) to validate and deliver (and the signature service to assert)
+   * @param requestedSignerAttributes list of identity attribute values that the sign requester requires the
+   *     authentication service (IdP) to validate and deliver (and the signature service to assert)
    * @param extension extensions for the object
    */
   public AuthnRequirements(final String authnServiceID, final String authnProfile,
@@ -201,11 +202,11 @@ public class AuthnRequirements implements Extensible {
    */
   @Deprecated
   public void setAuthnContextRef(final String authnContextRef) {
-    this.setAuthnContextClassRefs(Arrays.asList(authnContextRef));
+    this.setAuthnContextClassRefs(Collections.singletonList(authnContextRef));
   }
 
   /**
-   * Gets the list of identity attribute values that the sign requestor requires the authentication service (IdP) to
+   * Gets the list of identity attribute values that the sign requester requires the authentication service (IdP) to
    * validate and deliver (and the signature service to assert).
    *
    * @return requestedSignerAttributes a list of requested attribute values
@@ -215,7 +216,7 @@ public class AuthnRequirements implements Extensible {
   }
 
   /**
-   * Assigns the list of identity attribute values that the sign requestor requires the authentication service (IdP) to
+   * Assigns the list of identity attribute values that the sign requester requires the authentication service (IdP) to
    * validate and deliver (and the signature service to assert).
    * <p>
    * Typically, a sign requester includes the identity attributes that binds the signature operation to the principal

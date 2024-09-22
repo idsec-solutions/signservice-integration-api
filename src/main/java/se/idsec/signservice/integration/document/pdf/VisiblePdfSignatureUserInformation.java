@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class VisiblePdfSignatureUserInformation implements Extensible, Serializable {
 
   /** For serialization. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /**
@@ -142,6 +144,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
   public static class SignerName implements Serializable {
 
     /** For serialization. */
+    @Serial
     private static final long serialVersionUID = -3259891506238725426L;
 
     /**

@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
+import java.io.Serial;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
@@ -35,7 +36,7 @@ import se.idsec.signservice.integration.core.FileResource;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
 /**
- * Representation of a image template that is used for visible PDF signatures.
+ * Representation of an image template that is used for visible PDF signatures.
  * <p>
  * An image template may have fields in which the SignService Integration Service use to personalize the image. For
  * example the signer name, reason for the signature, date, etc.
@@ -64,6 +65,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class PdfSignatureImageTemplate implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** Constant for the name of the special purpose field "signerName". */

@@ -17,18 +17,17 @@ package se.idsec.signservice.integration.document.pdf;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
 
 /**
  * Class that represents the input to
@@ -45,31 +44,54 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class PreparePdfSignaturePageInput implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
-  /**
-   * The contents of the PDF document that is to be prepared in Base64 encoded format.
-   *
-   * @param pdfDocument the PDF document (in Base64 encoded format)
-   * @return the PDF document (in Base64 encoded format)
-   */
-  @Getter
-  @Setter
+  /** The contents of the PDF document that is to be prepared in Base64 encoded format. */
   private String pdfDocument;
 
-  /**
-   * The preferences of how to prepare the PDF document for a PDF signature page and signature image.
-   *
-   * @param signaturePagePreferences preferences of how to prepare the PDF document for a PDF signature page and
-   *          signature image
-   * @return preferences of how to prepare the PDF document for a PDF signature page and signature image
-   */
-  @Getter
-  @Setter
+  /** The preferences of how to prepare the PDF document for a PDF signature page and signature image. */
   private PdfSignaturePagePreferences signaturePagePreferences;
 
   /** Extensions for the object. */
   private Extension extension;
+
+  /**
+   * Gets the contents of the PDF document that is to be prepared in Base64 encoded format.
+   *
+   * @return the PDF document (in Base64 encoded format)
+   */
+  public String getPdfDocument() {
+    return this.pdfDocument;
+  }
+
+  /**
+   * Assigns the contents of the PDF document that is to be prepared in Base64 encoded format.
+   *
+   * @param pdfDocument the PDF document (in Base64 encoded format)
+   */
+  public void setPdfDocument(final String pdfDocument) {
+    this.pdfDocument = pdfDocument;
+  }
+
+  /**
+   * Gets the preferences of how to prepare the PDF document for a PDF signature page and signature image.
+   *
+   * @return preferences of how to prepare the PDF document for a PDF signature page and signature image
+   */
+  public PdfSignaturePagePreferences getSignaturePagePreferences() {
+    return this.signaturePagePreferences;
+  }
+
+  /**
+   * Assigns the preferences of how to prepare the PDF document for a PDF signature page and signature image.
+   *
+   * @param signaturePagePreferences preferences of how to prepare the PDF document for a PDF signature page and
+   *     signature image
+   */
+  public void setSignaturePagePreferences(final PdfSignaturePagePreferences signaturePagePreferences) {
+    this.signaturePagePreferences = signaturePagePreferences;
+  }
 
   /** {@inheritDoc} */
   @Override

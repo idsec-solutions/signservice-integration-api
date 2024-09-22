@@ -15,13 +15,15 @@
  */
 package se.idsec.signservice.integration.core;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 
 /**
  * A {@link ContentLoader} that is used to load file resource contents. If Spring is in the classpath the
@@ -31,6 +33,7 @@ import java.lang.reflect.Method;
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
  */
+@Slf4j
 public class DefaultContentLoader implements ContentLoader {
 
   /**
@@ -49,12 +52,13 @@ public class DefaultContentLoader implements ContentLoader {
     try {
       // If we have the Spring core jar in the classpath we want to use the Spring way of loading resources ...
       //
-      Class<?> clazz = Class.forName("org.springframework.core.io.DefaultResourceLoader");
-      Constructor<?> ctor = clazz.getConstructor();
+      final Class<?> clazz = Class.forName("org.springframework.core.io.DefaultResourceLoader");
+      final Constructor<?> ctor = clazz.getConstructor();
       this.springContentLoader = ctor.newInstance();
       this.getResourceMethod = this.springContentLoader.getClass().getMethod("getResource", String.class);
     }
-    catch (Exception e) {
+    catch (final Exception e) {
+      log.info("Spring does not seem to be on the classpath - {}", e.getMessage());
     }
   }
 
@@ -66,16 +70,18 @@ public class DefaultContentLoader implements ContentLoader {
       throw new IOException("resource is null");
     }
 
-    InputStream is = null;
     if (this.springContentLoader != null && this.getResourceMethod != null) {
       try {
         final String _resource = resource.startsWith("/") ? "file://" + resource : resource;
         final Object springResource = this.getResourceMethod.invoke(this.springContentLoader, _resource);
 
         // Next. Invoke the getInputStream method of the resulting resource object.
-        is = (InputStream) springResource.getClass().getMethod("getInputStream").invoke(springResource);
+        try (final InputStream is = (InputStream) springResource.getClass().getMethod("getInputStream")
+            .invoke(springResource)) {
+          return readAllBytes(is);
+        }
       }
-      catch (Exception e) {
+      catch (final Exception e) {
         throw new IOException("Could not load " + resource, e);
       }
     }
@@ -85,22 +91,31 @@ public class DefaultContentLoader implements ContentLoader {
         if (!_resource.startsWith("/")) {
           _resource = "/" + _resource;
         }
-        is = this.getClass().getResourceAsStream(_resource);
+        final InputStream is = this.getClass().getResourceAsStream(_resource);
         if (is == null) {
           throw new IOException("File not found - " + resource);
         }
+        try (is) {
+          return readAllBytes(is);
+        }
       }
       else if (resource.startsWith("file://")) {
-        is = new FileInputStream(new File(resource.substring(7)));
+        try (final InputStream is = Files.newInputStream(new File(resource.substring(7)).toPath())) {
+          return readAllBytes(is);
+        }
       }
       else {
-        is = new FileInputStream(new File(resource));
+        try (final InputStream is = Files.newInputStream(new File(resource).toPath())) {
+          return readAllBytes(is);
+        }
       }
     }
+  }
 
+  private static byte[] readAllBytes(final InputStream is) throws IOException {
     final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
     int nRead;
-    byte[] data = new byte[4096];
+    final byte[] data = new byte[4096];
     while ((nRead = is.read(data, 0, data.length)) != -1) {
       buffer.write(data, 0, nRead);
     }

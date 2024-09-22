@@ -17,11 +17,12 @@ package se.idsec.signservice.integration.certificate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
 
 /**
  * Represents a requested certificate attribute. The sign requester states that a given principal attribute should be
@@ -30,7 +31,8 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
  *
  * <p>
  * This Java implementation uses one class for this purpose even though there are three different attribute types. The
- * reason is that we want to be JSON processor libary agnostic, and working with interfaces and subclasses is hard then.
+ * reason is that we want to be JSON processor libary agnostic, and working with interfaces and subclasses is hard
+ * then.
  * </p>
  *
  * @author Martin Lindström (martin@idsec.se)
@@ -41,6 +43,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The default value to use if no mapping can be found. */

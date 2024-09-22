@@ -18,7 +18,7 @@ package se.idsec.signservice.integration.core;
 import java.io.IOException;
 
 /**
- * A singleton to be used internally for loading resources. By default the {@link DefaultContentLoader} is used. This
+ * A singleton to be used internally for loading resources. By default, the {@link DefaultContentLoader} is used. This
  * can be overridden by installing a customized content loader using {@link #setContentLoader(ContentLoader)}.
  *
  * @author Martin Lindström (martin@idsec.se)

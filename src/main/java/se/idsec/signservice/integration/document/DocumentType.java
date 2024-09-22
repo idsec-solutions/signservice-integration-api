@@ -58,7 +58,7 @@ public enum DocumentType {
   }
 
   /** The mime type. */
-  private String mimeType;
+  private final String mimeType;
 
   /**
    * Constructor.

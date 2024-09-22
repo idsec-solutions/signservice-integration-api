@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.core;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 
@@ -34,6 +35,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public class RestClientSignatureState implements SignatureState {
 
   /** For serializing. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The signature operation ID. */

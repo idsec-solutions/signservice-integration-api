@@ -15,6 +15,7 @@
  */
 package se.idsec.signservice.integration.core;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.ToString;
@@ -30,6 +31,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public abstract class AbstractIdentityAttribute implements Serializable {
 
   /** For serialization. */
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
   /** The type of attribute. */

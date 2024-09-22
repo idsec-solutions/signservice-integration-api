@@ -19,9 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
@@ -31,12 +29,13 @@ import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.TbsDocument;
 
+import java.io.Serial;
 import java.util.List;
 
 /**
  * The {@code PreparedPdfDocument} is the representation of the object that is returned from
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
- * The {@code preparePdfSignaturePage} method is used to setup a PDF document along with its visible signature
+ * The {@code preparePdfSignaturePage} method is used to set up a PDF document along with its visible signature
  * requirements ({@link VisiblePdfSignatureRequirement}) before
  * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} is
  * called.
@@ -51,20 +50,77 @@ import java.util.List;
 @JsonInclude(Include.NON_NULL)
 public class PreparedPdfDocument implements Extensible {
 
+  @Serial
   private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
 
+  /** The policy under which the data held in this class may be used. */
+  private String policy;
+
   /**
-   * The policy under which the data held in this class may be used. This is always the same as the policy given in the
-   * call to
+   * If the PDF document passed to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
+   * was updated with a PDF signature page this property holds the updated PDf document (in its Base64 encoded form).
+   */
+  private String updatedPdfDocument;
+
+  /**
+   * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
+   * returned as a reference instead of via a {@link #getUpdatedPdfDocument()} call.
+   */
+  private String updatedPdfDocumentReference;
+
+  /**
+   * The resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
+   * {@link TbsDocument} holding the PDF document that is passed to
+   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)}.
+   */
+  private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
+
+  /**
+   * List of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
+   * updatedPdfDocumentReference.
+   */
+  private List<PdfDocumentIssue> fixedIssues;
+
+  /** Extensions for the object. */
+  private Extension extension;
+
+  /**
+   * Gets the policy under which the data held in this class may be used. This is always the same as the policy given in
+   * the call to
    * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[],
    * PdfSignaturePagePreferences)}.
    *
-   * @param policy the policy
    * @return the policy
    */
-  @Setter
-  @Getter
-  private String policy;
+  public String getPolicy() {
+    return this.policy;
+  }
+
+  /**
+   * Assigns the policy under which the data held in this class may be used.
+   *
+   * @param policy the policy
+   */
+  public void setPolicy(final String policy) {
+    this.policy = policy;
+  }
+
+  /**
+   * If the PDF document passed to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
+   * was updated with a PDF signature page this property holds the updated PDf document (in its Base64 encoded form).
+   * <p>
+   * If the property is {@code null} it means that the PDF document was not modified by
+   * {@code preparePdfSignaturePage}.
+   * </p>
+   *
+   * @return the updated PDF document (in Base64 encoded form) or {@code null} if the initial PDF document was not
+   *     updated or if document references are used
+   */
+  public String getUpdatedPdfDocument() {
+    return this.updatedPdfDocument;
+  }
 
   /**
    * If the PDF document passed to
@@ -81,12 +137,10 @@ public class PreparedPdfDocument implements Extensible {
    * </p>
    *
    * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
-   * @return the updated PDF document (in Base64 encoded form) or null if the initial PDF document was not updated
-   *     or if document references are used
    */
-  @Setter
-  @Getter
-  private String updatedPdfDocument;
+  public void setUpdatedPdfDocument(final String updatedPdfDocument) {
+    this.updatedPdfDocument = updatedPdfDocument;
+  }
 
   /**
    * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
@@ -101,29 +155,67 @@ public class PreparedPdfDocument implements Extensible {
    * necessary).
    * </p>
    *
-   * @param updatedPdfDocumentReference reference to the updated document
-   * @return reference to the updated document or null
+   * @return reference to the updated document or {@code null}
    */
-  @Setter
-  @Getter
-  private String updatedPdfDocumentReference;
+  public String getUpdatedPdfDocumentReference() {
+    return this.updatedPdfDocumentReference;
+  }
 
   /**
-   * The resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
+   * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
+   * returned as a reference instead of via a {@link #getUpdatedPdfDocument()} call. The reason for using document
+   * references is that a potentially heavy document only has to be uploaded once. Later when including the document in
+   * a call to
+   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
+   * reference is set in {@link TbsDocument#setContentReference(String)}.
+   *
+   * @param updatedPdfDocumentReference reference to the updated document
+   */
+  public void setUpdatedPdfDocumentReference(final String updatedPdfDocumentReference) {
+    this.updatedPdfDocumentReference = updatedPdfDocumentReference;
+  }
+
+  /**
+   * Gets the resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
+   * {@link TbsDocument} holding the PDF document that is passed to
+   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)}.
+   *
+   * @return a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about to
+   *     be signed with a signature image
+   */
+  public VisiblePdfSignatureRequirement getVisiblePdfSignatureRequirement() {
+    return this.visiblePdfSignatureRequirement;
+  }
+
+  /**
+   * Assigns the resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
    * {@link TbsDocument} holding the PDF document that is passed to
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)}.
    *
    * @param visiblePdfSignatureRequirement a VisiblePdfSignatureRequirement object to be used in a TbsDocument for
    *     the PDF document that is about to be signed with a signature image
-   * @return a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about
-   *     to be signed with a signature image
    */
-  @Setter
-  @Getter
-  private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
+  public void setVisiblePdfSignatureRequirement(
+      final VisiblePdfSignatureRequirement visiblePdfSignatureRequirement) {
+    this.visiblePdfSignatureRequirement = visiblePdfSignatureRequirement;
+  }
 
   /**
-   * List of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
+   * Gets the list of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
+   * updatedPdfDocumentReference.
+   * <p>
+   * This information informs about fixed issues that have changed the document to determine if these changes are OK or
+   * whether the signing process should be rejected.
+   * </p>
+   *
+   * @return a list of issues that were fixed in the prepared PDF document, or {@code null}
+   */
+  public List<PdfDocumentIssue> getFixedIssues() {
+    return this.fixedIssues;
+  }
+
+  /**
+   * Assigns the list of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
    * updatedPdfDocumentReference.
    * <p>
    * This information informs about fixed issues that have changed the document to determine if these changes are OK or
@@ -131,14 +223,10 @@ public class PreparedPdfDocument implements Extensible {
    * </p>
    *
    * @param fixedIssues list of issues that were fixed in the prepared PDF document
-   * @return a list of issues that were fixed in the prepared PDF document
    */
-  @Setter
-  @Getter
-  private List<PdfDocumentIssue> fixedIssues;
-
-  /** Extensions for the object. */
-  private Extension extension;
+  public void setFixedIssues(final List<PdfDocumentIssue> fixedIssues) {
+    this.fixedIssues = fixedIssues;
+  }
 
   /** {@inheritDoc} */
   @Override

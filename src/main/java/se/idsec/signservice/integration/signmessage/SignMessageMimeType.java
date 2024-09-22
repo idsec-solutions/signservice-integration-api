@@ -58,14 +58,14 @@ public enum SignMessageMimeType {
   }
 
   /** Mime type value */
-  private String mimeType;
+  private final String mimeType;
 
   /**
    * Constructor.
    *
    * @param mimeType the MIME type
    */
-  private SignMessageMimeType(final String mimeType) {
+  SignMessageMimeType(final String mimeType) {
     this.mimeType = mimeType;
   }
 

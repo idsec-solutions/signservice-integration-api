@@ -61,7 +61,7 @@ public enum CertificateType {
   }
 
   /** Textual representation of the type. */
-  private String type;
+  private final String type;
 
   /**
    * Constructor.

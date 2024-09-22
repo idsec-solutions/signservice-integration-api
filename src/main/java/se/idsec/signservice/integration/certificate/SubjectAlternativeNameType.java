@@ -18,9 +18,9 @@ package se.idsec.signservice.integration.certificate;
 /**
  * An enum that represents the different name types that can be stored in an X.509 subject alternative name certificate
  * extension.
- *
+ * <p>
  * The following ASN.1 structure is mapped (excluding {@code otherName}):
- *
+ * </p>
  * <pre>
  * GeneralName ::= CHOICE {
  *   otherName       [0] INSTANCE OF OTHER-NAME,
@@ -117,10 +117,10 @@ public enum SubjectAlternativeNameType {
   }
 
   /** The name. */
-  private String typeName;
+  private final String typeName;
 
   /** The index mapping to the ASN.1 {@code GeneralName} choice. */
-  private int index;
+  private final int index;
 
   SubjectAlternativeNameType(final String typeName, final int index) {
     this.typeName = typeName;
