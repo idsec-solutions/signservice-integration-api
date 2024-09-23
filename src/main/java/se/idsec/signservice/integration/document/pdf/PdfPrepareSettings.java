@@ -21,6 +21,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * Rrpresents the profile settings for how a PDF document is prepared.
  * <p>
@@ -36,7 +39,10 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PdfPrepareSettings {
+public class PdfPrepareSettings implements Serializable {
+
+  @Serial
+  private static final long serialVersionUID = -9090581375259732911L;
 
   /** A {@link PdfPrepareSettings} with default settings. */
   public static final PdfPrepareSettings DEFAULT = new PdfPrepareSettings();
