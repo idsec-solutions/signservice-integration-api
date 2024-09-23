@@ -23,7 +23,7 @@ package se.idsec.signservice.integration;
 public final class ApiVersion {
 
   private static final int MAJOR = 2;
-  private static final int MINOR = 1;
+  private static final int MINOR = 2;
   private static final int PATCH = 0;
 
   /**

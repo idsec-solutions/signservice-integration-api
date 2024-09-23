@@ -53,8 +53,11 @@ The `document` category represents document related errors, for example, a malfo
 | `error.document.ades-validation-error` | The AdES validation failed (for example the digest check).  |
 | `error.document.decode` | Failed to decode document that was passed.  |
 | `error.document.encode` | Failed to encode document that was passed.  |
-| `error.document.invalid-signature` | The document has an invalid signature. TODO |
-| `error.document.sign` | Failed to sign the document. TODO  |
+| `error.document.invalid-signature` | The document has an invalid signature. |
+| `error.document.sign` | Failed to sign the document. |
+| `error.document.pdfa-consistency-check-failed` | PDF/A consistency check failed. Typically this happens when a document being signed is in PDF/A, but the sign page is not. |
+| `error.document.pdf-contains-acroform` | PDF document contains an Acroform (and policy is not configured to flatten such forms). |
+| `error.document.pdf-contains-encryption-dictionary` | PDF document contains an encryption dictionay (and policy is not configured to remove these). |
 
 ### SignResponse
 
