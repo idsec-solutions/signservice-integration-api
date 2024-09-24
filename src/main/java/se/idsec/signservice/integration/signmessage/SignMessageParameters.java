@@ -41,9 +41,8 @@ import java.io.Serializable;
 @JsonInclude(Include.NON_NULL)
 public class SignMessageParameters implements Serializable {
 
-  /** For serialization. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 4015165603787409930L;
 
   /** The sign message (non encrypted) content. */
   private String signMessage;

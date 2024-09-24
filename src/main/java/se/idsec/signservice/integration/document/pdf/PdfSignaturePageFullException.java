@@ -15,7 +15,6 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.core.error.ErrorCode;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;
@@ -32,9 +31,8 @@ import java.io.Serial;
  */
 public class PdfSignaturePageFullException extends SignServiceIntegrationException {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 1250261371127273787L;
 
   /** The error code for this exception. */
   public static final ErrorCode errorCode = ErrorCode.error("document", "too-many-signimages");

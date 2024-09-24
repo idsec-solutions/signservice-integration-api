@@ -15,25 +15,23 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.authentication.AuthnRequirements;
 import se.idsec.signservice.integration.authentication.SignerIdentityAttribute;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Representation of the user information that is injected into a PDF signature image.
@@ -48,9 +46,8 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class VisiblePdfSignatureUserInformation implements Extensible, Serializable {
 
-  /** For serialization. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 8530156355878335379L;
 
   /**
    * Name of the signer to be represented in the visible image. This is typically a name of the signer but any suitable
@@ -172,7 +169,7 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * displayed by assigning a formatting, see {@link #setFormatting(String)}.
      *
      * @return a list of attribute names whose values should be used to display the signer name in the visible PDF
-     *           signature
+     *     signature
      */
     public List<SignerIdentityAttribute> getSignerAttributes() {
       return this.signerAttributes;
@@ -185,8 +182,8 @@ public class VisiblePdfSignatureUserInformation implements Extensible, Serializa
      * name field as they appear in the list (separated by a blank). It is possible to change how the information is
      * displayed by assigning a formatting, see {@link #setFormatting(String)}.
      *
-     * @param signerAttributes a list of attribute names whose values should be used to display the signer name in the
-     *          visible PDF signature
+     * @param signerAttributes a list of attribute names whose values should be used to display the signer name in
+     *     the visible PDF signature
      */
     public void setSignerAttributes(final List<SignerIdentityAttribute> signerAttributes) {
       this.signerAttributes = signerAttributes;

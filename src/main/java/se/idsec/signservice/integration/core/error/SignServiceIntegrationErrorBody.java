@@ -15,15 +15,13 @@
  */
 package se.idsec.signservice.integration.core.error;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import lombok.Builder;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-import lombok.Builder;
-import se.idsec.signservice.integration.ApiVersion;
 
 /**
  * The {@code SignServiceIntegrationErrorBody} is a representation of a SignService Integration error message when the
@@ -37,7 +35,7 @@ import se.idsec.signservice.integration.ApiVersion;
 public class SignServiceIntegrationErrorBody implements Serializable {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -5406555484713427189L;
 
   /** The HTTP status code. */
   private int status;
@@ -246,7 +244,7 @@ public class SignServiceIntegrationErrorBody implements Serializable {
   public static class ValidationError implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+    private static final long serialVersionUID = 3339883496632946182L;
 
     /** The name of the object that validation failed for. */
     private String object;
@@ -317,7 +315,7 @@ public class SignServiceIntegrationErrorBody implements Serializable {
   public static class DssError implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+    private static final long serialVersionUID = 4656994245179980380L;
 
     /** The DSS major result code. */
     private String majorCode;

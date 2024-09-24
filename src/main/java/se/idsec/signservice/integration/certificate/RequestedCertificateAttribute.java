@@ -18,7 +18,6 @@ package se.idsec.signservice.integration.certificate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -42,9 +41,8 @@ import java.io.Serial;
 @JsonInclude(Include.NON_NULL)
 public class RequestedCertificateAttribute extends AbstractIdentityAttribute {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -4866653598772777511L;
 
   /** The default value to use if no mapping can be found. */
   private String defaultValue;

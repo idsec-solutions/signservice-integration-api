@@ -17,7 +17,6 @@ package se.idsec.signservice.integration;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Builder;
 import lombok.ToString;
 import se.idsec.signservice.integration.core.Extensible;
@@ -68,7 +67,7 @@ import java.io.Serial;
 public class SignRequestData implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 4357498242718442582L;
 
   /** The default binding. */
   public static final String DEFAULT_BINDING = "POST/XML/1.0";
@@ -124,8 +123,8 @@ public class SignRequestData implements Extensible {
    * <p>
    * This state must be maintained by the signature requester and when a sign response has been received from the
    * signature service be supplied in the
-   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}
-   * call.
+   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState,
+   * SignResponseProcessingParameters)} call.
    * </p>
    *
    * @return the signature state for this operation
@@ -140,8 +139,8 @@ public class SignRequestData implements Extensible {
    * <p>
    * This state must be maintained by the signature requester and when a sign response has been received from the
    * signature service be supplied in the
-   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState, SignResponseProcessingParameters)}
-   * call.
+   * {@link SignServiceIntegrationService#processSignResponse(String, String, SignatureState,
+   * SignResponseProcessingParameters)} call.
    * </p>
    *
    * @param state the signature state

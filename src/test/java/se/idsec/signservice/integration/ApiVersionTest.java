@@ -40,11 +40,6 @@ public class ApiVersionTest {
   }
 
   @Test
-  public void testUid() {
-    Assertions.assertEquals(this.version.hashCode(), ApiVersion.SERIAL_VERSION_UID);
-  }
-
-  @Test
   public void testVersion() {
     Assertions.assertEquals(this.version, ApiVersion.getVersion(),
         "Expected LibraryVersion.getVersion() to return " + this.version);

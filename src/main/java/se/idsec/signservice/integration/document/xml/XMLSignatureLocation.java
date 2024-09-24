@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Builder;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -39,7 +38,7 @@ import java.io.Serial;
 public class XMLSignatureLocation implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 8022462697014173727L;
 
   /** Indicator for first or last child of a selected parent node. */
   private String childPosition;

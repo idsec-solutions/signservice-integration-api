@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Builder;
 import lombok.Singular;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.authentication.SignerIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -41,7 +40,7 @@ import java.util.List;
 public class CertificateAttributeMapping implements Serializable {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 5475994961681485416L;
 
   /**
    * A list of signer source attributes from where the sign service gets information in order to create the requested

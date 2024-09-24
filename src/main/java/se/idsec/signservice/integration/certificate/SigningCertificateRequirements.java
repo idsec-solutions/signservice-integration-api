@@ -15,19 +15,17 @@
  */
 package se.idsec.signservice.integration.certificate;
 
-import java.io.Serial;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Builder;
 import lombok.Singular;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
+import java.util.List;
 
 /**
  * When sending a SignRequest, a sign requester specifies a set of requirements for the signature certificate that is
@@ -41,9 +39,8 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 @JsonInclude(Include.NON_NULL)
 public class SigningCertificateRequirements implements Extensible {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -5718650454038443095L;
 
   /** The requested certificate type. */
   private CertificateType certificateType;

@@ -15,18 +15,16 @@
  */
 package se.idsec.signservice.integration.security;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * Representation of encryption algorithms to be used when encrypting a sign message for an Identity Provider.
@@ -57,7 +55,7 @@ public interface EncryptionParameters extends Serializable {
    * {@code http://www.w3.org/2009/xmlenc11#rsa-oaep}, this method returns the RSA OAEP parameters to use.
    *
    * @return the RSA OAEP parameters, or {@code null} if {@link #getDataEncryptionAlgorithm()} does not return a RSA
-   *           OEAP algorithm
+   *     OEAP algorithm
    */
   RSAOAEPParameters getRsaOaepParameters();
 
@@ -73,7 +71,7 @@ public interface EncryptionParameters extends Serializable {
   class RSAOAEPParameters implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+    private static final long serialVersionUID = 4163374244188001559L;
 
     /** Digest method algorithm URI. */
     private String digestMethod;

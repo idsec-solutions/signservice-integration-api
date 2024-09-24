@@ -15,25 +15,23 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
-import java.io.Serial;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.FileResource;
 import se.idsec.signservice.integration.core.ObjectBuilder;
+
+import java.io.Serial;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.Map;
 
 /**
  * Representation of an image template that is used for visible PDF signatures.
@@ -66,7 +64,7 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 public class PdfSignatureImageTemplate implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 1237316790752152415L;
 
   /** Constant for the name of the special purpose field "signerName". */
   public static final String SIGNER_NAME_FIELD_NAME = "signerName";

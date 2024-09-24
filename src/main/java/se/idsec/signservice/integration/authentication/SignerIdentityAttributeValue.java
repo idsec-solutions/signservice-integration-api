@@ -17,10 +17,8 @@ package se.idsec.signservice.integration.authentication;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Builder;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
 import java.io.Serial;
@@ -44,9 +42,8 @@ import java.io.Serial;
 @JsonInclude(Include.NON_NULL)
 public class SignerIdentityAttributeValue extends SignerIdentityAttribute {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 3356867580368876329L;
 
   /** The default name format to use. */
   public static final String DEFAULT_NAME_FORMAT = "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";

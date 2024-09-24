@@ -15,7 +15,6 @@
  */
 package se.idsec.signservice.integration.document.pdf;
 
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.core.error.ErrorCode;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;

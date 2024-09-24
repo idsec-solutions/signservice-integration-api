@@ -23,7 +23,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.SignServiceIntegrationService;
 import se.idsec.signservice.integration.core.Extensible;
@@ -58,7 +57,7 @@ import java.io.Serial;
 public class PreparedPdfDocument implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 1691338993275336335L;
 
   /** The policy under which the data held in this class may be used. */
   private String policy;

@@ -21,7 +21,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
@@ -43,9 +42,8 @@ import java.util.Map;
 @JsonInclude(Include.NON_NULL)
 public class VisiblePdfSignatureRequirement extends VisiblePdfSignatureUserInformation {
 
-  /** For serialization. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -1698022232972612768L;
 
   /** Constant for an extension that denotes a "null" visible PDF signature requirement. */
   public static final String NULL_INDICATOR_EXTENSION = "nullVisiblePdfSignatureRequirement";

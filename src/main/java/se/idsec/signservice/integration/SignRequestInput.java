@@ -15,12 +15,8 @@
  */
 package se.idsec.signservice.integration;
 
-import java.io.Serial;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Singular;
@@ -33,6 +29,9 @@ import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.TbsDocument;
 import se.idsec.signservice.integration.signmessage.SignMessageParameters;
+
+import java.io.Serial;
+import java.util.List;
 
 /**
  * Class that represents the input to a {@link SignServiceIntegrationService#createSignRequest(SignRequestInput)}
@@ -48,7 +47,7 @@ import se.idsec.signservice.integration.signmessage.SignMessageParameters;
 public class SignRequestInput implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -3516357562768818746L;
 
   /** The correlation ID to use for this process. */
   private String correlationId;
@@ -203,7 +202,7 @@ public class SignRequestInput implements Extensible {
    * Gets the signature service URL to where SignRequest messages should be posted.
    *
    * @return the signature service URL to where SignRequest messages should be posted, or {@code null} if the default
-   *           should be used
+   *     should be used
    */
   public String getDestinationUrl() {
     return this.destinationUrl;
