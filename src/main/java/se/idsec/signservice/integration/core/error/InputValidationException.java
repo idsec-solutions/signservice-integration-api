@@ -18,8 +18,6 @@ package se.idsec.signservice.integration.core.error;
 import java.io.Serial;
 import java.util.Map;
 
-import se.idsec.signservice.integration.ApiVersion;
-
 /**
  * Exception class for input validation errors.
  *
@@ -28,9 +26,8 @@ import se.idsec.signservice.integration.ApiVersion;
  */
 public class InputValidationException extends BadRequestException {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -244729057531590923L;
 
   /** The error code for this type of error. */
   protected static final ErrorCode.Code ERROR_CODE = new ErrorCode.Code("validation");

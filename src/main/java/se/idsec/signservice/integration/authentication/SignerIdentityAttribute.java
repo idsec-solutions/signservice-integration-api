@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Builder;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.AbstractIdentityAttribute;
 import se.idsec.signservice.integration.core.ObjectBuilder;
 
@@ -35,9 +34,8 @@ import java.io.Serial;
 @JsonInclude(Include.NON_NULL)
 public class SignerIdentityAttribute extends AbstractIdentityAttribute {
 
-  /** For serialization. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -8149318910982832470L;
 
   /** Type indicator for SAML attribute. */
   public static final String SAML_TYPE = "saml";

@@ -22,7 +22,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import se.idsec.signservice.integration.ApiVersion;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.FileResource;
@@ -56,7 +55,7 @@ import java.util.Base64;
 public class PdfSignaturePage implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -4426670734458301968L;
 
   /** The unique ID for this PDF signature page. */
   private String id;
@@ -269,7 +268,7 @@ public class PdfSignaturePage implements Extensible {
   public static class PdfSignatureImagePlacementConfiguration implements Extensible {
 
     @Serial
-    private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+    private static final long serialVersionUID = 7465999411013374718L;
 
     /**
      * The X coordinate position (in pixels) of where the first PDF visible signature image should be inserted on the

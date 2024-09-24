@@ -16,7 +16,7 @@
 package se.idsec.signservice.integration;
 
 /**
- * Internal class used for serialization across library classes and for representing the version of the API.
+ * Internal class used for representation of the API version.
  *
  * @author Martin Lindström
  */
@@ -25,11 +25,6 @@ public final class ApiVersion {
   private static final int MAJOR = 2;
   private static final int MINOR = 2;
   private static final int PATCH = 0;
-
-  /**
-   * Global serialization value for classes.
-   */
-  public static final long SERIAL_VERSION_UID = getVersion().hashCode();
 
   /**
    * Gets the version string.

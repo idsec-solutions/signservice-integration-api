@@ -15,19 +15,17 @@
  */
 package se.idsec.signservice.integration.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import jakarta.annotation.PostConstruct;
+import lombok.Builder;
+
 import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-import jakarta.annotation.PostConstruct;
-import lombok.Builder;
-import se.idsec.signservice.integration.ApiVersion;
 
 /**
  * A {@code FileResource} class is a generic class for handling file resources used in configuration of a SignService
@@ -46,9 +44,8 @@ import se.idsec.signservice.integration.ApiVersion;
 @JsonInclude(Include.NON_NULL)
 public class FileResource implements Serializable {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 6763043655938027208L;
 
   /** The base64 encoded contents of the file resource. */
   private String contents;

@@ -17,7 +17,6 @@ package se.idsec.signservice.integration.core.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import se.idsec.signservice.integration.ApiVersion;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -37,7 +36,7 @@ import java.io.Serializable;
 public class ErrorCode implements Serializable {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 4087484663881429072L;
 
   /** Prefix for all errors. */
   public static final String ERROR_CODE_PREFIX = "error.";

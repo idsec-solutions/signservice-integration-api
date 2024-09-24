@@ -25,9 +25,8 @@ import java.io.Serial;
  */
 public class SignResponseErrorStatusException extends Exception {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 5713807960873891492L;
 
   /** The DSS major result code. */
   private final String majorCode;

@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import se.idsec.signservice.integration.ApiVersion;
-
 import java.io.Serial;
 
 /**
@@ -27,9 +25,8 @@ import java.io.Serial;
  */
 public class NoAccessException extends SignServiceIntegrationException {
 
-  /** For serialization. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 7227454486068546977L;
 
   /** The error code for this type of error. */
   public static final ErrorCode ERROR_CODE = new ErrorCode("security", "no-access");

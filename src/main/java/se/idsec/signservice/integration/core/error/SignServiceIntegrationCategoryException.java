@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import se.idsec.signservice.integration.ApiVersion;
-
 import java.io.Serial;
 
 /**
@@ -28,9 +26,8 @@ import java.io.Serial;
  */
 public abstract class SignServiceIntegrationCategoryException extends SignServiceIntegrationException {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 1129970870457977277L;
 
   /**
    * Constructor.

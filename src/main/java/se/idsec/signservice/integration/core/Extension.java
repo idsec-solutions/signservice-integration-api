@@ -19,8 +19,6 @@ import java.io.Serial;
 import java.util.HashMap;
 import java.util.Map;
 
-import se.idsec.signservice.integration.ApiVersion;
-
 /**
  * Represents an extension to a domain object. An extension is a set of name-value pairs.
  *
@@ -29,9 +27,8 @@ import se.idsec.signservice.integration.ApiVersion;
  */
 public class Extension extends HashMap<String, String> {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 3763640336680098817L;
 
   /**
    * Default constructor.

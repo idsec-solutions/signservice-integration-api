@@ -15,8 +15,6 @@
  */
 package se.idsec.signservice.integration.core.error;
 
-import se.idsec.signservice.integration.ApiVersion;
-
 import java.io.Serial;
 
 /**
@@ -27,9 +25,8 @@ import java.io.Serial;
  */
 public class BadRequestException extends SignServiceIntegrationCategoryException {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -4903897541001054408L;
 
   /** The identifier for a bad request category. */
   public static final ErrorCode.Category BAD_REQUEST_ERROR_CATEGORY = new ErrorCode.Category("bad-request");

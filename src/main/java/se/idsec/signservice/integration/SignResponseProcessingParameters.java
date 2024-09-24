@@ -41,7 +41,7 @@ import java.io.Serial;
 public class SignResponseProcessingParameters implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -1883927618586824418L;
 
   /**
    * If an XML document is signed, the caller has the possibility to control where in the document the

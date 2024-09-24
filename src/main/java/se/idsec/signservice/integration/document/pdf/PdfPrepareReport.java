@@ -25,6 +25,8 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -36,7 +38,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PdfPrepareReport {
+public class PdfPrepareReport implements Serializable {
+
+  @Serial
+  private static final long serialVersionUID = 6720426625168925433L;
 
   /** The actions that were completed during the prepare operation. */
   private List<PrepareActions> actions;

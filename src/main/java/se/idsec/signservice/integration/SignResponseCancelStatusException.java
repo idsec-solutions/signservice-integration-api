@@ -25,9 +25,8 @@ import java.io.Serial;
  */
 public class SignResponseCancelStatusException extends SignResponseErrorStatusException {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 4079776433989742973L;
 
   /**
    * Constructor.

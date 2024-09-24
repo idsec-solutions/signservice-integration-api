@@ -15,14 +15,12 @@
  */
 package se.idsec.signservice.integration.core;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.LinkedHashMap;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import se.idsec.signservice.integration.ApiVersion;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.LinkedHashMap;
 
 /**
  * When the Sign Service Integration service is running as a REST service the clients need to have a concrete class so
@@ -34,9 +32,8 @@ import se.idsec.signservice.integration.ApiVersion;
 @JsonInclude(Include.NON_NULL)
 public class RestClientSignatureState implements SignatureState {
 
-  /** For serializing. */
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = 5286564715474770105L;
 
   /** The signature operation ID. */
   private String id;
@@ -59,8 +56,7 @@ public class RestClientSignatureState implements SignatureState {
   /**
    * Assigns the unique identifier for the signature operation.
    *
-   * @param id
-   *          signature operation ID
+   * @param id signature operation ID
    */
   public void setId(final String id) {
     this.id = id;
@@ -75,8 +71,7 @@ public class RestClientSignatureState implements SignatureState {
   /**
    * Assigns the session state.
    *
-   * @param state
-   *          the session state
+   * @param state the session state
    */
   public void setState(final LinkedHashMap<String, ?> state) {
     this.state = state;

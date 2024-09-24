@@ -42,7 +42,7 @@ import se.idsec.signservice.integration.document.SignedDocument;
 public class SignatureResult implements Extensible {
 
   @Serial
-  private static final long serialVersionUID = ApiVersion.SERIAL_VERSION_UID;
+  private static final long serialVersionUID = -1686042989883226299L;
 
   /** The ID for the signature operation. This ID corresponds to the RequestID of the SignRequest and SignResponse. */
   private String id;
