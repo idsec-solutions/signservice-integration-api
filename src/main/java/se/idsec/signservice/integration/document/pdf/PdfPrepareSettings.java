@@ -25,7 +25,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * Rrpresents the profile settings for how a PDF document is prepared.
+ * Represents the profile settings for how a PDF document is prepared.
  * <p>
  * See
  * {@link se.idsec.signservice.integration.ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[],
