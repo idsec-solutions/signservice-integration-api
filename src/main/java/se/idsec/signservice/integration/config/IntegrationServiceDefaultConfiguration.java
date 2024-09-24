@@ -15,6 +15,8 @@
  */
 package se.idsec.signservice.integration.config;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
 import se.idsec.signservice.integration.SignRequestInput;
 import se.idsec.signservice.integration.SignResponseProcessingParameters;
@@ -23,8 +25,10 @@ import se.idsec.signservice.integration.authentication.AuthnRequirements;
 import se.idsec.signservice.integration.certificate.SigningCertificateRequirements;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.SignatureState;
+import se.idsec.signservice.integration.document.pdf.PdfPrepareSettings;
 import se.idsec.signservice.integration.document.pdf.PdfSignatureImageTemplate;
 import se.idsec.signservice.integration.document.pdf.PdfSignaturePage;
+import se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences;
 import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirement;
 import se.idsec.signservice.integration.security.EncryptionParameters;
 
@@ -46,6 +50,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the policy identifier
    */
+  @Nonnull
   String getPolicy();
 
   /**
@@ -57,6 +62,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the default sign requester ID
    */
+  @Nullable
   String getDefaultSignRequesterID();
 
   /**
@@ -68,6 +74,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the default URL to which a sign response is to be returned
    */
+  @Nullable
   String getDefaultReturnUrl();
 
   /**
@@ -79,6 +86,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return signature algorithm identifier
    */
+  @Nullable
   String getDefaultSignatureAlgorithm();
 
   /**
@@ -87,6 +95,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the ID of the signature service
    */
+  @Nonnull
   String getSignServiceID();
 
   /**
@@ -97,6 +106,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the default destination URL of the signature service to where sign messages should be posted
    */
+  @Nullable
   String getDefaultDestinationUrl();
 
   /**
@@ -107,6 +117,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * @return the entityID for the default authentication service, or null if no default exists
    * @see AuthnRequirements#getAuthnServiceID()
    */
+  @Nullable
   String getDefaultAuthnServiceID();
 
   /**
@@ -117,6 +128,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * @return the default authentication context reference URI
    * @see AuthnRequirements#getAuthnContextClassRefs()
    */
+  @Nullable
   String getDefaultAuthnContextRef();
 
   /**
@@ -128,22 +140,25 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the default signing certificate requirements
    */
+  @Nullable
   SigningCertificateRequirements getDefaultCertificateRequirements();
 
   /**
    * A policy may be configured to include a default "visible PDF signature requirement" for all PDF documents that are
    * signed under this policy.
    *
-   * @return the default visible PDF signature requirement to use for PDF signatures, or null
+   * @return the default visible PDF signature requirement to use for PDF signatures, or {@code null}
    */
+  @Nullable
   VisiblePdfSignatureRequirement getDefaultVisiblePdfSignatureRequirement();
 
   /**
    * A policy may have one, or more, image templates for visible PDF signatures in its configuration. See
    * {@link PdfSignatureImageTemplate}. This method gets these templates.
    *
-   * @return a list of image templates for visible PDF signatures, or null if none exists
+   * @return a list of image templates for visible PDF signatures, or {@code null} if none exists
    */
+  @Nullable
   List<? extends PdfSignatureImageTemplate> getPdfSignatureImageTemplates();
 
   /**
@@ -152,9 +167,18 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    * se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences)} for a description of PDF signature
    * pages. The first object in the list is regarded as the default page for the policy.
    *
-   * @return a list of PDF signature pages for the policy, or null if no such pages are defined for the policy
+   * @return a list of PDF signature pages for the policy, or {@code null} if no such pages are defined for the policy
    */
+  @Nullable
   List<? extends PdfSignaturePage> getPdfSignaturePages();
+
+  /**
+   * Gets the settings for preparing PDF documents.
+   * @return a {@link PdfPrepareSettings}
+   * @see ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)
+   */
+  @Nonnull
+  PdfPrepareSettings getPdfPrepareSettings();
 
   /**
    * Tells whether the SignService Integration Service is running in stateless mode or not.
@@ -182,6 +206,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the default encryption parameters
    */
+  @Nullable
   EncryptionParameters getDefaultEncryptionParameters();
 
   /**
@@ -195,6 +220,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the signature certificates for the SignService Integration Service
    */
+  @Nonnull
   String getSignatureCertificate();
 
   /**
@@ -209,6 +235,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the signature service signing certificate(s)
    */
+  @Nonnull
   List<String> getSignServiceCertificates();
 
   /**
@@ -224,6 +251,7 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
    *
    * @return the SignService CA root certificate(s)
    */
+  @Nonnull
   List<String> getTrustAnchors();
 
 }

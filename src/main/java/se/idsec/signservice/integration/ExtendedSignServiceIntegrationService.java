@@ -15,9 +15,15 @@
  */
 package se.idsec.signservice.integration;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import se.idsec.signservice.integration.core.error.InputValidationException;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;
 import se.idsec.signservice.integration.document.TbsDocument;
+import se.idsec.signservice.integration.document.pdf.PdfAConsistencyCheckException;
+import se.idsec.signservice.integration.document.pdf.PdfContainsAcroformException;
+import se.idsec.signservice.integration.document.pdf.PdfContainsEncryptionDictionaryException;
+import se.idsec.signservice.integration.document.pdf.PdfPrepareSettings;
 import se.idsec.signservice.integration.document.pdf.PdfSignaturePageFullException;
 import se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences;
 import se.idsec.signservice.integration.document.pdf.PreparedPdfDocument;
@@ -37,12 +43,18 @@ import se.idsec.signservice.integration.document.pdf.VisiblePdfSignatureRequirem
 public interface ExtendedSignServiceIntegrationService extends SignServiceIntegrationService {
 
   /**
-   * A utility method that can be used to prepare a PDF document that is to be signed with a PDF signature page holding
-   * the signature image(s).
+   * A utility method that can be used to prepare a PDF document for signing.
+   * <p>
+   * The main purpose is to prepare a document that is to be signed with a PDF signature page holding the signature
+   * image(s), but the method may also be used to ensure that the document is correct with respect to its format, and
+   * also have the document "fixed" (see below).
+   * </p>
+   * <b>Signature pages and visible signatures</b>
    * <p>
    * A PDF signature image can be inserted into a signed PDF document to make the signature information "visible". The
    * image along with the coordinates that tell where in the PDF document the image should be inserted is represented
-   * using a {@link VisiblePdfSignatureRequirement} object. See {@link TbsDocument#getVisiblePdfSignatureRequirement()}.
+   * using a {@link VisiblePdfSignatureRequirement} object. See
+   * {@link TbsDocument#getVisiblePdfSignatureRequirement()}.
    * </p>
    * <p>
    * However, for the generic case, where we may not always know how the PDF document that we are signing looks like it
@@ -62,20 +74,41 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * several signature images, no new PDF signature page is added. Instead, the {@code preparePdfSignaturePage} method
    * calculates where in the already existing PDF signature page the next signature image will be inserted.
    * </p>
+   * <p>
+   * If the policy states that PDF/A constistence checks should be done (see
+   * {@link PdfPrepareSettings#isEnforcePdfaConsistency()}, the method will enforce that sign pages are PDF/A if the
+   * document being signed is PDF/A.
+   * </p>
+   * <b>Fixing PDF Issues</b>
+   * <p>
+   * Depending on the settings of the profile configuration's {@link PdfPrepareSettings} the method may adjust the
+   * document being signed by:
+   * <ul>
+   *   <li>Flattening any present Acroforms from the document.</li>
+   *   <li>Removing the encryption dictionary from the document, if present.</li>
+   * </ul>
+   * </p>
    *
    * @param policy the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
    * @param pdfDocument the contents of the PDF document that is to be prepared
-   * @param signaturePagePreferences the PDF signature page preferences
+   * @param signaturePagePreferences the PDF signature page preferences (if {@code null}, no sign page is used)
    * @return a PreparedPdfDocument object containing the modified PDF document (if a sign page was added) and the
-   *           VisiblePdfSignatureRequirement telling how a signature image should be added
+   *     VisiblePdfSignatureRequirement telling how a signature image should be added
    * @throws InputValidationException for input validation errors
-   * @throws PdfSignaturePageFullException if the PDF document contains more signatures than there is room for in the
-   *           PDF signature page (and {@link PdfSignaturePagePreferences#isFailWhenSignPageFull()} evaluates to true)
+   * @throws PdfSignaturePageFullException if the PDF document contains more signatures than there is room for in
+   *     the PDF signature page (and {@link PdfSignaturePagePreferences#isFailWhenSignPageFull()} evaluates to true)
+   * @throws PdfAConsistencyCheckException if the policy is configured to enforce PDF/A consistency, and a sign page
+   *     that is not PDF/A is attempted to be added to a PDF/A document
+   * @throws PdfContainsAcroformException the PDF document contains an Acroform (and policy is not configured to
+   *     flatten such forms)
+   * @throws PdfContainsEncryptionDictionaryException the PDF document contains an encryption dictionay (and policy
+   *     is not configured to remove these)
    * @throws SignServiceIntegrationException for other processing errors
    */
   PreparedPdfDocument preparePdfSignaturePage(final String policy,
-      final byte[] pdfDocument,
-      final PdfSignaturePagePreferences signaturePagePreferences)
-      throws InputValidationException, PdfSignaturePageFullException, SignServiceIntegrationException;
+      @Nonnull final byte[] pdfDocument,
+      @Nullable final PdfSignaturePagePreferences signaturePagePreferences)
+      throws InputValidationException, PdfSignaturePageFullException, PdfAConsistencyCheckException,
+      PdfContainsAcroformException, PdfContainsEncryptionDictionaryException, SignServiceIntegrationException;
 
 }

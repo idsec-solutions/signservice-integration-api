@@ -17,6 +17,8 @@ package se.idsec.signservice.integration.document.pdf;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -30,15 +32,20 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 import se.idsec.signservice.integration.document.TbsDocument;
 
 import java.io.Serial;
-import java.util.List;
 
 /**
  * The {@code PreparedPdfDocument} is the representation of the object that is returned from
  * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
+ * <p>
  * The {@code preparePdfSignaturePage} method is used to set up a PDF document along with its visible signature
  * requirements ({@link VisiblePdfSignatureRequirement}) before
  * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} is
  * called.
+ * </p>
+ * <p>
+ * The {@code preparePdfSignaturePage} method may also be called without sign pages in order to validate and potentially
+ * fix the document before it is signed.
+ * </p>
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
@@ -76,11 +83,8 @@ public class PreparedPdfDocument implements Extensible {
    */
   private VisiblePdfSignatureRequirement visiblePdfSignatureRequirement;
 
-  /**
-   * List of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
-   * updatedPdfDocumentReference.
-   */
-  private List<PdfDocumentIssue> fixedIssues;
+  /** Report of actions and warnings. */
+  private PdfPrepareReport prepareReport;
 
   /** Extensions for the object. */
   private Extension extension;
@@ -93,6 +97,7 @@ public class PreparedPdfDocument implements Extensible {
    *
    * @return the policy
    */
+  @Nonnull
   public String getPolicy() {
     return this.policy;
   }
@@ -102,7 +107,7 @@ public class PreparedPdfDocument implements Extensible {
    *
    * @param policy the policy
    */
-  public void setPolicy(final String policy) {
+  public void setPolicy(@Nonnull final String policy) {
     this.policy = policy;
   }
 
@@ -118,6 +123,7 @@ public class PreparedPdfDocument implements Extensible {
    * @return the updated PDF document (in Base64 encoded form) or {@code null} if the initial PDF document was not
    *     updated or if document references are used
    */
+  @Nullable
   public String getUpdatedPdfDocument() {
     return this.updatedPdfDocument;
   }
@@ -138,7 +144,7 @@ public class PreparedPdfDocument implements Extensible {
    *
    * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
    */
-  public void setUpdatedPdfDocument(final String updatedPdfDocument) {
+  public void setUpdatedPdfDocument(@Nonnull final String updatedPdfDocument) {
     this.updatedPdfDocument = updatedPdfDocument;
   }
 
@@ -157,6 +163,7 @@ public class PreparedPdfDocument implements Extensible {
    *
    * @return reference to the updated document or {@code null}
    */
+  @Nullable
   public String getUpdatedPdfDocumentReference() {
     return this.updatedPdfDocumentReference;
   }
@@ -171,7 +178,7 @@ public class PreparedPdfDocument implements Extensible {
    *
    * @param updatedPdfDocumentReference reference to the updated document
    */
-  public void setUpdatedPdfDocumentReference(final String updatedPdfDocumentReference) {
+  public void setUpdatedPdfDocumentReference(@Nonnull final String updatedPdfDocumentReference) {
     this.updatedPdfDocumentReference = updatedPdfDocumentReference;
   }
 
@@ -181,8 +188,9 @@ public class PreparedPdfDocument implements Extensible {
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)}.
    *
    * @return a VisiblePdfSignatureRequirement object to be used in a TbsDocument for the PDF document that is about to
-   *     be signed with a signature image
+   *     be signed with a signature image, or {@code null} if no sign image is being used
    */
+  @Nullable
   public VisiblePdfSignatureRequirement getVisiblePdfSignatureRequirement() {
     return this.visiblePdfSignatureRequirement;
   }
@@ -196,47 +204,39 @@ public class PreparedPdfDocument implements Extensible {
    *     the PDF document that is about to be signed with a signature image
    */
   public void setVisiblePdfSignatureRequirement(
-      final VisiblePdfSignatureRequirement visiblePdfSignatureRequirement) {
+      @Nonnull final VisiblePdfSignatureRequirement visiblePdfSignatureRequirement) {
     this.visiblePdfSignatureRequirement = visiblePdfSignatureRequirement;
   }
 
   /**
-   * Gets the list of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
-   * updatedPdfDocumentReference.
-   * <p>
-   * This information informs about fixed issues that have changed the document to determine if these changes are OK or
-   * whether the signing process should be rejected.
-   * </p>
+   * Gets the actions and warnings for the operation.
    *
-   * @return a list of issues that were fixed in the prepared PDF document, or {@code null}
+   * @return the actions and warnings for the operation, or {@code null} if nothing needs to be reported
    */
-  public List<PdfDocumentIssue> getFixedIssues() {
-    return this.fixedIssues;
+  @Nullable
+  public PdfPrepareReport getPrepareReport() {
+    return this.prepareReport;
   }
 
   /**
-   * Assigns the list of fixed issues in the PDF document contained in updatedPdfDocument or referenced by
-   * updatedPdfDocumentReference.
-   * <p>
-   * This information informs about fixed issues that have changed the document to determine if these changes are OK or
-   * whether the signing process should be rejected.
-   * </p>
+   * Assigns the actions and warnings for the operation.
    *
-   * @param fixedIssues list of issues that were fixed in the prepared PDF document
+   * @param prepareReport the actions and warnings for the operation
    */
-  public void setFixedIssues(final List<PdfDocumentIssue> fixedIssues) {
-    this.fixedIssues = fixedIssues;
+  public void setPrepareReport(@Nonnull final PdfPrepareReport prepareReport) {
+    this.prepareReport = prepareReport;
   }
 
   /** {@inheritDoc} */
   @Override
+  @Nullable
   public Extension getExtension() {
     return this.extension;
   }
 
   /** {@inheritDoc} */
   @Override
-  public void setExtension(final Extension extension) {
+  public void setExtension(@Nonnull final Extension extension) {
     this.extension = extension;
   }
 
@@ -244,7 +244,6 @@ public class PreparedPdfDocument implements Extensible {
    * Builder for {@code PreparedPdfDocument} objects.
    */
   public static class PreparedPdfDocumentBuilder implements ObjectBuilder<PreparedPdfDocument> {
-
     // Lombok
   }
 
