@@ -83,11 +83,11 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * <p>
    * Depending on the settings of the profile configuration's {@link PdfPrepareSettings} the method may adjust the
    * document being signed by:
+   * </p>
    * <ul>
    *   <li>Flattening any present Acroforms from the document.</li>
    *   <li>Removing the encryption dictionary from the document, if present.</li>
    * </ul>
-   * </p>
    *
    * @param policy the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
    * @param pdfDocument the contents of the PDF document that is to be prepared
