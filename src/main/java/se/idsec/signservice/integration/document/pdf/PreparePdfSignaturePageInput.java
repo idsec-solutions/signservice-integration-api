@@ -30,8 +30,8 @@ import java.io.Serial;
 
 /**
  * Class that represents the input to
- * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
- * when implemented as a REST endpoint.
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+ * Boolean)} when implemented as a REST endpoint.
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)

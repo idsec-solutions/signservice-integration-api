@@ -34,7 +34,8 @@ import java.io.Serial;
 
 /**
  * The {@code PreparedPdfDocument} is the representation of the object that is returned from
- * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+ * Boolean)}.
  * <p>
  * The {@code preparePdfSignaturePage} method is used to set up a PDF document along with its visible signature
  * requirements ({@link VisiblePdfSignatureRequirement}) before
@@ -64,16 +65,18 @@ public class PreparedPdfDocument implements Extensible {
 
   /**
    * If the PDF document passed to
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
-   * was updated with a PDF signature page this property holds the updated PDf document (in its Base64 encoded form).
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was updated this property holds the updated PDf document (in its Base64 encoded form).
    */
   private String updatedPdfDocument;
 
   /**
-   * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
-   * returned as a reference instead of via a {@link #getUpdatedPdfDocument()} call.
+   * If the service is running in stateful mode and the call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was made with the {@code returnDocumentReference} parameter set, this field will hold the reference to
+   * the PDF document stored by the service.
    */
-  private String updatedPdfDocumentReference;
+  private String pdfDocumentReference;
 
   /**
    * The resulting {@link VisiblePdfSignatureRequirement} object that should be passed as a property in the
@@ -91,8 +94,8 @@ public class PreparedPdfDocument implements Extensible {
   /**
    * Gets the policy under which the data held in this class may be used. This is always the same as the policy given in
    * the call to
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[],
-   * PdfSignaturePagePreferences)}.
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)}.
    *
    * @return the policy
    */
@@ -112,11 +115,11 @@ public class PreparedPdfDocument implements Extensible {
 
   /**
    * If the PDF document passed to
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
-   * was updated with a PDF signature page this property holds the updated PDf document (in its Base64 encoded form).
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was updated this property holds the updated PDf document (in its Base64 encoded form).
    * <p>
-   * If the property is {@code null} it means that the PDF document was not modified by
-   * {@code preparePdfSignaturePage}.
+   * If the property is {@code null} it means that the PDF document was not modified by the {@code preparePdfDocument}
+   * method.
    * </p>
    *
    * @return the updated PDF document (in Base64 encoded form) or {@code null} if the initial PDF document was not
@@ -129,16 +132,16 @@ public class PreparedPdfDocument implements Extensible {
 
   /**
    * If the PDF document passed to
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
-   * was updated with a PDF signature page this property holds the updated PDf document (in its Base64 encoded form).
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was updated this property holds the updated PDf document (in its Base64 encoded form).
    * <p>
-   * If the property is {@code null} it means that the PDF document was not modified by
-   * {@code preparePdfSignaturePage}.
+   * If the property is {@code null} it means that the PDF document was not modified by the {@code preparePdfDocument}
+   * method.
    * </p>
    * <p>
-   * <b>Note:</b> This property is only assigned if {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is
-   * {@code false}. If document references should be used the reference for the updated document is obtained by calling
-   * {@link #getUpdatedPdfDocumentReference()}.
+   * <b>Note:</b> This property should only assigned if the service is running in stateful mode and the call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was made with the {@code returnDocumentReference} parameter set.
    * </p>
    *
    * @param updatedPdfDocument updated PDF document (in Base64 encoded form)
@@ -148,12 +151,10 @@ public class PreparedPdfDocument implements Extensible {
   }
 
   /**
-   * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
-   * returned as a reference instead of via a {@link #getUpdatedPdfDocument()} call. The reason for using document
-   * references is that a potentially heavy document only has to be uploaded once. Later when including the document in
-   * a call to
-   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
-   * reference is set in {@link TbsDocument#setContentReference(String)}.
+   * If the service is running in stateful mode and the call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was made with the {@code returnDocumentReference} parameter set, this field will hold the reference to
+   * the PDF document stored by the service.
    *
    * <p>
    * Note: If document references are used a reference is set in all cases (even if no update of the document was
@@ -163,22 +164,37 @@ public class PreparedPdfDocument implements Extensible {
    * @return reference to the updated document or {@code null}
    */
   @Nullable
+  public String getPdfDocumentReference() {
+    return this.pdfDocumentReference;
+  }
+
+  @Deprecated
+  @Nullable
   public String getUpdatedPdfDocumentReference() {
-    return this.updatedPdfDocumentReference;
+    return this.getPdfDocumentReference();
   }
 
   /**
-   * If {@link PdfSignaturePagePreferences#getReturnDocumentReference()} is {@code true} the updated document will be
-   * returned as a reference instead of via a {@link #getUpdatedPdfDocument()} call. The reason for using document
-   * references is that a potentially heavy document only has to be uploaded once. Later when including the document in
-   * a call to
+   * If the service is running in stateful mode and the call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} was made with the {@code returnDocumentReference} parameter set, this field will hold the reference to
+   * the PDF document stored by the service.
+   * <p>
+   * The reason for using document references is that a potentially heavy document only has to be uploaded once. Later
+   * when including the document in a call to
    * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
    * reference is set in {@link TbsDocument#setContentReference(String)}.
+   * </p>
    *
-   * @param updatedPdfDocumentReference reference to the updated document
+   * @param pdfDocumentReference reference to the updated document
    */
-  public void setUpdatedPdfDocumentReference(@Nonnull final String updatedPdfDocumentReference) {
-    this.updatedPdfDocumentReference = updatedPdfDocumentReference;
+  public void setPdfDocumentReference(@Nonnull final String pdfDocumentReference) {
+    this.pdfDocumentReference = pdfDocumentReference;
+  }
+
+  @Deprecated(forRemoval = true)
+  public void setUpdatedPdfDocumentReference(@Nonnull final String pdfDocumentReference) {
+    this.setPdfDocumentReference(pdfDocumentReference);
   }
 
   /**

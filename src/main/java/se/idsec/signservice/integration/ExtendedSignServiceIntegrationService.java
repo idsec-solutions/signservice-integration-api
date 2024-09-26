@@ -88,10 +88,25 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    *   <li>Flattening any present Acroforms from the document.</li>
    *   <li>Removing the encryption dictionary from the document, if present.</li>
    * </ul>
+   * <b>A note about the returnDocumentReference parameter</b>
+   * <p>
+   * If the backend service is running in "stateful" mode, meaning that it maintains a state of ongoing operations
+   * in the service itself, the processed (prepared) document may be saved in the state, and later be referenced
+   * in a call to {@code createSignRequest}. This way a potentially large document only has to be "uploaded" once.
+   * </p>
+   * <p>
+   * By setting the {@code returnDocumentReference} parameter to {@code true} the method will not return the
+   * (potentially updated) document, but instead a reference to it (see {@link PreparedPdfDocument#getPdfDocumentReference()}).
+   * </p>
+   * <p>
+   * In "stateful" more the default value for the {@code returnDocumentReference} parameter is {@code true}. In stateless
+   * mode, the value of the parameter is ignored.
+   * </p>
    *
    * @param policy the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
    * @param pdfDocument the contents of the PDF document that is to be prepared
    * @param signaturePagePreferences the PDF signature page preferences (if {@code null}, no sign page is used)
+   * @param returnDocumentReference whether to use document references (see above)
    * @return a PreparedPdfDocument object containing the modified PDF document (if a sign page was added) and the
    *     VisiblePdfSignatureRequirement telling how a signature image should be added
    * @throws InputValidationException for input validation errors
@@ -101,13 +116,14 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    *     that is not PDF/A is attempted to be added to a PDF/A document
    * @throws PdfContainsAcroformException the PDF document contains an Acroform (and policy is not configured to
    *     flatten such forms)
-   * @throws PdfContainsEncryptionDictionaryException the PDF document contains an encryption dictionay (and policy
+   * @throws PdfContainsEncryptionDictionaryException the PDF document contains an encryption dictionary (and policy
    *     is not configured to remove these)
    * @throws SignServiceIntegrationException for other processing errors
    */
-  PreparedPdfDocument preparePdfSignaturePage(final String policy,
+  PreparedPdfDocument preparePdfDocument(final String policy,
       @Nonnull final byte[] pdfDocument,
-      @Nullable final PdfSignaturePagePreferences signaturePagePreferences)
+      @Nullable final PdfSignaturePagePreferences signaturePagePreferences,
+      @Nullable final Boolean returnDocumentReference)
       throws InputValidationException, PdfSignaturePageFullException, PdfAConsistencyCheckException,
       PdfContainsAcroformException, PdfContainsEncryptionDictionaryException, SignServiceIntegrationException;
 

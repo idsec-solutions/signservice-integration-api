@@ -28,8 +28,8 @@ import java.io.Serializable;
  * Represents the profile settings for how a PDF document is prepared.
  * <p>
  * See
- * {@link se.idsec.signservice.integration.ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[],
- * PdfSignaturePagePreferences)}.
+ * {@link se.idsec.signservice.integration.ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[],
+ * PdfSignaturePagePreferences, Boolean)}.
  * </p>
  *
  * @author Martin Lindström (martin@idsec.se)

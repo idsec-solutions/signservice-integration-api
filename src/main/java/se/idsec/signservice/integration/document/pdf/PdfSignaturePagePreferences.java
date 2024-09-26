@@ -22,24 +22,22 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import se.idsec.signservice.integration.ExtendedSignServiceIntegrationService;
-import se.idsec.signservice.integration.SignServiceIntegrationService;
 import se.idsec.signservice.integration.core.Extensible;
 import se.idsec.signservice.integration.core.Extension;
 import se.idsec.signservice.integration.core.ObjectBuilder;
-import se.idsec.signservice.integration.document.TbsDocument;
 
 import java.io.Serial;
 
 /**
  * Representation of preferences for adding or modifying a {@link PdfSignaturePage}. See
- * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}.
- *
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+ * Boolean)}.
  * <p>
  * Note: If
- * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)} is
- * called several times for the same document, i.e., when the document is signed more than once, the values for
- * {@code signaturePageReference}/{@code signaturePage} and {@code insertPageAt} must be equal to those values used in
- * the first invocation.
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+ * Boolean)} is called several times for the same document, i.e., when the document is signed more than once, the values
+ * for {@code signaturePageReference}/{@code signaturePage} and {@code insertPageAt} must be equal to those values used
+ * in the first invocation.
  * </p>
  *
  * @author Martin Lindström (martin@idsec.se)
@@ -93,11 +91,9 @@ public class PdfSignaturePagePreferences implements Extensible {
   private Integer existingSignaturePageNumber;
 
   /**
-   * A setting that tells that a document reference ({@link PreparedPdfDocument#getUpdatedPdfDocumentReference()})
-   * should be returned instead of the updated document itself. Later when the document is passed in a call to
-   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
-   * {@link TbsDocument#setContentReference(String)} is used instead of adding the entire document. This way a
-   * potentially large document only has to be "uploaded" once.
+   * Deprecated, assign the {@code returnDocumentReference} in a call to
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean)} instead.
    */
   private Boolean returnDocumentReference;
 
@@ -200,7 +196,7 @@ public class PdfSignaturePagePreferences implements Extensible {
   /**
    * A {@link PdfSignaturePage} has a limit on how many PDF signature images it can hold (see
    * {@link PdfSignaturePage#getMaxSignatureImages()}). If
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)}
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences, Boolean)}
    * is invoked with a PDF document that contains a number of signature that equals or exceeds the maximum number of
    * allowed signature images ({@link PdfSignaturePage#getMaxSignatureImages()}) for the current PDF signature page the
    * {@code failWhenSignPageFull} property tells whether {@code preparePdfSignaturePage} should fail
@@ -270,42 +266,27 @@ public class PdfSignaturePagePreferences implements Extensible {
   }
 
   /**
-   * Gets the setting that tells that a document reference
-   * ({@link PreparedPdfDocument#getUpdatedPdfDocumentReference()}) should be returned instead of the updated document
-   * itself. Later when the document is passed in a call to
-   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
-   * {@link TbsDocument#setContentReference(String)} is used instead of adding the entire document. This way a
-   * potentially large document only has to be "uploaded" once.
-   * <p>
-   * A document reference is only returned in the cases when the current SignService Integration policy profile is
-   * running in "stateful" mode. It is an error to request a document reference if the policy is stateless.
-   * </p>
+   * Deprecated.
    *
    * @return whether document references instead of a completely updated document should be returned
+   * @deprecated assign the {@code returnDocumentReference} parameter of the
+   *     {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   *     Boolean)} method instead
    */
+  @Deprecated(forRemoval = true)
   public Boolean getReturnDocumentReference() {
     return this.returnDocumentReference;
   }
 
   /**
-   * Assigns the setting that tells that a document reference
-   * ({@link PreparedPdfDocument#getUpdatedPdfDocumentReference()}) should be returned instead of the updated document
-   * itself. Later when the document is passed in a call to
-   * {@link SignServiceIntegrationService#createSignRequest(se.idsec.signservice.integration.SignRequestInput)} the
-   * {@link TbsDocument#setContentReference(String)} is used instead of adding the entire document. This way a
-   * potentially large document only has to be "uploaded" once.
-   *
-   * <p>
-   * A document reference is only returned in the cases when the current SignService Integration policy profile is
-   * running in "stateful" mode. It is an error to request a document reference if the policy is stateless.
-   * </p>
-   * <p>
-   * The default behaviour is that {@code returnDocumentReference} is {@code true} if the current policy is stateful and
-   * {@code false} if it is stateless.
-   * </p>
+   * Deprecated.
    *
    * @param returnDocumentReference whether document references should be returned
+   * @deprecated assign the {@code returnDocumentReference} parameter of the
+   *     {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   *     Boolean)} method instead
    */
+  @Deprecated(forRemoval = true)
   public void setReturnDocumentReference(final Boolean returnDocumentReference) {
     this.returnDocumentReference = returnDocumentReference;
   }
