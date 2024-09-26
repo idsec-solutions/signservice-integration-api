@@ -23,8 +23,8 @@ import java.io.Serial;
 
 /**
  * An exception that is reported by
- * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)} if
- * a sign page that is not PDF/A is added to a PDF/A document.
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+ * Boolean)} if a sign page that is not PDF/A is added to a PDF/A document.
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)
