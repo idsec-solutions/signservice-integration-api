@@ -103,7 +103,8 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * mode, the value of the parameter is ignored.
    * </p>
    *
-   * @param policy the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()})
+   * @param policy the policy under which the operation is performed (see {@link SignRequestInput#getPolicy()}). If
+   *     {@code null}, the default policy is used.
    * @param pdfDocument the contents of the PDF document that is to be prepared
    * @param signaturePagePreferences the PDF signature page preferences (if {@code null}, no sign page is used)
    * @param returnDocumentReference whether to use document references (see above)
@@ -120,8 +121,7 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    *     is not configured to remove these)
    * @throws SignServiceIntegrationException for other processing errors
    */
-  PreparedPdfDocument preparePdfDocument(@Nonnull final String policy,
-      @Nonnull final byte[] pdfDocument,
+  PreparedPdfDocument preparePdfDocument(@Nullable final String policy, @Nonnull final byte[] pdfDocument,
       @Nullable final PdfSignaturePagePreferences signaturePagePreferences,
       @Nullable final Boolean returnDocumentReference)
       throws InputValidationException, PdfSignaturePageFullException, PdfAConsistencyCheckException,
