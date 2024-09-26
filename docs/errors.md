@@ -57,6 +57,7 @@ The `document` category represents document related errors, for example, a malfo
 | `error.document.sign` | Failed to sign the document. |
 | `error.document.pdfa-consistency-check-failed` | PDF/A consistency check failed. Typically this happens when a document being signed is in PDF/A, but the sign page is not. |
 | `error.document.pdf-contains-acroform` | PDF document contains an Acroform (and policy is not configured to flatten such forms). |
+| `error.document.pdf-flatten-acroform-failed` | Failed to flatten existing Acroform in document. |
 | `error.document.pdf-contains-encryption-dictionary` | PDF document contains an encryption dictionary (and policy is not configured to remove that). |
 
 ### SignResponse
