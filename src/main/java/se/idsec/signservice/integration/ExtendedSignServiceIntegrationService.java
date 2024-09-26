@@ -120,7 +120,7 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    *     is not configured to remove these)
    * @throws SignServiceIntegrationException for other processing errors
    */
-  PreparedPdfDocument preparePdfDocument(final String policy,
+  PreparedPdfDocument preparePdfDocument(@Nonnull final String policy,
       @Nonnull final byte[] pdfDocument,
       @Nullable final PdfSignaturePagePreferences signaturePagePreferences,
       @Nullable final Boolean returnDocumentReference)
