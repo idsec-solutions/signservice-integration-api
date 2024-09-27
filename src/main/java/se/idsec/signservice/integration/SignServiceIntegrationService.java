@@ -15,13 +15,15 @@
  */
 package se.idsec.signservice.integration;
 
-import java.util.List;
-
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import se.idsec.signservice.integration.config.IntegrationServiceDefaultConfiguration;
 import se.idsec.signservice.integration.config.PolicyNotFoundException;
 import se.idsec.signservice.integration.core.SignatureState;
 import se.idsec.signservice.integration.core.error.InputValidationException;
 import se.idsec.signservice.integration.core.error.SignServiceIntegrationException;
+
+import java.util.List;
 
 /**
  * Interface describing the API for the SignService Integration Service.
@@ -35,12 +37,29 @@ public interface SignServiceIntegrationService {
    * Creates a SignRequest message that is to be posted to the signature service.
    *
    * @param signRequestInput the requirements and input for how to create the SignRequest
+   * @param callerId the identity for the calling entity (only needed if the implementation is a stand-alone service
+   *     running in stateful mode)
    * @return a SignRequestData object containing the encoded (and signed) SignRequest along with additional parameters
    * @throws InputValidationException for errors in the supplied input
    * @throws SignServiceIntegrationException for errors creating the SignRequest
    */
-  SignRequestData createSignRequest(final SignRequestInput signRequestInput)
+  @Nonnull
+  SignRequestData createSignRequest(@Nonnull final SignRequestInput signRequestInput, @Nullable final String callerId)
       throws InputValidationException, SignServiceIntegrationException;
+
+  /**
+   * See {@link #createSignRequest(SignRequestInput, String)}.
+   *
+   * @param signRequestInput the requirements and input for how to create the SignRequest
+   * @return a SignRequestData object containing the encoded (and signed) SignRequest along with additional parameters
+   * @throws InputValidationException for errors in the supplied input
+   * @throws SignServiceIntegrationException for errors creating the SignRequest
+   */
+  @Nonnull
+  default SignRequestData createSignRequest(@Nonnull final SignRequestInput signRequestInput)
+      throws InputValidationException, SignServiceIntegrationException {
+    return this.createSignRequest(signRequestInput, null);
+  }
 
   /**
    * When the service that has ordered the signing operation receives the sign response message it should invoke this
@@ -56,14 +75,37 @@ public interface SignServiceIntegrationService {
    * @param relayState the relayState (from the RelayState POST parameter)
    * @param state the signature state
    * @param parameters optional processing parameter giving directives about the processing
+   * @param callerId the identity for the calling entity (only needed if the implementation is a stand-alone service
+   *     running in stateful mode)
    * @return a SignatureResult object containing the signed documents and metadata about the signature
    * @throws SignResponseCancelStatusException the sign service reported that the user cancelled the operation
    * @throws SignResponseErrorStatusException the sign service reported an error
    * @throws SignServiceIntegrationException for validation and processing errors
    */
-  SignatureResult processSignResponse(final String signResponse, final String relayState,
-      final SignatureState state, final SignResponseProcessingParameters parameters)
+  @Nonnull
+  SignatureResult processSignResponse(@Nonnull final String signResponse, @Nonnull final String relayState,
+      @Nonnull final SignatureState state, @Nullable final SignResponseProcessingParameters parameters,
+      @Nullable final String callerId)
       throws SignResponseCancelStatusException, SignResponseErrorStatusException, SignServiceIntegrationException;
+
+  /**
+   * See {@link #processSignResponse(String, String, SignatureState, SignResponseProcessingParameters, String)}.
+   *
+   * @param signResponse the Base64-encoded SignResponse message (from the EidSignResponse POST parameter)
+   * @param relayState the relayState (from the RelayState POST parameter)
+   * @param state the signature state
+   * @param parameters optional processing parameter giving directives about the processing
+   * @return a SignatureResult object containing the signed documents and metadata about the signature
+   * @throws SignResponseCancelStatusException the sign service reported that the user cancelled the operation
+   * @throws SignResponseErrorStatusException the sign service reported an error
+   * @throws SignServiceIntegrationException for validation and processing errors
+   */
+  @Nonnull
+  default SignatureResult processSignResponse(@Nonnull final String signResponse, @Nonnull final String relayState,
+      @Nonnull final SignatureState state, @Nullable final SignResponseProcessingParameters parameters)
+      throws SignResponseCancelStatusException, SignResponseErrorStatusException, SignServiceIntegrationException {
+    return this.processSignResponse(signResponse, relayState, state, parameters, null);
+  }
 
   /**
    * Given the name of a SignService Integration policy, the method returns the default settings used for this policy.
@@ -72,13 +114,15 @@ public interface SignServiceIntegrationService {
    * @return the default service configuration for the given policy
    * @throws PolicyNotFoundException if the given policy does not exist
    */
-  IntegrationServiceDefaultConfiguration getConfiguration(final String policy) throws PolicyNotFoundException;
+  @Nonnull
+  IntegrationServiceDefaultConfiguration getConfiguration(@Nullable final String policy) throws PolicyNotFoundException;
 
   /**
    * Returns a list of names of the policies that are defined for this instance of the SignService Integration Service.
    *
    * @return a non-empty list of policy names
    */
+  @Nonnull
   List<String> getPolicies();
 
   /**
@@ -86,16 +130,9 @@ public interface SignServiceIntegrationService {
    *
    * @return version string
    */
+  @Nonnull
   default String getVersion() {
     return ApiVersion.getVersion();
   }
-
-  /**
-   * In the cases when the SignService Integration Service is running as a stand-alone service in stateful mode there is
-   * a need to register the actor ownership of session states and other cached objects. In these cases the stand-alone
-   * service adds an extension, {@code #OWNER_ID_EXTENSION_KEY}, holding the identity of the relying party that is
-   * making the call.
-   */
-  String OWNER_ID_EXTENSION_KEY = "_operation_owner_id";
 
 }

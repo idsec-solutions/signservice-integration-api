@@ -30,12 +30,12 @@ import java.io.Serial;
 
 /**
  * Representation of preferences for adding or modifying a {@link PdfSignaturePage}. See
- * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
- * Boolean)}.
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences, Boolean,
+ * String)}.
  * <p>
  * Note: If
- * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
- * Boolean)} is called several times for the same document, i.e., when the document is signed more than once, the values
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences, Boolean,
+ * String)} is called several times for the same document, i.e., when the document is signed more than once, the values
  * for {@code signaturePageReference}/{@code signaturePage} and {@code insertPageAt} must be equal to those values used
  * in the first invocation.
  * </p>
@@ -93,7 +93,7 @@ public class PdfSignaturePagePreferences implements Extensible {
   /**
    * Deprecated, assign the {@code returnDocumentReference} in a call to
    * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
-   * Boolean)} instead.
+   * Boolean, String)} instead.
    */
   private Boolean returnDocumentReference;
 
@@ -196,10 +196,10 @@ public class PdfSignaturePagePreferences implements Extensible {
   /**
    * A {@link PdfSignaturePage} has a limit on how many PDF signature images it can hold (see
    * {@link PdfSignaturePage#getMaxSignatureImages()}). If
-   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences, Boolean)}
-   * is invoked with a PDF document that contains a number of signature that equals or exceeds the maximum number of
-   * allowed signature images ({@link PdfSignaturePage#getMaxSignatureImages()}) for the current PDF signature page the
-   * {@code failWhenSignPageFull} property tells whether {@code preparePdfSignaturePage} should fail
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean, String)} is invoked with a PDF document that contains a number of signature that equals or exceeds the
+   * maximum number of allowed signature images ({@link PdfSignaturePage#getMaxSignatureImages()}) for the current PDF
+   * signature page the {@code failWhenSignPageFull} property tells whether {@code preparePdfSignaturePage} should fail
    * ({@link PdfSignaturePageFullException}) or whether it should allow proceeding with the signature operation where no
    * PDF signature image is inserted (in that case the resulting {@link PreparedPdfDocument}) will contain a "null"
    * {@link VisiblePdfSignatureRequirement} (see
@@ -271,7 +271,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * @return whether document references instead of a completely updated document should be returned
    * @deprecated assign the {@code returnDocumentReference} parameter of the
    *     {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
-   *     Boolean)} method instead
+   *     Boolean, String)} method instead
    */
   @Deprecated(forRemoval = true)
   public Boolean getReturnDocumentReference() {
@@ -284,7 +284,7 @@ public class PdfSignaturePagePreferences implements Extensible {
    * @param returnDocumentReference whether document references should be returned
    * @deprecated assign the {@code returnDocumentReference} parameter of the
    *     {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
-   *     Boolean)} method instead
+   *     Boolean, String)} method instead
    */
   @Deprecated(forRemoval = true)
   public void setReturnDocumentReference(final Boolean returnDocumentReference) {

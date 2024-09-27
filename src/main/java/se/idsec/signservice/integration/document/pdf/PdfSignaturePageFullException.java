@@ -24,7 +24,7 @@ import java.io.Serial;
 /**
  * An exception that is reported by
  * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
- * Boolean)} if there is no more room in a PDF signature page to insert a PDF signature image.
+ * Boolean, String)} if there is no more room in a PDF signature page to insert a PDF signature image.
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)

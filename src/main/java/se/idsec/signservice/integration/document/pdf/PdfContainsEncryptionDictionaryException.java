@@ -23,8 +23,8 @@ import java.io.Serial;
 
 /**
  * An exception that is reported by
- * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
- * Boolean)} if a PDF document contains an encryption dictionary and the policy states that it should not be removed.
+ * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences, Boolean,
+ * String)} if a PDF document contains an encryption dictionary and the policy states that it should not be removed.
  *
  * @author Martin Lindström (martin@idsec.se)
  * @author Stefan Santesson (stefan@idsec.se)

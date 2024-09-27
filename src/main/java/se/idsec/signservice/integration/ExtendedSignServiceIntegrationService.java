@@ -108,6 +108,8 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    * @param pdfDocument the contents of the PDF document that is to be prepared
    * @param signaturePagePreferences the PDF signature page preferences (if {@code null}, no sign page is used)
    * @param returnDocumentReference whether to use document references (see above)
+   * @param callerId the identity for the calling entity (only needed if the implementation is a stand-alone service
+   *     running in stateful mode)
    * @return a PreparedPdfDocument object containing the modified PDF document (if a sign page was added) and the
    *     VisiblePdfSignatureRequirement telling how a signature image should be added
    * @throws InputValidationException for input validation errors
@@ -123,7 +125,7 @@ public interface ExtendedSignServiceIntegrationService extends SignServiceIntegr
    */
   PreparedPdfDocument preparePdfDocument(@Nullable final String policy, @Nonnull final byte[] pdfDocument,
       @Nullable final PdfSignaturePagePreferences signaturePagePreferences,
-      @Nullable final Boolean returnDocumentReference)
+      @Nullable final Boolean returnDocumentReference, @Nullable final String callerId)
       throws InputValidationException, PdfSignaturePageFullException, PdfAConsistencyCheckException,
       PdfContainsAcroformException, PdfContainsEncryptionDictionaryException, SignServiceIntegrationException;
 

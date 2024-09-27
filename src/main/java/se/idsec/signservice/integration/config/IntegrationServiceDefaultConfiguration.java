@@ -111,8 +111,8 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * In a setup where only one authentication service (IdP) is used to authenticate users, a default value could be
-   * used. If the {@link AuthnRequirements#getAuthnServiceID()} method returns {@code null}, the default value will
-   * be used.
+   * used. If the {@link AuthnRequirements#getAuthnServiceID()} method returns {@code null}, the default value will be
+   * used.
    *
    * @return the entityID for the default authentication service, or null if no default exists
    * @see AuthnRequirements#getAuthnServiceID()
@@ -163,9 +163,9 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * A policy may have one, or more, configured PDF signature pages. See
-   * {@link ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[],
-   * se.idsec.signservice.integration.document.pdf.PdfSignaturePagePreferences)} for a description of PDF signature
-   * pages. The first object in the list is regarded as the default page for the policy.
+   * {@link ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences,
+   * Boolean, String)} for a description of PDF signature pages. The first object in the list is regarded as the default
+   * page for the policy.
    *
    * @return a list of PDF signature pages for the policy, or {@code null} if no such pages are defined for the policy
    */
@@ -174,8 +174,10 @@ public interface IntegrationServiceDefaultConfiguration extends Extensible {
 
   /**
    * Gets the settings for preparing PDF documents.
+   *
    * @return a {@link PdfPrepareSettings}
-   * @see ExtendedSignServiceIntegrationService#preparePdfSignaturePage(String, byte[], PdfSignaturePagePreferences)
+   * @see ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[], PdfSignaturePagePreferences, Boolean,
+   *     String)
    */
   @Nonnull
   PdfPrepareSettings getPdfPrepareSettings();

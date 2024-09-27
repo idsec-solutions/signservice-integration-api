@@ -29,7 +29,7 @@ import java.io.Serializable;
  * <p>
  * See
  * {@link se.idsec.signservice.integration.ExtendedSignServiceIntegrationService#preparePdfDocument(String, byte[],
- * PdfSignaturePagePreferences, Boolean)}.
+ * PdfSignaturePagePreferences, Boolean, String)}.
  * </p>
  *
  * @author Martin Lindström (martin@idsec.se)
