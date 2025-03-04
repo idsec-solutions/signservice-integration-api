@@ -32,6 +32,7 @@ import java.io.Serial;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * Representation of an image template that is used for visible PDF signatures.
@@ -99,6 +100,8 @@ public class PdfSignatureImageTemplate implements Extensible {
    */
   @Builder.Default
   private boolean includeSigningTime = false;
+
+  private String timeZoneId;
 
   /**
    * A map of the field names that are required by the template in the fieldName map in
@@ -288,6 +291,24 @@ public class PdfSignatureImageTemplate implements Extensible {
   @Override
   public void setExtension(final Extension extension) {
     this.extension = extension;
+  }
+
+  /**
+   * Gets the identifier for the time zone associated with this template.
+   *
+   * @return the time zone identifier
+   */
+  public String getTimeZoneId() {
+    return timeZoneId;
+  }
+
+  /**
+   * Assigns the time zone identifier for this template.
+   *
+   * @param timeZoneId the time zone identifier
+   */
+  public void setTimeZoneId(final String timeZoneId) {
+    this.timeZoneId = timeZoneId;
   }
 
   /**
