@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2024 IDsec Solutions AB
+ * Copyright 2019-2025 IDsec Solutions AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,10 @@ import se.idsec.signservice.integration.core.ObjectBuilder;
 
 import java.io.Serial;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Base64;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * Representation of an image template that is used for visible PDF signatures.
@@ -101,7 +102,15 @@ public class PdfSignatureImageTemplate implements Extensible {
   @Builder.Default
   private boolean includeSigningTime = false;
 
+  /**
+   * The time zone to use for signing time.
+   */
   private String timeZoneId;
+
+  /**
+   * The Java date format to use for signing time.
+   */
+  private String dateFormat;
 
   /**
    * A map of the field names that are required by the template in the fieldName map in
@@ -299,16 +308,61 @@ public class PdfSignatureImageTemplate implements Extensible {
    * @return the time zone identifier
    */
   public String getTimeZoneId() {
-    return timeZoneId;
+    return this.timeZoneId;
   }
 
   /**
-   * Assigns the time zone identifier for this template.
+   * Assigns the time zone identifier for this template. The default is {@code TimeZone.getDefault()}.
    *
    * @param timeZoneId the time zone identifier
+   * @throws IllegalArgumentException for invalid input
    */
-  public void setTimeZoneId(final String timeZoneId) {
+  public void setTimeZoneId(final String timeZoneId) throws IllegalArgumentException {
+    checkTimeZoneId(timeZoneId);
     this.timeZoneId = timeZoneId;
+  }
+
+  private static void checkTimeZoneId(final String timeZoneId) throws IllegalArgumentException {
+    try {
+      if (timeZoneId != null) {
+        ZoneId.of(timeZoneId);
+      }
+    }
+    catch (final Exception e) {
+      throw new IllegalArgumentException("Invalid time zone id: " + timeZoneId, e);
+    }
+  }
+
+  /**
+   * Gets the Java date format to use for signing time strings. See {@link SimpleDateFormat} for valid formats. The
+   * default is {@code yyyy-MM-dd HH:mm z}.
+   *
+   * @return date format string, or {@code null} if not assigned
+   */
+  public String getDateFormat() {
+    return this.dateFormat;
+  }
+
+  /**
+   * Assigns the date format to use for signing time strings.
+   *
+   * @param dateFormat the date format
+   * @throws IllegalArgumentException for invalid input
+   */
+  public void setDateFormat(final String dateFormat) throws IllegalArgumentException {
+    checkDateFormat(dateFormat);
+    this.dateFormat = dateFormat;
+  }
+
+  private static void checkDateFormat(final String dateFormat) throws IllegalArgumentException {
+    try {
+      if (dateFormat != null) {
+        new SimpleDateFormat(dateFormat);
+      }
+    }
+    catch (final Exception e) {
+      throw new IllegalArgumentException("invalid date format: " + dateFormat, e);
+    }
   }
 
   /**
@@ -319,6 +373,18 @@ public class PdfSignatureImageTemplate implements Extensible {
     private boolean includeSignerName = true;
     @SuppressWarnings("unused")
     private boolean includeSigningTime = false;
+
+    public PdfSignatureImageTemplateBuilder timeZoneId(final String timeZoneId) {
+      checkTimeZoneId(timeZoneId);
+      this.timeZoneId = timeZoneId;
+      return this;
+    }
+
+    public PdfSignatureImageTemplateBuilder dateFormat(final String dateFormat) {
+      checkDateFormat(dateFormat);
+      this.dateFormat = dateFormat;
+      return this;
+    }
 
     // Lombok
   }
